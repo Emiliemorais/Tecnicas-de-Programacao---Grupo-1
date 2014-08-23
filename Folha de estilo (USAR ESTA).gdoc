@@ -1,1 +1,60 @@
-{"url": "https://docs.google.com/document/d/1oKtYgjwG7XCECrMssEufUWKJSma-fuM1vPtDmbaozZU/edit?usp=docslist_api", "resource_id": "document:1oKtYgjwG7XCECrMssEufUWKJSma-fuM1vPtDmbaozZU"}
+
+																										Folha de Estilos
+																				Regras de padronização do código em JAVA
+
+1 - COMENTÁRIOS
+
+		●	O conteúdo dos comentários em uma única linha devem ser separados por um único espaço das barras duplas (‘//’), não sendo necessário o uso de ponto final para indicar o fim do comentário;
+
+		●	Já os comentários que precisem de mais de uma linha, os símbolos ‘/*’ e ‘*/’ devem estar cada um em uma linha diferente e o conteúdo do comentário em linhas diferentes das que se encontram os símbolos. No caso em que o contexto permitir, é necessário o uso de ponto final;
+
+2 - VARIÁVEIS
+
+		●	Declarações de variáveis do mesmo tipo nunca devem ficar na mesma linha;
+
+		●	Todas as variáveis devem ser escritas somente com letras minúsculas com variáveis formadas por uma única palavra, as que são formadas por mais de uma palavra são escritas com a primeira letra em maiúscula de cada palavra adicional;
+
+		●	Todas as variáveis devem ser inicializadas;
+
+3 - CLASSES
+
+		●	Os nomes das classes devem começar com letra maiúscula e deve estar no singular. Para nomes com mais de uma palavra, cada palavra adicional também deve começar com letra maiúscula;
+
+		●	Os nomes da classes devem ser os mesmos dos nomes dos arquivo.java;
+
+4 - MÉTODOS
+
+		●	Os nomes dos métodos devem ser um verbo;
+
+		●	A escrita dos nomes deve ser em letra minúscula, e cada palavra adicional deve começar com letra minúscula;
+
+5 - ESPAÇAMENTOS
+
+		●	Todo método ou estrutura que inicie com chaves deve receber a indentação, ou seja, uma tabulação após a sua linha de comando;
+
+		●	Nos blocos que possuem chaves, deve haver um único espaço (relativo a um ENTER) entre as chaves e seu respectivo conteúdo;
+
+		●	 Para atribuições é necessário um espaço entre a variável e o conteúdo;
+
+		●	 Sempre que houver uso de vírgula (como em parâmetros de função), deve haver uma espaço entre a vírgula e o termo subsequente;
+
+		●	A declaração de variáveis deve ser separada de qualquer outro código por uma espaço (relativo a um ENTER);
+
+		●	Não deve existir espaço entre o nome do método e o parênteses que contém os seus parâmetros, tanto na declaração do escopo do método quanto no uso do mesmo;
+
+6 - ESTRUTURAS CONDICIONAIS
+
+		●	O código deve conter todas as chaves começando abaixo das suas linhas de comando;
+
+		●	Estruturas de ‘if/else’ devem possuir chaves para indicar seus blocos mesmo que seja somente uma linha;
+
+		●	Na estrutura ‘switch’ o comando ‘break’ deve estar na última linha do campo ‘case’;
+
+		●	Para comparações é necessário um espaço entre as variáveis ou valores em questão e o operador;
+
+7 - ESTRUTURAS DE REPETIÇÃO
+
+		●	No laço de repetição ‘for’, a atribuição e comparação não necessitam de espaço entre os termos;
+
+		●	No laço de repetição while e do-while , a comparação não necessita de espaço entre os termos;
+
