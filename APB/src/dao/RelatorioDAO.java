@@ -19,6 +19,7 @@ public class RelatorioDAO {
 		return instance;
 	}
 
+        // Interface que provê acesso aos relatorios cadastrados e permite que sejam pesquisados por data
 	public ResultSet pesquisarPorData(Relatorio relatorio)
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
@@ -28,6 +29,8 @@ public class RelatorioDAO {
 		
 		return rs;
 	}
+        
+        // Interface que provê acesso aos relatorios cadastrados e permite que sejam pesquisados por data e por barbeiro 
 	public ResultSet pesquisarPorDataEBarbeiro(Relatorio relatorio)
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
@@ -38,6 +41,8 @@ public class RelatorioDAO {
 		
 		return rs;
 	}
+        
+        // Interface que provê acesso aos relatorios cadastrados e permite que sejam pesquisados por data e serviço
 	public ResultSet pesquisarPorDataEServico(Relatorio relatorio)
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
@@ -49,6 +54,8 @@ public class RelatorioDAO {
 		return rs;
 	
 	}
+        
+        // Interface que provê acesso aos relatorios cadastrados e permite que sejam pesquisados por barbeiro
 	public ResultSet pesquisarPorBarbeiro(Relatorio relatorio)
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
@@ -58,6 +65,8 @@ public class RelatorioDAO {
 		
 		return rs;
 	}
+        
+        // Interface que provê acesso aos relatorios cadastrados e permite que sejam pesquisados por barbeiro e servico
 	public ResultSet pesquisarPorBarbeiroEServico(Relatorio relatorio)
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
@@ -67,6 +76,8 @@ public class RelatorioDAO {
 		
 		return rs;
 	}
+        
+        // Interface que provê acesso aos relatorios cadastrados e permite que sejam pesquisados por servico
 	public ResultSet pesquisarPorServico(Relatorio relatorio)
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
@@ -76,6 +87,8 @@ public class RelatorioDAO {
 		
 		return rs;
 	}
+        
+        // Interface que provê acesso aos relatorios cadastrados e permite que sejam pesquisados por data, barbeiro e serviço
 	public ResultSet pesquisarPorDataBarbeiroEServico(Relatorio relatorio)
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
