@@ -1,14 +1,17 @@
 package control;
 
+// Importando das bases
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
+// Importando classes da DAO e da MODEL
 import dao.RelatorioDAO;
 import model.Relatorio;
 
+// Classe criada como controle do Relatorio
 public class RelatorioController {
-	
+
+
 private static RelatorioController instance;
 
 	public RelatorioController() {}
@@ -45,6 +48,7 @@ private static RelatorioController instance;
 		if(instance == null)
 			instance = new RelatorioController();
 		return instance;
+		// Retorno do metodo RelatorioController getInstance() como a instance
 	}
 
-}
+}// Fim da classe
