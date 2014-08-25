@@ -4,7 +4,6 @@ package control;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
 //Importando classes da DAO
 import dao.ReciboDAO;
 
@@ -12,23 +11,30 @@ import dao.ReciboDAO;
 public class ReciboController {
 
 	private static ReciboController instance;
-	
-	public ReciboController(){}
-	
-	public static ReciboController getInstance(){
-		if(instance == null){
+
+	public ReciboController() {
+	}
+
+	/* 
+	 * Metodo utilizado para instanciar a variavel 
+	 *"instance" caso essa seja nula
+	 */
+	public static ReciboController getInstance() {
+		if (instance == null) {
 			instance = new ReciboController();
 		}
-		//retorno do metodo ReciboController getInstance()
+		// retorno do metodo ReciboController getInstance()
 		return instance;
-	}//fim do metodo
-	
-	public ResultSet pesquisarServicosDoBarbeiro(String barbeiro, String dataInicial, String dataFinal) throws SQLException{
-		
-		return ReciboDAO.getInstance().pesquisarServicosDoBarbeiro(barbeiro, dataInicial, dataFinal);
+	}// fim do metodo
+
+	public ResultSet pesquisarServicosDoBarbeiro(String barbeiro,
+			String dataInicial, String dataFinal) throws SQLException {
+
+		return ReciboDAO.getInstance().pesquisarServicosDoBarbeiro(barbeiro,
+				dataInicial, dataFinal);
 		// Retorno do metodo public ResultSet pesquisarServicosDoBarbeiro
-		
-	}//fim do metodo
-	
+
+	}// fim do metodo
+
 }
-//fim da classe
+// fim da classe
