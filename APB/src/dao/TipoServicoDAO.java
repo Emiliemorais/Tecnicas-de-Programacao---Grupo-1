@@ -55,6 +55,7 @@ public class TipoServicoDAO {
 		 */
 	}// Fim do metodo alterar
 
+	// Metodo que retorna true caso o tipo de servico contenha alguma informacao
 	public boolean excluir(TipoServico tipoServico) throws SQLException {
 		if (tipoServico == null)
 			return false;
@@ -64,6 +65,10 @@ public class TipoServicoDAO {
 		return true;
 	}// Fim do metodo excluir
 
+	/* Metodo que permite executar as mudancas dos dados, sendo eles:
+	 *Connection connection 
+	 *PreparedStatement preparedStatement
+	 */
 	public void updateQuery(String message) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement preparedStatement = connection.prepareStatement(message);
@@ -72,6 +77,7 @@ public class TipoServicoDAO {
 		connection.close();
 	}// Fim do metodo updateQuery
 	
+	// Metodo que cede o acesso aos relatorios cadastrados e da a opcao de que sejam mostrados
 	public ResultSet mostrarTipoServicoCadastrados(TipoServico servico) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		ResultSet rs = connection.createStatement().executeQuery(
@@ -80,6 +86,7 @@ public class TipoServicoDAO {
 		return rs;
 	}//Fim do metodo Result mostrarTipoServicoCadastrados
 	
+	// Metodo que cede o acesso aos relatorios cadastrados e da a opcao de que sejam pesquisados por nome
 	public ResultSet pesquisarPorNome(TipoServico servico) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		java.sql.PreparedStatement pst = connection.prepareStatement("SELECT * FROM tiposervico WHERE "
