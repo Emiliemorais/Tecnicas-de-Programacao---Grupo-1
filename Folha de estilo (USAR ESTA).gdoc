@@ -8,6 +8,9 @@
 
 	● Já os comentários que precisem de mais de uma linha, os símbolos ‘/*’ e ‘*/’ devem estar cada um em uma linha diferente e o conteúdo do comentário em linhas diferentes das que se encontram os símbolos. No caso em que o contexto permitir, é necessário o uso de ponto final;
 
+	● Todos os comentários devem começar com letra maiúscula.
+
+
 2 - VARIÁVEIS
 
 	● Declarações de variáveis do mesmo tipo nunca devem ficar na mesma linha;
@@ -16,17 +19,24 @@
 
 	● Todas as variáveis devem ser inicializadas;
 
+	● Antes de converter variáveis atentar-se aos danos colaterais e comentar seu motivo para ter feito o mesmo, devido a possibilidade de se causar instabilidades e disparar exceções.
+
+	● Use tipo unsigned sempre que não possa possuir um atributo negativo.
+
+
 3 - CLASSES
 
 	● Os nomes das classes devem começar com letra maiúscula e deve estar no singular. Para nomes com mais de uma palavra, cada palavra adicional também deve começar com letra maiúscula;
 
-	● Os nomes da classes devem ser os mesmos dos nomes dos arquivo.java;
+	● Os nomes da classes devem ser os mesmos dos nomes dos "arquivo.java".
+
 
 4 - MÉTODOS
 
 	● Os nomes dos métodos devem ser um verbo;
 
-	● A escrita dos nomes deve ser em letra minúscula, e cada palavra adicional deve começar com letra minúscula;
+	● A escrita dos nomes deve ser em letra minúscula, e cada palavra adicional deve começar com letra minúscula.
+
 
 5 - ESPAÇAMENTOS
 
@@ -40,7 +50,8 @@
 
 	● A declaração de variáveis deve ser separada de qualquer outro código por uma espaço (relativo a um ENTER);
 
-	● Não deve existir espaço entre o nome do método e o parênteses que contém os seus parâmetros, tanto na declaração do escopo do método quanto no uso do mesmo;
+	● Não deve existir espaço entre o nome do método e o parênteses que contém os seus parâmetros, tanto na declaração do escopo do método quanto no uso do mesmo.
+
 
 6 - ESTRUTURAS CONDICIONAIS
 
@@ -52,9 +63,14 @@
 
 	● Para comparações é necessário um espaço entre as variáveis ou valores em questão e o operador;
 
+	● Sempre que utilizar do recurso if, necessariamente, utilize um else e escreva um comentário, mesmo que este pareça ser redundante.
+
+
 7 - ESTRUTURAS DE REPETIÇÃO
 
 	● No laço de repetição ‘for’, a atribuição e comparação não necessitam de espaço entre os termos;
 
 	● No laço de repetição while e do-while , a comparação não necessita de espaço entre os termos;
+
+	● Evite o uso do break.
 
