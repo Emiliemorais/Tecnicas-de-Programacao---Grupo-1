@@ -2,312 +2,33 @@
 package livraria_abc;
 
 import java.util.*;
-import java.io.*;
 
 public class Livraria_ABC
 {
-    static boolean acesso_atual=false; // Se houver algum login aberto, acesso_atual = true;
-    static String cliente_atual = "blank"; // Se houver algum login aberto, acesso_atual = CPF do cliente logado;
+    // Se houver algum login aberto, acesso_atual = true;
+    static boolean acesso_atual = false; 
+    // Se houver algum login aberto, acesso_atual = CPF do cliente logado;
+    static String cliente_atual = "blank";
     static String nome_cliente_atual = "blank";
     static float desconto = 0;
             
     public static class Livraria
     {
-         int CNPJ;
-         String Nome;
-         String Endereco;
-         int Telefone;
+        int CNPJ;
+        String Nome;
+        String Endereco;
+        int Telefone;
          
-         public Livraria ()
-         {
-             this.CNPJ = 54505052;
-             this.Nome = "Livraria ABC";
-             this.Endereco = "Avenida Getúlio Vargas nº 69";
-             this.Telefone = 32345698;
-         }   
+        // Construtor 
+        public Livraria ()
+        {
+            this.CNPJ = 54505052;
+            this.Nome = "Livraria ABC";
+            this.Endereco = "Avenida Getúlio Vargas nº 69";
+            this.Telefone = 32345698;
+        }   
     }
-    
-    public static class Tipo_pagamento
-    {
-	//Atributos fixos
-        static List<Tipo_pagamento> Tipos = new ArrayList<>();
-	String tipo;
-	String descricao;
-	
-	//Construtor
-	public Tipo_pagamento(String tipo, String descricao) 
-        {
-            this.tipo = tipo;
-            this.descricao = descricao;
-	}
-	
-    }
-    
-    public class Pagamento 
-    {
-	//Atributos
-	private int cod_pag;
-	private Date data_pag;
-	private float valor_pag;
-	
-	//Métodos getters e setters
-	public int getCod_pag() {
-		return cod_pag;
-	}
-
-	public void setCod_pag(int cod_pag) {
-		this.cod_pag = cod_pag;
-	}
-	
-	public Date getData_pag() {
-		return data_pag;
-	}
-
-	public void setData_pag(Date data_pag) {
-		this.data_pag = data_pag;
-	}
-
-	public float getValor_pag() {
-		return valor_pag;
-	}
-
-	public void setValor_pag(float valor_pag) {
-		this.valor_pag = valor_pag;
-	}
-       
-	//Construtor
-	public Pagamento(int cod_pag, Date data_pag, float valor_pag) {
-		super();
-		this.cod_pag = cod_pag;
-		this.data_pag = data_pag;
-		this.valor_pag = valor_pag;
-	}
-	
-	//Criação do arquivo Pagamento.txt
-	File arquivo = new File("Pagamento.txt");          
-	
-	//Criação do objeto para entrada de dados
-	Scanner scan = new Scanner(System.in);
-	
-	//Criação dos ArrayList do tipo inteiro, float e Date
-	ArrayList<Integer> codigo = new ArrayList<>();
-	ArrayList<Date> data = new ArrayList<>();
-	ArrayList<Float> pagamento = new ArrayList<>();
-	
-	//Criação do metodo cadastrar pagamento
-	public void cadastrar_pag()
-        {	
-	 //Variaveis de auxilio do codigo	
-	 String opcao, aux1, aux2;   
-	 int cod_pag, i;
-	
-	do{	
-			
-		    Date dataAtual = new Date();		
-		    setData_pag(dataAtual);
-		    cod_pag = (int)(Math.random()*1000000000);                //Geração do código inteiro do produto
-		    	
-		    System.out.println("Digite o valor do pagamento: ");	 
-		    valor_pag = scan.nextFloat();
-		    
-		    //Metodo para adicionar os valores no ArrayList
-		    codigo.add(cod_pag);
-		    data.add(getData_pag());
-		    pagamento.add(valor_pag);
-		    
-		    System.out.println("Deseja cadastrar outro produto? Digite nao caso esteja satisfeito");
-		    
-		    opcao = scan.nextLine();
-	    
-	}while(!"nao".equals(opcao = scan.nextLine()));	
-	
-		//Tratamento de exceção para a criação do arquivo
-		try {
-		
-			//Se não exitir o arquivo, é criado a partir desse ponto
-			if(arquivo.exists() == false) {
-			
-				arquivo.createNewFile();
-			}
-			
-			//Criação dos objetos para a escrita no arquivo
-			FileWriter fw = new FileWriter(arquivo, true);
-			BufferedWriter bw = new BufferedWriter(fw);
-						
-			for(i=0; i<pagamento.size(); i++) {
-				
-				aux1 = Integer.toString(codigo.get(i));
-				aux2 = Float.toString(pagamento.get(i));
-				
-				//Escrita do codigo no arquivo
-				bw.newLine();
-				bw.write("Codigo: " + aux1);
-				
-				//Escrita do valor no arquivo
-				bw.write(" Valor: " + aux2);
-				bw.newLine();
-			}
-			
-			//Fechamento do objeto para salvação dos dados no arquivo
-			bw.close();
-			fw.close();
-			
-		} catch (Exception e) {
-			
-		}	
-	}
-	
-	//Alterar os dados do pagamento presente no ArrayList
-	public void alterar_pag() 
-        {
-		
-		//Variaveis auxiliares
-		int indice, i;
-		float valor;
-		String converter, aux1, aux2;
-		
-		//Impressão na tela dos valores disponiveis para alteração presente no respectivo ArrayList
-		System.out.println("Codigo: " + codigo.toString());
-		System.out.println("Valor do pagamento: " + pagamento.toString());
-		
-		System.out.println("Digite o indice do pagamento que se deseja alterar <0 em diante>: ");
-		indice = scan.nextInt();
-		
-		System.out.println("Digite o valor correto do pagamento: ");
-		valor = scan.nextFloat();
-		
-		converter = Float.toString(valor);		
-		
-		pagamento.add(indice, valor);;
-		pagamento.remove(indice +1);
-		
-		System.out.println("Pagamento :" + pagamento.toString());
-		System.out.println("Data da compra: " + data.toString());
-		System.out.println("Codigo do produto: " + codigo.toString());
-		
-		try {			
-			
-			FileWriter fw = new FileWriter(arquivo, true);
-			BufferedWriter bw = new BufferedWriter(fw);
-						
-			for(i=0; i<pagamento.size(); i++) {
-				
-				if(i == indice) {
-				
-				aux1 = Integer.toString(codigo.get(i));
-				aux2 = Float.toString(pagamento.get(i));
-								
-					bw.newLine();
-					bw.write("Codigo: " + aux1);
-				
-					bw.write(" Valor: " + aux2);
-				}
-			}
-			
-			bw.close();
-			fw.close();
-			
-		} catch (Exception e) {
-			
-		}
-				
-	}
-	
-	//Consultar os valores referentes aos pagamentos 
-	public void consultar_pag() 
-        {
-
-		String lerLinha;
-				
-		try {
-					
-			if(arquivo.exists() == false) {
-				
-				arquivo.createNewFile();
-			}
-						
-			FileReader fr = new FileReader(arquivo);
-			BufferedReader br = new BufferedReader(fr);
-	
-			//Ler a linha do arquivo
-			lerLinha = br.readLine();
-			
-			while(lerLinha != null) { 	
-				
-				//Imprime na tela a linha do arquivo
-			    System.out.println(lerLinha);		
-			    
-			    //Ler a proxima linha
-				lerLinha = br.readLine();				
-			}
-				
-			br.close();
-			fr.close();
-			
-		} catch (Exception e) {
-			
-		}			
-		
-	}
-	
-	//Excluir os dados de um pagamento no arquivo
-	public void excluir_pag()
-        {
-	
-		String lerLinha;
-		int i=0, numeroLinha;
-		
-		//Criação de novo ArrayList para armazenamento dos dados do arquivo
-		ArrayList<String> exclusao = new ArrayList<String>();
-		
-		try {
-		
-			if(arquivo.exists() == false) {
-				
-				arquivo.createNewFile();
-			}			
-			
-			FileReader fr = new FileReader(arquivo);
-			BufferedReader br = new BufferedReader(fr);
-			
-			lerLinha = br.readLine();
-			
-			System.out.println("\nEscolha o numero da linha que deseja excluir: ");
-			
-			while(lerLinha != null) {
-								
-				exclusao.add(lerLinha);
-				System.out.println(i + " " +lerLinha);
-				lerLinha = br.readLine();				
-				i++;
-			}
-			
-			br.close();
-			fr.close();
-			
-			numeroLinha = scan.nextInt();
-			
-			exclusao.remove(numeroLinha);
-			
-		    FileWriter fw = new FileWriter(arquivo);	
-		    BufferedWriter bw = new BufferedWriter(fw);
-			
-		    for(i=0; i<exclusao.size(); i++) {		    
-		    	bw.write(exclusao.get(i));
-		    	bw.newLine();
-		    }
-		    
-		    bw.close();
-		    fw.close();
-			
-		} catch (Exception e) {
-			
-		}		
-		
-	}		
-	
-}
-
+        
     public static class Cliente 
     {
         static ArrayList<String> CPF = new ArrayList<>();
@@ -321,6 +42,7 @@ public class Livraria_ABC
         private static ArrayList<String> Conta = new ArrayList<>();
         private static ArrayList<String> Senha = new ArrayList<>();
         
+        // Menu específico para o cliente
         public static void Menu_cliente()
         {
             int opcaocliente = 0;
@@ -370,6 +92,7 @@ public class Livraria_ABC
 
         }
         
+        // Método que altera os dados dos clientes
         public static void Alterar_cliente()
         {
             
@@ -441,6 +164,7 @@ public class Livraria_ABC
             
         }
         
+        // Método que imprime os dados cadastrados do cliente que está logado
         public static void Consultar_dados_cliente()
         {
             int i;
@@ -462,6 +186,7 @@ public class Livraria_ABC
                 
         }
         
+        // Método que exclui uma conta cadastrada
         public static void Excluir_conta()
         {
             String opcao;
@@ -500,6 +225,7 @@ public class Livraria_ABC
             }
         }
         
+        // Método que cadastra um novo cliente
         public static void Cadastrar_cliente() 
         {
                 System.out.println("\nOlá Vistante! Bem vindo à livraria ABC!\nPercebemos que você ainda não possui cadastro em nosso site.\nPara se cadastrar, complete os campos abaixo: ");
@@ -553,7 +279,8 @@ public class Livraria_ABC
                 Menu_cliente();
         }
         
-        public static String Efetuar_Login()//Retorna o CPF o cliente logado se o login for bem sucedido ou "blank" caso contrário.
+        //Retorna o CPF o cliente logado se o login for bem sucedido ou "blank" caso contrário.
+        public static String Efetuar_Login()
         {
           String verify_cadastro = "1";
           if(!acesso_atual && !Cliente.Conta.isEmpty())  
@@ -635,6 +362,7 @@ public class Livraria_ABC
            
         }
         
+        // Verifica se possui itens na cesta do cliente logado e então efetua o logout
         public static void Efetuar_Logout()
         {
             if(acesso_atual)
@@ -686,6 +414,7 @@ public class Livraria_ABC
             }
         }
         
+        // Logout alternativo
         public static void Efetuar_Logout_()
         {
             if(acesso_atual)
@@ -743,8 +472,10 @@ public class Livraria_ABC
        static ArrayList<String> Editora = new ArrayList<>();
        static ArrayList<String> Ano_publicacao = new ArrayList<>();
        static ArrayList<String> Edicao = new ArrayList<>();
-       static ArrayList<String> livro_recomendacao = new ArrayList<>();//Cliente informa um livro que deseja
+       //Cliente informa um livro que deseja
+       static ArrayList<String> livro_recomendacao = new ArrayList<>();
        
+       // Mostra o catálogo de livros cadastrados no sistema
         public static void Mostrar_catalogo()
         {
             int i;
@@ -762,7 +493,11 @@ public class Livraria_ABC
             
             Menu();
         }
-        
+       
+        /*  Procura um livro pelo ISBN ou pelo título e retorna os dados
+           cadastrados, se encontrar. Se não, pergunta ao cliente se 
+           deseja recomendar aquisição.       
+        */
         public static void Consultar_livro ()
         {
             String livro_procurar;
@@ -839,70 +574,7 @@ public class Livraria_ABC
             
         }
     }
-    
-    public static class TCupom
-    {
-        static List <TCupom>  cupom_valor = new ArrayList<>();
-        String cupom;
-        float valor_desconto;
         
-        public TCupom(){}
-        
-        public static boolean Verifica_cupom(String cupom_cpr)
-        {
-            int i, s=0;
-            
-            for(i=0; i<cupom_valor.size(); i++)
-            {
-                if(cupom_valor.get(i).getCupom().equals(cupom_cpr))
-                {
-                    s++;
-                    
-                    break;
-                }
-            }
-            
-            if(s==0)
-                return false;
-            else
-                return true;
-        }
-        
-        public static float Verifica_valor_desconto(String cupom_cpr)
-        {
-            float valor_desconto = 0;
-            
-            int i;
-            
-            for(i=0; i<cupom_valor.size(); i++)
-            {
-                if(cupom_valor.get(i).getCupom().equals(cupom_cpr))
-                {
-                    valor_desconto = cupom_valor.get(i).getValor_desconto();
-                    
-                    break;
-                }
-            }
-            
-            return valor_desconto;
-        }
-        
-        public TCupom(String cod_cupom, float valor)
-        {
-            this.cupom = cod_cupom;
-            this.valor_desconto = valor;
-        }
-        
-        public String getCupom() {
-            return cupom;
-        }
-
-        public float getValor_desconto() {
-            return valor_desconto;
-        }
-                
-    }
-    
     public static class Cesta
     {
         static String Cod_cesta = "blank";
@@ -911,6 +583,7 @@ public class Livraria_ABC
         String Itens_add;
         int Quant_add;
         
+        // Inicio Getters and Setters
         public String getItens_add() {
             return Itens_add;
         }
@@ -926,25 +599,32 @@ public class Livraria_ABC
         public void setQuant_add(int Quant_add) {
             this.Quant_add = Quant_add;
         }
+        // Fim Getters and Setters
         
+        // Construtor padrão
         public Cesta(){}
         
+        // Construtor
         public Cesta(String itens, int quant)
         {
             this.Itens_add = itens;
             this.Quant_add = quant;
         }
-                
+        
+        // Adiciona um livro para a cesta do cliente
         public static void Adicionar_itens_a_cesta(String isbn_livro, int quantidade, String cliente_c)
         {
            if(acesso_atual) 
-           { 
-            if(!cliente_c.equals(Cliente_cesta))//Verifica se ja tem uma cesta aberta para o cliente "cliente_c"
+           {
+            /* Verifica se já tem uma cesta aberta para o cliente "cliente_c".
+               Se não houver, é aberta uma.
+            */   
+            if(!cliente_c.equals(Cliente_cesta))
             {
                 int cod_c;
                 String cod_s;
                 boolean ok_cod=false;
-           
+                
                 cod_c = gera_num.nextInt(10000);
                 cod_s = Integer.toString(cod_c);
                     
@@ -1003,6 +683,7 @@ public class Livraria_ABC
           }
         }
         
+        // Esvazia uma cesta e retorna o resultado da operação
         public static boolean Esvaziar_cesta()
         {
             Cod_cesta = "blank";
@@ -1021,6 +702,7 @@ public class Livraria_ABC
                 return false;
         }
         
+        // Lista todos itens cadastrados na cesta atual
         public static void Listar_itens_cesta ()
         {
             if(acesso_atual)
@@ -1070,6 +752,7 @@ public class Livraria_ABC
             }
         }
         
+        // Listar alternativo - Descobrir porquê..
         public static void Listar_itens_cesta_ ()
         {
                 int indice_Clogado;
@@ -1108,11 +791,13 @@ public class Livraria_ABC
            
         }
         
+        // Retorna o catálogo de livros
         public static void Continuar_comprando()
         {
             Livro.Mostrar_catalogo();
         }
         
+        // Retira um livro de uma cesta
         public static void Retirar_itens_cesta()
         {
             if(Itens_quant.isEmpty())
@@ -1126,18 +811,18 @@ public class Livraria_ABC
                 
                 int p, indice_Livro;
                     
-                    String livro;
+                String livro;
                     
-                    System.out.println("Código da cesta: "+Cod_cesta);
-                    for(p=0; p<Itens_quant.size(); p++)
-                    {
-                        indice_Livro = Livro.ISBN.indexOf(Itens_quant.get(p).getItens_add());
+                System.out.println("Código da cesta: "+Cod_cesta);
+                for(p=0; p<Itens_quant.size(); p++)
+                {
+                    indice_Livro = Livro.ISBN.indexOf(Itens_quant.get(p).getItens_add());
                     
-                        livro = Livro.Titulo.get(indice_Livro);
+                    livro = Livro.Titulo.get(indice_Livro);
                         
-                        System.out.println("Item "+(p+1)+": '"+livro+"'");
-                        System.out.println("Quantidade: "  +Itens_quant.get(p).getQuant_add());
-                    }
+                    System.out.println("Item "+(p+1)+": '"+livro+"'");
+                    System.out.println("Quantidade: "  +Itens_quant.get(p).getQuant_add());
+                }
                 int item;
                 boolean item_ok = false;
                 
@@ -1167,6 +852,7 @@ public class Livraria_ABC
             }
         }
         
+        // Calcula o valor total de todos os itens da cesta
         public static float Calcula_valor_compra()
         {
             if(Itens_quant.isEmpty())
@@ -1201,15 +887,18 @@ public class Livraria_ABC
        
         }
         
+        // Inclui um desconto a partir de um cupom informado
         public static void Incluir_desconto()
         {
-            
             String cupom;
             
             System.out.println("\nInforme o código do seu cupom de desconto:");
             cupom = ler_string.nextLine();
             
-            boolean verify_cup = TCupom.Verifica_cupom(cupom);
+            boolean verify_cup = false;
+            
+            // Verifica se o cupom é cadastrado no sistema
+            verify_cup = TCupom.Verifica_cupom(cupom);
             
             if(verify_cup)
             {
@@ -1230,6 +919,7 @@ public class Livraria_ABC
             
         }
         
+        // Cria um inteiro aleatório que será usado na classe 'Compra' 
         public static int Fechar_cesta()
         {
             if(!Itens_quant.isEmpty())
@@ -1251,8 +941,13 @@ public class Livraria_ABC
         
     }
     
-    static String end_compra="blank";
-    static String tipo_pag="blank";
+    // Armazena o endereço para a entrega do produto
+    static String end_compra = "blank";
+    
+    // Armazena o tipo de pagamento escolhido pelo cliente
+    static String tipo_pag = "blank";
+    
+    // Armazena o codigo da compra gerado pelo método 'Fechar_cesta()'
     static int COD_compra = -1;
     
     public static class Compra
@@ -1264,8 +959,10 @@ public class Livraria_ABC
         String Endereco_entrega;
         String Tipo_pag;
         
+        // Construtor padrão
         public Compra(){}
         
+        // Construtor
         public Compra(int cod, String data, float valor, String endereco, String tipo_pag)
         {
             this.Cod_compra = cod;
@@ -1275,7 +972,7 @@ public class Livraria_ABC
             this.Tipo_pag = tipo_pag;
         }
         
-      
+        // Armazena a compra na lista 'Compras'
         public static void Cadastrar_compra()
         {
             Compra comp = new Compra();
@@ -1289,6 +986,7 @@ public class Livraria_ABC
             
         }
         
+        // Cancela uma compra com a confirmação do usuário
         public static void Cancelar_compra()
         {
             String opcao;
@@ -1308,10 +1006,9 @@ public class Livraria_ABC
             {
                 Finalizar_compra();
             }    
-            
-            
         }
-        
+
+        // Verifica se o endereço a ser utiizado será o cadastrado no sistema
         public static void Verificar_endereco()
         {
             int i;
@@ -1341,6 +1038,7 @@ public class Livraria_ABC
             }
         }
         
+        // Verifica o valor final e qual o tipo do pagamento
         public static void Verificar_pagamento()
         {
             float total;
@@ -1377,6 +1075,7 @@ public class Livraria_ABC
             Finalizar_compra();
         }
         
+        // Finaliza uma compra e esvazia a cesta aberta se confirmado
         public static void Finalizar_compra()
         {
             String opcao;
@@ -1408,16 +1107,19 @@ public class Livraria_ABC
         }
     }
     
+    // Método para imprimir uma mensagem de saída ao usuário
     public static void Exit()
     {
         System.out.println("\nObrigado por utilizar nossos serviços! A Livraria ABC agrade e volte sempre!");
     }
     
+    // Menu de opções
     public static void Menu()
     {
         String opcao = "";
         
-        if(acesso_atual)///Verifica se tem alguem logado.
+        // Verifica se tem alguem logado.
+        if(acesso_atual)
         {
             if(!opcao.equals("0"))
             {
@@ -1494,7 +1196,6 @@ public class Livraria_ABC
                     Cesta.Retirar_itens_cesta();
                     break;
                 }
-/////////////////
                 case "7":
                 {
                     Cesta.Incluir_desconto();
@@ -1594,14 +1295,23 @@ public class Livraria_ABC
         }
     }
     
+    // Objeto que gera um número aleatório
     static Random gera_num = new Random();
+    
+    // Objeto utilizado para ler números inteiros e de ponto flutuante do usuário
     static Scanner input = new Scanner(System.in);
+    
+    // Objeto utilizado para ler strings do usuário
     static Scanner ler_string = new Scanner(System.in);
 
     public static void main(String[] args)
     {
         Livraria livraria = new Livraria();
- 
+        
+        /*
+            Os dados abaixo foram inseridos manualmente
+            para simular um banco de dados da Livraria_ABC
+        */
             Livro.ISBN.add(0, "9780345486572");
             Livro.Titulo.add(0, "Dom Casmurro");
             Livro.Tema.add(0,"Literatura brasileira");
@@ -1643,8 +1353,6 @@ public class Livraria_ABC
             System.out.println("\n\t\t\t\tBem-vindo(a) a "+livraria.Nome+"!\n");
             Livro.Mostrar_catalogo();
                 
-            Menu();
-                                    
+            Menu();           
     }
-    
 }
