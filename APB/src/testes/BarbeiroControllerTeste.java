@@ -1,5 +1,6 @@
 package testes;
 
+//Importando dados
 import static org.junit.Assert.*;
 
 import java.sql.ResultSet;
@@ -13,11 +14,17 @@ import org.junit.Test;
 import control.BarbeiroController;
 import exception.BarbeiroException;
 
+//Inicio da classe
 public class BarbeiroControllerTeste {
 
+	// Instancia de Barbeiro
 	Barbeiro barbeiro = new Barbeiro();
 
 	@Before
+	/*
+	 * Incio do metodo setUp() Ela tem a funcao de setar os valores na classe
+	 * Alem de Trratar o erro caso nao como requeremos
+	 */
 	public void setUp() {
 		try {
 			barbeiro.setNome("Alessandro");
@@ -30,14 +37,15 @@ public class BarbeiroControllerTeste {
 		} catch (BarbeiroException e) {
 			e.printStackTrace();
 		}
-	}
-	
+	}// Fim do metodo setUp()
+
 	BarbeiroController barbeiroController = BarbeiroController.getInstance();
 
 	@Test
+	// Metodo para passar os dados para a classe por meio do encapsulamento
 	public void getInstanceDeBarbeiroControlerDeveRetonarInstanciaCorrente() {
 		assertEquals(BarbeiroController.getInstance(), barbeiroController);
-	}
+	}// Fim do metodo
 
 	@Test
 	public void inserirDeBarbeiroControllerDeveEnviarUmBarbeiro() {
@@ -46,18 +54,20 @@ public class BarbeiroControllerTeste {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
+	}// Fim do metodo
 
 	@Test
+	// Metodo para passar a altoriazacao de exclusao dos dados para a classe por meio do encapsulamento
 	public void excluirDeBarbeiroControllerDeveEnviarUmBarbeiro() {
 		try {
 			assertTrue(barbeiroController.excluir(barbeiro));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
+	}// Fim do metodo
 
 	@Test
+	// Metodo para passar a altoriazacao de alterar os dados da a classe por meio do encapsulamento
 	public void alterarDeBarbeiroControllerDeveEnviarUmBarbeiro() {
 		try {
 			assertTrue(barbeiroController.alterar(barbeiro.getNome(), barbeiro));
@@ -65,7 +75,12 @@ public class BarbeiroControllerTeste {
 			e.printStackTrace();
 		}
 	}
-	
+
+	// Fim do metodo
+	/*
+	 * Inicio da classe Verifica se a variavel de entrada e nula no metodo Caso
+	 * seja nula, uma excecao e detectada e tratada
+	 */
 	@Test
 	public void inserirBarbeiroNaoPodePassarBarbeiroNullo() {
 		try {
@@ -73,8 +88,13 @@ public class BarbeiroControllerTeste {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
-	
+	}// Fim do metodo
+
+	/*
+	 * Inicio da classe Verifica se a variavel de entrada e nula no metodo Caso
+	 * seja nula, uma excecao e detectada e tratada
+	 */
+
 	@Test
 	public void excluirBarbeiroNaoPodePassarBarbeiroNullo() {
 		try {
@@ -82,8 +102,13 @@ public class BarbeiroControllerTeste {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
-	
+	}// Fim do metodo
+
+	/*
+	 * Inicio da classe Verifica se a variavel de entrada e nula no metodo Caso
+	 * seja nula, uma excecao e detectada e tratada
+	 */
+
 	@Test
 	public void alterarBarbeiroNaoPodePassarBarbeiroNullo() {
 		try {
@@ -91,23 +116,29 @@ public class BarbeiroControllerTeste {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
-	
+	}// Fim do metodo
+
 	@Test
-	public void procurarPorBarbeiroControllerDeveMostrarUmBarbeiro() throws SQLException {
+	public void procurarPorBarbeiroControllerDeveMostrarUmBarbeiro()
+			throws SQLException {
 		ResultSet rs = barbeiroController.pesquisar();
-		while (rs.next());
-	}
-	
+		while (rs.next())
+			;
+	}// Fim do metodo
+
 	@Test
-	public void mostrarBarbeirosDeBarbeiroControllerDeveMostrarUmBarbeiro() throws SQLException {
+	public void mostrarBarbeirosDeBarbeiroControllerDeveMostrarUmBarbeiro()
+			throws SQLException {
 		ResultSet rs = barbeiroController.mostrarBarbeirosCadastrados(barbeiro);
-		while(rs.next());
-	}
-	
+		while (rs.next())
+			;
+	}// Fim do metodo
+
 	@Test
-	public void pesquisarPorNomeDeBarbeiroControllerDeveMostrarUmBarbeiro() throws SQLException {
+	public void pesquisarPorNomeDeBarbeiroControllerDeveMostrarUmBarbeiro()
+			throws SQLException {
 		ResultSet rs = barbeiroController.pesquisarPorNome(barbeiro);
-		while(rs.next());
-	}
-}
+		while (rs.next())
+			;
+	}// Fim do metodo
+}// Fim da Classe
