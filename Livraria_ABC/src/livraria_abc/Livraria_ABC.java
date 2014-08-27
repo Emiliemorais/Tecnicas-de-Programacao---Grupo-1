@@ -472,8 +472,10 @@ public class Livraria_ABC
        static ArrayList<String> Editora = new ArrayList<>();
        static ArrayList<String> Ano_publicacao = new ArrayList<>();
        static ArrayList<String> Edicao = new ArrayList<>();
-       static ArrayList<String> livro_recomendacao = new ArrayList<>();//Cliente informa um livro que deseja
+       //Cliente informa um livro que deseja
+       static ArrayList<String> livro_recomendacao = new ArrayList<>();
        
+       // Mostra o catálogo de livros cadastrados no sistema
         public static void Mostrar_catalogo()
         {
             int i;
@@ -491,7 +493,11 @@ public class Livraria_ABC
             
             Menu();
         }
-        
+       
+        /*  Procura um livro pelo ISBN ou pelo título e retorna os dados
+           cadastrados, se encontrar. Se não, pergunta ao cliente se 
+           deseja recomendar aquisição.       
+        */
         public static void Consultar_livro ()
         {
             String livro_procurar;
