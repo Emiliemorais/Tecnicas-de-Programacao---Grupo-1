@@ -5,25 +5,28 @@ import java.util.*;
 
 public class Livraria_ABC
 {
-    static boolean acesso_atual=false; // Se houver algum login aberto, acesso_atual = true;
-    static String cliente_atual = "blank"; // Se houver algum login aberto, acesso_atual = CPF do cliente logado;
+    // Se houver algum login aberto, acesso_atual = true;
+    static boolean acesso_atual = false; 
+    // Se houver algum login aberto, acesso_atual = CPF do cliente logado;
+    static String cliente_atual = "blank";
     static String nome_cliente_atual = "blank";
     static float desconto = 0;
             
     public static class Livraria
     {
-         int CNPJ;
-         String Nome;
-         String Endereco;
-         int Telefone;
+        int CNPJ;
+        String Nome;
+        String Endereco;
+        int Telefone;
          
-         public Livraria ()
-         {
-             this.CNPJ = 54505052;
-             this.Nome = "Livraria ABC";
-             this.Endereco = "Avenida Getúlio Vargas nº 69";
-             this.Telefone = 32345698;
-         }   
+        // Construtor 
+        public Livraria ()
+        {
+            this.CNPJ = 54505052;
+            this.Nome = "Livraria ABC";
+            this.Endereco = "Avenida Getúlio Vargas nº 69";
+            this.Telefone = 32345698;
+        }   
     }
         
     public static class Cliente 
@@ -39,6 +42,7 @@ public class Livraria_ABC
         private static ArrayList<String> Conta = new ArrayList<>();
         private static ArrayList<String> Senha = new ArrayList<>();
         
+        // Menu específico para o cliente
         public static void Menu_cliente()
         {
             int opcaocliente = 0;
@@ -88,6 +92,7 @@ public class Livraria_ABC
 
         }
         
+        // Método que altera os dados dos clientes
         public static void Alterar_cliente()
         {
             
@@ -159,6 +164,7 @@ public class Livraria_ABC
             
         }
         
+        // Método que imprime os dados cadastrados do cliente que está logado
         public static void Consultar_dados_cliente()
         {
             int i;
@@ -180,6 +186,7 @@ public class Livraria_ABC
                 
         }
         
+        // Método que exclui uma conta cadastrada
         public static void Excluir_conta()
         {
             String opcao;
@@ -218,6 +225,7 @@ public class Livraria_ABC
             }
         }
         
+        // Método que cadastra um novo cliente
         public static void Cadastrar_cliente() 
         {
                 System.out.println("\nOlá Vistante! Bem vindo à livraria ABC!\nPercebemos que você ainda não possui cadastro em nosso site.\nPara se cadastrar, complete os campos abaixo: ");
@@ -271,7 +279,8 @@ public class Livraria_ABC
                 Menu_cliente();
         }
         
-        public static String Efetuar_Login()//Retorna o CPF o cliente logado se o login for bem sucedido ou "blank" caso contrário.
+        //Retorna o CPF o cliente logado se o login for bem sucedido ou "blank" caso contrário.
+        public static String Efetuar_Login()
         {
           String verify_cadastro = "1";
           if(!acesso_atual && !Cliente.Conta.isEmpty())  
@@ -353,6 +362,7 @@ public class Livraria_ABC
            
         }
         
+        // Verifica se possui itens na cesta do cliente logado e então efetua o logout
         public static void Efetuar_Logout()
         {
             if(acesso_atual)
@@ -404,6 +414,7 @@ public class Livraria_ABC
             }
         }
         
+        // Logout alternativo
         public static void Efetuar_Logout_()
         {
             if(acesso_atual)
