@@ -583,6 +583,7 @@ public class Livraria_ABC
         String Itens_add;
         int Quant_add;
         
+        // Inicio Getters and Setters
         public String getItens_add() {
             return Itens_add;
         }
@@ -598,25 +599,32 @@ public class Livraria_ABC
         public void setQuant_add(int Quant_add) {
             this.Quant_add = Quant_add;
         }
+        // Fim Getters and Setters
         
+        // Construtor padrão
         public Cesta(){}
         
+        // Construtor
         public Cesta(String itens, int quant)
         {
             this.Itens_add = itens;
             this.Quant_add = quant;
         }
-                
+        
+        // Adiciona um livro para a cesta do cliente
         public static void Adicionar_itens_a_cesta(String isbn_livro, int quantidade, String cliente_c)
         {
            if(acesso_atual) 
-           { 
-            if(!cliente_c.equals(Cliente_cesta))//Verifica se ja tem uma cesta aberta para o cliente "cliente_c"
+           {
+            /* Verifica se já tem uma cesta aberta para o cliente "cliente_c".
+               Se não houver, é aberta uma.
+            */   
+            if(!cliente_c.equals(Cliente_cesta))
             {
                 int cod_c;
                 String cod_s;
                 boolean ok_cod=false;
-           
+                
                 cod_c = gera_num.nextInt(10000);
                 cod_s = Integer.toString(cod_c);
                     
@@ -675,6 +683,7 @@ public class Livraria_ABC
           }
         }
         
+        // Esvazia uma cesta e retorna o resultado da operação
         public static boolean Esvaziar_cesta()
         {
             Cod_cesta = "blank";
@@ -693,6 +702,7 @@ public class Livraria_ABC
                 return false;
         }
         
+        // Lista todos itens cadastrados na cesta atual
         public static void Listar_itens_cesta ()
         {
             if(acesso_atual)
@@ -742,6 +752,7 @@ public class Livraria_ABC
             }
         }
         
+        // Listar alternativo - Descobrir porquê..
         public static void Listar_itens_cesta_ ()
         {
                 int indice_Clogado;
@@ -780,11 +791,13 @@ public class Livraria_ABC
            
         }
         
+        // Retorna o catálogo de livros
         public static void Continuar_comprando()
         {
             Livro.Mostrar_catalogo();
         }
         
+        // Retira um livro de uma cesta
         public static void Retirar_itens_cesta()
         {
             if(Itens_quant.isEmpty())
@@ -798,18 +811,18 @@ public class Livraria_ABC
                 
                 int p, indice_Livro;
                     
-                    String livro;
+                String livro;
                     
-                    System.out.println("Código da cesta: "+Cod_cesta);
-                    for(p=0; p<Itens_quant.size(); p++)
-                    {
-                        indice_Livro = Livro.ISBN.indexOf(Itens_quant.get(p).getItens_add());
+                System.out.println("Código da cesta: "+Cod_cesta);
+                for(p=0; p<Itens_quant.size(); p++)
+                {
+                    indice_Livro = Livro.ISBN.indexOf(Itens_quant.get(p).getItens_add());
                     
-                        livro = Livro.Titulo.get(indice_Livro);
+                    livro = Livro.Titulo.get(indice_Livro);
                         
-                        System.out.println("Item "+(p+1)+": '"+livro+"'");
-                        System.out.println("Quantidade: "  +Itens_quant.get(p).getQuant_add());
-                    }
+                    System.out.println("Item "+(p+1)+": '"+livro+"'");
+                    System.out.println("Quantidade: "  +Itens_quant.get(p).getQuant_add());
+                }
                 int item;
                 boolean item_ok = false;
                 
@@ -839,6 +852,7 @@ public class Livraria_ABC
             }
         }
         
+        // Calcula o valor total de todos os itens da cesta
         public static float Calcula_valor_compra()
         {
             if(Itens_quant.isEmpty())
@@ -873,15 +887,18 @@ public class Livraria_ABC
        
         }
         
+        // Inclui um desconto a partir de um cupom informado
         public static void Incluir_desconto()
         {
-            
             String cupom;
             
             System.out.println("\nInforme o código do seu cupom de desconto:");
             cupom = ler_string.nextLine();
             
-            boolean verify_cup = TCupom.Verifica_cupom(cupom);
+            boolean verify_cup = false;
+            
+            // Verifica se o cupom é cadastrado no sistema
+            verify_cup = TCupom.Verifica_cupom(cupom);
             
             if(verify_cup)
             {
@@ -902,6 +919,7 @@ public class Livraria_ABC
             
         }
         
+        // Cria um inteiro aleatório que será usado na classe 'Compra' 
         public static int Fechar_cesta()
         {
             if(!Itens_quant.isEmpty())
