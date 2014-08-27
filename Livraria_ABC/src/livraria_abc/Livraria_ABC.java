@@ -1113,11 +1113,13 @@ public class Livraria_ABC
         System.out.println("\nObrigado por utilizar nossos serviços! A Livraria ABC agrade e volte sempre!");
     }
     
+    // Menu de opções
     public static void Menu()
     {
         String opcao = "";
         
-        if(acesso_atual)///Verifica se tem alguem logado.
+        // Verifica se tem alguem logado.
+        if(acesso_atual)
         {
             if(!opcao.equals("0"))
             {
@@ -1194,7 +1196,6 @@ public class Livraria_ABC
                     Cesta.Retirar_itens_cesta();
                     break;
                 }
-/////////////////
                 case "7":
                 {
                     Cesta.Incluir_desconto();
@@ -1294,14 +1295,23 @@ public class Livraria_ABC
         }
     }
     
+    // Objeto que gera um número aleatório
     static Random gera_num = new Random();
+    
+    // Objeto utilizado para ler números inteiros e de ponto flutuante do usuário
     static Scanner input = new Scanner(System.in);
+    
+    // Objeto utilizado para ler strings do usuário
     static Scanner ler_string = new Scanner(System.in);
 
     public static void main(String[] args)
     {
         Livraria livraria = new Livraria();
- 
+        
+        /*
+            Os dados abaixo foram inseridos manualmente
+            para simular um banco de dados da Livraria_ABC
+        */
             Livro.ISBN.add(0, "9780345486572");
             Livro.Titulo.add(0, "Dom Casmurro");
             Livro.Tema.add(0,"Literatura brasileira");
@@ -1343,8 +1353,6 @@ public class Livraria_ABC
             System.out.println("\n\t\t\t\tBem-vindo(a) a "+livraria.Nome+"!\n");
             Livro.Mostrar_catalogo();
                 
-            Menu();
-                                    
+            Menu();           
     }
-    
 }
