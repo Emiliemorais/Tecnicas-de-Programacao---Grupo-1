@@ -941,8 +941,13 @@ public class Livraria_ABC
         
     }
     
-    static String end_compra="blank";
-    static String tipo_pag="blank";
+    // Armazena o endereço para a entrega do produto
+    static String end_compra = "blank";
+    
+    // Armazena o tipo de pagamento escolhido pelo cliente
+    static String tipo_pag = "blank";
+    
+    // Armazena o codigo da compra gerado pelo método 'Fechar_cesta()'
     static int COD_compra = -1;
     
     public static class Compra
@@ -954,8 +959,10 @@ public class Livraria_ABC
         String Endereco_entrega;
         String Tipo_pag;
         
+        // Construtor padrão
         public Compra(){}
         
+        // Construtor
         public Compra(int cod, String data, float valor, String endereco, String tipo_pag)
         {
             this.Cod_compra = cod;
@@ -965,7 +972,7 @@ public class Livraria_ABC
             this.Tipo_pag = tipo_pag;
         }
         
-      
+        // Armazena a compra na lista 'Compras'
         public static void Cadastrar_compra()
         {
             Compra comp = new Compra();
@@ -979,6 +986,7 @@ public class Livraria_ABC
             
         }
         
+        // Cancela uma compra com a confirmação do usuário
         public static void Cancelar_compra()
         {
             String opcao;
@@ -998,10 +1006,9 @@ public class Livraria_ABC
             {
                 Finalizar_compra();
             }    
-            
-            
         }
-        
+
+        // Verifica se o endereço a ser utiizado será o cadastrado no sistema
         public static void Verificar_endereco()
         {
             int i;
@@ -1031,6 +1038,7 @@ public class Livraria_ABC
             }
         }
         
+        // Verifica o valor final e qual o tipo do pagamento
         public static void Verificar_pagamento()
         {
             float total;
@@ -1067,6 +1075,7 @@ public class Livraria_ABC
             Finalizar_compra();
         }
         
+        // Finaliza uma compra e esvazia a cesta aberta se confirmado
         public static void Finalizar_compra()
         {
             String opcao;
@@ -1098,6 +1107,7 @@ public class Livraria_ABC
         }
     }
     
+    // Método para imprimir uma mensagem de saída ao usuário
     public static void Exit()
     {
         System.out.println("\nObrigado por utilizar nossos serviços! A Livraria ABC agrade e volte sempre!");
