@@ -18,7 +18,10 @@ public class RelatorioControllerTeste {
 
 	Relatorio relatorio = new Relatorio();
 	
-	
+	/* 
+	 * Método utilizado para receber os atributos de um Relatorio de forma correta,
+	 * para realização do teste, lançando exceçoes de atributos nulos e problemas de conversão
+	*/
 	@Before
 	public void setUp() throws RelatorioException, ParseException {
 		try {
@@ -32,12 +35,20 @@ public class RelatorioControllerTeste {
 
 	}
 	
+	/* 
+	 * Método utilizado para testar o getInstance da classe RelatorioDAO
+	*/
+
 	@Test
 	public void getInstanceDeRelatorioDAODeveRetonarInstanciaCorrente() {
 		RelatorioController relatorioController = RelatorioController.getInstance();
 		assertEquals(RelatorioController.getInstance(), relatorioController);
 	}
 	
+	/* 
+	 * Método utilizado para testar a pesquisa de um relatorio através de um serviço
+	 * vendo se existe a amostra do relatorio
+	*/
 	@Test
 	public void procurarPorServicoDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
 		RelatorioController relatorioController = new RelatorioController();
@@ -46,6 +57,10 @@ public class RelatorioControllerTeste {
 		while(rs.next());
 	}
 	
+	/* 
+	 * Método utilizado para testar a pesquisa de um relatorio através de uma data
+	 * vendo se existe a amostra do relatorio
+	*/
 	@Test
 	public void procurarPorDataDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
 		RelatorioController relatorioController = new RelatorioController();
@@ -54,6 +69,10 @@ public class RelatorioControllerTeste {
 		while(rs.next());
 	}
 	
+	/* 
+	 * Método utilizado para testar a pesquisa de um relatorio através de um barbeiro
+	 * e de um serviço vendo se existe a amostra do relatorio
+	*/
 	@Test
 	public void procurarPorBarbeiroEServicoDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
 		RelatorioController relatorioController = new RelatorioController();
@@ -62,6 +81,10 @@ public class RelatorioControllerTeste {
 		while(rs.next());
 	}
 	
+	/* 
+	 * Método utilizado para testar a pesquisa de um relatorio através de um barbeiro
+	 * e de uma data e um serviço vendo se existe a amostra do relatorio
+	*/
 	@Test
 	public void procurarPorDataBarbeiroEServicoDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
 		RelatorioController relatorioController = new RelatorioController();
@@ -70,6 +93,10 @@ public class RelatorioControllerTeste {
 		while(rs.next());
 	}
 	
+	/* 
+	 * Método utilizado para testar a pesquisa de um relatorio através de um barbeiro
+	 * e de uma data vendo se existe a amostra do relatorio
+	*/
 	@Test
 	public void procurarPorDataEBarbeiroDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
 		RelatorioController relatorioController = new RelatorioController();
@@ -78,6 +105,10 @@ public class RelatorioControllerTeste {
 		while(rs.next());
 	}
 	
+	/* 
+	 * Método utilizado para testar a pesquisa de um relatorio através de uma data
+	 * e de um serviço vendo se existe a amostra do relatorio
+	*/
 	@Test
 	public void procurarPorDataEServicoDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
 		RelatorioController relatorioController = new RelatorioController();
@@ -86,6 +117,10 @@ public class RelatorioControllerTeste {
 		while(rs.next());
 	}
 	
+	/* 
+	 * Método utilizado para testar a pesquisa de um relatorio através de um barbeiro
+	 * vendo se existe a amostra do relatorio
+	*/
 	@Test
 	public void procurarPorBarbeiroDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
 		RelatorioController relatorioController = new RelatorioController();

@@ -17,6 +17,11 @@ public class ServicoPrestadoDAOTeste {
 
 	ServicoPrestado servico = new ServicoPrestado();
 	ServicoPrestado servico2 = new ServicoPrestado();
+	
+	/* 
+	 * Método utilizado para receber os atributos de um Serviço Prestado de forma correta,
+	 * para realização do teste, lançando exceçoes de atributos nulos e problemas de conversão
+	*/
 	@Before
 	public void setUp() {
 		try {
@@ -39,11 +44,17 @@ public class ServicoPrestadoDAOTeste {
 
 	ServicoPrestadoDAO servicoDAO = ServicoPrestadoDAO.getInstance();
 	
+	/* 
+	 * Método utilizado para testar o getInstance da classe ServicoPrestadoDAO
+	*/
 	@Test
 	public void getInstanceDeServicoPrestadoDAODeveRetonarInstanciaCorrente() {
 		assertEquals(ServicoPrestadoDAO.getInstance(), servicoDAO);
 	}
 
+	/* 
+	 * Método utilizado para testar a inserçao correta de um Servico Prestado
+	*/
 	@Test
 	public void inserirDeServicoPrestadoDAODeveCadastrarUmServicoPrestado() {
 		try {
@@ -53,7 +64,10 @@ public class ServicoPrestadoDAOTeste {
 		}
 
 	}
-
+	
+	/* 
+	 * Método utilizado para testar a exclusão correta de um Servico Prestado
+	*/
 	@Test
 	public void excluirDeServicoPrestadoDAODeveEnviarUmServicoPrestado() {
 		try {
@@ -63,6 +77,9 @@ public class ServicoPrestadoDAOTeste {
 		}
 	}
 	
+	/* 
+	 * Método utilizado para testar a inserçao de um Servico nulo na classe Serviço Prestado
+	*/
 	@Test
 	public void inserirDeServicoPrestadoDAOPassandoUmServicoNulo() {
 		try {
@@ -72,6 +89,9 @@ public class ServicoPrestadoDAOTeste {
 		}
 	}
 	
+	/* 
+	 * Método utilizado para testar a exclusão de um Servico nulo na classe Serviço Prestado
+	*/
 	@Test
 	public void excluirDeServicoPrestadoDAOPassandoUmServicoNulo() {
 		try {
