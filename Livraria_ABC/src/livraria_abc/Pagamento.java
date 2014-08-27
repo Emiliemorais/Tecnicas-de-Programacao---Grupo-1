@@ -1,63 +1,62 @@
-
 package livraria_abc;
 
-import java.io.*;
 import java.util.*;
+import java.io.*;
 
 public class Pagamento 
 {
-	//Atributos
-	private int cod_pag;
-	private Date data_pag;
-	private float valor_pag;
+    //Atributos
+    private int cod_pag;
+    private Date data_pag;
+    private float valor_pag;
 	
-	//Métodos getters e setters
-	public int getCod_pag() {
+    //Métodos getters e setters
+    public int getCod_pag() {
 		return cod_pag;
 	}
 
-	public void setCod_pag(int cod_pag) {
+    public void setCod_pag(int cod_pag) {
 		this.cod_pag = cod_pag;
 	}
-	
-	public Date getData_pag() {
+    
+    public Date getData_pag() {
 		return data_pag;
 	}
 
-	public void setData_pag(Date data_pag) {
+    public void setData_pag(Date data_pag) {
 		this.data_pag = data_pag;
 	}
 
-	public float getValor_pag() {
+    public float getValor_pag() {
 		return valor_pag;
 	}
 
-	public void setValor_pag(float valor_pag) {
+    public void setValor_pag(float valor_pag) {
 		this.valor_pag = valor_pag;
 	}
        
-	//Construtor
-	public Pagamento(int cod_pag, Date data_pag, float valor_pag) {
+    //Construtor
+    public Pagamento(int cod_pag, Date data_pag, float valor_pag) {
 		super();
 		this.cod_pag = cod_pag;
 		this.data_pag = data_pag;
 		this.valor_pag = valor_pag;
 	}
 	
-	//Criação do arquivo Pagamento.txt
-	File arquivo = new File("Pagamento.txt");          
+    //Criação do arquivo Pagamento.txt
+    File arquivo = new File("Pagamento.txt");          
 	
-	//Criação do objeto para entrada de dados
-	Scanner scan = new Scanner(System.in);
+    //Criação do objeto para entrada de dados
+    Scanner scan = new Scanner(System.in);
 	
-	//Criação dos ArrayList do tipo inteiro, float e Date
-	ArrayList<Integer> codigo = new ArrayList<>();
-	ArrayList<Date> data = new ArrayList<>();
-	ArrayList<Float> pagamento = new ArrayList<>();
+    //Criação dos ArrayLists do tipo inteiro, float e Date
+    ArrayList<Integer> codigo = new ArrayList<>();
+    ArrayList<Date> data = new ArrayList<>();
+    ArrayList<Float> pagamento = new ArrayList<>();
 	
-	//Criação do metodo cadastrar pagamento
-	public void cadastrar_pag()
-        {	
+    //Criação do metodo cadastrar pagamento
+    public void cadastrar_pag()
+    {	
 	 //Variaveis de auxilio do codigo	
 	 String opcao, aux1, aux2;   
 	 int cod_pag, i;
@@ -116,11 +115,11 @@ public class Pagamento
 		} catch (Exception e) {
 			
 		}	
-	}
+    }
 	
-	//Alterar os dados do pagamento presente no ArrayList
-	public void alterar_pag() 
-        {
+    //Alterar os dados do pagamento presente no ArrayList
+    public void alterar_pag() 
+    {
 		
 		//Variaveis auxiliares
 		int indice, i;
@@ -172,11 +171,11 @@ public class Pagamento
 			
 		}
 				
-	}
+    }
 	
-	//Consultar os valores referentes aos pagamentos 
-	public void consultar_pag() 
-        {
+    //Consultar os valores referentes aos pagamentos 
+    public void consultar_pag() 
+    {
 
 		String lerLinha;
 				
@@ -209,12 +208,11 @@ public class Pagamento
 			
 		}			
 		
-	}
+    }
 	
-	//Excluir os dados de um pagamento no arquivo
-	public void excluir_pag()
-        {
-	
+    //Excluir os dados de um pagamento no arquivo
+    public void excluir_pag()
+    {
 		String lerLinha;
 		int i=0, numeroLinha;
 		
@@ -265,6 +263,5 @@ public class Pagamento
 			
 		}		
 		
-	}		
-	
+    }		
 }

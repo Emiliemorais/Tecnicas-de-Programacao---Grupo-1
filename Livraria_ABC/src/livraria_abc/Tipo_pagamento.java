@@ -1,6 +1,8 @@
+
 package livraria_abc;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Tipo_pagamento
 {
@@ -11,9 +13,8 @@ public class Tipo_pagamento
 	
     //Construtor
     public Tipo_pagamento(String tipo, String descricao) 
-        {
-            this.tipo = tipo;
-            this.descricao = descricao;
-	}
-	
+    {
+        this.tipo = tipo;
+        this.descricao = descricao;
+    }
 }
