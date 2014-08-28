@@ -53,6 +53,7 @@ public class PesquisarServicoPrestado extends JFrame {
 		inicializarComponentes();
 	}
 
+	// Método que inicializa os componentes da VIEW de uma pesquisa de Serviço Prestado
 	public void inicializarComponentes() {
 		setTitle("Pesquisar Servi\u00E7o");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -82,6 +83,8 @@ public class PesquisarServicoPrestado extends JFrame {
 
 		JButton btnPesquisarServico = new JButton("Pesquisar Serviço");
 		btnPesquisarServico.addActionListener(new ActionListener() {
+			
+			// Método da VIEW que é utilizado para pesquisar um Serviço Prestado 
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					ServicoPrestado servico = new ServicoPrestado();
@@ -115,6 +118,8 @@ public class PesquisarServicoPrestado extends JFrame {
 
 		JButton btnPesquisarBarbeiro = new JButton("Pesquisar Barbeiro");
 		btnPesquisarBarbeiro.addMouseListener(new MouseAdapter() {
+			
+			// Método da VIEW que é utilizado para pesquisar um Barbeiro
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
@@ -149,6 +154,8 @@ public class PesquisarServicoPrestado extends JFrame {
 
 		JButton btnRemover = new JButton("Remover");
 		btnRemover.addMouseListener(new MouseAdapter() {
+			
+			// Método da VIEW que é utilizado para remover um Servico Prestado
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
@@ -191,6 +198,8 @@ public class PesquisarServicoPrestado extends JFrame {
 
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addMouseListener(new MouseAdapter() {
+			
+			// Método da VIEW que é utilizado para voltar a janela de Cadastrar Servico
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
@@ -204,6 +213,8 @@ public class PesquisarServicoPrestado extends JFrame {
 
 		JButton btnPesquisarData = new JButton("Pesquisar Data");
 		btnPesquisarData.addMouseListener(new MouseAdapter() {
+			
+			// Método da VIEW que é utilizado para pesquisar um Servico Prestado pela data
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
@@ -237,11 +248,13 @@ public class PesquisarServicoPrestado extends JFrame {
 		contentPane.add(btnPesquisarData);
 	}
 
+	// Método da VIEW que mostra uma mensagem de erro, utilizado no tratamento das exceções da classe
 	private void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
-
+	
+	
 	public static String getTempNome() {
 		return tempNome;
 	}
