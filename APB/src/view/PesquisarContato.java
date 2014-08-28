@@ -1,5 +1,6 @@
 package view;
 
+// Importando bibliotecas
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -25,29 +26,37 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @SuppressWarnings("serial")
+// Inicio da classe PesquisarContato
 public class PesquisarContato extends JFrame {
 
+	// Criando instancias
 	private JPanel contentPane;
 	private JTextField textField;
 
+	// Metodo main da classe
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+				// Inicio do tratamento de excecao
 				try {
+					
 					PesquisarContato frame = new PesquisarContato();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-				}
+				}// Fim do tratamento de excecao
 			}
 		});
-	}
+	}// Fim do metodo
 
+	// Mtodo pesquisar contato que chama outra funcao responsavel por inicializar a pesquisa
 	public PesquisarContato() {
 		inicializarComponentes();
-	}
-
+	}// Fim do metodo
+	
+	// Metodo para inicializar(dar valores) aos componentes
 	public void inicializarComponentes() {
+		
 		setTitle("Pesquisar Contato");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -82,12 +91,13 @@ public class PesquisarContato extends JFrame {
 		btnPesquisarNome.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				// Tratando excecao
 				try {
-					
-					for (int i = 0; i< modelo.getRowCount(); i++){
+
+					for (int i = 0; i < modelo.getRowCount(); i++) {
 						modelo.removeRow(i);
 					}
-					
+
 					Agenda contato = new Agenda();
 					AgendaController agendaController = AgendaController
 							.getInstance();
@@ -95,6 +105,7 @@ public class PesquisarContato extends JFrame {
 					ResultSet rs = agendaController.pesquisarPorNome(contato);
 
 					while (rs.next()) {
+						
 						String[] dados = new String[3];
 						dados[0] = rs.getString("nome");
 						dados[1] = rs.getString("telefone");
@@ -102,26 +113,29 @@ public class PesquisarContato extends JFrame {
 						modelo.addRow(dados);
 					}
 				} catch (SQLException e) {
+					
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (BarbeiroException e) {
+					
 					mostrarMensagemDeErro(e.getMessage());
-				}
-			}
+				}// Fim do tratamento de excecao
+			}// Fim do metodo
 		});
 		btnPesquisarNome.setBounds(82, 168, 160, 23);
 		contentPane.add(btnPesquisarNome);
 
 		JButton btnPesquisarTelefone = new JButton("Pesquisar Telefone");
 		btnPesquisarTelefone.addMouseListener(new MouseAdapter() {
+			
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 
 				try {
-					
-					for (int i = 0; i< modelo.getRowCount(); i++){
+
+					for (int i = 0; i < modelo.getRowCount(); i++) {
 						modelo.removeRow(i);
 					}
-					
+
 					Agenda contato = new Agenda();
 					AgendaController agendaController = AgendaController
 							.getInstance();
@@ -134,26 +148,30 @@ public class PesquisarContato extends JFrame {
 						dados[0] = rs.getString("nome");
 						dados[1] = rs.getString("telefone");
 						dados[2] = rs.getString("descricao");
-						
+
 						modelo.addRow(dados);
-						
+
 						table.updateUI();
 					}
 				} catch (SQLException e) {
+					
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (BarbeiroException e) {
+					
 					mostrarMensagemDeErro(e.getMessage());
 				}
-			}
+			}// Fim do metodo
 		});
 		btnPesquisarTelefone.setBounds(264, 168, 160, 23);
 		contentPane.add(btnPesquisarTelefone);
 
 		JButton btnAlterar = new JButton("Alterar");
 		btnAlterar.addMouseListener(new MouseAdapter() {
+			
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
+					
 					Agenda.setTempNome(modelo.getValueAt(
 							table.getSelectedRow(), 0).toString());
 					dispose();
@@ -162,9 +180,10 @@ public class PesquisarContato extends JFrame {
 					frame.setLocationRelativeTo(null);
 
 				} catch (ArrayIndexOutOfBoundsException e1) {
+					
 					mostrarMensagemDeErro("Selecione um contato para alterar");
 				}
-			}
+			}// Fim do metodo
 		});
 		btnAlterar.setBounds(98, 228, 89, 23);
 		contentPane.add(btnAlterar);
@@ -175,6 +194,7 @@ public class PesquisarContato extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 
 				try {
+					
 					String nome = (String) table.getValueAt(
 							table.getSelectedRow(), 0);
 					String telefone = (String) table.getValueAt(
@@ -197,34 +217,43 @@ public class PesquisarContato extends JFrame {
 						frame.setLocationRelativeTo(null);
 					}
 				} catch (ArrayIndexOutOfBoundsException e1) {
+					
 					mostrarMensagemDeErro("Selecione um contato para remover");
 				} catch (BarbeiroException e1) {
+					
 					mostrarMensagemDeErro(e1.getMessage());
 				} catch (SQLException e1) {
+					
 					mostrarMensagemDeErro(e1.getMessage());
 				}
 			}
-		});
+		});// Fim do metodo
 		btnRemover.setBounds(216, 228, 89, 23);
 		contentPane.add(btnRemover);
 
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addMouseListener(new MouseAdapter() {
+			
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				
 				dispose();
 				CadastrarAgenda frame = new CadastrarAgenda();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
-			}
+			}// Fim do metodo
 		});
 		btnVoltar.setBounds(335, 228, 89, 23);
 		contentPane.add(btnVoltar);
-	}
+	}// Fim do metodo inicializar componentes
 
+	/*
+	 *  Metodo que mostra erro caso haja algum na inicializacao das variavei
+	 */
 	private void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "Aten��o",
 				JOptionPane.INFORMATION_MESSAGE);
-	}
+	}// Fim do metodo
 
 }
+// Fim da classe PesquisarContato
