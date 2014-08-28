@@ -1,6 +1,8 @@
 
+
+Folha de Estilo para códigos em Java.
 																				Folha de Estilos
-																				Regras de padronização do código em JAVA
+OBS: Os exemplos de cada item encontram-se abaixo em um código de exemplificação.																				Regras de padronização do código em JAVA
 
 1 - COMENTÁRIOS
 
@@ -9,6 +11,9 @@
 	● Já os comentários que precisem de mais de uma linha, os símbolos ‘/*’ e ‘*/’ devem estar cada um em uma linha diferente e o conteúdo do comentário em linhas diferentes das que se encontram os símbolos. No caso em que o contexto permitir, é necessário o uso de ponto final;
 
 	● Todos os comentários devem começar com letra maiúscula.
+	
+	● Todos os blocos de estruturas condicionais, de repetição, devem ter um comentário indicando o fim do bloco.
+	
 
 
 2 - VARIÁVEIS
@@ -35,7 +40,7 @@
 
 	● Os nomes dos métodos devem ser um verbo;
 
-	● A escrita dos nomes deve ser em letra minúscula, e cada palavra adicional deve começar com letra minúscula.
+	● A escrita dos nomes deve ser em letra minúscula, e cada palavra adicional deve começar com letra maiúscula.
 
 
 5 - ESPAÇAMENTOS
@@ -73,4 +78,85 @@
 	● No laço de repetição while e do-while , a comparação não necessita de espaço entre os termos;
 
 	● Evite o uso do break.
+	
+
+package stylesheet;
+
+public class StyleSheet
+{
+    /*
+        Folha de estilo em linguagem JAVA para uso no projeto da disciplina
+                            Técnicas de Programação.
+    */
+    
+    // Estilo para classes
+    public class NomeDaClasse
+    {
+        int variavelInteira;
+        String stringVariavel;
+        
+        // Estilo para construtores
+        public NomeDaClasse()
+        {
+            this.variavelInteira = 10;
+            this.stringVariavel = "conteudo_string";
+        }
+        
+        // Estilo para mÃ©todos
+        public void nomeDoMetodo(int parametro1, float parametro2)
+        {
+            // Conteúdo do método
+        }
+    }
+
+    public static void main(String[] args)
+    {
+        //Estilo para declarações
+        int numero1 = 0;
+        int numero2 = 5;
+        int numero3 = 1000;
+        boolean bool1 = true;
+        
+        // Estilo para while
+        while(bool1)
+        {
+            // Estilo para if/else
+            if(numero1 > numero2)
+            {
+                // Bloco do if
+            }
+            else
+            {
+                // Bloco do else
+            }
+        }
+        
+        // Estilo para do/while
+        do
+        {
+            // Estilo para for
+            for(i=0;i<10;i++)
+            {
+                // Bloco do for
+            }
+            
+        }while(bool1);
+        
+        // Estilo para switch
+        switch(numero3 == numero2)
+        {
+            case 1:
+            {
+                // Bloco do case 1
+                
+                break;
+            }
+            default:
+            {
+                // Bloco do default
+            }
+        }
+    }
+}
+
 
