@@ -81,6 +81,8 @@ public class CadastrarTipoServico extends JFrame {
 
 		JButton btnNovo = new JButton("Novo");
 		btnNovo.addMouseListener(new MouseAdapter() {
+			
+			// Método da VIEW que chama a janela de NovoTipoServico para realizar um cadastro
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 
@@ -96,6 +98,8 @@ public class CadastrarTipoServico extends JFrame {
 
 		JButton btnAlterar = new JButton("Alterar");
 		btnAlterar.addMouseListener(new MouseAdapter() {
+			
+			// Método da VIEW que chama a janela de AlterarTipoServico para realizar uma alteração
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
@@ -116,6 +120,8 @@ public class CadastrarTipoServico extends JFrame {
 
 		JButton btnRemover = new JButton("Remover");
 		btnRemover.addMouseListener(new MouseAdapter() {
+			
+			// Método da VIEW que realiza uma exclusão de um Tipo de Serviço
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String nome = (String) table.getValueAt(table.getSelectedRow(),	0);
@@ -152,6 +158,7 @@ public class CadastrarTipoServico extends JFrame {
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.setBounds(380, 228, 94, 23);
 		btnVoltar.addActionListener(new ActionListener() {
+			// Método da VIEW que volta para a janela administrativa
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 				Administrativo frame = new Administrativo();
@@ -161,11 +168,12 @@ public class CadastrarTipoServico extends JFrame {
 		});
 		contentPane.add(btnVoltar);
 	}
-
+	
 	public static String getNomeTemp() {
 		return nomeTemp;
 	}
-
+	
+	// Método da VIEW que mostra uma mensagem de erro, utilizado no tratamento das exceções da classe
 	private void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "AtenÃ§Ã£o",
 				JOptionPane.INFORMATION_MESSAGE);
