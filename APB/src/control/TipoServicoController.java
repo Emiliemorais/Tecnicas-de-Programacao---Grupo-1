@@ -60,13 +60,13 @@ public class TipoServicoController {
 	}
 // Fim do método
 
-// Método que mostra os tipos de serviços cadastrados
+// Interface que prove acesso aos dados dos tipos de serviços cadastrados
 	public ResultSet mostrarTipoServicoCadastrados(TipoServico servico) throws SQLException {
 		return TipoServicoDAO.getInstance().mostrarTipoServicoCadastrados(servico);
 	}
 // Fim do método
 
-// Método que possibilita a pesquisa por nome
+// Interface que prove acesso a pesquisa por nome
 	public ResultSet pesquisarPorNome(TipoServico servico) throws SQLException {
 		return TipoServicoDAO.getInstance().pesquisarPorNome(servico);
 	}
