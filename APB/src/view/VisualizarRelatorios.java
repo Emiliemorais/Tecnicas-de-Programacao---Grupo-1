@@ -53,6 +53,8 @@ public class VisualizarRelatorios extends JFrame {
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			
+			// Método que mostra a janela de Vizualização dos relatórios
 			public void run() {
 				try {
 					VisualizarRelatorios frame = new VisualizarRelatorios();
@@ -83,7 +85,8 @@ public class VisualizarRelatorios extends JFrame {
 						"Valor recebido" }) {
 			boolean[] columnEditables = new boolean[] { false, false, false,
 					false };
-
+			
+			// Método que verifica se a célula pode ser alterada
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
@@ -444,7 +447,10 @@ public class VisualizarRelatorios extends JFrame {
 			}
 		}
 		JButton btnPesquisar = new JButton("Pesquisar");
+		
 		btnPesquisar.addMouseListener(new MouseAdapter() {
+			
+			// Método que permite a vizualização da janela que permite a pesquisa de um relatório
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
@@ -463,6 +469,8 @@ public class VisualizarRelatorios extends JFrame {
 
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addMouseListener(new MouseAdapter() {
+			
+			// Método que permite novamente a vizualização da janela de Menu principal
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				MenuPrincipal frame = new MenuPrincipal();
@@ -527,6 +535,8 @@ public class VisualizarRelatorios extends JFrame {
 
 		JButton btnGrafico = new JButton("Gr\u00E1fico");
 		btnGrafico.addMouseListener(new MouseAdapter() {
+			
+			// Método que permite a vizualização de um painel gráfico dos relatorios
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				if (PesquisarRelatorio.tipoBusca != 0) {
@@ -543,6 +553,8 @@ public class VisualizarRelatorios extends JFrame {
 
 		JButton btnTabela = new JButton("Tabela");
 		btnTabela.addMouseListener(new MouseAdapter() {
+			
+			// Método que permite a vizualização da tabela de relatórios
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				painelGrafico.setVisible(false);
@@ -569,6 +581,7 @@ public class VisualizarRelatorios extends JFrame {
 		painelTotalPago.add(lblvalorTotalDoBarbeiro);
 	}
 
+	// Interface utilizada para implementar os dados a serem exibidos no gráfico
 	private CategoryDataset createDatasetRelatorio() throws SQLException,
 			RelatorioException, NullPointerException, ParseException {
 
@@ -655,6 +668,7 @@ public class VisualizarRelatorios extends JFrame {
 		return dataset;
 	}
 
+	// Método que mostra uma mensagem de erro quando há uma exceção na classe
 	private static void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "AtenÃ§Ã£o",
 				JOptionPane.INFORMATION_MESSAGE);
