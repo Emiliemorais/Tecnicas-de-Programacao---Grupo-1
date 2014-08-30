@@ -47,6 +47,7 @@ public class GerarRecibo extends JFrame {
 	 * Launch the application.
 	 */
 
+	// Método utilizado para converter a data no formato da ABNT
 	public String ConverterDataParaABNT(String data) throws ParseException {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -58,6 +59,7 @@ public class GerarRecibo extends JFrame {
 		return databr;
 	}
 
+	// Método utilizado para converter a data no formato da ABNT sem a barra
 	public String ConverterDataParaABNTSemBarra(String data)
 			throws ParseException {
 
@@ -70,6 +72,7 @@ public class GerarRecibo extends JFrame {
 		return databr;
 	}
 
+	// Método utilizado para converter a data no formato da ISO
 	private String ConverterDataParaISO(String data) throws ParseException {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		Date dataABNT = sdf.parse(data);
@@ -82,6 +85,8 @@ public class GerarRecibo extends JFrame {
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			
+			// Método que inicializa a janela de geração de recibo
 			public void run() {
 				try {
 					GerarRecibo frame = new GerarRecibo();
@@ -145,6 +150,8 @@ public class GerarRecibo extends JFrame {
 
 		JButton btnGerarRecibo = new JButton("Gerar Recibo");
 		btnGerarRecibo.addMouseListener(new MouseAdapter() {
+			
+			// Método utilizado para gerar um recibo no formato "docx"
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ReciboController reciboController = ReciboController
@@ -260,6 +267,8 @@ public class GerarRecibo extends JFrame {
 
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addMouseListener(new MouseAdapter() {
+			
+			// Método que volta para a janela administrativa
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
@@ -272,6 +281,7 @@ public class GerarRecibo extends JFrame {
 		contentPane.add(btnVoltar);
 	}
 
+	// Método que mostra uma mensagem de erro, utilizado no tratamento das exceções da classe
 	private void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "AtenÃ§Ã£o",
 				JOptionPane.INFORMATION_MESSAGE);

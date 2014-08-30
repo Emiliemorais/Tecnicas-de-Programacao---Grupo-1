@@ -23,19 +23,23 @@ public class Agenda {
 		this.telefone = telefone;
 		this.descricao = descricao;
 	}
-
+     
+	// Método de acesso do nome para verificação
 	public String getNome() {
 		return nome;
 	}
 
+	// Método de acesso do telefone para verificação
 	public String getTelefone() {
 		return telefone;
 	}
-
+	
+	// Método de acesso da descrição para verificação
 	public String getDescricao() {
 		return descricao;
 	}
 
+	// Método de acesso do nome, que lança uma exceção se o nome não estiver no formato requerido
 	public void setNome(String nome) throws BarbeiroException {
 		if ("".equals(nome))
 			throw new BarbeiroException(NOME_BRANCO);
@@ -45,6 +49,10 @@ public class Agenda {
 			throw new BarbeiroException(NOME_INVALIDO);
 	}
 
+	/*
+	 *  Método de acesso do telefone, que lança uma exceção 
+	 *  se o telefone não estiver no formato requerido
+	 */
 	public void setTelefone(String telefone) throws BarbeiroException {
 		if ("".equals(telefone))
 			throw new BarbeiroException(TELEFONE_BRANCO);
@@ -54,14 +62,17 @@ public class Agenda {
 			throw new BarbeiroException(TELEFONE_INVALIDO);
 	}
 
+	// Método de acesso da descrição para alteração
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
 
+	// Método de acesso do nome temporário para verificação
 	public static String getTempNome() {
 		return tempNome;
 	}
 
+	// Método de acesso do nome temporário para alteração
 	public static void setTempNome(String tempNome) {
 		Agenda.tempNome = tempNome;
 	}

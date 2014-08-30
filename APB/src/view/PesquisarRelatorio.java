@@ -46,6 +46,8 @@ public class PesquisarRelatorio extends JFrame {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			
+			// Método que inicializa a janela de pesquisa de relatório
 			public void run() {
 				try {
 					PesquisarRelatorio frame = new PesquisarRelatorio();
@@ -98,6 +100,11 @@ public class PesquisarRelatorio extends JFrame {
 
 		final Checkbox checkPorData = new Checkbox("Ativar");
 		checkPorData.addItemListener(new ItemListener() {
+			
+			/*
+			 *  Método que realiza a ativação da pesquisa de um relatório por data,
+			 *   se o usuário ativar essa opção
+			 */
 			public void itemStateChanged(ItemEvent e) {
 				if (checkPorData.getState() == false) {
 					txtDataInicial.setEnabled(false);
@@ -132,6 +139,11 @@ public class PesquisarRelatorio extends JFrame {
 
 		final Checkbox checkBarbeiro = new Checkbox("Ativar");
 		checkBarbeiro.addItemListener(new ItemListener() {
+			
+			/*
+			 *  Método que realiza a ativação da pesquisa de um relatório por data,
+			 *   se o usuário ativar essa opção
+			 */
 			public void itemStateChanged(ItemEvent e) {
 				if (checkBarbeiro.getState() == false) {
 					txtBarbeiro.setEnabled(false);
@@ -163,6 +175,10 @@ public class PesquisarRelatorio extends JFrame {
 
 		final Checkbox checkServico = new Checkbox("Ativar");
 		checkServico.addItemListener(new ItemListener() {
+			/*
+			 *  Método que realiza a ativação da pesquisa de um relatório por tipo de serviço,
+			 *   se o usuário ativar essa opção
+			 */
 			public void itemStateChanged(ItemEvent e) {
 				if (checkServico.getState() == false) {
 					txtServico.setEnabled(false);
@@ -178,6 +194,9 @@ public class PesquisarRelatorio extends JFrame {
 
 		JButton btnConcluir = new JButton("Concluir");
 		btnConcluir.addMouseListener(new MouseAdapter() {
+			
+			
+			 // Método que recebe os dados digitados pelo usuario para pesquisa de um relatorio
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 
@@ -280,6 +299,9 @@ public class PesquisarRelatorio extends JFrame {
 
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addMouseListener(new MouseAdapter() {
+			
+	
+			 // Método que mostra a janela de vizualização de relatorios
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
@@ -305,7 +327,8 @@ public class PesquisarRelatorio extends JFrame {
 	public boolean action(Event evento, Object arg) {
 		return false;
 	}
-
+	
+	// Método que mostra uma mensagem de erro, utilizado no tratamento das exceções da classe
 	private static void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);

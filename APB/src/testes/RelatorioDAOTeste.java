@@ -19,6 +19,10 @@ public class RelatorioDAOTeste {
 
 	Relatorio relatorio = new Relatorio();
 
+	/* 
+	 * Método utilizado para receber os atributos de um relatorio de forma correta,
+	 * para realização do teste, lançando exceçoes de atributos nulos e problemas de conversão
+	*/
 	@Before
 	public void setUp() throws RelatorioException, ParseException {
 		try {
@@ -31,13 +35,15 @@ public class RelatorioDAOTeste {
 		}
 
 	}
-
+ 
+	// Método utilizado para testar o getInstance da classe RelatorioDAO
 	@Test
 	public void getInstanceDeRelatorioDAODeveRetonarInstanciaCorrente() {
 		RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
 		assertEquals(RelatorioDAO.getInstance(), relatorioDAO);
 	}
 
+	// Método utilizado para testar a vizualização de um relatorio, quando procurado por data
 	@Test
 	public void procurarPorDataDeRelatorioDAODeveMostrarUmRelatorio() {
 		try {
@@ -54,6 +60,10 @@ public class RelatorioDAOTeste {
 
 	}
 
+	/* 
+	 * Método utilizado para testar a vizualização de um relatorio, quando procurado
+	 *  por data e serviço	
+	*/
 	@Test
 	public void pesquisarPorDataEServicoDAODeveMostrarUmRelatorio() {
 		try {
@@ -70,6 +80,7 @@ public class RelatorioDAOTeste {
 
 	}
 
+	// Método utilizado para testar a vizualização de um relatorio, quando procurado por barbeiro	
 	@Test
 	public void pesquisarPorBArbeiroDAODeveMostrarUmRelatorio() {
 		try {
@@ -86,6 +97,10 @@ public class RelatorioDAOTeste {
 
 	}
 
+	/*
+	 * Método utilizado para testar a vizualização de um relatorio, quando procurado
+	 *  por data e serviço	
+	 */
 	@Test
 	public void pesquisarPorBArbeiroEServicoDAODeveMostrarUmRelatorio() {
 		try {
@@ -102,6 +117,7 @@ public class RelatorioDAOTeste {
 
 	}
 
+	// Método utilizado para testar a vizualização de um relatorio, quanto procurado serviço	
 	@Test
 	public void pesquisarPorServicoDAODeveMostrarUmRelatorio() {
 		try {
@@ -118,6 +134,10 @@ public class RelatorioDAOTeste {
 
 	}
 
+	/*
+	 * Método utilizado para testar a vizualização de um relatorio, quando procurado 
+	 * por data e barbeiro	
+	 */
 	@Test
 	public void pesquisarPorDataEBArbeiroDAODeveMostrarUmRelatorio() {
 		try {
@@ -134,6 +154,10 @@ public class RelatorioDAOTeste {
 
 	}
 	
+	/*
+	 * Método utilizado para testar a vizualização de um relatorio, quando procurado 
+	 * por data, serviço e barbeiro	
+	 */
 	@Test
 	public void pesquisarPorDataBarbeiroEServicoDAODeveMostrarUmRelatorio(){
 		try {

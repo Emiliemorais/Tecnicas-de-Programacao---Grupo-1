@@ -38,6 +38,8 @@ public class PesquisarServicoPrestado extends JFrame {
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			
+			// Método que inicializa a janela de pesquisa de serviço prestado
 			public void run() {
 				try {
 					PesquisarServicoPrestado frame = new PesquisarServicoPrestado();
@@ -248,7 +250,7 @@ public class PesquisarServicoPrestado extends JFrame {
 		contentPane.add(btnPesquisarData);
 	}
 
-	// Método da VIEW que mostra uma mensagem de erro, utilizado no tratamento das exceções da classe
+	// Método que mostra uma mensagem de erro, utilizado no tratamento das exceções da classe
 	private void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);

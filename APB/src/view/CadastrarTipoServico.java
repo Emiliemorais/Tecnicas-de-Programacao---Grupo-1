@@ -33,6 +33,8 @@ public class CadastrarTipoServico extends JFrame {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			
+			// Método que inicializa a janela de cadastro de tipo de serviço
 			public void run() {
 				try {
 					CadastrarTipoServico frame = new CadastrarTipoServico();
@@ -173,7 +175,7 @@ public class CadastrarTipoServico extends JFrame {
 		return nomeTemp;
 	}
 	
-	// Método da VIEW que mostra uma mensagem de erro, utilizado no tratamento das exceções da classe
+	// Método que mostra uma mensagem de erro, utilizado no tratamento das exceções da classe
 	private void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "AtenÃ§Ã£o",
 				JOptionPane.INFORMATION_MESSAGE);
