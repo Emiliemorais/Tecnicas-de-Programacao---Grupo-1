@@ -10,7 +10,8 @@ public class Barbeiro {
 	private String telefone;
 	private String cadeira;
 	private static String tempNome;
-
+	
+	// Constantes de erros
 	private final String NOME_INVALIDO = "Nome InvÃ¡lido";
 	private final String NOME_BRANCO = "Nome em Branco";
 	private final String CPF_INVALIDO = "CPF InvÃ¡lido";
@@ -21,9 +22,11 @@ public class Barbeiro {
 	private final String TELEFONE_BRANCO = "Telefone em Branco";
 	private final String CADEIRA_INVALIDA = "Cadeira InvÃ¡lida";
 	private final String CADEIRA_BRANCO = "Campo Cadeira em Branco";
-
+	
+	// Construtor Padrão
 	public Barbeiro() {}
-
+	
+	// Construtor - Testa se os argumentos passados não são nulos
 	public Barbeiro(String nome, String cpf, String rg, String telefone,
 			String cadeira) throws BarbeiroException {
 		this.nome = nome;
@@ -47,7 +50,9 @@ public class Barbeiro {
 		if (this.cadeira == null)
 			throw new IllegalArgumentException(CADEIRA_BRANCO);
 	}
-
+	
+	
+	// Início Getters
 	public String getNome() {
 		return nome;
 	}
@@ -67,7 +72,17 @@ public class Barbeiro {
 	public String getCadeira() {
 		return cadeira;
 	}
+	
+	public static String getTempNome() {
+		return tempNome;
+	}
 
+	// Fim Getters
+	
+	
+	// Início Setters
+	
+	// Testa se o nome é válido, e dispara exceções caso contrário
 	public void setNome(String nome) throws BarbeiroException {
 		if (nome == null)
 			throw new NullPointerException(NOME_BRANCO);
@@ -78,7 +93,8 @@ public class Barbeiro {
 		else
 			throw new BarbeiroException(NOME_INVALIDO);
 	}
-
+	
+	// Testa se o cpf é válido, e dispara exceções caso contrário
 	public void setCpf(String cpf) throws BarbeiroException {
 		// Exemplo CPF vÃ¡lido: 493.751.185-84
 		try {
@@ -97,7 +113,8 @@ public class Barbeiro {
 			throw new BarbeiroException(CPF_INVALIDO);
 		}
 	}
-
+	
+	// Testa se o RG é válido, e dispara exceções caso contrário
 	public void setRg(String rg) throws BarbeiroException {
 		if (rg == null)
 			throw new NullPointerException(RG_BRANCO);
@@ -111,7 +128,7 @@ public class Barbeiro {
 			throw new AssertionError(RG_INVALIDO);
 	}
 
-	
+	// Testa se o telefone é válido, e dispara exceções caso contrário
 	public void setTelefone(String telefone) throws BarbeiroException {
 		if (telefone == null)
 			throw new NullPointerException(TELEFONE_BRANCO);
@@ -122,7 +139,8 @@ public class Barbeiro {
 		else
 			throw new AssertionError(TELEFONE_INVALIDO);
 	}
-
+	
+	// Testa se o argumento cadeira é válido, e dispara exceções caso contrário
 	public void setCadeira(String cadeira) throws BarbeiroException {
 		if (cadeira == null)
 			throw new NullPointerException(CADEIRA_BRANCO);
@@ -136,14 +154,14 @@ public class Barbeiro {
 			throw new BarbeiroException(CADEIRA_INVALIDA);
 	}
 	
-	public static String getTempNome() {
-		return tempNome;
-	}
-
 	public static void setTempNome(String tempNome) {
 		Barbeiro.tempNome = tempNome;
 	}
-
+	
+	// Fim Setters
+	
+		
+	// Método que testa a validade do CPF digitado
 	private boolean validarCpf(String cpf) {
 		int d1, d2;
 		int digito1, digito2, resto;
