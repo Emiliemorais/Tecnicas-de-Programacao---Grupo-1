@@ -19,7 +19,13 @@ public class BarbeiroDAO {
 			instance = new BarbeiroDAO();
 		return instance;
 	}
-
+	
+	
+	/*
+	 * Método que armazena no banco de dados um dado barbeiro.
+	 * Checa se o argumento passado é nulo, retornando 'false' se sim.
+	 * Dispara exceções SQL casso ocorram.
+	 */
 	public boolean incluir(Barbeiro barbeiro) throws SQLException {
 		if (barbeiro == null)
 			return false;
@@ -33,7 +39,13 @@ public class BarbeiroDAO {
 
 		return true;
 	}
-
+	
+	
+	/*
+	 * Método que altera os dados de um barbeiro cadastrado no banco de dados.
+	 * Checa se os argumentos passados não são nulos.
+	 * Dispara exceções SQL caso ocorram. 
+	 */
 	public boolean alterar(String nome, Barbeiro barbeiro_alterado, Barbeiro barbeiro) throws SQLException {
 		if (barbeiro_alterado == null || barbeiro == null)
 			return false;
@@ -48,7 +60,13 @@ public class BarbeiroDAO {
 
 		return true;
 	}
-
+	
+	
+	/*
+	 * Método que exclui um dado barbeiro do banco de dados.
+	 * Checa se o argumento passado é nulo, retornando 'false' se sim.
+	 * Dispara exceções SQl caso ocorram.
+	 */
 	public boolean excluir(Barbeiro barbeiro) throws SQLException {
 		if (barbeiro == null)
 			return false;
@@ -57,7 +75,11 @@ public class BarbeiroDAO {
 				+ "barbeiro.nome = \"" + barbeiro.getNome() + "\";");
 		return true;
 	}
-
+	
+	/* 
+	 * Realiza uma pesquisa no banco de dados.
+	 * Dispara exceções SQl caso ocorram.
+	 */
 	public ResultSet pesquisar() throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection.prepareStatement("SELECT * FROM barbeiro;");
@@ -65,7 +87,11 @@ public class BarbeiroDAO {
 
 		return rs;
 	}
-
+	
+	/* 
+	 * Realiza uma atualização do banco de dados.
+	 * Dispara exceções SQl caso ocorram.
+	 */
 	public void updateQuery(String message) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement preparedStatement = connection.prepareStatement(message);
@@ -74,6 +100,10 @@ public class BarbeiroDAO {
 		connection.close();
 	}
 	
+	/* 
+	 * Método que mostra os barbeiros cadastrados no banco de dados.
+	 * Dispara exceções SQl caso ocorram.
+	 */
 	public ResultSet mostrarBarbeirosCadastrados(Barbeiro barbeiro) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		ResultSet rs = connection.createStatement().executeQuery(
@@ -82,6 +112,10 @@ public class BarbeiroDAO {
 		return rs;
 	}
 	
+	/* 
+	 * Método que pesquisa por um dado barbeiro no banco de dados.
+	 * Dispara exceções SQl caso ocorram.
+	 */
 	public ResultSet pesquisarPorNome(Barbeiro barbeiro) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection.prepareStatement("SELECT * FROM barbeiro WHERE nome = '" 
