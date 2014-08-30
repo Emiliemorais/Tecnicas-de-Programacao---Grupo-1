@@ -1,5 +1,5 @@
 package view;
-
+// Importando biblioteca
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -20,15 +20,17 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
 import java.sql.SQLException;
 import java.text.ParseException;
-
+ 
 @SuppressWarnings("serial")
 public class NovoContato extends JFrame {
 
+	// Instancia de recursos para a interface
 	private JPanel contentPane;
 	private JTextField textFieldNome;
 	private JTextField textFieldTelefone;
 	private JTextField textFieldDescricao;
 
+	// Metodo main dentro da classe
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -40,12 +42,13 @@ public class NovoContato extends JFrame {
 				}
 			}
 		});
-	}
+	}// Fim do metodo
 
+	// Metodo que chama o metodo inicializarComponentes()
 	public NovoContato() throws ParseException {
 		inicializarComponentes();
 	}
-
+	// Metodo para dar valores iniciais aos componentes
 	public void inicializarComponentes() throws ParseException {
 		setTitle("Novo Contato");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,7 +61,7 @@ public class NovoContato extends JFrame {
 
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addMouseListener(new MouseAdapter() {
-			@Override
+			@Override// Inicio do metodo para habilitar as funcoes com uso do mouse na interface 
 			public void mouseClicked(MouseEvent e) {
 				try {
 					Agenda agenda = new Agenda();
@@ -87,7 +90,7 @@ public class NovoContato extends JFrame {
 				} catch (BarbeiroException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
 				}
-			}
+			}// Fim do metodo
 
 		});
 
@@ -97,17 +100,19 @@ public class NovoContato extends JFrame {
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addMouseListener(new MouseAdapter() {
 			@Override
+			// Inicio do metodo para habilitar as funcoes com uso do mouse na interface 
 			public void mouseClicked(MouseEvent e) {
 				dispose();
 				CadastrarAgenda frame = new CadastrarAgenda();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
-			}
+			}// Fim do metodo
 		});
 
 		btnVoltar.setBounds(166, 218, 100, 33);
 		contentPane.add(btnVoltar);
 
+		// Opcao para limpar campos 
 		JButton btnLimparCampos = new JButton("Limpar Campos");
 		btnLimparCampos.addMouseListener(new MouseAdapter() {
 			@Override
@@ -115,9 +120,9 @@ public class NovoContato extends JFrame {
 				textFieldNome.setText("");
 				textFieldTelefone.setText("");
 				textFieldDescricao.setText("");
-			}
+			}// Fim do metodo
 		});
-
+		// Opcao para limpar campos 
 		btnLimparCampos.setBounds(287, 218, 125, 33);
 		contentPane.add(btnLimparCampos);
 
@@ -147,10 +152,10 @@ public class NovoContato extends JFrame {
 		JLabel lblDescricao = new JLabel("Descri\u00E7\u00E3o:");
 		lblDescricao.setBounds(22, 117, 64, 14);
 		contentPane.add(lblDescricao);
-	}
-	
+	}// Fim do metodo
+	// Metodo que volta mensagem de erro caso os metodos para identificar o erro encontre-o
 	private void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
-	}
-}
+	}// Fim do metodo
+}// Fim da classe

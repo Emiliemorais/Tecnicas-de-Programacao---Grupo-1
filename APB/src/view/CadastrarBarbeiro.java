@@ -1,5 +1,5 @@
 package view;
-
+// Importando bibliotecas
 import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -19,10 +19,11 @@ import javax.swing.table.DefaultTableModel;
 import model.Barbeiro;
 import control.BarbeiroController;
 import exception.BarbeiroException;
-
+// Inicio da classe CadastrarBarbeiro
 @SuppressWarnings("serial")
 public class CadastrarBarbeiro extends JFrame {
 
+	// Criando um painel para a interface
 	private JPanel contentPane;
 
 	public static void main(String[] args) {
@@ -37,12 +38,15 @@ public class CadastrarBarbeiro extends JFrame {
 				}
 			}
 		});
-	}
+	}// Fim do metodo
+
+	// Metodo que chama o metodo inicializarComponentes()
 
 	public CadastrarBarbeiro() {
 		inicializarComponentes();
-	}
-
+	}// Fim do metodo
+	
+	// Metodo para dar valores iniciais aos componentes
 	public void inicializarComponentes() {
 		setTitle("Barbeiro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -161,11 +165,12 @@ public class CadastrarBarbeiro extends JFrame {
 		});
 		botaoVoltar.setBounds(494, 412, 158, 28);
 		contentPane.add(botaoVoltar);
-	}
-
+	}// Fim do metodo
+	
+	// Metodo que volta mensagem de erro caso os metodos para identificar o erro encontre-o
 	private void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
-	}
+	}// Fim do metodo
 
-}
+}// Fim da classe
