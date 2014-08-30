@@ -1,5 +1,5 @@
 package view;
-
+// Importando dados
 import java.awt.EventQueue;
 
 import javax.swing.JButton;
@@ -19,30 +19,35 @@ import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.text.ParseException;
 
+// Inicio da classe
 @SuppressWarnings("serial")
 public class MenuPrincipal extends JFrame {
 
+	// Declarando instancia de interface
 	private JPanel contentPane;
 
 	/**
 	 * Launch the application.
 	 */
+	// Iniciando a aplicacao da interface
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					MenuPrincipal frame = new MenuPrincipal();
+					// Mostrando interface
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
-	}
+	}// Fim do metodo
 
 	/**
 	 * Create the frame.
 	 */
+	// Criando um paineldp menu pincipal
 	public MenuPrincipal() {
 		setTitle("APB");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,7 +57,7 @@ public class MenuPrincipal extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(UIManager
 				.getBorder("TitledBorder.border"), "Menu Principal",
@@ -60,7 +65,7 @@ public class MenuPrincipal extends JFrame {
 		panel.setBounds(10, 11, 505, 138);
 		contentPane.add(panel);
 		panel.setLayout(null);
-		
+
 		JButton btnAdministrativo = new JButton("Administrativo");
 		btnAdministrativo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -72,7 +77,7 @@ public class MenuPrincipal extends JFrame {
 		});
 		btnAdministrativo.setBounds(10, 60, 157, 37);
 		panel.add(btnAdministrativo);
-		
+
 		JButton btnServicosPrestados = new JButton("Servi\u00E7os Prestados");
 		btnServicosPrestados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -84,7 +89,7 @@ public class MenuPrincipal extends JFrame {
 		});
 		btnServicosPrestados.setBounds(179, 60, 157, 37);
 		panel.add(btnServicosPrestados);
-		
+
 		JButton btnRelatorios = new JButton("Relat\u00F3rios");
 		btnRelatorios.addMouseListener(new MouseAdapter() {
 			@Override
@@ -108,10 +113,11 @@ public class MenuPrincipal extends JFrame {
 		});
 		btnRelatorios.setBounds(346, 60, 149, 37);
 		panel.add(btnRelatorios);
-	}
-	
+	}// Fim do metodo
+
+	// Metodo retorna erro encontrado no menu
 	private void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
-	}
-}
+	}// Fim do metodo
+}// Fim da classe
