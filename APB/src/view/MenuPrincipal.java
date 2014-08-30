@@ -21,7 +21,8 @@ import java.text.ParseException;
 
 // Inicio da classe
 @SuppressWarnings("serial")
-public class MenuPrincipal extends JFrame {
+public class MenuPrincipal extends JFrame 
+{
 
 	// Declarando instancia de interface
 	private JPanel contentPane;
@@ -30,14 +31,17 @@ public class MenuPrincipal extends JFrame {
 	 * Launch the application.
 	 */
 	// Iniciando a aplicacao da interface
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
+	public static void main(String[] args) 
+	{
+		EventQueue.invokeLater(new Runnable() 
+		{
 			public void run() {
 				try {
 					MenuPrincipal frame = new MenuPrincipal();
 					// Mostrando interface
 					frame.setVisible(true);
-				} catch (Exception e) {
+				} catch (Exception e) 
+				{
 					e.printStackTrace();
 				}
 			}
@@ -48,7 +52,8 @@ public class MenuPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	// Criando um paineldp menu pincipal
-	public MenuPrincipal() {
+	public MenuPrincipal() 
+	{
 		setTitle("APB");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 540, 200);
@@ -67,8 +72,10 @@ public class MenuPrincipal extends JFrame {
 		panel.setLayout(null);
 
 		JButton btnAdministrativo = new JButton("Administrativo");
-		btnAdministrativo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btnAdministrativo.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
 				dispose();
 				Administrativo frame = new Administrativo();
 				frame.setVisible(true);
@@ -79,8 +86,10 @@ public class MenuPrincipal extends JFrame {
 		panel.add(btnAdministrativo);
 
 		JButton btnServicosPrestados = new JButton("Servi\u00E7os Prestados");
-		btnServicosPrestados.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btnServicosPrestados.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
 				dispose();
 				CadastrarServicoPrestado frame = new CadastrarServicoPrestado();
 				frame.setVisible(true);
@@ -91,22 +100,28 @@ public class MenuPrincipal extends JFrame {
 		panel.add(btnServicosPrestados);
 
 		JButton btnRelatorios = new JButton("Relat\u00F3rios");
-		btnRelatorios.addMouseListener(new MouseAdapter() {
+		btnRelatorios.addMouseListener(new MouseAdapter()
+		{
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) 
+			{
 				try {
 					PesquisarRelatorio.tipoBusca = 0;
 					VisualizarRelatorios frame = new VisualizarRelatorios();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 					dispose();
-				} catch (SQLException e1) {
+				} catch (SQLException e1) 
+				{
 					mostrarMensagemDeErro(e1.getMessage());
-				} catch (RelatorioException e1) {
+				} catch (RelatorioException e1) 
+				{
 					e1.printStackTrace();
-				} catch (NullPointerException e1) {
+				} catch (NullPointerException e1)
+				{
 					e1.printStackTrace();
-				} catch (ParseException e1) {
+				} catch (ParseException e1) 
+				{
 					e1.printStackTrace();
 				}
 			}
@@ -116,7 +131,8 @@ public class MenuPrincipal extends JFrame {
 	}// Fim do metodo
 
 	// Metodo retorna erro encontrado no menu
-	private void mostrarMensagemDeErro(String informacao) {
+	private void mostrarMensagemDeErro(String informacao) 
+	{
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
 	}// Fim do metodo

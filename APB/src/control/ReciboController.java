@@ -8,19 +8,23 @@ import java.sql.SQLException;
 import dao.ReciboDAO;
 
 // Classe publica ReciboController iniciada
-public class ReciboController {
+public class ReciboController 
+{
 
 	private static ReciboController instance;
 
-	public ReciboController() {
+	public ReciboController() 
+	{
 	}
 
 	/* 
 	 * Metodo utilizado para instanciar a variavel 
 	 *"instance" caso essa seja nula
 	 */
-	public static ReciboController getInstance() {
-		if (instance == null) {
+	public static ReciboController getInstance() 
+	{
+		if (instance == null) 
+		{
 			instance = new ReciboController();
 		}
 		// retorno do metodo ReciboController getInstance()
@@ -28,7 +32,8 @@ public class ReciboController {
 	}// fim do metodo
 
 	public ResultSet pesquisarServicosDoBarbeiro(String barbeiro,
-			String dataInicial, String dataFinal) throws SQLException {
+			String dataInicial, String dataFinal) throws SQLException 
+			{
 
 		return ReciboDAO.getInstance().pesquisarServicosDoBarbeiro(barbeiro,
 				dataInicial, dataFinal);

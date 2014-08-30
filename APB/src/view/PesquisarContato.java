@@ -27,7 +27,8 @@ import java.sql.SQLException;
 
 @SuppressWarnings("serial")
 // Inicio da classe PesquisarContato
-public class PesquisarContato extends JFrame {
+public class PesquisarContato extends JFrame 
+{
 
 	// Criando instancias
 	private JPanel contentPane;
@@ -35,14 +36,18 @@ public class PesquisarContato extends JFrame {
 
 	// Metodo main da classe
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
+		EventQueue.invokeLater(new Runnable() 
+		{
+			public void run() 
+			{
+				
 				// Inicio do tratamento de excecao
 				try {
 					
 					PesquisarContato frame = new PesquisarContato();
 					frame.setVisible(true);
-				} catch (Exception e) {
+				} catch (Exception e) 
+				{
 					e.printStackTrace();
 				}// Fim do tratamento de excecao
 			}
@@ -50,12 +55,14 @@ public class PesquisarContato extends JFrame {
 	}// Fim do metodo
 
 	// Mtodo pesquisar contato que chama outra funcao responsavel por inicializar a pesquisa
-	public PesquisarContato() {
+	public PesquisarContato() 
+	{
 		inicializarComponentes();
 	}// Fim do metodo
 	
 	// Metodo para inicializar(dar valores) aos componentes
-	public void inicializarComponentes() {
+	public void inicializarComponentes()
+	{
 		
 		setTitle("Pesquisar Contato");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -88,13 +95,16 @@ public class PesquisarContato extends JFrame {
 		contentPane.add(lblPesquisar);
 
 		JButton btnPesquisarNome = new JButton("Pesquisar Nome");
-		btnPesquisarNome.addMouseListener(new MouseAdapter() {
+		btnPesquisarNome.addMouseListener(new MouseAdapter()
+		{
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent arg0)
+			{
 				// Tratando excecao
 				try {
 
-					for (int i = 0; i < modelo.getRowCount(); i++) {
+					for (int i = 0; i < modelo.getRowCount(); i++) 
+					{
 						modelo.removeRow(i);
 					}
 
@@ -112,10 +122,12 @@ public class PesquisarContato extends JFrame {
 						dados[2] = rs.getString("descricao");
 						modelo.addRow(dados);
 					}
-				} catch (SQLException e) {
+				} catch (SQLException e) 
+				{
 					
 					mostrarMensagemDeErro(e.getMessage());
-				} catch (BarbeiroException e) {
+				} catch (BarbeiroException e) 
+				{
 					
 					mostrarMensagemDeErro(e.getMessage());
 				}// Fim do tratamento de excecao
@@ -125,14 +137,17 @@ public class PesquisarContato extends JFrame {
 		contentPane.add(btnPesquisarNome);
 
 		JButton btnPesquisarTelefone = new JButton("Pesquisar Telefone");
-		btnPesquisarTelefone.addMouseListener(new MouseAdapter() {
+		btnPesquisarTelefone.addMouseListener(new MouseAdapter() 
+		{
 			
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent arg0) 
+			{
 
 				try {
 
-					for (int i = 0; i < modelo.getRowCount(); i++) {
+					for (int i = 0; i < modelo.getRowCount(); i++)
+					{
 						modelo.removeRow(i);
 					}
 
@@ -156,7 +171,8 @@ public class PesquisarContato extends JFrame {
 				} catch (SQLException e) {
 					
 					mostrarMensagemDeErro(e.getMessage());
-				} catch (BarbeiroException e) {
+				} catch (BarbeiroException e) 
+				{
 					
 					mostrarMensagemDeErro(e.getMessage());
 				}
@@ -166,10 +182,12 @@ public class PesquisarContato extends JFrame {
 		contentPane.add(btnPesquisarTelefone);
 
 		JButton btnAlterar = new JButton("Alterar");
-		btnAlterar.addMouseListener(new MouseAdapter() {
+		btnAlterar.addMouseListener(new MouseAdapter() 
+		{
 			
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) 
+			{
 				try {
 					
 					Agenda.setTempNome(modelo.getValueAt(
@@ -179,7 +197,8 @@ public class PesquisarContato extends JFrame {
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 
-				} catch (ArrayIndexOutOfBoundsException e1) {
+				} catch (ArrayIndexOutOfBoundsException e1) 
+				{
 					
 					mostrarMensagemDeErro("Selecione um contato para alterar");
 				}
@@ -189,11 +208,14 @@ public class PesquisarContato extends JFrame {
 		contentPane.add(btnAlterar);
 
 		JButton btnRemover = new JButton("Remover");
-		btnRemover.addMouseListener(new MouseAdapter() {
+		btnRemover.addMouseListener(new MouseAdapter()
+		{
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) 
+			{
 
-				try {
+				try 
+				{
 					
 					String nome = (String) table.getValueAt(
 							table.getSelectedRow(), 0);
@@ -206,7 +228,8 @@ public class PesquisarContato extends JFrame {
 					int confirmacao = JOptionPane.showConfirmDialog(null,
 							"Remover " + nome + " da lista?");
 
-					if (confirmacao == JOptionPane.YES_OPTION) {
+					if (confirmacao == JOptionPane.YES_OPTION) 
+					{
 						AgendaController agendaController = AgendaController
 								.getInstance();
 						agendaController.excluir(agenda);
@@ -216,13 +239,16 @@ public class PesquisarContato extends JFrame {
 						frame.setVisible(true);
 						frame.setLocationRelativeTo(null);
 					}
-				} catch (ArrayIndexOutOfBoundsException e1) {
+				} catch (ArrayIndexOutOfBoundsException e1) 
+				{
 					
 					mostrarMensagemDeErro("Selecione um contato para remover");
-				} catch (BarbeiroException e1) {
+				} catch (BarbeiroException e1) 
+				{
 					
 					mostrarMensagemDeErro(e1.getMessage());
-				} catch (SQLException e1) {
+				} catch (SQLException e1) 
+				{
 					
 					mostrarMensagemDeErro(e1.getMessage());
 				}
@@ -232,10 +258,12 @@ public class PesquisarContato extends JFrame {
 		contentPane.add(btnRemover);
 
 		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.addMouseListener(new MouseAdapter() {
+		btnVoltar.addMouseListener(new MouseAdapter()
+{
 			
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) 
+			{
 				
 				dispose();
 				CadastrarAgenda frame = new CadastrarAgenda();
@@ -250,7 +278,8 @@ public class PesquisarContato extends JFrame {
 	/*
 	 *  Metodo que mostra erro caso haja algum na inicializacao das variavei
 	 */
-	private void mostrarMensagemDeErro(String informacao) {
+	private void mostrarMensagemDeErro(String informacao) 
+	{
 		JOptionPane.showMessageDialog(null, informacao, "Aten��o",
 				JOptionPane.INFORMATION_MESSAGE);
 	}// Fim do metodo

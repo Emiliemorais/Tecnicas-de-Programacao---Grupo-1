@@ -5,6 +5,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JFreeChart"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/javadocx"/>
-	<classpathentry kind="lib" path="C:/mysql-connector-java-5.1.25-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Tiago/Desktop/mysql-connector-java-5.1.32/mysql-connector-java-5.1.32-bin.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Tiago/Google Drive/4 Semestre/TecProg/mysql-connector-java-5.1.25.zip"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

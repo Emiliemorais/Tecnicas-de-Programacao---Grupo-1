@@ -9,23 +9,27 @@ import model.Agenda;
 import dao.FactoryConnection;
 
 // Inicio da classe AgendaDAO
-public class AgendaDAO {
+public class AgendaDAO 
+{
 
 	private static AgendaDAO instance;
 
 	// Inicio do metodo AgendaDAO
-	private AgendaDAO() {
+	private AgendaDAO() 
+	{
 	}// Fim do metodo AgendaDAO
 
 	// Metodo da AgendaDAO para instaciar a variavel caso seja nula
-	public static AgendaDAO getInstance() {
+	public static AgendaDAO getInstance() 
+	{
 		if (instance == null)
 			instance = new AgendaDAO();
 		return instance;
 	}// Fim do metodo AgendaDAO getInstance
 
 	// Metodo incluir para incluir um dado na agenda
-	public boolean incluir(Agenda agenda) throws SQLException {
+	public boolean incluir(Agenda agenda) throws SQLException 
+	{
 		if (agenda == null)
 			return false;
 		
@@ -37,7 +41,8 @@ public class AgendaDAO {
 	}// Fim do metodo incluir
 
 	// Metodo para aferir as informacoes do banco
-	public boolean alterar(String nome, Agenda agenda_alterado, Agenda agenda) throws SQLException {	
+	public boolean alterar(String nome, Agenda agenda_alterado, Agenda agenda) throws SQLException 
+	{	
 		if(agenda == null || agenda_alterado == null)
 			return false;
 		
@@ -51,7 +56,8 @@ public class AgendaDAO {
 		return true;
 	}// Fim do metodo alterar
 
-	public boolean excluir(Agenda contato) throws SQLException {
+	public boolean excluir(Agenda contato) throws SQLException 
+	{
 		if(contato ==  null)
 			return false;
 		
@@ -61,7 +67,8 @@ public class AgendaDAO {
 	}// Fim do metodo excluir
 
 	// Metodo para atribuir valores as variaveis de acordo com o banco
-	public void updateQuery(String message) throws SQLException {
+	public void updateQuery(String message) throws SQLException 
+	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement preparedStatement = connection.prepareStatement(message);
 		preparedStatement.executeUpdate();
@@ -70,7 +77,8 @@ public class AgendaDAO {
 	}// Fim do metodo 
 	
 	// Metodo para atribuir valores as variaveis de acordo com o banco
-	public ResultSet mostrarContatosCadastrados(Agenda contato) throws SQLException {
+	public ResultSet mostrarContatosCadastrados(Agenda contato) throws SQLException 
+	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		ResultSet rs = connection.createStatement().executeQuery(
 				"Select * from agenda;");
@@ -79,7 +87,8 @@ public class AgendaDAO {
 	}// Fim do metodo 
 	
 	// Metodo para atribuir valores as variaveis de acordo com o banco
-	public ResultSet pesquisarPorNome(Agenda contato) throws SQLException {
+	public ResultSet pesquisarPorNome(Agenda contato) throws SQLException 
+	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		java.sql.PreparedStatement pst = connection.prepareStatement("SELECT * FROM agenda WHERE "
 				+ "nome = '" + contato.getNome()+ "';");
@@ -89,7 +98,8 @@ public class AgendaDAO {
 	}// Fim do metodo 
 	
 	// Metodo para atribuir valores as variaveis de acordo com o banco
-	public ResultSet pesquisarPorTelefone(Agenda contato) throws SQLException {
+	public ResultSet pesquisarPorTelefone(Agenda contato) throws SQLException 
+	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		java.sql.PreparedStatement pst = connection.prepareStatement("SELECT * FROM agenda WHERE "
 				+ "telefone = '" + contato.getTelefone()+ "';");

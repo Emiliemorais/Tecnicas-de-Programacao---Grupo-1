@@ -9,20 +9,24 @@ import java.sql.SQLException;
 // Importando dados do modelo da classe Tipo de Servico
 import model.TipoServico;
 
-public class TipoServicoDAO {
+public class TipoServicoDAO 
+{
 
 	private static TipoServicoDAO instance;
 
-	private TipoServicoDAO() {
+	private TipoServicoDAO() 
+	{
 	}
 
-	public static TipoServicoDAO getInstance() {
+	public static TipoServicoDAO getInstance() 
+	{
 		if (instance == null)
 			instance = new TipoServicoDAO();
 		return instance;
 	}
 
-	public boolean incluir(TipoServico tipoServico) throws SQLException {
+	public boolean incluir(TipoServico tipoServico) throws SQLException 
+	{
 		if (tipoServico == null)
 			return false;
 		
@@ -34,7 +38,8 @@ public class TipoServicoDAO {
 		return true;
 	}
 
-	public boolean alterar(String nome,TipoServico tipoServico_alterado, TipoServico tipoServico) throws SQLException {
+	public boolean alterar(String nome,TipoServico tipoServico_alterado, TipoServico tipoServico) throws SQLException 
+	{
 		if (tipoServico_alterado == null || tipoServico == null) 
 			return false;
 		/*
@@ -56,7 +61,8 @@ public class TipoServicoDAO {
 	}// Fim do metodo alterar
 
 	// Metodo que retorna true caso o tipo de servico contenha alguma informacao
-	public boolean excluir(TipoServico tipoServico) throws SQLException {
+	public boolean excluir(TipoServico tipoServico) throws SQLException 
+	{
 		if (tipoServico == null)
 			return false;
 		
@@ -69,7 +75,8 @@ public class TipoServicoDAO {
 	 *Connection connection 
 	 *PreparedStatement preparedStatement
 	 */
-	public void updateQuery(String message) throws SQLException {
+	public void updateQuery(String message) throws SQLException 
+	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement preparedStatement = connection.prepareStatement(message);
 		preparedStatement.executeUpdate();
@@ -78,7 +85,8 @@ public class TipoServicoDAO {
 	}// Fim do metodo updateQuery
 	
 	// Metodo que cede o acesso aos relatorios cadastrados e da a opcao de que sejam mostrados
-	public ResultSet mostrarTipoServicoCadastrados(TipoServico servico) throws SQLException {
+	public ResultSet mostrarTipoServicoCadastrados(TipoServico servico) throws SQLException 
+	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		ResultSet rs = connection.createStatement().executeQuery(
 				"SELECT * FROM tiposervico;");
@@ -87,7 +95,8 @@ public class TipoServicoDAO {
 	}//Fim do metodo Result mostrarTipoServicoCadastrados
 	
 	// Metodo que cede o acesso aos relatorios cadastrados e da a opcao de que sejam pesquisados por nome
-	public ResultSet pesquisarPorNome(TipoServico servico) throws SQLException {
+	public ResultSet pesquisarPorNome(TipoServico servico) throws SQLException 
+	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		java.sql.PreparedStatement pst = connection.prepareStatement("SELECT * FROM tiposervico WHERE "
 				+ "nome = '" + servico.getNomeTipoServico() + "';");

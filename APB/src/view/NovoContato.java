@@ -22,7 +22,8 @@ import java.sql.SQLException;
 import java.text.ParseException;
  
 @SuppressWarnings("serial")
-public class NovoContato extends JFrame {
+public class NovoContato extends JFrame 
+{
 
 	// Instancia de recursos para a interface
 	private JPanel contentPane;
@@ -31,13 +32,18 @@ public class NovoContato extends JFrame {
 	private JTextField textFieldDescricao;
 
 	// Metodo main dentro da classe
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
+	public static void main(String[] args) 
+	{
+		EventQueue.invokeLater(new Runnable() 
+		{
+			public void run() 
+			{
+				try 
+				{
 					NovoContato frame = new NovoContato();
 					frame.setVisible(true);
-				} catch (Exception e) {
+				} catch (Exception e) 
+				{
 					e.printStackTrace();
 				}
 			}
@@ -45,11 +51,13 @@ public class NovoContato extends JFrame {
 	}// Fim do metodo
 
 	// Metodo que chama o metodo inicializarComponentes()
-	public NovoContato() throws ParseException {
+	public NovoContato() throws ParseException 
+	{
 		inicializarComponentes();
-	}
+	}// Fim do metodo
 	// Metodo para dar valores iniciais aos componentes
-	public void inicializarComponentes() throws ParseException {
+	public void inicializarComponentes() throws ParseException 
+	{
 		setTitle("Novo Contato");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -60,10 +68,13 @@ public class NovoContato extends JFrame {
 		MaskFormatter mascraFormatTel = new MaskFormatter("(##)####-####");
 
 		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.addMouseListener(new MouseAdapter() {
+		btnSalvar.addMouseListener(new MouseAdapter() 
+		{
 			@Override// Inicio do metodo para habilitar as funcoes com uso do mouse na interface 
-			public void mouseClicked(MouseEvent e) {
-				try {
+			public void mouseClicked(MouseEvent e) 
+			{
+				try 
+				{
 					Agenda agenda = new Agenda();
 					agenda.setNome(textFieldNome.getText());
 					agenda.setTelefone(textFieldTelefone.getText());
@@ -85,9 +96,11 @@ public class NovoContato extends JFrame {
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 					
-				} catch (SQLException e1) {
+				} catch (SQLException e1) 
+				{
 					mostrarMensagemDeErro(e1.getMessage());
-				} catch (BarbeiroException e1) {
+				} catch (BarbeiroException e1)
+				{
 					mostrarMensagemDeErro(e1.getMessage());
 				}
 			}// Fim do metodo
@@ -98,10 +111,12 @@ public class NovoContato extends JFrame {
 		contentPane.add(btnSalvar);
 
 		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.addMouseListener(new MouseAdapter() {
+		btnVoltar.addMouseListener(new MouseAdapter() 
+		{
 			@Override
 			// Inicio do metodo para habilitar as funcoes com uso do mouse na interface 
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) 
+			{
 				dispose();
 				CadastrarAgenda frame = new CadastrarAgenda();
 				frame.setVisible(true);
@@ -114,9 +129,11 @@ public class NovoContato extends JFrame {
 
 		// Opcao para limpar campos 
 		JButton btnLimparCampos = new JButton("Limpar Campos");
-		btnLimparCampos.addMouseListener(new MouseAdapter() {
+		btnLimparCampos.addMouseListener(new MouseAdapter() 
+		{
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) 
+			{
 				textFieldNome.setText("");
 				textFieldTelefone.setText("");
 				textFieldDescricao.setText("");
@@ -154,7 +171,8 @@ public class NovoContato extends JFrame {
 		contentPane.add(lblDescricao);
 	}// Fim do metodo
 	// Metodo que volta mensagem de erro caso os metodos para identificar o erro encontre-o
-	private void mostrarMensagemDeErro(String informacao) {
+	private void mostrarMensagemDeErro(String informacao) 
+	{
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
 	}// Fim do metodo

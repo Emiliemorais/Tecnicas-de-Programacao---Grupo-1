@@ -21,19 +21,25 @@ import control.BarbeiroController;
 import exception.BarbeiroException;
 // Inicio da classe CadastrarBarbeiro
 @SuppressWarnings("serial")
-public class CadastrarBarbeiro extends JFrame {
+public class CadastrarBarbeiro extends JFrame 
+{
 
 	// Criando um painel para a interface
 	private JPanel contentPane;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
+	public static void main(String[] args) 
+	{
+		EventQueue.invokeLater(new Runnable() 
+		{
+			public void run() 
+			{
+				try 
+				{
 					CadastrarBarbeiro frame = new CadastrarBarbeiro();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
-				} catch (Exception e) {
+				} catch (Exception e) 
+				{
 					e.printStackTrace();
 				}
 			}
@@ -42,12 +48,14 @@ public class CadastrarBarbeiro extends JFrame {
 
 	// Metodo que chama o metodo inicializarComponentes()
 
-	public CadastrarBarbeiro() {
+	public CadastrarBarbeiro() 
+	{
 		inicializarComponentes();
 	}// Fim do metodo
 	
 	// Metodo para dar valores iniciais aos componentes
-	public void inicializarComponentes() {
+	public void inicializarComponentes() 
+	{
 		setTitle("Barbeiro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 678, 490);
@@ -64,11 +72,13 @@ public class CadastrarBarbeiro extends JFrame {
 				new String[] { "Nome", "CPF", "RG", "Telefone", "Cadeira" });
 		final JTable table = new JTable(modelo);
 
-		try {
+		try 
+		{
 			BarbeiroController barbeiroController = BarbeiroController.getInstance();
 			Barbeiro barbeiro = new Barbeiro();
 			ResultSet rs = barbeiroController.mostrarBarbeirosCadastrados(barbeiro);
-			while (rs.next()) {
+			while (rs.next())
+			{
 				String[] dados = new String[5];
 				dados[0] = rs.getString("nome");
 				dados[1] = rs.getString("cpf");
@@ -77,23 +87,28 @@ public class CadastrarBarbeiro extends JFrame {
 				dados[4] = rs.getString("cadeira");
 				modelo.addRow(dados);
 			}
-		} catch (SQLException e) {
+		} catch (SQLException e) 
+		{
 			mostrarMensagemDeErro(e.getMessage());
 		}
 
 		scrollPane.setViewportView(table);
 
 		JButton botaoNovo = new JButton("Novo");
-		botaoNovo.addMouseListener(new MouseAdapter() {
+		botaoNovo.addMouseListener(new MouseAdapter() 
+		{
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) 
+			{
 				dispose();
 				NovoBarbeiro frame;
 				try {
+					
 					frame = new NovoBarbeiro();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
-				} catch (ParseException e1) {
+				} catch (ParseException e1) 
+				{
 					e1.printStackTrace();
 				}
 	
@@ -103,16 +118,19 @@ public class CadastrarBarbeiro extends JFrame {
 		contentPane.add(botaoNovo);
 
 		JButton botaoAlterar = new JButton("Alterar");
-		botaoAlterar.addMouseListener(new MouseAdapter() {
+		botaoAlterar.addMouseListener(new MouseAdapter() 
+		{
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e)
+			{
 				try{
 					Barbeiro.setTempNome(modelo.getValueAt(table.getSelectedRow(), 0).toString());
 					AlterarBarbeiro frame = new AlterarBarbeiro();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 					dispose();
-				} catch (ArrayIndexOutOfBoundsException e1) {
+				} catch (ArrayIndexOutOfBoundsException e1) 
+				{
 					mostrarMensagemDeErro("Selecione um Barbeiro para Alterar");
 				}
 			}
@@ -121,9 +139,11 @@ public class CadastrarBarbeiro extends JFrame {
 		contentPane.add(botaoAlterar);
 
 		JButton botaoRemover = new JButton("Remover");
-		botaoRemover.addMouseListener(new MouseAdapter() {
+		botaoRemover.addMouseListener(new MouseAdapter() 
+		{
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent arg0) 
+			{
 				try {
 					String nome = (String) table.getValueAt(table.getSelectedRow(), 0);
 					Barbeiro barbeiro = new Barbeiro();
@@ -132,7 +152,8 @@ public class CadastrarBarbeiro extends JFrame {
 					int confirmacao = JOptionPane.showConfirmDialog(null,
 							"Remover " + nome + " da lista?");
 
-					if (confirmacao == JOptionPane.YES_OPTION) {
+					if (confirmacao == JOptionPane.YES_OPTION) 
+					{
 						BarbeiroController barbeiroController = BarbeiroController.getInstance();
 						barbeiroController.excluir(barbeiro);
 
@@ -141,11 +162,14 @@ public class CadastrarBarbeiro extends JFrame {
 						frame.setVisible(true);
 						frame.setLocationRelativeTo(null);
 					}
-				} catch (ArrayIndexOutOfBoundsException e) {
+				} catch (ArrayIndexOutOfBoundsException e) 
+				{
 					mostrarMensagemDeErro("Selecione um Barbeiro para remover");
-				} catch (BarbeiroException e) {
+				} catch (BarbeiroException e) 
+				{
 					mostrarMensagemDeErro(e.getMessage());
-				} catch (SQLException e) {
+				} catch (SQLException e) 
+				{
 					mostrarMensagemDeErro(e.getMessage());
 				}
 			}
@@ -154,9 +178,11 @@ public class CadastrarBarbeiro extends JFrame {
 		contentPane.add(botaoRemover);
 		
 		JButton botaoVoltar = new JButton("Voltar");
-		botaoVoltar.addMouseListener(new MouseAdapter() {
+		botaoVoltar.addMouseListener(new MouseAdapter() 
+		{
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent arg0) 
+			{
 				Administrativo frame = new Administrativo();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
@@ -168,7 +194,8 @@ public class CadastrarBarbeiro extends JFrame {
 	}// Fim do metodo
 	
 	// Metodo que volta mensagem de erro caso os metodos para identificar o erro encontre-o
-	private void mostrarMensagemDeErro(String informacao) {
+	private void mostrarMensagemDeErro(String informacao) 
+	{
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
 	}// Fim do metodo

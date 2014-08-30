@@ -1,5 +1,5 @@
 package view;
-
+// Importando bibliotecas
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -19,10 +19,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.text.ParseException;
-
+// Iniciando classe 
 @SuppressWarnings("serial")
-public class NovoBarbeiro extends JFrame {
+public class NovoBarbeiro extends JFrame
+{
 
+	// Instancia de recursos para a interface
 	private JPanel contentPane;
 	private JTextField textFieldNome;
 	private JTextField textFieldCpf;
@@ -34,25 +36,34 @@ public class NovoBarbeiro extends JFrame {
 	private JLabel lblCadeira;
 	private JButton botaoVoltar;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
+	// Metodo main dentro da classe
+	public static void main(String[] args) 
+	{
+		EventQueue.invokeLater(new Runnable() 
+		{
+			public void run() 
+			{
 				try {
 					NovoBarbeiro frame = new NovoBarbeiro();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
-				} catch (Exception e) {
+				} catch (Exception e) 
+				{
 					e.printStackTrace();
 				}
-			}
+			}// Fim do metodo
 		});
-	}
+	}// Fim do metodo
 
-	public NovoBarbeiro() throws ParseException {
+	// Metodo que chama o metodo inicializarComponentes()
+	public NovoBarbeiro() throws ParseException 
+	{
 		inicializarComponentes();
-	}
+	}// Fim do metodo
 
-	public void inicializarComponentes() throws ParseException {
+	// Metodo para dar valores iniciais aos componentes
+	public void inicializarComponentes() throws ParseException 
+	{
 		setTitle("Cadastrar Barbeiro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 474, 253);
@@ -112,9 +123,12 @@ public class NovoBarbeiro extends JFrame {
 	
 
 		botaoSalvar = new JButton("Salvar");
-		botaoSalvar.addMouseListener(new MouseAdapter() {
+		botaoSalvar.addMouseListener(new MouseAdapter() 
+		{
 			@Override
-			public void mouseClicked(MouseEvent k) {
+			// Inicio do metodo para habilitar o uso da interface com o mouse
+			public void mouseClicked(MouseEvent k) 
+			{
 				try {
 					Barbeiro barbeiro = new Barbeiro();
 					barbeiro.setNome(textFieldNome.getText());
@@ -134,12 +148,14 @@ public class NovoBarbeiro extends JFrame {
 					CadastrarBarbeiro frame = new CadastrarBarbeiro();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
-				} catch (BarbeiroException e) {
+				} catch (BarbeiroException e)
+				{
 					mostrarMensagemDeErro(e.getMessage());
-				} catch (SQLException e) {
+				} catch (SQLException e) 
+				{
 					mostrarMensagemDeErro(e.getMessage());
 				}
-			}
+			}// Fim do metodo
 
 		});
 
@@ -151,36 +167,42 @@ public class NovoBarbeiro extends JFrame {
 		contentPane.add(botaoSalvar);
 
 		botaoLimparCampos = new JButton("Limpar Campos");
-		botaoLimparCampos.addMouseListener(new MouseAdapter() {
+		botaoLimparCampos.addMouseListener(new MouseAdapter()
+		{
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e)
+			{
 				textFieldNome.setText("");
 				textFieldCpf.setText("");
 				textFieldRg.setText("");
 				textFieldTelefone.setText("");
 				textFieldCadeira.setText("");
-			}
+			}// Fim do metodo
 		});
 		botaoLimparCampos.setBounds(308, 177, 138, 23);
 		contentPane.add(botaoLimparCampos);
 
 		botaoVoltar = new JButton("Voltar");
-		botaoVoltar.addMouseListener(new MouseAdapter() {
+		botaoVoltar.addMouseListener(new MouseAdapter() 
+		{
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e) 
+			{
 				dispose();
 				CadastrarBarbeiro frame = new CadastrarBarbeiro();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
-			}
+			}// Fim do metodo
 		});
 		botaoVoltar.setBounds(158, 177, 125, 23);
 		contentPane.add(botaoVoltar);
 
-	}
+	}// Fim do metodo
 
-	private void mostrarMensagemDeErro(String informacao) {
+	// Metodo que volta mensagem de erro caso os metodos para identificar o erro encontre-o
+	private void mostrarMensagemDeErro(String informacao) 
+	{
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
-	}
-}
+	}// Fim do metodo
+}// Fim da classe
