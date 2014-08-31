@@ -40,7 +40,7 @@ public class TipoServico {
 // Fim do método
 
 /*
- * Método que "seta" o tipo de serviço
+ * Método que "seta" o nome do tipo de serviço
  * Tratamento de exceções
  */
 	public void setNomeTipoServico(String nomeTipoServico) throws ServicoException {
