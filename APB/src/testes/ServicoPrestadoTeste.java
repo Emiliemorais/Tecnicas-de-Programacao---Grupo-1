@@ -1,5 +1,7 @@
+// Pacote ao qual pertence a classe
 package testes;
 
+// Importações
 import static org.junit.Assert.*;
 
 import java.text.ParseException;
@@ -11,12 +13,14 @@ import model.ServicoPrestado;
 import org.junit.Test;
 
 import exception.ServicoException;
+// Fim das importações
 
-
+// Início da classe
 public class ServicoPrestadoTeste {
 
 	ServicoPrestado servico = new ServicoPrestado();
-	
+
+// Testes
 	@Test
 	public void testeDeConstrutor(){
 		ServicoPrestado servico1 = new ServicoPrestado("Corte", "15,00","Claudio");
@@ -29,19 +33,19 @@ public class ServicoPrestadoTeste {
 		servico.setNomeServico(null);
 		Assert.fail("Deve lan�ar exce��o");
 	}
-	
+
 	@Test (expected = ServicoException.class)
 	public void testeSetNomeBranco() throws ServicoException {
 		servico.setNomeServico("");
 		Assert.fail("Deve lan�ar uma exce��o");
 	}
-	
+
 	@Test (expected = ServicoException.class)
 	public void testeSetNomeForaDeFormato() throws ServicoException {
 		servico.setNomeServico("123");
 		Assert.fail("Deve lan�ar uma exce��o");
 	}
-	
+
 	@Test
 	public void testeSetNomeValido() {
 		try {
@@ -52,25 +56,25 @@ public class ServicoPrestadoTeste {
 		}
 		assertEquals("Corte", servico.getNomeServico());
 	}
-	
+
 	@Test (expected = ServicoException.class)
 	public void precoForaDeFormato() throws ServicoException {
 		servico.setPreco("as");
 		Assert.fail("Deve lan�ar uma exce��o");
 	}
-	
+
 	@Test (expected = NullPointerException.class)
 	public void testePrecoNaoNulo() throws ServicoException {
 		servico.setPreco(null);
 		Assert.fail("Deve lan�ar uma exce��o");
 	}
-	
+
 	@Test (expected = ServicoException.class)
 	public void testePrecoEmBranco() throws ServicoException {
 		servico.setPreco("");
 		Assert.fail("Deve lan�ar uma exce��o");
 	}
-	
+
 	@Test
 	public void testePrecoValido() {
 		try {
@@ -80,25 +84,25 @@ public class ServicoPrestadoTeste {
 		}
 		assertEquals("123,45", servico.getPreco());
 	}
-	
+
 	@Test (expected = NullPointerException.class)
 	public void testeNomeBarbeiroNulo() throws ServicoException {
 		servico.setNomeBarbeiro(null);
 		Assert.fail("Deve lan�ar uma exce��o");
 	}
-	
+
 	@Test (expected = ServicoException.class)
 	public void testeNomeBarbeiroEmBranco() throws ServicoException {
 		servico.setNomeBarbeiro("");
 		Assert.fail("Deve lan�ar uma exce��o");
 	}
-	
+
 	@Test (expected = ServicoException.class)
 	public void testeNomeBarbeiroForaDeFormato() throws ServicoException {
 		servico.setNomeBarbeiro("123");
 		Assert.fail("Deve lan�ar uma exce��o");
 	}
-	
+
 	@Test (expected = AssertionFailedError.class)
 	public void testeNomeBarbeiroValido() {
 		try {
@@ -108,7 +112,7 @@ public class ServicoPrestadoTeste {
 		}
 		assertEquals("Jo�o", servico.getNomeBarbeiro());
 	}
-	
+
 	@Test (expected = NullPointerException.class)
 	public void testeDataNulo() throws ServicoException {
 		try {
@@ -120,7 +124,7 @@ public class ServicoPrestadoTeste {
 		}
 		Assert.fail("Deve lan�ar uma exce��o");
 	}
-	
+
 	@Test (expected = ServicoException.class)
 	public void testeDataEmBranco() throws ServicoException {
 		try {
@@ -132,7 +136,7 @@ public class ServicoPrestadoTeste {
 		}
 		Assert.fail("Deve lan�ar uma exce��o");
 	}
-	
+
 	@Test (expected = ServicoException.class)
 	public void testeDataForaDeFormato() throws ServicoException {
 		try {
@@ -144,7 +148,7 @@ public class ServicoPrestadoTeste {
 		}
 		Assert.fail("Deve lan�ar uma exce��o");
 	}
-	
+
 	@Test
 	public void testeDataParaConverter() {
 		try {
@@ -153,7 +157,7 @@ public class ServicoPrestadoTeste {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void testeDataNormal() {
 		try {
@@ -164,9 +168,12 @@ public class ServicoPrestadoTeste {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test (expected = AssertionError.class)
 	public void getterDeDataDeveFuncionar(){
 		assertEquals("10/10/2012", servico.getData());
 	}
+// Fim dos testes
+
 }
+// Fim da classe

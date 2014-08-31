@@ -1,5 +1,7 @@
+// Pacote ao qual pertence a classe
 package testes;
 
+// Importações
 import static org.junit.Assert.*;
 
 import java.sql.ResultSet;
@@ -12,11 +14,14 @@ import org.junit.Test;
 
 import control.AgendaController;
 import exception.BarbeiroException;
+// Fim das importações
 
+// Início da classe
 public class AgendaControllerTeste {
 
 	Agenda contato = new Agenda();
 
+// Testes
 	@Before
 	public void setUp() {
 		try {
@@ -29,7 +34,7 @@ public class AgendaControllerTeste {
 	}
 
 	AgendaController agendaController = AgendaController.getInstance();
-	
+
 	@Test
 	public void getInstanceDeAgendaControllerDeveRetornarInstanciaCorrente() {
 		assertEquals(AgendaController.getInstance(), agendaController);
@@ -53,7 +58,7 @@ public class AgendaControllerTeste {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void alterarDeAgendaControllerDeveEnviarUmaAgendaAlterada() {
 		try {
@@ -89,13 +94,13 @@ public class AgendaControllerTeste {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void mostrarContatosDeAgendaControllerDeveMostrarUmContato() throws SQLException {
 		ResultSet rs = agendaController.mostrarContatosCadastrados(contato);
 		while(rs.next());
 	}
-	
+
 	@Test
 	public void pesquisarPorNomeDeAgendaControllerDeveMostrarUmContato() throws SQLException {
 		ResultSet rs = agendaController.pesquisarPorNome(contato);
@@ -107,5 +112,7 @@ public class AgendaControllerTeste {
 		ResultSet rs = agendaController.pesquisarPorTelefone(contato);
 		while(rs.next());
 	}
-	
+// Fim dos testes
+
 }
+// Fim da classe

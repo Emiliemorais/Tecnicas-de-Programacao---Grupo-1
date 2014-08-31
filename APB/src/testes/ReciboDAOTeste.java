@@ -1,5 +1,7 @@
+// Pacote ao qual a classe pertence
 package testes;
 
+// Importações
 import static org.junit.Assert.*;
 
 import java.sql.ResultSet;
@@ -15,11 +17,14 @@ import dao.AgendaDAO;
 import dao.ReciboDAO;
 import exception.ReciboException;
 import exception.RelatorioException;
+// Fim das importações
 
+// Início da classe
 public class ReciboDAOTeste {
 
 	Relatorio relatorio = new Relatorio();
 
+// Tratamento de exceções
 	@Before
 	public void setUp() throws ReciboException, ParseException {
 		try {
@@ -33,6 +38,7 @@ public class ReciboDAOTeste {
 
 	}
 
+// Testes
 	@Test
 	public void getInstanceDeReciboDAODeveRetonarInstanciaCorrente() {
 		ReciboDAO reciboDAO = ReciboDAO.getInstance();
@@ -53,9 +59,11 @@ public class ReciboDAOTeste {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			
+
 		}
 
 	}
+// Fim dos testes
 
 }
+// Fim da classe
