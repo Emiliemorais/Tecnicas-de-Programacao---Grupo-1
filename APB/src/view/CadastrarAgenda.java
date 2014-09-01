@@ -1,5 +1,7 @@
+// Pacote ao qual pertence a classe
 package view;
 
+// Importações
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -18,8 +20,10 @@ import java.awt.EventQueue;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+// Fim das importações
 
 @SuppressWarnings("serial")
+// Início da classe
 public class CadastrarAgenda extends JFrame {
 
 	private JPanel contentPane;
@@ -27,6 +31,7 @@ public class CadastrarAgenda extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+// Tratamento de exceções
 				try {
 					CadastrarAgenda frame = new CadastrarAgenda();
 					frame.setVisible(true);
@@ -37,6 +42,7 @@ public class CadastrarAgenda extends JFrame {
 		});
 	}
 
+// Interface do método que cadastra na agenda
 	public CadastrarAgenda() {
 		setTitle("Agenda de Contatos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,13 +64,14 @@ public class CadastrarAgenda extends JFrame {
 				return columnEditables[column];
 			}
 		};
-		
+
 		final JTable table = new JTable(modelo);
 		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(1).setResizable(false);
 		table.getColumnModel().getColumn(2).setResizable(false);
 		scrollPane.setViewportView(table);
 
+// Tratamentos de exceção
 		try {
 			AgendaController agendaController = AgendaController.getInstance();
 			Agenda contato = new Agenda();
@@ -95,7 +102,7 @@ public class CadastrarAgenda extends JFrame {
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
-				
+
 			}
 		});
 		btnNovo.setBounds(455, 24, 94, 23);
@@ -127,9 +134,14 @@ public class CadastrarAgenda extends JFrame {
 		btnVoltar.setBounds(455, 399, 94, 23);
 		contentPane.add(btnVoltar);
 	}
+// Fim da interface do método que cadastra na agenda
 
+// Método que mostra  painel com mensagem de erro
 	private void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
+// Fim do método que mostra  painel com mensagem de erro
+
 }
+// Fim da classe

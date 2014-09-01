@@ -1,5 +1,7 @@
+// Pacote ao qual pertence a classe
 package view;
 
+// Importações
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -18,8 +20,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+// Fim das importações
 
 @SuppressWarnings("serial")
+// Início da classe
 public class AlterarContato extends JFrame {
 
 	private JPanel contentPane;
@@ -30,6 +34,7 @@ public class AlterarContato extends JFrame {
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+// Tratamento de exceções
 			public void run() {
 				try {
 					AlterarContato frame = new AlterarContato();
@@ -41,7 +46,10 @@ public class AlterarContato extends JFrame {
 		});
 	}
 
+// Interface do método que altera o contato
 	public AlterarContato() {
+
+// Localizações na tela
 		setTitle("Alterar Contato");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 225);
@@ -49,7 +57,7 @@ public class AlterarContato extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		textFieldNome = new JTextField();
 		textFieldNome.setBounds(83, 22, 341, 20);
 		contentPane.add(textFieldNome);
@@ -76,13 +84,14 @@ public class AlterarContato extends JFrame {
 		JLabel lblDescricao = new JLabel("Descri\u00E7\u00E3o:");
 		lblDescricao.setBounds(10, 97, 63, 14);
 		contentPane.add(lblDescricao);
-		
+
+// Tratamentos de exceções
 		try {
 			Agenda contato = new Agenda();
 			AgendaController agendaController = AgendaController.getInstance();
 			contato.setNome(Agenda.getTempNome());
 			ResultSet rs = agendaController.pesquisarPorNome(contato);
-				
+
 			while (rs.next()) {
 				textFieldNome.setText(rs.getString("nome"));
 				textFieldTelefone.setText(rs.getString("telefone"));
@@ -121,8 +130,8 @@ public class AlterarContato extends JFrame {
 				} catch (SQLException k) {
 					mostrarMensagemDeErro(k.getMessage());
 				}
-			}	
-			
+			}
+
 		});
 		btnSalvarAlteracao.setBounds(83, 136, 153, 31);
 		contentPane.add(btnSalvarAlteracao);
@@ -131,7 +140,7 @@ public class AlterarContato extends JFrame {
 		btnVoltar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+
 				dispose();
 				CadastrarAgenda frame = new CadastrarAgenda();
 				frame.setVisible(true);
@@ -141,9 +150,13 @@ public class AlterarContato extends JFrame {
 		btnVoltar.setBounds(259, 136, 165, 31);
 		contentPane.add(btnVoltar);
 	}
+// Fim da interface que altera o contato
 
+// Método que mostra  painel com mensagem de erro
 	private void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
+// Fim do método
 }
+// Fim da classe

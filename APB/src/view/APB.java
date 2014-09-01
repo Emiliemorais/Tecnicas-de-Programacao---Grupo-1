@@ -1,5 +1,7 @@
+// Pacote ao qual pertence a classe
 package view;
 
+// Importações
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -13,8 +15,10 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
+// Fim das importações
 
 @SuppressWarnings("serial")
+// Início da classe
 public class APB extends JFrame {
 
 	private JPanel contentPane;
@@ -22,8 +26,10 @@ public class APB extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+// Tratamento de exceções
 			public void run() {
 				try {
 					APB frame = new APB();
@@ -85,11 +91,14 @@ public class APB extends JFrame {
 				.getResource("/resources/cancel-button-icone-7221-48.png")));
 		btnFechar.setBounds(338, 242, 145, 65);
 		contentPane.add(btnFechar);
-		
+
 		JLabel lblIcone = new JLabel("");
 		lblIcone.setIcon(new ImageIcon(APB.class.getResource("/resources/19fb55_f0fe0bafb3f2bec53376838a10e0825a.jpg_srz_401_146_75_22_0.50_1.20_0.00_jpg_srz.jpg")));
 		lblIcone.setBounds(82, 62, 401, 119);
 		contentPane.add(lblIcone);
-		
+
 	}
+// Fim da criação do frame
+
 }
+// Fim da classe

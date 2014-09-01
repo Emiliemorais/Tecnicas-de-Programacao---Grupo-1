@@ -1,5 +1,7 @@
+// Pacote ao qual a classe pertence
 package view;
 
+// Importações
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -13,9 +15,10 @@ import javax.swing.UIManager;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.text.ParseException;
-
+// Fim das importações
 
 @SuppressWarnings("serial")
+// Início da classe
 public class Administrativo extends JFrame {
 
 	private JPanel contentPane;
@@ -25,6 +28,7 @@ public class Administrativo extends JFrame {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+// Tratamento de exceções
 			public void run() {
 				try {
 					Administrativo frame = new Administrativo();
@@ -81,7 +85,7 @@ public class Administrativo extends JFrame {
 		});
 		btnTipoServico.setBounds(215, 45, 149, 37);
 		panel.add(btnTipoServico);
-		
+
 		JButton btnAgenda = new JButton("Agenda");
 		btnAgenda.addMouseListener(new MouseAdapter() {
 			@Override
@@ -94,7 +98,7 @@ public class Administrativo extends JFrame {
 		});
 		btnAgenda.setBounds(10, 93, 157, 37);
 		panel.add(btnAgenda);
-		
+
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -106,7 +110,7 @@ public class Administrativo extends JFrame {
 		});
 		btnVoltar.setBounds(151, 141, 89, 23);
 		panel.add(btnVoltar);
-		
+
 		JButton btnRecibo = new JButton("Recibo");
 		btnRecibo.addMouseListener(new MouseAdapter() {
 			@Override
@@ -126,4 +130,7 @@ public class Administrativo extends JFrame {
 		btnRecibo.setBounds(215, 93, 149, 37);
 		panel.add(btnRecibo);
 	}
+// Fim da criação do frame
+
 }
+// Fim da classe
