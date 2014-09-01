@@ -1,5 +1,7 @@
+// Pacote ao qual pertence a classe
 package view;
 
+// Importações
 import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -22,14 +24,17 @@ import exception.ServicoException;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+// Fim das importações
 
 @SuppressWarnings("serial")
+// Início da classe
 public class CadastrarServicoPrestado extends JFrame {
 
 	private JPanel contentPane;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+// Tratamento de exceções
 			public void run() {
 				try {
 					CadastrarServicoPrestado frame = new CadastrarServicoPrestado();
@@ -41,6 +46,7 @@ public class CadastrarServicoPrestado extends JFrame {
 		});
 	}
 
+// Interface do método que cadastra o serviço prestado
 	public CadastrarServicoPrestado() {
 		setTitle("Servi\u00E7os Prestados");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,6 +64,7 @@ public class CadastrarServicoPrestado extends JFrame {
 				new String[] { "Serviço", "Realizado por", "Valor", "Data" });
 		final JTable table = new JTable(modelo);
 
+// Tratamentos de exceções
 		try {
 			ServicoPrestadoController servicoController = ServicoPrestadoController.getInstance();
 			ServicoPrestado servico = new ServicoPrestado();
@@ -163,9 +170,13 @@ public class CadastrarServicoPrestado extends JFrame {
 		btnVoltar.setBounds(380, 228, 94, 23);
 		contentPane.add(btnVoltar);
 	}
+// Fim da interface do método que cadastra o serviço prestado
 
+// Método que mostra um painel com a mensagem de erro
 	private void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
+// Fim do método que mostra o painel com a mensagem de erro
 }
+// Fim da classe

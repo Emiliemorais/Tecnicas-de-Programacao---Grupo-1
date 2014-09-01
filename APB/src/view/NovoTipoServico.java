@@ -1,5 +1,7 @@
+// Pacote ao qual pertence a classe
 package view;
 
+// Importações
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -21,9 +23,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
-
+// Fim das importações
 
 @SuppressWarnings("serial")
+// Início da classe
 public class NovoTipoServico extends JFrame {
 
 	private JPanel contentPane;
@@ -75,10 +78,11 @@ public class NovoTipoServico extends JFrame {
 		JLabel lblPreco = new JLabel("Pre\u00E7o (R$):");
 		lblPreco.setBounds(29, 65, 65, 17);
 		contentPane.add(lblPreco);
-		
+
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addMouseListener(new MouseAdapter() {
 			@Override
+// Tratamentos de exceções
 			public void mouseClicked(MouseEvent arg0) {
 				try {
 					TipoServico tipoServico = new TipoServico();
@@ -121,9 +125,14 @@ public class NovoTipoServico extends JFrame {
 		btnVoltar.setBounds(181, 108, 89, 23);
 		contentPane.add(btnVoltar);
 	}
+// Fim da criação do frame
 
+// Método que mostra um painel com mensagem de erro
 	private void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
+// Fim do método que mostra o painel com mensagem de erro
+
 }
+// Fim da classe

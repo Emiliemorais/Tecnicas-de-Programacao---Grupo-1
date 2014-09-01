@@ -1,5 +1,7 @@
+// Pacote ao qual a classe pertence
 package view;
 
+// Importações
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -18,8 +20,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+// Fim das importações
 
 @SuppressWarnings("serial")
+// Início da classe
 public class AlterarTipoServico extends JFrame {
 
 	private JPanel contentPane;
@@ -29,6 +33,7 @@ public class AlterarTipoServico extends JFrame {
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+// Tratamento de exceções
 			public void run() {
 				try {
 					AlterarTipoServico frame = new AlterarTipoServico();
@@ -40,7 +45,10 @@ public class AlterarTipoServico extends JFrame {
 		});
 	}
 
+// Interface do método que altera o tipo de serviço
 	public AlterarTipoServico() {
+
+// Localizações na tela
 		setTitle("Alterar Tipo Servico");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 436, 163);
@@ -67,12 +75,13 @@ public class AlterarTipoServico extends JFrame {
 		labelCadeira.setBounds(21, 45, 61, 14);
 		contentPane.add(labelCadeira);
 
+// Tratamentos de exceções
 		try {
 			TipoServico tiposervico = new TipoServico();
 			TipoServicoController servicoController = TipoServicoController.getInstance();
 			tiposervico.setNomeTipoServico(TipoServico.getTempNome());
 			ResultSet rs = servicoController.pesquisarPorNome(tiposervico);
-			
+
 			while (rs.next()) {
 				textFieldNome.setText(rs.getString("nome"));
 				textFieldPreco.setText(rs.getString("preco"));
@@ -91,7 +100,7 @@ public class AlterarTipoServico extends JFrame {
 					TipoServico tipoServico = new TipoServico();
 					tipoServico.setNomeTipoServico(textFieldNome.getText());
 					tipoServico.setPreco(textFieldPreco.getText());
-					
+
 					TipoServicoController tipoServicoController = TipoServicoController.getInstance();
 					tipoServicoController.alterar(nome,tipoServico);
 
@@ -135,10 +144,13 @@ public class AlterarTipoServico extends JFrame {
 		buttonVoltar.setBounds(144, 86, 128, 23);
 		contentPane.add(buttonVoltar);
 	}
-	
+// Fim da interface do método que altera o tipo de serviço
 
+// Método que mostra um painel com mensagem de erro
 	private void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
+// Fim do método que mostra o painel com mensagem de erro
 }
+// Fim da classe
