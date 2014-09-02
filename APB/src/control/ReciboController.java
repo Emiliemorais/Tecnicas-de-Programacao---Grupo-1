@@ -13,7 +13,7 @@ public class ReciboController
 
 	private static ReciboController instance;
 
-	public ReciboController() 
+	public ReciboController () 
 	{
 	}
 
@@ -21,22 +21,22 @@ public class ReciboController
 	 * Metodo utilizado para instanciar a variavel 
 	 *"instance" caso essa seja nula
 	 */
-	public static ReciboController getInstance() 
+	public static ReciboController getInstance () 
 	{
 		if (instance == null) 
 		{
-			instance = new ReciboController();
+			instance = new ReciboController ();
 		}
 		// retorno do metodo ReciboController getInstance()
 		return instance;
 	}// fim do metodo
 
-	public ResultSet pesquisarServicosDoBarbeiro(String barbeiro,
-			String dataInicial, String dataFinal) throws SQLException 
+	public ResultSet pesquisarServicosDoBarbeiro ( String barbeiro,
+			String dataInicial, String dataFinal ) throws SQLException 
 			{
 
-		return ReciboDAO.getInstance().pesquisarServicosDoBarbeiro(barbeiro,
-				dataInicial, dataFinal);
+		return ReciboDAO.getInstance().pesquisarServicosDoBarbeiro ( barbeiro,
+				dataInicial, dataFinal );
 		// Retorno do metodo public ResultSet pesquisarServicosDoBarbeiro
 
 	}// fim do metodo

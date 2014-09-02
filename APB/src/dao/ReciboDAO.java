@@ -26,17 +26,17 @@ public class ReciboDAO
 	}
 
 	// Metodo que cede direito para pesquisar por tipos de servico do barbeiro
-	public ResultSet pesquisarServicosDoBarbeiro(String barbeiro,
-			String dataInicial, String dataFinal) throws SQLException 
+	public ResultSet pesquisarServicosDoBarbeiro ( String barbeiro,
+			String dataInicial, String dataFinal ) throws SQLException 
 			{
 
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection
-				.prepareStatement("SELECT * FROM servicoprestado WHERE data BETWEEN '"
+				.prepareStatement ( "SELECT * FROM servicoprestado WHERE data BETWEEN '"
 						+ dataInicial
 						+ "' AND '"
 						+ dataFinal
-						+ "' AND barbeiro = '" + barbeiro + "';");
+						+ "' AND barbeiro = '" + barbeiro + "';" );
 		ResultSet rs = pst.executeQuery();
 
 		return rs;
@@ -44,7 +44,7 @@ public class ReciboDAO
 	}
 
 	//Metodo que modifica os valores armazenados
-	public void updateQuery(String message) throws SQLException 
+	public void updateQuery ( String message ) throws SQLException 
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement preparedStatement = connection

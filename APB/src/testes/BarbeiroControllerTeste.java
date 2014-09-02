@@ -26,64 +26,64 @@ public class BarbeiroControllerTeste
 	 * Incio do metodo setUp() Ela tem a funcao de setar os valores na classe
 	 * Alem de Trratar o erro caso nao como requeremos
 	 */
-	public void setUp() 
+	public void setUp () 
 	{
 		try {
-			barbeiro.setNome("Alessandro");
-			barbeiro.setRg("418757896");
-			barbeiro.setTelefone("3389-9085");
-			barbeiro.setCpf("02919594150");
-			barbeiro.setCadeira("5");
-		} catch (NullPointerException e)
+			barbeiro.setNome ( "Alessandro" );
+			barbeiro.setRg ( "418757896" );
+			barbeiro.setTelefone ( "3389-9085" );
+			barbeiro.setCpf ( "02919594150" );
+			barbeiro.setCadeira ( "5" );
+		} catch ( NullPointerException e )
 		{
-			e.printStackTrace();
-		} catch (BarbeiroException e) 
+			e.printStackTrace ();
+		} catch ( BarbeiroException e ) 
 		{
-			e.printStackTrace();
+			e.printStackTrace ();
 		}
 	}// Fim do metodo setUp()
 
-	BarbeiroController barbeiroController = BarbeiroController.getInstance();
+	BarbeiroController barbeiroController = BarbeiroController.getInstance ();
 
 	@Test
 	// Metodo para passar os dados para a classe por meio do encapsulamento
-	public void getInstanceDeBarbeiroControlerDeveRetonarInstanciaCorrente() 
+	public void getInstanceDeBarbeiroControlerDeveRetonarInstanciaCorrente () 
 	{
-		assertEquals(BarbeiroController.getInstance(), barbeiroController);
+		assertEquals( BarbeiroController.getInstance (), barbeiroController );
 	}// Fim do metodo
 
 	@Test
-	public void inserirDeBarbeiroControllerDeveEnviarUmBarbeiro() 
+	public void inserirDeBarbeiroControllerDeveEnviarUmBarbeiro () 
 	{
 		try {
-			assertTrue(barbeiroController.inserir(barbeiro));
-		} catch (SQLException e) 
+			assertTrue ( barbeiroController.inserir ( barbeiro ) );
+		} catch ( SQLException e ) 
 		{
-			e.printStackTrace();
+			e.printStackTrace ();
 		}
 	}// Fim do metodo
 
 	@Test
 	// Metodo para passar a altoriazacao de exclusao dos dados para a classe por meio do encapsulamento
-	public void excluirDeBarbeiroControllerDeveEnviarUmBarbeiro() 
+	public void excluirDeBarbeiroControllerDeveEnviarUmBarbeiro () 
 	{
 		try {
-			assertTrue(barbeiroController.excluir(barbeiro));
-		} catch (SQLException e) 
+			assertTrue ( barbeiroController.excluir ( barbeiro ) );
+		} catch ( SQLException e ) 
 		{
-			e.printStackTrace();
+			e.printStackTrace ();
 		}
 	}// Fim do metodo
 
 	@Test
 	// Metodo para passar a altoriazacao de alterar os dados da a classe por meio do encapsulamento
-	public void alterarDeBarbeiroControllerDeveEnviarUmBarbeiro() 
+	public void alterarDeBarbeiroControllerDeveEnviarUmBarbeiro () 
 	{
 		try {
-			assertTrue(barbeiroController.alterar(barbeiro.getNome(), barbeiro));
-		} catch (SQLException e) 
+			assertTrue ( barbeiroController.alterar(barbeiro.getNome (), barbeiro ) );
+		} catch ( SQLException e ) 
 		{
-			e.printStackTrace();
+			e.printStackTrace ();
 		}
 	}
 
@@ -93,10 +93,10 @@ public class BarbeiroControllerTeste
 	 * seja nula, uma excecao e detectada e tratada
 	 */
 	@Test
-	public void inserirBarbeiroNaoPodePassarBarbeiroNullo()
+	public void inserirBarbeiroNaoPodePassarBarbeiroNullo ()
 {
 		try {
-			assertFalse(barbeiroController.inserir(null));
+			assertFalse( barbeiroController.inserir ( null ) );
 		} catch (SQLException e) 
 		{
 			e.printStackTrace();
@@ -109,13 +109,13 @@ public class BarbeiroControllerTeste
 	 */
 
 	@Test
-	public void excluirBarbeiroNaoPodePassarBarbeiroNullo() 
+	public void excluirBarbeiroNaoPodePassarBarbeiroNullo () 
 	{
 		try {
-			assertFalse(barbeiroController.excluir(null));
-		} catch (SQLException e)
+			assertFalse ( barbeiroController.excluir ( null ) );
+		} catch ( SQLException e )
 		{
-			e.printStackTrace();
+			e.printStackTrace () ;
 		}
 	}// Fim do metodo
 
@@ -128,37 +128,37 @@ public class BarbeiroControllerTeste
 	public void alterarBarbeiroNaoPodePassarBarbeiroNullo()
 	{
 		try {
-			assertFalse(barbeiroController.alterar(null, null));
-		} catch (SQLException e) 
+			assertFalse( barbeiroController.alterar( null, null ) ) ;
+		} catch ( SQLException e ) 
 		{
-			e.printStackTrace();
+			e.printStackTrace ();
 		}
 	}// Fim do metodo
 
 	@Test
-	public void procurarPorBarbeiroControllerDeveMostrarUmBarbeiro()
+	public void procurarPorBarbeiroControllerDeveMostrarUmBarbeiro ()
 			throws SQLException 
 			{
-		ResultSet rs = barbeiroController.pesquisar();
-		while (rs.next())
+		ResultSet rs = barbeiroController.pesquisar ( );
+		while ( rs.next () )
 			;
 	}// Fim do metodo
 
 	@Test
-	public void mostrarBarbeirosDeBarbeiroControllerDeveMostrarUmBarbeiro()
+	public void mostrarBarbeirosDeBarbeiroControllerDeveMostrarUmBarbeiro ()
 			throws SQLException 
 			{
-		ResultSet rs = barbeiroController.mostrarBarbeirosCadastrados(barbeiro);
-		while (rs.next())
+		ResultSet rs = barbeiroController.mostrarBarbeirosCadastrados ( barbeiro );
+		while ( rs.next () )
 			;
 	}// Fim do metodo
 
 	@Test
-	public void pesquisarPorNomeDeBarbeiroControllerDeveMostrarUmBarbeiro()
+	public void pesquisarPorNomeDeBarbeiroControllerDeveMostrarUmBarbeiro ()
 			throws SQLException 
 			{
-		ResultSet rs = barbeiroController.pesquisarPorNome(barbeiro);
-		while (rs.next())
+		ResultSet rs = barbeiroController.pesquisarPorNome ( barbeiro );
+		while ( rs.next () )
 			;
 	}// Fim do metodo
 }// Fim da Classe

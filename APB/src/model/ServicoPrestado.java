@@ -26,7 +26,7 @@ public class ServicoPrestado
 	private final String DATA_BRANCO = "Data em Branco";
 	private final String DATA_INVALIDA = "Insira uma data válida";
 
-	public ServicoPrestado() 
+	public ServicoPrestado () 
 	{
 
 	}
@@ -35,7 +35,7 @@ public class ServicoPrestado
 	 * Atribuindo os valores para as variaveis dessa classe com encapsulamento
 	 * Essa esta fazendo o trabalho de set
 	 */
-	public ServicoPrestado(String nomeServico, String preco, String nomeBarbeiro) 
+	public ServicoPrestado ( String nomeServico, String preco, String nomeBarbeiro ) 
 	{
 		this.nomeServico = nomeServico;
 		this.preco = preco;
@@ -43,24 +43,24 @@ public class ServicoPrestado
 	}
 
 	// Metodo com a funcao get para o NomeServico
-	public String getNomeServico() 
+	public String getNomeServico  () 
 	{
 		return nomeServico;
 	}
 
 	// Get do NomeBarbeiro
-	public String getNomeBarbeiro() 
+	public String getNomeBarbeiro () 
 	{
 		return nomeBarbeiro;
 	}
 
-	public String getPreco() 
+	public String getPreco  () 
 	{
 		
 		return preco;
 	}
 
-	public String getData() 
+	public String getData () 
 	{
 		return data;
 	}
@@ -71,16 +71,16 @@ public class ServicoPrestado
 	 * classe igual ao nome do servico de outra classe passada por
 	 * encapsulamento
 	 */
-	public void setNomeServico(String nomeServico) throws ServicoException 
+	public void setNomeServico (  String nomeServico ) throws ServicoException 
 	{
-		if (nomeServico == null)
-			throw new NullPointerException(NOME_BRANCO);
-		else if ("".equals(nomeServico))
-			throw new ServicoException(NOME_BRANCO);
-		else if (nomeServico.matches("^[[ ]|\\p{L}*]+$"))
+		if ( nomeServico == null )
+			throw new NullPointerException ( NOME_BRANCO );
+		else if ("".equals ( nomeServico ) )
+			throw new ServicoException ( NOME_BRANCO );
+		else if ( nomeServico.matches("^[[ ]|\\p{L}*]+$" ) )
 			this.nomeServico = nomeServico;
 		else
-			throw new ServicoException(NOME_INVALIDO);
+			throw new ServicoException ( NOME_INVALIDO );
 	}
 
 	/*
@@ -89,16 +89,16 @@ public class ServicoPrestado
 	 * classe igual ao nome do barbeiro de outra classe passada por
 	 * encapsulamento
 	 */
-	public void setNomeBarbeiro(String nomeBarbeiro) throws ServicoException 
+	public void setNomeBarbeiro ( String nomeBarbeiro ) throws ServicoException 
 	{
-		if (nomeBarbeiro == null)
-			throw new NullPointerException(BARBEIRO_BRANCO);
-		else if ("".equals(nomeBarbeiro))
-			throw new ServicoException(BARBEIRO_BRANCO);
-		else if (nomeBarbeiro.matches("^[[ ]|\\p{L}*]+$"))
+		if ( nomeBarbeiro == null )
+			throw new NullPointerException ( BARBEIRO_BRANCO );
+		else if ( "".equals(nomeBarbeiro ) )
+			throw new ServicoException ( BARBEIRO_BRANCO );
+		else if ( nomeBarbeiro.matches ("^[[ ]|\\p{L}*]+$" ) )
 			this.nomeBarbeiro = nomeBarbeiro;
 		else
-			throw new ServicoException(BARBEIRO_INVALIDO);
+			throw new ServicoException ( BARBEIRO_INVALIDO );
 	}
 
 	/*
@@ -106,16 +106,16 @@ public class ServicoPrestado
 	 * o nome esteja de acordo com a comparacao, fara preco dessa classe igual
 	 * ao preco de outra classe passada por encapsulamento
 	 */
-	public void setPreco(String preco) throws ServicoException 
+	public void setPreco ( String preco ) throws ServicoException 
 	{
-		if (preco == null)
-			throw new NullPointerException(PRECO_BRANCO);
-		else if ("".equals(preco))
-			throw new ServicoException(PRECO_BRANCO);
-		else if (preco.matches("[\\d]{1,3},[\\d]{1,2}"))
+		if ( preco == null )
+			throw new NullPointerException ( PRECO_BRANCO);
+		else if ( "".equals ( preco ) )
+			throw new ServicoException ( PRECO_BRANCO );
+		else if (preco.matches ( "[\\d]{1,3},[\\d]{1,2}" ) )
 			this.preco = preco;
 		else
-			throw new ServicoException(PRECO_INVALIDO);
+			throw new ServicoException ( PRECO_INVALIDO );
 	}
 
 	/*
@@ -123,39 +123,39 @@ public class ServicoPrestado
 	 * o nome esteja de acordo com a comparacao, fara dara dessa classe igual a
 	 * dara de outra classe passada por encapsulamento
 	 */
-	public void setData(String data) throws ServicoException, ParseException 
+	public void setData ( String data ) throws ServicoException, ParseException 
 	{
 
-		if (data == null)
-			throw new NullPointerException(DATA_BRANCO);
+		if ( data == null )
+			throw new NullPointerException ( DATA_BRANCO );
 		else if ("".equals(data))
-			throw new ServicoException(DATA_BRANCO);
-		else if (data.matches("[\\d]{1,4}-[\\d]{1,2}-[\\d]{1,2}")) 
+			throw new ServicoException ( DATA_BRANCO );
+		else if (data.matches ( "[\\d]{1,4}-[\\d]{1,2}-[\\d]{1,2}" ) ) 
 		{
 			this.data = data;
-		} else if (data.matches("[\\d]{1,2}/[\\d]{1,2}/[\\d]{1,4}")) 
+		} else if (data.matches ( "[\\d]{1,2}/[\\d]{1,2}/[\\d]{1,4}" ) ) 
 		{
 
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-			Date dataIso = sdf.parse(data);
+			SimpleDateFormat sdf = new SimpleDateFormat ( "dd/MM/yyyy" );
+			Date dataIso = sdf.parse ( data );
 
-			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
-			String dataISO = sdf2.format(dataIso);
+			SimpleDateFormat sdf2 = new SimpleDateFormat ( "yyyy-MM-dd" );
+			String dataISO = sdf2.format ( dataIso );
 
 			this.data = dataISO;
 		} else
-			throw new ServicoException(DATA_INVALIDA);
+			throw new ServicoException ( DATA_INVALIDA );
 	}
 
 	// Metodo para converter os valores das datas
-	public String ConverterDataParaABNT(String data) throws ParseException 
+	public String ConverterDataParaABNT ( String data ) throws ParseException 
 	{
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdf = new SimpleDateFormat ( "yyyy-MM-dd" );
 		Date dataISO = sdf.parse(data);
 
-		SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy");
-		String databr = sdf2.format(dataISO);
+		SimpleDateFormat sdf2 = new SimpleDateFormat ( "dd/MM/yyyy" );
+		String databr = sdf2.format ( dataISO );
 
 		return databr;
 	}

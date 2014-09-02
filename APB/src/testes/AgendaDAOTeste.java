@@ -15,51 +15,51 @@ public class AgendaDAOTeste
 {
 
 	// Instancias da classe
-	Agenda contato = new Agenda();
-	Agenda contato2 = new Agenda();
-	AgendaDAO agendaDAO = AgendaDAO.getInstance();
+	Agenda contato = new Agenda ();
+	Agenda contato2 = new Agenda ();
+	AgendaDAO agendaDAO = AgendaDAO.getInstance ();
 
 	@Test
 	// Metodo que retorna a instancia
-	public void getInstanceDeAgendaDAODeveRetonarInstanciaCorrente()
+	public void getInstanceDeAgendaDAODeveRetonarInstanciaCorrente ()
 	{
-		assertEquals(AgendaDAO.getInstance(), agendaDAO);
+		assertEquals ( AgendaDAO.getInstance ( ), agendaDAO );
 	}// Fim do metodo
 
 	@Test
 	// Metodo para cadastrar o contato
-	public void inserirDeAgendaDAODeveCadastrarUmContato() 
+	public void inserirDeAgendaDAODeveCadastrarUmContato () 
 	{
 		
 		try {
-			assertTrue(agendaDAO.incluir(contato));
-		} catch (SQLException e) 
+			assertTrue(   agendaDAO.incluir ( contato ) );
+		} catch ( SQLException e ) 
 		{
-			e.printStackTrace();
+			e.printStackTrace () ;
 		}
 	}// Fim do metodo
 
 	@Test
 	// Metodo teste para escolher um contato para ser excluido 	
-	public void excluirDeAgendaDAODeveEnviarUmAgenda() 
+	public void excluirDeAgendaDAODeveEnviarUmAgenda () 
 	{
 		try {
-			assertTrue(agendaDAO.excluir(contato));
-		} catch (SQLException e)
+			assertTrue ( agendaDAO.excluir ( contato ) );
+		} catch ( SQLException e )
 		{
-			e.printStackTrace();
+			e.printStackTrace ();
 		}
 	}// Fim do metodo
 
 	// Metodo teste para escolher um contato para ser alterado
 	@Test
-	public void alterarDeAgendaDAODeveEnviarUmContato() 
+	public void alterarDeAgendaDAODeveEnviarUmContato () 
 	{
 		try {
-			assertTrue(agendaDAO.alterar(contato.getNome(), contato, contato2));
-		} catch (SQLException e)
+			assertTrue ( agendaDAO.alterar ( contato.getNome(), contato, contato2) );
+		} catch ( SQLException e )
 		{
-			e.printStackTrace();
+			e.printStackTrace ();
 		}
 	}// Fim do metodo
 
@@ -69,13 +69,13 @@ public class AgendaDAOTeste
 	 * seja nula, uma excecao e detectada e tratada
 	 */
 	@Test
-	public void inserirDeAgendaDAOPassandoUmContatoNulo() 
+	public void inserirDeAgendaDAOPassandoUmContatoNulo () 
 	{
 		try {
-			assertFalse(agendaDAO.incluir(null));
-		} catch (SQLException e) 
+			assertFalse ( agendaDAO.incluir (null) );
+		} catch ( SQLException e ) 
 		{
-			e.printStackTrace();
+			e.printStackTrace ();
 		}
 	}// Fim do metodo
 	/*
@@ -84,13 +84,13 @@ public class AgendaDAOTeste
 	 * seja nula, uma excecao e detectada e tratada
 	 */
 	@Test
-	public void excluirDeAgendaDAOPassandoUmContatoNulo() 
+	public void excluirDeAgendaDAOPassandoUmContatoNulo () 
 	{
 		try {
-			assertFalse(agendaDAO.excluir(null));
-		} catch (SQLException e) 
+			assertFalse(agendaDAO.excluir ( null ) );
+		} catch ( SQLException e ) 
 		{
-			e.printStackTrace();
+			e.printStackTrace () ;
 		}
 	}// Fim do metodo
 	/*
@@ -102,10 +102,10 @@ public class AgendaDAOTeste
 	public void alterarDeAgendaDAOPassandoUmContatoNulo() 
 	{
 		try {
-			assertFalse(agendaDAO.alterar(contato.getNome(), contato, null));
-		} catch (SQLException e) 
+			assertFalse( agendaDAO.alterar ( contato.getNome (), contato, null ) );
+		} catch ( SQLException e ) 
 		{
-			e.printStackTrace();
+			e.printStackTrace ();
 		}
 	}// Fim do metodo
 	/*
@@ -114,64 +114,65 @@ public class AgendaDAOTeste
 	 * seja nula, uma excecao e detectada e tratada
 	 */
 	@Test
-	public void alterarDeAgendaDAOPassandoUmAgendaAleradoNulo() 
+	public void alterarDeAgendaDAOPassandoUmAgendaAleradoNulo ( ) 
 	
 	{
 		try {
-			assertFalse(agendaDAO.alterar(contato.getNome(), null, contato));
-		} catch (SQLException e) 
+			assertFalse ( agendaDAO.alterar ( contato.getNome (), null, contato ) );
+		} catch ( SQLException e ) 
 		{
-			e.printStackTrace();
+			e.printStackTrace ();
 		}
 	}
 	// Fim do metodo
 	@Test
 	// Metodo teste para mostrar contatos
-	public void mostrarContatosAgendaDAODeveMostrarContato()
+	public void mostrarContatosAgendaDAODeveMostrarContato ()
 	{
 		try {
-			ResultSet rs = agendaDAO.mostrarContatosCadastrados(contato);
+			ResultSet rs = agendaDAO.mostrarContatosCadastrados ( contato );
 
-			while (rs.next()) {
-				String nome = rs.getString("nome");
-				assertNotNull(nome);
+			while ( rs.next () ) {
+				String nome = rs.getString( "nome" );
+				assertNotNull ( nome );
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch ( SQLException e ) {
+			e.printStackTrace  ();
 		}
 	}// Fim do metodo
 
 	@Test
-	public void pesquisaPorNomeDeAgendaDAODeveMostrarContato() 
+	public void pesquisaPorNomeDeAgendaDAODeveMostrarContato () 
 	{
 		try {
-			ResultSet rs = agendaDAO.pesquisarPorNome(contato);
+			ResultSet rs = agendaDAO.pesquisarPorNome ( contato );
 
 			while (rs.next()) {
-				String nome = rs.getString("nome");
-				assertNotNull(nome);
+				String nome = rs.getString ( "nome" );
+				assertNotNull ( nome ) ;
 			}
-		} catch (SQLException e) 
+		} catch ( SQLException e ) 
 		{
-			e.printStackTrace();
+			e.printStackTrace ();
 		}
 	}// Fim do metodo
 
 	@Test
 	// Metodo teste para escolher um contato de pesquisa e assim mostrar os barbeiros
-	public void pesquisarPorTelefoneDeBarbeiroDAODeveMostrarBarbeiros() 
+	public void pesquisarPorTelefoneDeBarbeiroDAODeveMostrarBarbeiros () 
 	{
-		try {
-			ResultSet rs = agendaDAO.pesquisarPorTelefone(contato);
-
-			while (rs.next()) 
-			{
-				String nome = rs.getString("nome");
-				assertNotNull(nome);
-			}
-		} catch (SQLException e) 
+		try 
 		{
-			e.printStackTrace();
+			ResultSet rs = agendaDAO.pesquisarPorTelefone ( contato );
+
+			while ( rs.next() ) 
+			{
+				String nome = rs.getString( "nome" );
+				assertNotNull( nome );
+			}
+		} catch ( SQLException e ) 
+		{
+			e.printStackTrace ();
 		}
 	}// Fim do metodo
 

@@ -14,20 +14,20 @@ public class TipoServicoDAO
 
 	private static TipoServicoDAO instance;
 
-	private TipoServicoDAO() 
+	private TipoServicoDAO () 
 	{
 	}
 
-	public static TipoServicoDAO getInstance() 
+	public static TipoServicoDAO getInstance () 
 	{
 		if (instance == null)
-			instance = new TipoServicoDAO();
+			instance = new TipoServicoDAO ();
 		return instance;
 	}
 
-	public boolean incluir(TipoServico tipoServico) throws SQLException 
+	public boolean incluir ( TipoServico tipoServico ) throws SQLException 
 	{
-		if (tipoServico == null)
+		if ( tipoServico == null )
 			return false;
 		
 		this.updateQuery("INSERT INTO "
@@ -38,35 +38,35 @@ public class TipoServicoDAO
 		return true;
 	}
 
-	public boolean alterar(String nome,TipoServico tipoServico_alterado, TipoServico tipoServico) throws SQLException 
+	public boolean alterar ( String nome, TipoServico tipoServicoAlterado, TipoServico tipoServico ) throws SQLException 
 	{
-		if (tipoServico_alterado == null || tipoServico == null) 
+		if ( tipoServicoAlterado == null || tipoServico == null ) 
 			return false;
 		/*
-		 * Retorna falso para o metodo caso a variavel tipoServico_alterado
+		 * Retorna falso para o metodo caso a variavel tipoServicoAlterado
 		 * ou a variavel tipoServico sejam nulas
 		 */
 		
-		this.updateQuery("UPDATE tiposervico SET nome = '"
-				+ tipoServico_alterado.getNomeTipoServico() + "', " + "preco = '"
-				+ tipoServico_alterado.getPreco()  + "' WHERE"
+		this.updateQuery ("UPDATE tiposervico SET nome = '"
+				+ tipoServicoAlterado.getNomeTipoServico () + "', " + "preco = '"
+				+ tipoServicoAlterado.getPreco ()  + "' WHERE"
 				+ " nome = '" + nome + "';");
 
 		return true;
 		/*
-		 * Retorna verdadeiro para o metodo caso a variavel tipoServico_alterado
+		 * Retorna verdadeiro para o metodo caso a variavel tipoServicoAlterado
 		 * ou a variavel tipoServico NAO sejam nulas  e ja tenha feito todo
 		 * o procedimento do "this.updateQuery"
 		 */
 	}// Fim do metodo alterar
 
 	// Metodo que retorna true caso o tipo de servico contenha alguma informacao
-	public boolean excluir(TipoServico tipoServico) throws SQLException 
+	public boolean excluir ( TipoServico tipoServico ) throws SQLException 
 	{
-		if (tipoServico == null)
+		if ( tipoServico == null )
 			return false;
 		
-		this.updateQuery("DELETE FROM tiposervico WHERE "
+		this.updateQuery ( "DELETE FROM tiposervico WHERE "
 				+ "tipoServico.nome = \"" + tipoServico.getNomeTipoServico() + "\";");
 		return true;
 	}// Fim do metodo excluir
@@ -75,7 +75,7 @@ public class TipoServicoDAO
 	 *Connection connection 
 	 *PreparedStatement preparedStatement
 	 */
-	public void updateQuery(String message) throws SQLException 
+	public void updateQuery ( String message ) throws SQLException 
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement preparedStatement = connection.prepareStatement(message);
@@ -85,21 +85,21 @@ public class TipoServicoDAO
 	}// Fim do metodo updateQuery
 	
 	// Metodo que cede o acesso aos relatorios cadastrados e da a opcao de que sejam mostrados
-	public ResultSet mostrarTipoServicoCadastrados(TipoServico servico) throws SQLException 
+	public ResultSet mostrarTipoServicoCadastrados ( TipoServico servico ) throws SQLException 
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
-		ResultSet rs = connection.createStatement().executeQuery(
-				"SELECT * FROM tiposervico;");
+		ResultSet rs = connection.createStatement().executeQuery ( 
+				"SELECT * FROM tiposervico;" );
 		
 		return rs;
 	}//Fim do metodo Result mostrarTipoServicoCadastrados
 	
 	// Metodo que cede o acesso aos relatorios cadastrados e da a opcao de que sejam pesquisados por nome
-	public ResultSet pesquisarPorNome(TipoServico servico) throws SQLException 
+	public ResultSet pesquisarPorNome ( TipoServico servico ) throws SQLException 
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
-		java.sql.PreparedStatement pst = connection.prepareStatement("SELECT * FROM tiposervico WHERE "
-				+ "nome = '" + servico.getNomeTipoServico() + "';");
+		java.sql.PreparedStatement pst = connection.prepareStatement ( "SELECT * FROM tiposervico WHERE "
+				+ "nome = '" + servico.getNomeTipoServico() + "';" );
 		ResultSet rs = pst.executeQuery();
 		
 		return rs;
