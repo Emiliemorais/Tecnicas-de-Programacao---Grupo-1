@@ -14,7 +14,8 @@ import org.junit.Test;
 import control.RelatorioController;
 import exception.RelatorioException;
 
-public class RelatorioControllerTeste {
+public class RelatorioControllerTeste 
+{
 
 	Relatorio relatorio = new Relatorio();
 	
@@ -23,13 +24,17 @@ public class RelatorioControllerTeste {
 	 * para realização do teste, lançando exceçoes de atributos nulos e problemas de conversão
 	*/
 	@Before
-	public void setUp() throws RelatorioException, ParseException {
-		try {
+	public void setUp () throws RelatorioException, ParseException 
+	{
+		try 
+		{
 			relatorio.setBarbeiro("Luciano");
 			relatorio.setDataFinal("09/09/2013");
 			relatorio.setDataInicial("01/01/2013");
 			relatorio.setTipoServico("corte");
-		} catch (NullPointerException e) {
+		}
+		catch (NullPointerException e) 
+		{
 			e.printStackTrace();
 		}
 
@@ -40,7 +45,8 @@ public class RelatorioControllerTeste {
 	*/
 
 	@Test
-	public void getInstanceDeRelatorioDAODeveRetonarInstanciaCorrente() {
+	public void getInstanceDeRelatorioDAODeveRetonarInstanciaCorrente ()
+	{
 		RelatorioController relatorioController = RelatorioController.getInstance();
 		assertEquals(RelatorioController.getInstance(), relatorioController);
 	}
@@ -50,7 +56,8 @@ public class RelatorioControllerTeste {
 	 * vendo se existe a amostra do relatorio
 	*/
 	@Test
-	public void procurarPorServicoDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
+	public void procurarPorServicoDeRelatorioControllerDeveMostrarUmRelatorio () throws SQLException
+	{
 		RelatorioController relatorioController = new RelatorioController();
 		ResultSet rs = relatorioController.pesquisarPorServico(relatorio);
 		
@@ -62,7 +69,8 @@ public class RelatorioControllerTeste {
 	 * vendo se existe a amostra do relatorio
 	*/
 	@Test
-	public void procurarPorDataDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
+	public void procurarPorDataDeRelatorioControllerDeveMostrarUmRelatorio () throws SQLException
+	{
 		RelatorioController relatorioController = new RelatorioController();
 		ResultSet rs = relatorioController.pesquisarPorData(relatorio);
 		
@@ -74,7 +82,8 @@ public class RelatorioControllerTeste {
 	 * e de um serviço vendo se existe a amostra do relatorio
 	*/
 	@Test
-	public void procurarPorBarbeiroEServicoDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
+	public void procurarPorBarbeiroEServicoDeRelatorioControllerDeveMostrarUmRelatorio () throws SQLException 
+	{
 		RelatorioController relatorioController = new RelatorioController();
 		ResultSet rs = relatorioController.pesquisarPorBarbeiroEServico(relatorio);
 		
@@ -86,7 +95,8 @@ public class RelatorioControllerTeste {
 	 * e de uma data e um serviço vendo se existe a amostra do relatorio
 	*/
 	@Test
-	public void procurarPorDataBarbeiroEServicoDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
+	public void procurarPorDataBarbeiroEServicoDeRelatorioControllerDeveMostrarUmRelatorio () throws SQLException
+	{
 		RelatorioController relatorioController = new RelatorioController();
 		ResultSet rs = relatorioController.pesquisarPorDataBarbeiroEServico(relatorio);
 		
@@ -98,7 +108,8 @@ public class RelatorioControllerTeste {
 	 * e de uma data vendo se existe a amostra do relatorio
 	*/
 	@Test
-	public void procurarPorDataEBarbeiroDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
+	public void procurarPorDataEBarbeiroDeRelatorioControllerDeveMostrarUmRelatorio () throws SQLException 
+	{
 		RelatorioController relatorioController = new RelatorioController();
 		ResultSet rs = relatorioController.pesquisarPorDataEBarbeiro(relatorio);
 		
@@ -110,7 +121,8 @@ public class RelatorioControllerTeste {
 	 * e de um serviço vendo se existe a amostra do relatorio
 	*/
 	@Test
-	public void procurarPorDataEServicoDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
+	public void procurarPorDataEServicoDeRelatorioControllerDeveMostrarUmRelatorio () throws SQLException
+	{
 		RelatorioController relatorioController = new RelatorioController();
 		ResultSet rs = relatorioController.pesquisarPorDataEServico(relatorio);
 		
@@ -122,7 +134,8 @@ public class RelatorioControllerTeste {
 	 * vendo se existe a amostra do relatorio
 	*/
 	@Test
-	public void procurarPorBarbeiroDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
+	public void procurarPorBarbeiroDeRelatorioControllerDeveMostrarUmRelatorio () throws SQLException
+	{
 		RelatorioController relatorioController = new RelatorioController();
 		ResultSet rs = relatorioController.pesquisarPorBarbeiro(relatorio);
 		
