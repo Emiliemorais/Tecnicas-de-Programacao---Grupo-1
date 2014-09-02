@@ -20,7 +20,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 // Inicio da classe
-@SuppressWarnings("serial")
+@SuppressWarnings ( "serial" )
 public class MenuPrincipal extends JFrame 
 {
 
@@ -31,18 +31,18 @@ public class MenuPrincipal extends JFrame
 	 * Launch the application.
 	 */
 	// Iniciando a aplicacao da interface
-	public static void main(String[] args) 
+	public static void main (String[] args ) 
 	{
-		EventQueue.invokeLater(new Runnable() 
+		EventQueue.invokeLater(new Runnable () 
 		{
-			public void run() {
+			public void run () {
 				try {
-					MenuPrincipal frame = new MenuPrincipal();
+					MenuPrincipal frame = new MenuPrincipal ();
 					// Mostrando interface
-					frame.setVisible(true);
-				} catch (Exception e) 
+					frame.setVisible ( true );
+				} catch ( Exception e ) 
 				{
-					e.printStackTrace();
+					e.printStackTrace ();
 				}
 			}
 		});
@@ -52,88 +52,88 @@ public class MenuPrincipal extends JFrame
 	 * Create the frame.
 	 */
 	// Criando um paineldp menu pincipal
-	public MenuPrincipal() 
+	public MenuPrincipal ( ) 
 	{
-		setTitle("APB");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 540, 200);
-		contentPane = new JPanel();
-		contentPane.setToolTipText("Menu Principal");
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		setTitle( "APB" );
+		setDefaultCloseOperation ( JFrame.EXIT_ON_CLOSE );
+		setBounds ( 100, 100, 540, 200);
+		contentPane = new JPanel ();
+		contentPane.setToolTipText ( "Menu Principal" );
+		contentPane.setBorder( new EmptyBorder ( 5, 5, 5, 5) );
+		setContentPane ( contentPane);
+		contentPane.setLayout ( null );
 
-		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(UIManager
-				.getBorder("TitledBorder.border"), "Menu Principal",
-				TitledBorder.CENTER, TitledBorder.TOP, null, null));
-		panel.setBounds(10, 11, 505, 138);
-		contentPane.add(panel);
-		panel.setLayout(null);
+		JPanel panel = new JPanel ();
+		panel.setBorder ( new TitledBorder(UIManager
+				.getBorder ( "TitledBorder.border" ), "Menu Principal",
+				TitledBorder.CENTER, TitledBorder.TOP, null, null ) );
+		panel.setBounds ( 10, 11, 505, 138 );
+		contentPane.add ( panel );
+		panel.setLayout ( null );
 
-		JButton btnAdministrativo = new JButton("Administrativo");
-		btnAdministrativo.addActionListener(new ActionListener() 
+		JButton btnAdministrativo = new JButton ( "Administrativo" );
+		btnAdministrativo.addActionListener ( new ActionListener () 
 		{
-			public void actionPerformed(ActionEvent e) 
+			public void actionPerformed ( ActionEvent e ) 
 			{
 				dispose();
-				Administrativo frame = new Administrativo();
-				frame.setVisible(true);
-				frame.setLocationRelativeTo(null);
+				Administrativo frame = new Administrativo ();
+				frame.setVisible ( true );
+				frame.setLocationRelativeTo ( null );
 			}
 		});
-		btnAdministrativo.setBounds(10, 60, 157, 37);
-		panel.add(btnAdministrativo);
+		btnAdministrativo.setBounds ( 10, 60, 157, 37 );
+		panel.add ( btnAdministrativo );
 
-		JButton btnServicosPrestados = new JButton("Servi\u00E7os Prestados");
-		btnServicosPrestados.addActionListener(new ActionListener() 
+		JButton btnServicosPrestados = new JButton ( "Servi\u00E7os Prestados" );
+		btnServicosPrestados.addActionListener ( new ActionListener () 
 		{
-			public void actionPerformed(ActionEvent e) 
+			public void actionPerformed ( ActionEvent e ) 
 			{
-				dispose();
-				CadastrarServicoPrestado frame = new CadastrarServicoPrestado();
-				frame.setVisible(true);
-				frame.setLocationRelativeTo(null);
+				dispose ();
+				CadastrarServicoPrestado frame = new CadastrarServicoPrestado ();
+				frame.setVisible ( true );
+				frame.setLocationRelativeTo ( null );
 			}
 		});
-		btnServicosPrestados.setBounds(179, 60, 157, 37);
-		panel.add(btnServicosPrestados);
+		btnServicosPrestados.setBounds ( 179, 60, 157, 37 );
+		panel.add( btnServicosPrestados );
 
-		JButton btnRelatorios = new JButton("Relat\u00F3rios");
-		btnRelatorios.addMouseListener(new MouseAdapter()
+		JButton btnRelatorios = new JButton ( "Relat\u00F3rios" );
+		btnRelatorios.addMouseListener ( new MouseAdapter ()
 		{
 			@Override
-			public void mouseClicked(MouseEvent e) 
+			public void mouseClicked ( MouseEvent e ) 
 			{
 				try {
 					PesquisarRelatorio.tipoBusca = 0;
-					VisualizarRelatorios frame = new VisualizarRelatorios();
-					frame.setVisible(true);
-					frame.setLocationRelativeTo(null);
-					dispose();
-				} catch (SQLException e1) 
+					VisualizarRelatorios frame = new VisualizarRelatorios ();
+					frame.setVisible( true );
+					frame.setLocationRelativeTo( null );
+					dispose ();
+				} catch ( SQLException e1 ) 
 				{
-					mostrarMensagemDeErro(e1.getMessage());
-				} catch (RelatorioException e1) 
-				{
-					e1.printStackTrace();
-				} catch (NullPointerException e1)
+					mostrarMensagemDeErro ( e1.getMessage () );
+				} catch ( RelatorioException e1 ) 
 				{
 					e1.printStackTrace();
-				} catch (ParseException e1) 
+				} catch ( NullPointerException e1)
 				{
-					e1.printStackTrace();
+					e1.printStackTrace ();
+				} catch ( ParseException e1 ) 
+				{
+					e1.printStackTrace ();
 				}
 			}
 		});
-		btnRelatorios.setBounds(346, 60, 149, 37);
-		panel.add(btnRelatorios);
+		btnRelatorios.setBounds ( 346, 60, 149, 37 );
+		panel.add ( btnRelatorios );
 	}// Fim do metodo
 
 	// Metodo retorna erro encontrado no menu
-	private void mostrarMensagemDeErro(String informacao) 
+	private void mostrarMensagemDeErro ( String informacao ) 
 	{
-		JOptionPane.showMessageDialog(null, informacao, "Atenção",
-				JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog( null, informacao, "Atenção",
+				JOptionPane.INFORMATION_MESSAGE );
 	}// Fim do metodo
 }// Fim da classe

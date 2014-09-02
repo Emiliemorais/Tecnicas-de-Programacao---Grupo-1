@@ -1,20 +1,20 @@
 package exception;
 //Iniciando Classe
-@SuppressWarnings("serial")
+@SuppressWarnings ( "serial" )
 public class ServicoException extends Exception
 {
 // Herancca da classe pai
 
 	// Retorna Exception
-	public ServicoException() 
+	public ServicoException () 
 	{
-		super();
+		super ();
 	}// Fim do metodo
 
 	// Retorna a mensagem da excecao
 
-	public ServicoException(String message) 
+	public ServicoException ( String message ) 
 	{
-		super(message);
+		super ( message );
 	}// Fim do metodo
 }// Fim da classe
