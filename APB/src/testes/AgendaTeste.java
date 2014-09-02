@@ -11,7 +11,8 @@ import exception.BarbeiroException;
 import exception.ServicoException;
 import model.Agenda;
 
-public class AgendaTeste {
+public class AgendaTeste 
+{
 	
 	Agenda contato = new Agenda();
 	
@@ -20,11 +21,15 @@ public class AgendaTeste {
 	 * de uma Agenda para realização do teste
 	*/
 	@Before
-	public void setUp(){
-		try {
+	public void setUp ()
+	{
+		try 
+		{
 			contato.setNome("Alessandro");
 			contato.setTelefone("4568-9856");
-		} catch (BarbeiroException e1) {
+		} 
+		catch (BarbeiroException e1) 
+		{
 			e1.printStackTrace();
 		}
 		contato.setDescricao("ASDAS");
@@ -33,7 +38,8 @@ public class AgendaTeste {
 	 
 	// Método utilizado para testar o funcionamento do construtor de uma Agenda
 	@Test
-	public void contrutorDeAgendaDeveFuncionar(){
+	public void contrutorDeAgendaDeveFuncionar() 
+	{
 		Agenda contato = new Agenda("Alessandro", "6589-5689", "aaaa");
 		assertEquals("Alessandro", contato.getNome());
 		assertEquals("6589-5689", contato.getTelefone());
@@ -42,19 +48,22 @@ public class AgendaTeste {
 	
 	// Método que testa o recebimento de um nome de um contato pelo método de acesso get 
 	@Test
-	public void getterDeNomeDeveFuncionar(){
+	public void getterDeNomeDeveFuncionar ()
+	{
 		assertEquals("Alessandro", contato.getNome());
 	}
 	
 	// Método que testa o recebimento de um telefone de um contato pelo método de acesso get 
 	@Test
-	public void getterDeTelefoneDeveFuncionar(){
+	public void getterDeTelefoneDeveFuncionar ()
+	{
 		assertEquals("4568-9856", contato.getTelefone());
 	}
 	
 	// Método que testa o recebimento de uma descrição de um contato pelo método de acesso get 
 	@Test
-	public void getterDeDescricaoDeveFuncionar(){
+	public void getterDeDescricaoDeveFuncionar ()
+	{
 		assertEquals("ASDAS", contato.getDescricao());
 	}
 	
@@ -63,7 +72,8 @@ public class AgendaTeste {
 	 * realização do teste do lançamento da exceção
 	*/ 
 	@Test(expected = BarbeiroException.class)
-	public void nomeDoBarbeiroNaoPodePassarQuandoEmBranco() throws BarbeiroException{
+	public void nomeDoBarbeiroNaoPodePassarQuandoEmBranco () throws BarbeiroException
+	{
 		contato.setNome("");
 		Assert.fail("Deve lanÃ§ar uma exceÃ§Ã£o");
 	}
@@ -73,7 +83,8 @@ public class AgendaTeste {
 	 * realização do teste do lançamento da exceção
 	*/ 
 	@Test(expected = BarbeiroException.class)
-	public void telefoneDoBarbeiroNaoPodePassarQuandoEmBranco() throws BarbeiroException{
+	public void telefoneDoBarbeiroNaoPodePassarQuandoEmBranco () throws BarbeiroException
+	{
 		contato.setTelefone("");
 		Assert.fail("Deve lanÃ§ar uma exceÃ§Ã£o");
 	}
@@ -83,7 +94,8 @@ public class AgendaTeste {
 	 * para realização do teste do lançamento da exceção
 	*/ 
 	@Test(expected = BarbeiroException.class)
-	public void nomeDoBarbeiroNaoPodePassarQuandoForaDeFormato() throws BarbeiroException{
+	public void nomeDoBarbeiroNaoPodePassarQuandoForaDeFormato () throws BarbeiroException
+	{
 		contato.setNome("ASDAS!!");
 		Assert.fail("Deve lanÃ§ar uma exceÃ§Ã£o");
 	}
@@ -93,35 +105,40 @@ public class AgendaTeste {
 	 * (caracteres especiais, letras)para realização do teste do lançamento da exceção
 	*/
 	@Test(expected = BarbeiroException.class)
-	public void telefoneDoBarbeiroNaoPodePassarQuandoForaDeFormato() throws BarbeiroException{
+	public void telefoneDoBarbeiroNaoPodePassarQuandoForaDeFormato () throws BarbeiroException
+	{
 		contato.setTelefone("45645aa-a54654");
 		Assert.fail("Deve lanÃ§ar uma exceÃ§Ã£o");
 	}
 	
 	// Método que testa o recebimento do nome temporario pelo método de acesso get
 	@Test (expected = AssertionError.class)
-	public void getterDeTempNomeDeveRetornarValorPassado() throws ServicoException {
+	public void getterDeTempNomeDeveRetornarValorPassado () throws ServicoException 
+	{
 		assertEquals("Barba", Agenda.getTempNome());
 	}
 	
 	
 	// Método que testa a passagem de um nome temporario nulo pelo método de acesso set	 
 	@Test (expected = AssertionFailedError.class)
-	public void setterDeTempNomeNaoPodeSerNulo() throws ServicoException {
+	public void setterDeTempNomeNaoPodeSerNulo () throws ServicoException 
+	{
 		Agenda.setTempNome(null);
 		Assert.fail("Deve lanÃ§ar exceÃ§Ã£o");
 	}
 	
 	// Método que testa a passagem de um nome temporario em branco pelo método de acesso set
 	@Test (expected = AssertionFailedError.class)
-	public void setterDeTempNomeNaoPodeSerEmBranco() {
+	public void setterDeTempNomeNaoPodeSerEmBranco () 
+	{
 		Agenda.setTempNome("");
 		Assert.fail("Deve lanÃ§ar exceÃ§Ã£o");
 	}
 	
 	// Método que testa a passagem de um nome temporário pelo método de acesso set
 	@Test
-	public void tempNomeValido() throws BarbeiroException {
+	public void tempNomeValido () throws BarbeiroException 
+	{
 		Agenda.setTempNome("Paulo");
 		assertEquals("Paulo", Agenda.getTempNome());
 	}
