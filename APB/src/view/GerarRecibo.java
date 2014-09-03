@@ -21,6 +21,8 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
 
+import com.javadocx.CreateDocx;
+
 import control.BarbeiroController;
 import control.ReciboController;
 
