@@ -7,16 +7,27 @@ import java.sql.SQLException;
 
 import model.Barbeiro;
 
-public class BarbeiroDAO {
+public class BarbeiroDAO
+{
 
 	private static BarbeiroDAO instance;
 
-	private BarbeiroDAO() {
+	private BarbeiroDAO()
+	{
+		// Construtor padrão
 	}
 
-	public static BarbeiroDAO getInstance() {
-		if (instance == null)
+	public static BarbeiroDAO getInstance ()
+	{
+		if(instance == null)
+		{
 			instance = new BarbeiroDAO();
+		}
+		else
+		{
+			// Nothing to do
+		}
+		
 		return instance;
 	}
 	
@@ -26,9 +37,16 @@ public class BarbeiroDAO {
 	 * Checa se o argumento passado é nulo, retornando 'false' se sim.
 	 * Dispara exceções SQL casso ocorram.
 	 */
-	public boolean incluir(Barbeiro barbeiro) throws SQLException {
+	public boolean incluir (Barbeiro barbeiro) throws SQLException
+	{
 		if (barbeiro == null)
+		{
 			return false;
+		}
+		else
+		{
+			// Nothing to do
+		}
 		
 		this.updateQuery("INSERT INTO "
 				+ "barbeiro (nome, cpf, rg, telefone, cadeira) VALUES ("
@@ -46,9 +64,16 @@ public class BarbeiroDAO {
 	 * Checa se os argumentos passados não são nulos.
 	 * Dispara exceções SQL caso ocorram. 
 	 */
-	public boolean alterar(String nome, Barbeiro barbeiro_alterado, Barbeiro barbeiro) throws SQLException {
+	public boolean alterar (String nome, Barbeiro barbeiro_alterado, Barbeiro barbeiro) throws SQLException
+	{
 		if (barbeiro_alterado == null || barbeiro == null)
+		{
 			return false;
+		}
+		else
+		{
+			// Nothing to do
+		}
 		
 		this.updateQuery("UPDATE barbeiro SET nome = '"
 				+ barbeiro_alterado.getNome() + "', " + "cpf = '"
@@ -67,12 +92,20 @@ public class BarbeiroDAO {
 	 * Checa se o argumento passado é nulo, retornando 'false' se sim.
 	 * Dispara exceções SQl caso ocorram.
 	 */
-	public boolean excluir(Barbeiro barbeiro) throws SQLException {
+	public boolean excluir (Barbeiro barbeiro) throws SQLException
+	{
 		if (barbeiro == null)
+		{
 			return false;
+		}
+		else
+		{
+			// Nothing to do
+		}
 		
 		this.updateQuery("DELETE FROM barbeiro WHERE "
 				+ "barbeiro.nome = \"" + barbeiro.getNome() + "\";");
+		
 		return true;
 	}
 	
@@ -80,7 +113,8 @@ public class BarbeiroDAO {
 	 * Realiza uma pesquisa no banco de dados.
 	 * Dispara exceções SQl caso ocorram.
 	 */
-	public ResultSet pesquisar() throws SQLException {
+	public ResultSet pesquisar() throws SQLException
+	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection.prepareStatement("SELECT * FROM barbeiro;");
 		ResultSet rs = pst.executeQuery();
@@ -92,7 +126,8 @@ public class BarbeiroDAO {
 	 * Realiza uma atualização do banco de dados.
 	 * Dispara exceções SQl caso ocorram.
 	 */
-	public void updateQuery(String message) throws SQLException {
+	public void updateQuery(String message) throws SQLException
+	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement preparedStatement = connection.prepareStatement(message);
 		preparedStatement.executeUpdate();
@@ -104,7 +139,8 @@ public class BarbeiroDAO {
 	 * Método que mostra os barbeiros cadastrados no banco de dados.
 	 * Dispara exceções SQl caso ocorram.
 	 */
-	public ResultSet mostrarBarbeirosCadastrados(Barbeiro barbeiro) throws SQLException {
+	public ResultSet mostrarBarbeirosCadastrados(Barbeiro barbeiro) throws SQLException
+	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		ResultSet rs = connection.createStatement().executeQuery(
 				"Select nome, cpf, rg, telefone, cadeira from barbeiro;");
@@ -116,7 +152,8 @@ public class BarbeiroDAO {
 	 * Método que pesquisa por um dado barbeiro no banco de dados.
 	 * Dispara exceções SQl caso ocorram.
 	 */
-	public ResultSet pesquisarPorNome(Barbeiro barbeiro) throws SQLException {
+	public ResultSet pesquisarPorNome(Barbeiro barbeiro) throws SQLException
+	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection.prepareStatement("SELECT * FROM barbeiro WHERE nome = '" 
 							+ barbeiro.getNome() + "';");
