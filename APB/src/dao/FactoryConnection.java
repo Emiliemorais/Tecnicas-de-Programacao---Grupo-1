@@ -8,7 +8,8 @@ import java.sql.SQLException;
 // Fim da importação
 
 // Inicio da classe
-public class FactoryConnection {
+public class FactoryConnection
+{
 	static String statusConnection = "";
 
 	private String local = "jdbc:mysql://localhost/apb";
@@ -17,18 +18,29 @@ public class FactoryConnection {
 
 	private static FactoryConnection instance;
 
-	private FactoryConnection(){}
+	private FactoryConnection()
+	{
+        // Blank
+	}
 
 // Instanciamento
-	public static FactoryConnection getInstance(){
+	public static FactoryConnection getInstance()
+	{
 		if(instance == null)
-			instance = new FactoryConnection();
+		{
+            instance = new FactoryConnection();
+		}
+		else
+        {
+            // Nothing to do
+        }
 		return instance;
 	}
 // Fim do método
 
 // Método que está recebendo os dados
-	public Connection getConnection() throws SQLException{
+	public Connection getConnection() throws SQLException
+	{
 		Connection connection = null;
 		connection = DriverManager.getConnection(local, user, password);
 		return connection;
