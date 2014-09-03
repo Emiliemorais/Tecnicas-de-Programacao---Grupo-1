@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.EventQueue;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,18 +23,19 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
 
-import com.javadocx.CreateDocx;
-
 import control.BarbeiroController;
 import control.ReciboController;
-
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 import com.javadocx.CreateDocx;
 
 @SuppressWarnings("serial")
-public class GerarRecibo extends JFrame {
+public class GerarRecibo extends JFrame
+{
+
+	private static String RAZAO_SOCIAL = "BARBEARIA DO ONOFRE LTDA - ME";
+	private static String RECIBO_PAGAMENTO = "RECIBO PAGAMENTO ALUGUEL BENS MÃ“VEIS";
+	private static String LINHA = "____________________________________________________________";
+	private static String LOCAL_E_DATA = "                    BrasÃ­lia - DF  ____/____/________";
 
 	private JPanel contentPane;
 	private JTextField textFieldDataInicial;
@@ -40,18 +43,13 @@ public class GerarRecibo extends JFrame {
 	private double total = 0;
 	private String numero;
 
-	private static String RAZAO_SOCIAL = "BARBEARIA DO ONOFRE LTDA - ME";
-	private static String RECIBO_PAGAMENTO = "RECIBO PAGAMENTO ALUGUEL BENS MÃ“VEIS";
-	private static String LINHA = "____________________________________________________________";
-	private static String LOCAL_E_DATA = "                    BrasÃ­lia - DF  ____/____/________";
-
 	/**
 	 * Launch the application.
 	 */
 
 	// Método utilizado para converter a data no formato da ABNT
-	public String ConverterDataParaABNT(String data) throws ParseException {
-
+	public String ConverterDataParaABNT (String data) throws ParseException
+	{
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date dataISO = sdf.parse(data);
 
@@ -62,9 +60,8 @@ public class GerarRecibo extends JFrame {
 	}
 
 	// Método utilizado para converter a data no formato da ABNT sem a barra
-	public String ConverterDataParaABNTSemBarra(String data)
-			throws ParseException {
-
+	public String ConverterDataParaABNTSemBarra(String data) throws ParseException 
+	{
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date dataISO = sdf.parse(data);
 
@@ -75,7 +72,8 @@ public class GerarRecibo extends JFrame {
 	}
 
 	// Método utilizado para converter a data no formato da ISO
-	private String ConverterDataParaISO(String data) throws ParseException {
+	private String ConverterDataParaISO (String data) throws ParseException
+	{
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		Date dataABNT = sdf.parse(data);
 
@@ -85,19 +83,28 @@ public class GerarRecibo extends JFrame {
 		return dataISO;
 	}
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
+	public static void main(String[] args)
+	{
+		EventQueue.invokeLater
+		(
+			new Runnable()
+			{
 			
-			// Método que inicializa a janela de geração de recibo
-			public void run() {
-				try {
-					GerarRecibo frame = new GerarRecibo();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
+				// Método que inicializa a janela de geração de recibo
+				public void run()
+				{
+					try 
+					{
+						GerarRecibo frame = new GerarRecibo();
+						frame.setVisible(true);
+					}
+					catch (Exception e)
+					{
+						e.printStackTrace();
+					}
 				}
 			}
-		});
+		);
 	}
 
 	/**
@@ -105,12 +112,13 @@ public class GerarRecibo extends JFrame {
 	 * 
 	 * @throws ParseException
 	 */
-	public GerarRecibo() throws ParseException {
+	public GerarRecibo() throws ParseException
+	{
 		setTitle("Gerar Recibo");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 348, 264);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder( new EmptyBorder(5, 5, 5, 5) );
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
@@ -120,14 +128,19 @@ public class GerarRecibo extends JFrame {
 		comboBoxBarbeiros.setBounds(10, 32, 304, 26);
 		contentPane.add(comboBoxBarbeiros);
 
-		try {
+		try
+		{
 			ResultSet rs = BarbeiroController.getInstance().pesquisar();
-			while (rs.next()) {
+			
+			while ( rs.next() ) 
+			{
 				comboBoxBarbeiros.addItem(rs.getString("cadeira") + " - "
-						+ rs.getString("nome"));
+										  + rs.getString("nome"));
 			}
-		} catch (SQLException e) {
-			mostrarMensagemDeErro(e.getMessage());
+		}
+		catch (SQLException e)
+		{
+			mostrarMensagemDeErro( e.getMessage() );
 		}
 
 		final MaskFormatter mascaraFormatoData = new MaskFormatter("##/##/####");
@@ -151,15 +164,19 @@ public class GerarRecibo extends JFrame {
 		contentPane.add(lblDataFinal);
 
 		JButton btnGerarRecibo = new JButton("Gerar Recibo");
-		btnGerarRecibo.addMouseListener(new MouseAdapter() {
+		btnGerarRecibo.addMouseListener(new MouseAdapter() 
+		{
 			
 			// Método utilizado para gerar um recibo no formato "docx"
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				ReciboController reciboController = ReciboController
-						.getInstance();
-				try {
-					if (comboBoxBarbeiros.getSelectedIndex() != 0) {
+			public void mouseClicked(MouseEvent e)
+			{
+				ReciboController reciboController = ReciboController.getInstance();
+				
+				try
+				{
+					if ( comboBoxBarbeiros.getSelectedIndex() != 0 ) 
+					{
 						CreateDocx docx = new CreateDocx("docx");
 
 						HashMap paramsCabeca = new HashMap();
@@ -205,7 +222,9 @@ public class GerarRecibo extends JFrame {
 						ResultSet rs = reciboController.getInstance()
 								.pesquisarServicosDoBarbeiro(nome[1],
 										dataInicialIso, dataFinalIso);
-						while (rs.next()) {
+						
+						while ( rs.next() )
+						{
 							numero = rs.getString("preco").replace(",", ".");
 							double valor = Double.parseDouble(numero);
 							total = total + (valor / 2);
@@ -216,7 +235,7 @@ public class GerarRecibo extends JFrame {
 						String dataInic = textFieldDataInicial.getText();
 						String dataFin = textFieldDataFinal.getText();
 
-						String valor = ("VALOR R$ " + decimal.format(total));
+						String valor = ( "VALOR R$ " + decimal.format(total) );
 
 						String texto = "                    Recebi do Sr. "
 								+ nome[1] + " a importÃ¢ncia supra de R$ "
@@ -251,14 +270,19 @@ public class GerarRecibo extends JFrame {
 						frame.setVisible(true);
 						frame.setLocationRelativeTo(null);
 						dispose();
-					} else {
-						JOptionPane.showMessageDialog(null,
-								"Selecione o um barbeiro");
 					}
-				} catch (SQLException e1) {
+					else
+					{
+						JOptionPane.showMessageDialog(null, "Selecione o um barbeiro");
+					}
+				} 
+				catch (SQLException e1)
+				{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
-				} catch (ParseException e1) {
+				} 
+				catch (ParseException e1)
+				{
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
@@ -268,11 +292,13 @@ public class GerarRecibo extends JFrame {
 		contentPane.add(btnGerarRecibo);
 
 		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.addMouseListener(new MouseAdapter() {
+		btnVoltar.addMouseListener(new MouseAdapter()
+		{
 			
 			// Método que volta para a janela administrativa
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent arg0)
+			{
 				dispose();
 				Administrativo frame = new Administrativo();
 				frame.setVisible(true);
@@ -284,9 +310,10 @@ public class GerarRecibo extends JFrame {
 	}
 
 	// Método que mostra uma mensagem de erro, utilizado no tratamento das exceções da classe
-	private void mostrarMensagemDeErro(String informacao) {
+	private void mostrarMensagemDeErro(String informacao)
+	{
 		JOptionPane.showMessageDialog(null, informacao, "AtenÃ§Ã£o",
-				JOptionPane.INFORMATION_MESSAGE);
+									  JOptionPane.INFORMATION_MESSAGE);
 	}
 
 }
