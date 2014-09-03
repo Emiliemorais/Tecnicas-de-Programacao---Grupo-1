@@ -10,7 +10,8 @@ import org.junit.Test;
 import exception.ServicoException;
 
 
-public class TipoServicoTeste {
+public class TipoServicoTeste 
+{
 	
 	TipoServico  servico =  new TipoServico();
 	
@@ -19,11 +20,15 @@ public class TipoServicoTeste {
 	 * Inicializa um tipo de serviço.
 	 * Captura exceções do tipo ServicoException.
 	 */
-	public void setUp(){
-		try {
+	public void setUp()
+	{
+		try
+		{
 			servico.setNomeTipoServico("Corte");
 			servico.setPreco("14,50");
-		} catch (ServicoException e) {
+		} 
+		catch (ServicoException e)
+		{
 			e.printStackTrace();
 		}
 	}
@@ -33,8 +38,9 @@ public class TipoServicoTeste {
 	 * Define uma assertiva que é disparada se o valor 'nomeTipoServico' ('Corte') inserido
 	 *   anteriormente não for igual ao que está realmente cadastrado. 
 	 */
-	public void getterDeNomeDeveRetornarValorPassado(){
-		assertEquals("Corte", servico.getNomeTipoServico());
+	public void getterDeNomeDeveRetornarValorPassado()
+	{
+		assertEquals( "Corte", servico.getNomeTipoServico() );
 	}
 	
 	@Test
@@ -42,8 +48,9 @@ public class TipoServicoTeste {
 	 * Define uma assertiva que é disparada se o valor 'preco' ('14,50') inserido
 	 *   anteriormente não for igual ao que está realmente cadastrado.
 	 */
-	public void getterDePrecoDeveRetornarValorPassado(){
-		assertEquals("14,50", servico.getPreco());
+	public void getterDePrecoDeveRetornarValorPassado()
+	{
+		assertEquals( "14,50", servico.getPreco() );
 	}
 	
 	// Define o erro esperado
@@ -53,7 +60,8 @@ public class TipoServicoTeste {
 	 * Define uma assertiva que é disparada se o valor do 'preco' a se cadastrar for nulo.
 	 * Dispara exceções do tipo ServicoException.  
 	 */
-	public void setterDePrecoNaoPodeSerNulo() throws ServicoException {
+	public void setterDePrecoNaoPodeSerNulo() throws ServicoException
+	{
 		servico.setPreco(null);
 		Assert.fail("Deve lanÃ§ar exceÃ§Ã£o");
 	}
@@ -65,7 +73,8 @@ public class TipoServicoTeste {
 	 * Define uma assertiva que é disparada se o valor do 'nomeTipoServico' a se cadastrar for nulo.
 	 * Dispara exceções do tipo ServicoException.  
 	 */
-	public void setterDeNomeNaoPodeSerNulo() throws ServicoException {
+	public void setterDeNomeNaoPodeSerNulo() throws ServicoException 
+	{
 		servico.setNomeTipoServico(null);
 		Assert.fail("Deve lanÃ§ar exceÃ§Ã£o");
 	}
@@ -77,7 +86,8 @@ public class TipoServicoTeste {
 	 * Define uma assertiva que é disparada se o valor do 'preco' a se cadastrar for inválido.
 	 * Dispara exceções do tipo ServicoException.  
 	 */
-	public void setterDePrecoNaoPodeSerInvalido() throws ServicoException {
+	public void setterDePrecoNaoPodeSerInvalido() throws ServicoException 
+	{
 		servico.setPreco("14.50%");
 		Assert.fail("Deve lanÃ§ar exceÃ§Ã£o");
 	}
@@ -89,7 +99,8 @@ public class TipoServicoTeste {
 	 * Define uma assertiva que é disparada se o valor do 'preco' a se cadastrar estiver em branco.
 	 * Dispara exceções do tipo ServicoException.  
 	 */
-	public void setterDePrecoServicoNaoPodeSerEmBranco() throws ServicoException {
+	public void setterDePrecoServicoNaoPodeSerEmBranco() throws ServicoException
+	{
 		servico.setPreco("");
 		Assert.fail("Deve lanÃ§ar exceÃ§Ã£o");
 	}
@@ -101,7 +112,8 @@ public class TipoServicoTeste {
 	 * Define uma assertiva que é disparada se o valor do 'nomeTipoServico' a se cadastrar estiver em branco.
 	 * Dispara exceções do tipo ServicoException.  
 	 */
-	public void setterDeNomeServicoNaoPodeSerEmBranco() throws ServicoException {
+	public void setterDeNomeServicoNaoPodeSerEmBranco() throws ServicoException
+	{
 		servico.setNomeTipoServico("");
 		Assert.fail("Deve lanÃ§ar exceÃ§Ã£o");
 	}
@@ -114,8 +126,9 @@ public class TipoServicoTeste {
 	 *   anteriormente não for igual ao que está realmente cadastrado.
 	 * Dispara exceções do tipo ServicoException.  
 	 */
-	public void getterDeTempNomeDeveRetornarValorPassado() throws ServicoException {
-		assertEquals("Corte", TipoServico.getTempNome());
+	public void getterDeTempNomeDeveRetornarValorPassado() throws ServicoException
+	{
+		assertEquals( "Corte", TipoServico.getTempNome() );
 	}
 	
 	// Define o erro esperado
@@ -125,7 +138,8 @@ public class TipoServicoTeste {
 	 * Define uma assertiva que é disparada se o valor do 'tempNome' a se cadastrar for nulo.
 	 * Dispara exceções do tipo ServicoException. 
 	 */
-	public void setterDeTempNomeNaoPodeSerNulo() throws ServicoException {
+	public void setterDeTempNomeNaoPodeSerNulo() throws ServicoException 
+	{
 		TipoServico.setTempNome(null);
 		Assert.fail("Deve lanÃ§ar exceÃ§Ã£o");
 	}
@@ -137,7 +151,8 @@ public class TipoServicoTeste {
 	 * Define uma assertiva que é disparada se o valor do 'tempNome' a se cadastrar estiver em branco
 	 * Dispara exceções do tipo ServicoException.
 	 */
-	public void setterDeTempNomeNaoPodeSerEmBranco() throws ServicoException {
+	public void setterDeTempNomeNaoPodeSerEmBranco() throws ServicoException
+	{
 		TipoServico.setTempNome("");
 		Assert.fail("Deve lanÃ§ar exceÃ§Ã£o");
 	}
@@ -148,14 +163,18 @@ public class TipoServicoTeste {
 	 * Define uma assertiva que é disparada se o valor inserido em 'tempNome'
 	 *   não for igual ao que está cadastrado. 
 	 */
-	public void tempNomeValido() {
-		try {
+	public void tempNomeValido() 
+	{
+		try
+		{
 			TipoServico.setTempNome("Barba");
-		} catch (ServicoException e) {
+		} 
+		catch (ServicoException e)
+		{
 			e.printStackTrace();
 			Assert.fail("NÃ£o Deve lanÃ§ar exceÃ§Ã£o");
 		}
-		assertEquals("Barba", TipoServico.getTempNome());
+		assertEquals( "Barba", TipoServico.getTempNome() );
 	}
 
 }
