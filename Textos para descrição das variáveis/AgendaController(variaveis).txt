@@ -1,0 +1,55 @@
+ AgendaController 
+ AgendaController  
+	
+	  AgendaController     
+	
+        // Método que recebe como parâmetro o objeto agenda e inclui no banco de dados
+	    incluir Agenda agenda    SQLException  
+		  agenda       
+			    
+		
+		AgendaDAO.get  .incluir agenda  
+		    
+	 
+	
+        // Método que recebe como parâmetro o nome do contato a ser altera e o objeto agenda e altera no banco de dados
+	    alterar String nome,Agenda agenda    SQLException  
+		  agenda       
+			    
+		
+		Agenda agenda_alterado   agenda 
+		AgendaDAO.get  .alterar nome ,agenda_alterado, agenda  
+		    		
+	 
+        
+        // Método que recebe como parâmetro o objeto agenda e exclui do banco de dados
+	     excluir Agenda contato    SQLException  
+		   contato      
+			    
+		
+		AgendaDAO.get  .excluir contato  
+		    
+	 
+	
+	    AgendaController get    
+		        
+			    AgendaController   
+		   
+	 
+	
+        // Interface que provê acesso aos contatos cadastrados e mostra todos os contatos
+	  ResultSet mostrarContatosCadastrados Agenda contato    SQLException  
+		  AgendaDAO.get  .mostrarContatosCadastrados contato  
+	 
+	
+        // Interface que provê acesso aos contatos cadastrados e permite que sejam pesquisados pelo nome
+	  ResultSet pesquisarPorNome Agenda contato    SQLException  
+		  AgendaDAO.get  .pesquisarPorNome contato  
+	 
+	
+        // Interface que provê acesso aos contatos cadastrados e permite que sejam pesquisados pelo telefone
+	  ResultSet pesquisarPorTelefone Agenda contato    SQLException  
+		  AgendaDAO.get  .pesquisarPorTelefone contato  
+	 
+
+ 

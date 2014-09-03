@@ -1,0 +1,103 @@
+
+
+  class Agenda 
+ 
+
+	  String nome;
+	  String telefone;
+	  String descricao;
+	    String tempNome;
+
+	  final String NOME_INVALIDO   "Nome Inválido";
+	  final String NOME_BRANCO   "Nome em Branco";
+	  final String TELEFONE_INVALIDO   "Telefone Inválido";
+	  final String TELEFONE_BRANCO   "Telefone em Branco";
+
+	  Agenda  
+	 
+
+	 
+
+	// Construtor do objeto Agenda que recebe seus atributos como parâmetro
+	  Agenda String nome, String telefone, String descricao 
+	 
+		 .nome   nome;
+		 .telefone   telefone;
+		 .descricao   descricao;
+	 
+     
+	// Método de acesso do nome para ver icação
+	  String getNome    
+	 
+		  nome;
+	 
+
+	// Método de acesso do telefone para ver icação
+	  String getTelefone    
+	 
+		  telefone;
+	 
+	
+	// Método de acesso da descrição para ver icação
+	  String getDescricao    
+	 
+		  descricao;
+	 
+
+	// Método de acesso do nome, que lança uma exceção se o nome não estiver no formato requerido
+	  void setNome  String nome   s BarbeiroException 
+	 
+		   "".equals nome  
+		 
+			    BarbeiroException NOME_BRANCO ;
+		 
+		     nome.matches "^[[ ]|\\p L *]+$"  
+		 
+			 .nome   nome;
+		 
+		 
+		 
+			    BarbeiroException NOME_INVALIDO ;
+		 
+	 
+
+	/*
+	 *  Método de acesso do telefone, que lança uma exceção 
+	 *  se o telefone não estiver no formato requerido
+	 */
+	  void setTelefone  String telefone   s BarbeiroException 
+	 
+		   "".equals telefone  
+		 
+			    BarbeiroException TELEFONE_BRANCO ;
+		 
+		     telefone.matches " \\ [\\d] 2,3 \\  ?[ ]*[\\d] 4,4 [ ]*-[ ]*[\\d] 4,4 [ ]*$"  
+		 
+			 .telefone   telefone;
+		 
+		 
+		 
+			// Lança uma exceção da classe Barbeiro de um telefone inválido exceto telefone em branco 
+			    BarbeiroException TELEFONE_INVALIDO ;
+		 
+	 
+
+	// Método de acesso da descrição para alteração
+	  void setDescricao  String descricao 
+	 
+		 .descricao   descricao;
+	 
+
+	// Método de acesso do nome temporário para ver icação
+	    String getTempNome    
+	 
+		  tempNome;
+	 
+
+	// Método de acesso do nome temporário para alteração
+	    void setTempNome  String tempNome 
+	 
+		Agenda.tempNome   tempNome;
+	 
+
+ 
