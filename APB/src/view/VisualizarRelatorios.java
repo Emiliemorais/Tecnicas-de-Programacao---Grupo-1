@@ -1,19 +1,6 @@
 package view;
 
 import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTable;
-import javax.swing.JScrollPane;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JButton;
-
-import model.Relatorio;
-
-import control.RelatorioController;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
@@ -22,10 +9,21 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
-
-import view.PesquisarRelatorio;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import model.Relatorio;
+
+import control.RelatorioController;
+
+import view.PesquisarRelatorio;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -37,7 +35,8 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import exception.RelatorioException;
 
 @SuppressWarnings("serial")
-public class VisualizarRelatorios extends JFrame {
+public class VisualizarRelatorios extends JFrame 
+{
 
 	private JPanel contentPane;
 	private double total = 0;
@@ -51,23 +50,31 @@ public class VisualizarRelatorios extends JFrame {
 
 	DecimalFormat decimal = new DecimalFormat("##0.00");
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
+	public static void main(String[] args) 
+	{
+		EventQueue.invokeLater(new Runnable()
+		{
 			
 			// Método que mostra a janela de Vizualização dos relatórios
-			public void run() {
-				try {
+			public void run () 
+			{
+				try 
+				{
 					VisualizarRelatorios frame = new VisualizarRelatorios();
 					frame.setVisible(true);
-				} catch (Exception e) {
+				} 
+				catch (Exception e)
+				{
 					mostrarMensagemDeErro(e.getMessage());
 				}
 			}
 		});
 	}
 
+	// Construtor dos componentes da janela VIzualizar Relatorios
 	public VisualizarRelatorios() throws SQLException, RelatorioException,
-			NullPointerException, ParseException {
+			NullPointerException, ParseException 
+	{
 		setTitle("Relat\u00F3rios");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
@@ -82,12 +89,14 @@ public class VisualizarRelatorios extends JFrame {
 
 		final DefaultTableModel modelo = new DefaultTableModel(null,
 				new String[] { "Nome do ServiÃ§o", "Quantidade", "Valor total",
-						"Valor recebido" }) {
+						"Valor recebido" }) 
+		{
 			boolean[] columnEditables = new boolean[] { false, false, false,
 					false };
 			
 			// Método que verifica se a célula pode ser alterada
-			public boolean isCellEditable(int row, int column) {
+			public boolean isCellEditable (int row, int column) 
+			{
 				return columnEditables[column];
 			}
 		};
@@ -104,7 +113,8 @@ public class VisualizarRelatorios extends JFrame {
 
 		Relatorio relatorio = new Relatorio();
 
-		if (PesquisarRelatorio.tipoBusca == 1) {
+		if(PesquisarRelatorio.tipoBusca == 1) 
+		{
 
 			relatorio.setBarbeiro(PesquisarRelatorio.barbeiro);
 
@@ -112,21 +122,28 @@ public class VisualizarRelatorios extends JFrame {
 
 			while (rs.next()) {
 
-				if (servicos.contains(rs.getString("nome")) == false) {
+				if (servicos.contains(rs.getString("nome")) == false)
+				{
 					servicos.add(rs.getString("nome"));
 					contador++;
 				}
 			}
 
-			for (int i = 0; i < contador; i++) {
+			for(int i=0; i<contador; i++)
+			{
 				rs.beforeFirst();
 				while (rs.next()) {
-					if (servicos.get(i).equals(rs.getString("nome"))) {
+					if (servicos.get(i).equals(rs.getString("nome"))) 
+					{
 						numero = rs.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numero);
 						valorTotalDoServico = valorTotalDoServico + valor;
 
 						numeroTotalDeServicos++;
+					}
+					else
+					{
+						// Nothing to do
 					}
 				}
 
@@ -150,7 +167,8 @@ public class VisualizarRelatorios extends JFrame {
 				valorTotalDoServico = 0;
 			}
 		}
-		if (PesquisarRelatorio.tipoBusca == 2) {
+		if(PesquisarRelatorio.tipoBusca == 2)
+		{
 
 			relatorio.setBarbeiro(PesquisarRelatorio.barbeiro);
 			relatorio.setTipoServico(PesquisarRelatorio.servico);
@@ -158,23 +176,36 @@ public class VisualizarRelatorios extends JFrame {
 			ResultSet rs = relatorioController
 					.pesquisarPorBarbeiroEServico(relatorio);
 
-			while (rs.next()) {
+			while (rs.next())
+			{
 
-				if (servicos.contains(rs.getString("nome")) == false) {
+				if (servicos.contains(rs.getString("nome")) == false)
+				{
 					servicos.add(rs.getString("nome"));
 					contador++;
 				}
+				else
+				{
+					// Nothing to do
+				}
 			}
 
-			for (int i = 0; i < contador; i++) {
+			for(int i=0; i<contador; i++) 
+			{
 				rs.beforeFirst();
-				while (rs.next()) {
-					if (servicos.get(i).equals(rs.getString("nome"))) {
+				while (rs.next())
+				{
+					if (servicos.get(i).equals(rs.getString("nome"))) 
+					{
 						numero = rs.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numero);
 						valorTotalDoServico = valorTotalDoServico + valor;
 
 						numeroTotalDeServicos++;
+					}
+					else
+					{
+						// Nothing to do
 					}
 				}
 
@@ -199,7 +230,8 @@ public class VisualizarRelatorios extends JFrame {
 				valorTotalDoServico = 0;
 			}
 		}
-		if (PesquisarRelatorio.tipoBusca == 3) {
+		if(PesquisarRelatorio.tipoBusca == 3) 
+		{
 
 			relatorio.setBarbeiro(PesquisarRelatorio.barbeiro);
 			relatorio.setDataFinal(PesquisarRelatorio.dataFinal);
@@ -208,23 +240,36 @@ public class VisualizarRelatorios extends JFrame {
 			ResultSet rs = relatorioController
 					.pesquisarPorDataEBarbeiro(relatorio);
 
-			while (rs.next()) {
+			while (rs.next())
+			{
 
-				if (servicos.contains(rs.getString("nome")) == false) {
+				if (servicos.contains(rs.getString("nome")) == false) 
+				{
 					servicos.add(rs.getString("nome"));
 					contador++;
 				}
+				else
+				{
+					// Nothing to do
+				}
 			}
 
-			for (int i = 0; i < contador; i++) {
+			for(int i= 0; i<contador; i++) 
+			{
 				rs.beforeFirst();
-				while (rs.next()) {
-					if (servicos.get(i).equals(rs.getString("nome"))) {
+				while (rs.next()) 
+				{
+					if (servicos.get(i).equals(rs.getString("nome"))) 
+					{
 						numero = rs.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numero);
 						valorTotalDoServico = valorTotalDoServico + valor;
 
 						numeroTotalDeServicos++;
+					}
+					else
+					{
+						// Nothing to do
 					}
 				}
 
@@ -249,7 +294,8 @@ public class VisualizarRelatorios extends JFrame {
 				valorTotalDoServico = 0;
 			}
 		}
-		if (PesquisarRelatorio.tipoBusca == 4) {
+		if(PesquisarRelatorio.tipoBusca == 4) 
+		{
 
 			relatorio.setBarbeiro(PesquisarRelatorio.barbeiro);
 			relatorio.setTipoServico(PesquisarRelatorio.servico);
@@ -259,18 +305,27 @@ public class VisualizarRelatorios extends JFrame {
 			ResultSet rs = relatorioController
 					.pesquisarPorDataBarbeiroEServico(relatorio);
 
-			while (rs.next()) {
+			while (rs.next()) 
+			{
 
-				if (servicos.contains(rs.getString("nome")) == false) {
+				if (servicos.contains(rs.getString("nome")) == false) 
+				{
 					servicos.add(rs.getString("nome"));
 					contador++;
 				}
+				else
+				{
+					// Nothing to do
+				}
 			}
 
-			for (int i = 0; i < contador; i++) {
+			for(int i=0; i<contador; i++) 
+			{
 				rs.beforeFirst();
-				while (rs.next()) {
-					if (servicos.get(i).equals(rs.getString("nome"))) {
+				while (rs.next()) 
+				{
+					if (servicos.get(i).equals(rs.getString("nome"))) 
+					{
 						numero = rs.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numero);
 						valorTotalDoServico = valorTotalDoServico + valor;
@@ -301,24 +356,34 @@ public class VisualizarRelatorios extends JFrame {
 
 			}
 		}
-		if (PesquisarRelatorio.tipoBusca == 5) {
+		if(PesquisarRelatorio.tipoBusca == 5)
+		{
 
 			relatorio.setTipoServico(PesquisarRelatorio.servico);
 
 			ResultSet rs = relatorioController.pesquisarPorServico(relatorio);
 
-			while (rs.next()) {
+			while (rs.next())
+			{
 
-				if (servicos.contains(rs.getString("nome")) == false) {
+				if (servicos.contains(rs.getString("nome")) == false)
+				{
 					servicos.add(rs.getString("nome"));
 					contador++;
 				}
+				else
+				{
+					// Nothing to do
+				}
 			}
 
-			for (int i = 0; i < contador; i++) {
+			for(int i=0; i<contador; i++)
+			{
 				rs.beforeFirst();
-				while (rs.next()) {
-					if (servicos.get(i).equals(rs.getString("nome"))) {
+				while (rs.next()) 
+				{
+					if (servicos.get(i).equals(rs.getString("nome")))
+					{
 						numero = rs.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numero);
 						valorTotalDoServico = valorTotalDoServico + valor;
@@ -348,7 +413,8 @@ public class VisualizarRelatorios extends JFrame {
 				valorTotalDoServico = 0;
 			}
 		}
-		if (PesquisarRelatorio.tipoBusca == 6) {
+		if(PesquisarRelatorio.tipoBusca == 6)
+		{
 
 			relatorio.setTipoServico(PesquisarRelatorio.servico);
 			relatorio.setDataFinal(PesquisarRelatorio.dataFinal);
@@ -357,23 +423,32 @@ public class VisualizarRelatorios extends JFrame {
 			ResultSet rs = relatorioController
 					.pesquisarPorDataEServico(relatorio);
 
-			while (rs.next()) {
+			while (rs.next())
+			{
 
-				if (servicos.contains(rs.getString("nome")) == false) {
+				if (servicos.contains(rs.getString("nome")) == false)
+				{
 					servicos.add(rs.getString("nome"));
 					contador++;
 				}
 			}
 
-			for (int i = 0; i < contador; i++) {
+			for(int i=0; i<contador; i++)
+			{
 				rs.beforeFirst();
-				while (rs.next()) {
-					if (servicos.get(i).equals(rs.getString("nome"))) {
+				while (rs.next())
+				{
+					if (servicos.get(i).equals(rs.getString("nome"))) 
+					{
 						numero = rs.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numero);
 						valorTotalDoServico = valorTotalDoServico + valor;
 
 						numeroTotalDeServicos++;
+					}
+					else
+					{
+						// Nothing to do
 					}
 				}
 
@@ -398,30 +473,44 @@ public class VisualizarRelatorios extends JFrame {
 				valorTotalDoServico = 0;
 			}
 		}
-		if (PesquisarRelatorio.tipoBusca == 7) {
+		if(PesquisarRelatorio.tipoBusca == 7) 
+		{
 
 			relatorio.setDataFinal(PesquisarRelatorio.dataFinal);
 			relatorio.setDataInicial(PesquisarRelatorio.dataInicial);
 
 			ResultSet rs = relatorioController.pesquisarPorData(relatorio);
 
-			while (rs.next()) {
+			while (rs.next())
+			{
 
-				if (servicos.contains(rs.getString("nome")) == false) {
+				if (servicos.contains(rs.getString("nome")) == false)
+				{
 					servicos.add(rs.getString("nome"));
 					contador++;
 				}
+				else
+				{
+					// Nothing to do
+				}
 			}
 
-			for (int i = 0; i < contador; i++) {
+			for(int i=0; i<contador; i++)
+			{
 				rs.beforeFirst();
-				while (rs.next()) {
-					if (servicos.get(i).equals(rs.getString("nome"))) {
+				while (rs.next())
+				{
+					if (servicos.get(i).equals(rs.getString("nome")))
+					{
 						numero = rs.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numero);
 						valorTotalDoServico = valorTotalDoServico + valor;
 
 						numeroTotalDeServicos++;
+					}
+					else
+					{
+						// Nothing to do
 					}
 				}
 
@@ -448,18 +537,23 @@ public class VisualizarRelatorios extends JFrame {
 		}
 		JButton btnPesquisar = new JButton("Pesquisar");
 		
-		btnPesquisar.addMouseListener(new MouseAdapter() {
+		btnPesquisar.addMouseListener(new MouseAdapter() 
+		{
 			
 			// Método que permite a vizualização da janela que permite a pesquisa de um relatório
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				try {
+			public void mouseClicked (MouseEvent e) 
+			{
+				try
+				{
 					PesquisarRelatorio.tipoBusca = 0;
 					PesquisarRelatorio frame = new PesquisarRelatorio();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 					dispose();
-				} catch (ParseException e1) {
+				}
+				catch (ParseException e1)
+				{
 					mostrarMensagemDeErro(e1.getMessage());
 				}
 			}
@@ -468,11 +562,13 @@ public class VisualizarRelatorios extends JFrame {
 		contentPane.add(btnPesquisar);
 
 		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.addMouseListener(new MouseAdapter() {
+		btnVoltar.addMouseListener(new MouseAdapter() 
+		{
 			
 			// Método que permite novamente a vizualização da janela de Menu principal
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked (MouseEvent e)
+			{
 				MenuPrincipal frame = new MenuPrincipal();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
@@ -503,8 +599,10 @@ public class VisualizarRelatorios extends JFrame {
 		contentPane.add(painelGrafico);
 		painelGrafico.setVisible(true);
 
-		if (PesquisarRelatorio.tipoBusca != 0) {
-			try {
+		if(PesquisarRelatorio.tipoBusca != 0) 
+		{
+			try 
+			{
 				CategoryDataset cds;
 				cds = createDatasetRelatorio();
 				String titulo = "Total Por Dia";
@@ -525,38 +623,50 @@ public class VisualizarRelatorios extends JFrame {
 				painelGrafico.revalidate();
 				painelGrafico.repaint();
 
-			} catch (SQLException e) {
+			} 
+			catch (SQLException e) 
+			{
 				mostrarMensagemDeErro(e.getMessage());
-			} catch (RelatorioException e) {
+			} 
+			catch (RelatorioException e) 
+			{
 				mostrarMensagemDeErro(e.getMessage());
 			}
 
 		}
 
 		JButton btnGrafico = new JButton("Gr\u00E1fico");
-		btnGrafico.addMouseListener(new MouseAdapter() {
+		btnGrafico.addMouseListener(new MouseAdapter() 
+		{
 			
 			// Método que permite a vizualização de um painel gráfico dos relatorios
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				if (PesquisarRelatorio.tipoBusca != 0) {
+			public void mouseClicked(MouseEvent arg0)
+			{
+				if (PesquisarRelatorio.tipoBusca != 0) 
+				{
 					painelGrafico.setVisible(true);
 					scrollPane.setVisible(false);
-				} else
+				} 
+				else
+				{
 					JOptionPane
 							.showMessageDialog(null,
 									"VocÃª deve fazer uma busca para visualizar o grÃ¡fico.");
+				}
 			}
 		});
 		btnGrafico.setBounds(680, 159, 94, 62);
 		contentPane.add(btnGrafico);
 
 		JButton btnTabela = new JButton("Tabela");
-		btnTabela.addMouseListener(new MouseAdapter() {
+		btnTabela.addMouseListener(new MouseAdapter() 
+		{
 			
 			// Método que permite a vizualização da tabela de relatórios
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked (MouseEvent arg0)
+			{
 				painelGrafico.setVisible(false);
 				scrollPane.setVisible(true);
 			}
@@ -582,27 +692,32 @@ public class VisualizarRelatorios extends JFrame {
 	}
 
 	// Interface utilizada para implementar os dados a serem exibidos no gráfico
-	private CategoryDataset createDatasetRelatorio() throws SQLException,
-			RelatorioException, NullPointerException, ParseException {
+	private CategoryDataset createDatasetRelatorio () throws SQLException,
+			RelatorioException, NullPointerException, ParseException
+			{
 
 		Relatorio relatorio = new Relatorio();
 		ResultSet rs = null;
 
-		if (PesquisarRelatorio.tipoBusca != 0) {
-			if (PesquisarRelatorio.tipoBusca == 1) {
+		if(PesquisarRelatorio.tipoBusca != 0) 
+		{
+			if(PesquisarRelatorio.tipoBusca == 1) 
+			{
 				relatorio.setBarbeiro(PesquisarRelatorio.barbeiro);
 
 				rs = RelatorioController.getInstance().pesquisarPorBarbeiro(
 						relatorio);
 			}
-			if (PesquisarRelatorio.tipoBusca == 2) {
+			if(PesquisarRelatorio.tipoBusca == 2)
+			{
 				relatorio.setBarbeiro(PesquisarRelatorio.barbeiro);
 				relatorio.setTipoServico(PesquisarRelatorio.servico);
 
 				rs = RelatorioController.getInstance()
 						.pesquisarPorBarbeiroEServico(relatorio);
 			}
-			if (PesquisarRelatorio.tipoBusca == 3) {
+			if(PesquisarRelatorio.tipoBusca == 3)
+			{
 				relatorio.setBarbeiro(PesquisarRelatorio.barbeiro);
 				relatorio.setDataFinal(PesquisarRelatorio.dataFinal);
 				relatorio.setDataInicial(PesquisarRelatorio.dataInicial);
@@ -610,7 +725,8 @@ public class VisualizarRelatorios extends JFrame {
 				rs = RelatorioController.getInstance()
 						.pesquisarPorDataEBarbeiro(relatorio);
 			}
-			if (PesquisarRelatorio.tipoBusca == 4) {
+			if(PesquisarRelatorio.tipoBusca == 4) 
+			{
 				relatorio.setBarbeiro(PesquisarRelatorio.barbeiro);
 				relatorio.setTipoServico(PesquisarRelatorio.servico);
 				relatorio.setDataFinal(PesquisarRelatorio.dataFinal);
@@ -619,13 +735,15 @@ public class VisualizarRelatorios extends JFrame {
 				rs = RelatorioController.getInstance()
 						.pesquisarPorDataBarbeiroEServico(relatorio);
 			}
-			if (PesquisarRelatorio.tipoBusca == 5) {
+			if(PesquisarRelatorio.tipoBusca == 5) 
+			{
 				relatorio.setTipoServico(PesquisarRelatorio.servico);
 
 				rs = RelatorioController.getInstance().pesquisarPorServico(
 						relatorio);
 			}
-			if (PesquisarRelatorio.tipoBusca == 6) {
+			if(PesquisarRelatorio.tipoBusca == 6) 
+			{
 				relatorio.setTipoServico(PesquisarRelatorio.servico);
 				relatorio.setDataFinal(PesquisarRelatorio.dataFinal);
 				relatorio.setDataInicial(PesquisarRelatorio.dataInicial);
@@ -633,7 +751,8 @@ public class VisualizarRelatorios extends JFrame {
 				rs = RelatorioController.getInstance()
 						.pesquisarPorDataEServico(relatorio);
 			}
-			if (PesquisarRelatorio.tipoBusca == 7) {
+			if(PesquisarRelatorio.tipoBusca == 7)
+			{
 				relatorio.setDataFinal(PesquisarRelatorio.dataFinal);
 				relatorio.setDataInicial(PesquisarRelatorio.dataInicial);
 
@@ -646,13 +765,16 @@ public class VisualizarRelatorios extends JFrame {
 
 		while (rs.next())
 			if (dias.contains(rs.getString("data")) == false)
+			{
 				dias.add(rs.getString("data"));
+			}
 
 		double totalPorDia = 0;
 
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-		for (int i = 0; i < dias.size(); i++) {
+		for (int i=0; i<dias.size(); i++)
+		{
 			rs.beforeFirst();
 
 			while (rs.next())
@@ -669,7 +791,8 @@ public class VisualizarRelatorios extends JFrame {
 	}
 
 	// Método que mostra uma mensagem de erro quando há uma exceção na classe
-	private static void mostrarMensagemDeErro(String informacao) {
+	private static void mostrarMensagemDeErro (String informacao) 
+	{
 		JOptionPane.showMessageDialog(null, informacao, "AtenÃ§Ã£o",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
