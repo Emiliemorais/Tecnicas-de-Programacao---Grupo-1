@@ -3,7 +3,6 @@ package view;
 
 // Importações
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -11,13 +10,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-
 import control.TipoServicoController;
-
 import exception.ServicoException;
-
 import model.TipoServico;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
@@ -27,8 +22,8 @@ import java.sql.SQLException;
 
 @SuppressWarnings("serial")
 // Início da classe
-public class NovoTipoServico extends JFrame {
-
+public class NovoTipoServico extends JFrame
+{
 	private JPanel contentPane;
 	private JTextField textFieldServico;
 	private JTextField textFieldPreco;
@@ -36,28 +31,36 @@ public class NovoTipoServico extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
+	public static void main(String[] args)
+	{
+		EventQueue.invokeLater(new Runnable()
+        {
+			public void run()
+            {
+				try
+				{
 					NovoTipoServico frame = new NovoTipoServico();
 					frame.setVisible(true);
-				} catch (Exception e) {
+				}
+				catch (Exception e)
+				{
 					e.printStackTrace();
 				}
 			}
-		});
+		}
+		);
 	}
 
 	/**
 	 * Create the frame.
 	 */
-	public NovoTipoServico() {
+	public NovoTipoServico()
+	{
 		setTitle("Cadastar novo tipo de servi\u00E7o");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 320, 180);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5) );
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
@@ -80,14 +83,17 @@ public class NovoTipoServico extends JFrame {
 		contentPane.add(lblPreco);
 
 		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.addMouseListener(new MouseAdapter() {
+		btnSalvar.addMouseListener(new MouseAdapter()
+        {
 			@Override
 // Tratamentos de exceções
-			public void mouseClicked(MouseEvent arg0) {
-				try {
+			public void mouseClicked(MouseEvent arg0)
+            {
+				try
+				{
 					TipoServico tipoServico = new TipoServico();
-					tipoServico.setNomeTipoServico(textFieldServico.getText());
-					tipoServico.setPreco(textFieldPreco.getText());
+					tipoServico.setNomeTipoServico(textFieldServico.getText() );
+					tipoServico.setPreco(textFieldPreco.getText() );
 
 					TipoServicoController tipoServicoController = TipoServicoController
 							.getInstance();
@@ -102,33 +108,45 @@ public class NovoTipoServico extends JFrame {
 					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 
-				} catch (ServicoException e) {
+				}
+				catch (ServicoException e)
+				{
 					mostrarMensagemDeErro(e.getMessage());
-				} catch (IllegalArgumentException e) {
+				}
+				catch (IllegalArgumentException e)
+				{
 					mostrarMensagemDeErro(e.getMessage());
-				} catch (SQLException e) {
+				}
+				catch (SQLException e)
+				{
+				    // Blank
 				}
 			}
-		});
+		}
+		);
 		btnSalvar.setBounds(29, 108, 89, 23);
 		contentPane.add(btnSalvar);
 
 		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btnVoltar.addActionListener(new ActionListener()
+        {
+			public void actionPerformed(ActionEvent e)
+            {
 				CadastrarTipoServico frame = new CadastrarTipoServico();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 				dispose();
 			}
-		});
+		}
+		);
 		btnVoltar.setBounds(181, 108, 89, 23);
 		contentPane.add(btnVoltar);
 	}
 // Fim da criação do frame
 
 // Método que mostra um painel com mensagem de erro
-	private void mostrarMensagemDeErro(String informacao) {
+	private void mostrarMensagemDeErro(String informacao)
+	{
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
 	}

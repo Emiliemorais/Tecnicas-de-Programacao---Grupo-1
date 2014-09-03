@@ -10,10 +10,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
 import model.Agenda;
 import control.AgendaController;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.EventQueue;
@@ -24,31 +22,39 @@ import java.text.ParseException;
 
 @SuppressWarnings("serial")
 // Início da classe
-public class CadastrarAgenda extends JFrame {
-
+public class CadastrarAgenda extends JFrame
+{
 	private JPanel contentPane;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
+	public static void main(String[] args)
+	{
+		EventQueue.invokeLater(new Runnable()
+        {
+			public void run()
+            {
 // Tratamento de exceções
-				try {
+				try
+				{
 					CadastrarAgenda frame = new CadastrarAgenda();
 					frame.setVisible(true);
-				} catch (Exception e) {
+				}
+				catch (Exception e)
+				{
 					e.printStackTrace();
 				}
 			}
-		});
+		}
+		);
 	}
 
 // Interface do método que cadastra na agenda
-	public CadastrarAgenda() {
+	public CadastrarAgenda()
+	{
 		setTitle("Agenda de Contatos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 575, 472);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5) );
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
@@ -57,10 +63,12 @@ public class CadastrarAgenda extends JFrame {
 		contentPane.add(scrollPane);
 
 		final DefaultTableModel modelo = new DefaultTableModel(null,
-				new String[] { "Nome", "Telefone", "Descri\u00E7\u00E3o" }) {
+				new String[] { "Nome", "Telefone", "Descri\u00E7\u00E3o" })
+        {
 			boolean[] columnEditables = new boolean[] { false, false, false };
 
-			public boolean isCellEditable(int row, int column) {
+			public boolean isCellEditable(int row, int column)
+			{
 				return columnEditables[column];
 			}
 		};
@@ -72,72 +80,88 @@ public class CadastrarAgenda extends JFrame {
 		scrollPane.setViewportView(table);
 
 // Tratamentos de exceção
-		try {
+		try
+		{
 			AgendaController agendaController = AgendaController.getInstance();
 			Agenda contato = new Agenda();
 			ResultSet rs = agendaController.mostrarContatosCadastrados(contato);
-			while (rs.next()) {
+			while (rs.next())
+            {
 				String[] dados = new String[3];
 				dados[0] = rs.getString("nome");
 				dados[1] = rs.getString("telefone");
 				dados[2] = rs.getString("descricao");
 				modelo.addRow(dados);
 			}
-		} catch (SQLException e) {
-			mostrarMensagemDeErro(e.getMessage());
+		}
+		catch (SQLException e)
+		{
+			mostrarMensagemDeErro(e.getMessage() );
 		}
 
 		scrollPane.setViewportView(table);
 
 		JButton btnNovo = new JButton("Novo");
-		btnNovo.addMouseListener(new MouseAdapter() {
+		btnNovo.addMouseListener(new MouseAdapter()
+        {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent arg0)
+            {
 				dispose();
 				NovoContato frame;
-				try {
+				try
+				{
 					frame = new NovoContato();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
-				} catch (ParseException e) {
+				}
+				catch (ParseException e)
+				{
 					e.printStackTrace();
 				}
-
 			}
-		});
+		}
+		);
 		btnNovo.setBounds(455, 24, 94, 23);
 		contentPane.add(btnNovo);
 
 		JButton btnPesquisar = new JButton("Pesquisar");
-		btnPesquisar.addMouseListener(new MouseAdapter() {
+		btnPesquisar.addMouseListener(new MouseAdapter()
+        {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e)
+            {
 				dispose();
 				PesquisarContato frame = new PesquisarContato();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}
-		});
+		}
+		);
 		btnPesquisar.setBounds(455, 58, 94, 23);
 		contentPane.add(btnPesquisar);
 
 		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.addMouseListener(new MouseAdapter() {
+		btnVoltar.addMouseListener(new MouseAdapter()
+        {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent arg0)
+            {
 				dispose();
 				Administrativo frame = new Administrativo();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}
-		});
+		}
+		);
 		btnVoltar.setBounds(455, 399, 94, 23);
 		contentPane.add(btnVoltar);
 	}
 // Fim da interface do método que cadastra na agenda
 
 // Método que mostra  painel com mensagem de erro
-	private void mostrarMensagemDeErro(String informacao) {
+	private void mostrarMensagemDeErro(String informacao)
+	{
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
