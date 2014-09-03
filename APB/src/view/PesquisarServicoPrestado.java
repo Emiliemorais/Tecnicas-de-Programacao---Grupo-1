@@ -1,8 +1,14 @@
 package view;
 
 import java.awt.EventQueue;
-import model.ServicoPrestado;
-
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -19,44 +25,47 @@ import control.ServicoPrestadoController;
 import dao.FactoryConnection;
 import exception.ServicoException;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.ParseException;
+import model.ServicoPrestado;
 
 @SuppressWarnings("serial")
-public class PesquisarServicoPrestado extends JFrame {
+public class PesquisarServicoPrestado extends JFrame
+{
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private Connection connection;
 	private static String tempNome;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
+	public static void main(String[] args) 
+	{
+		EventQueue.invokeLater(new Runnable() 
+		{
 			
 			// Método que inicializa a janela de pesquisa de serviço prestado
-			public void run() {
-				try {
+			public void run () 
+			{
+				try 
+				{
 					PesquisarServicoPrestado frame = new PesquisarServicoPrestado();
 					frame.setVisible(true);
-				} catch (Exception e) {
+				} 
+				catch (Exception e) 
+				{
 					e.printStackTrace();
 				}
 			}
 		});
 	}
-
-	public PesquisarServicoPrestado() {
+	
+	// Construtor dos componentes da janela de pesquisa de serviço prestado
+	public PesquisarServicoPrestado() 
+	{
 		inicializarComponentes();
 	}
 
 	// Método que inicializa os componentes da VIEW de uma pesquisa de Serviço Prestado
-	public void inicializarComponentes() {
+	public void inicializarComponentes ()
+	{
 		setTitle("Pesquisar Servi\u00E7o");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 300);
@@ -87,8 +96,10 @@ public class PesquisarServicoPrestado extends JFrame {
 		btnPesquisarServico.addActionListener(new ActionListener() {
 			
 			// Método da VIEW que é utilizado para pesquisar um Serviço Prestado 
-			public void actionPerformed(ActionEvent arg0) {
-				try {
+			public void actionPerformed (ActionEvent arg0) 
+			{
+				try 
+				{
 					ServicoPrestado servico = new ServicoPrestado();
 					servico.setNomeServico(textField.getText());
 
@@ -97,7 +108,8 @@ public class PesquisarServicoPrestado extends JFrame {
 							"SELECT nome, preco, barbeiro, data FROM servicoprestado WHERE nome = '"
 									+ servico.getNomeServico() + "' ORDER BY data;");
 
-					while (rs.next()) {
+					while (rs.next()) 
+					{
 						String[] dados = new String[4];
 						dados[0] = rs.getString("nome");
 						dados[1] = rs.getString("barbeiro");
@@ -105,11 +117,17 @@ public class PesquisarServicoPrestado extends JFrame {
 						dados[3] = servico.ConverterDataParaABNT(rs.getString("data"));
 						modelo.addRow(dados);
 					}
-				} catch (ServicoException e) {
+				} 
+				catch (ServicoException e) 
+				{
 					mostrarMensagemDeErro(e.getMessage());
-				} catch (SQLException e) {
+				} 
+				catch (SQLException e) 
+				{
 					mostrarMensagemDeErro(e.getMessage());
-				} catch (ParseException e) {
+				} 
+				catch (ParseException e)
+				{
 					mostrarMensagemDeErro(e.getMessage());
 				}
 
@@ -123,8 +141,10 @@ public class PesquisarServicoPrestado extends JFrame {
 			
 			// Método da VIEW que é utilizado para pesquisar um Barbeiro
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				try {
+			public void mouseClicked (MouseEvent arg0) 
+			{
+				try
+				{
 					ServicoPrestado servico = new ServicoPrestado();
 					servico.setNomeBarbeiro(textField.getText());
 
@@ -133,7 +153,8 @@ public class PesquisarServicoPrestado extends JFrame {
 							"SELECT nome, preco, barbeiro, data FROM servicoprestado WHERE barbeiro = '"
 									+ servico.getNomeBarbeiro() + "' ORDER BY data;");
 
-					while (rs.next()) {
+					while (rs.next())
+					{
 						String[] dados = new String[4];
 						dados[0] = rs.getString("nome");
 						dados[1] = rs.getString("barbeiro");
@@ -141,11 +162,17 @@ public class PesquisarServicoPrestado extends JFrame {
 						dados[3] = servico.ConverterDataParaABNT(rs.getString("data"));
 						modelo.addRow(dados);
 					}
-				} catch (ServicoException e) {
+				}
+				catch (ServicoException e) 
+				{
 					mostrarMensagemDeErro(e.getMessage());
-				} catch (SQLException e) {
+				}
+				catch (SQLException e) 
+				{
 					mostrarMensagemDeErro(e.getMessage());
-				} catch (ParseException e) {
+				} 
+				catch (ParseException e)
+				{
 					mostrarMensagemDeErro(e.getMessage());
 				}
 
@@ -155,12 +182,15 @@ public class PesquisarServicoPrestado extends JFrame {
 		contentPane.add(btnPesquisarBarbeiro);
 
 		JButton btnRemover = new JButton("Remover");
-		btnRemover.addMouseListener(new MouseAdapter() {
+		btnRemover.addMouseListener(new MouseAdapter() 
+		{
 			
 			// Método da VIEW que é utilizado para remover um Servico Prestado
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				try {
+			public void mouseClicked (MouseEvent arg0) 
+			{
+				try 
+				{
 					String nome = (String) table.getValueAt(table.getSelectedRow(), 0);
 					String barbeiro = (String) table.getValueAt(table.getSelectedRow(), 1);
 					String valor = (String) table.getValueAt(table.getSelectedRow(), 2);
@@ -174,7 +204,8 @@ public class PesquisarServicoPrestado extends JFrame {
 					int confirmacao = JOptionPane.showConfirmDialog(null,
 							"Remover " + nome + " da lista?");
 
-					if (confirmacao == JOptionPane.YES_OPTION) {
+					if (confirmacao == JOptionPane.YES_OPTION)
+					{
 						ServicoPrestadoController servicoController = ServicoPrestadoController.getInstance();
 						servicoController.excluir(servico);
 
@@ -183,13 +214,24 @@ public class PesquisarServicoPrestado extends JFrame {
 						frame.setVisible(true);
 						frame.setLocationRelativeTo(null);
 					}
-				} catch (ArrayIndexOutOfBoundsException e) {
+					else{
+						// Nothing to do
+					}
+				} 
+				catch (ArrayIndexOutOfBoundsException e) 
+				{
 					mostrarMensagemDeErro("Selecione um Serviço para remover");
-				} catch (ServicoException e) {
+				} 
+				catch (ServicoException e) 
+				{
 					mostrarMensagemDeErro(e.getMessage());
-				} catch (SQLException e) {
+				}
+				catch (SQLException e) 
+				{
 					mostrarMensagemDeErro(e.getMessage());
-				} catch (ParseException e) {
+				} 
+				catch (ParseException e) 
+				{
 					mostrarMensagemDeErro(e.getMessage());
 				}
 
@@ -199,11 +241,13 @@ public class PesquisarServicoPrestado extends JFrame {
 		contentPane.add(btnRemover);
 
 		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.addMouseListener(new MouseAdapter() {
+		btnVoltar.addMouseListener(new MouseAdapter() 
+		{
 			
 			// Método da VIEW que é utilizado para voltar a janela de Cadastrar Servico
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked (MouseEvent e) 
+			{
 				dispose();
 				CadastrarServicoPrestado frame = new CadastrarServicoPrestado();
 				frame.setVisible(true);
@@ -214,12 +258,15 @@ public class PesquisarServicoPrestado extends JFrame {
 		contentPane.add(btnVoltar);
 
 		JButton btnPesquisarData = new JButton("Pesquisar Data");
-		btnPesquisarData.addMouseListener(new MouseAdapter() {
+		btnPesquisarData.addMouseListener(new MouseAdapter() 
+		{
 			
 			// Método da VIEW que é utilizado para pesquisar um Servico Prestado pela data
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				try {
+			public void mouseClicked (MouseEvent arg0) 
+			{
+				try
+				{
 					ServicoPrestado servico = new ServicoPrestado();
 					servico.setData(textField.getText());
 
@@ -228,7 +275,8 @@ public class PesquisarServicoPrestado extends JFrame {
 							"Select nome, preco, barbeiro, data from servicoprestado where data = '"
 									+ servico.getData() + "' order by data;");
 
-					while (rs.next()) {
+					while (rs.next()) 
+					{
 						String[] dados = new String[4];
 						dados[0] = rs.getString("nome");
 						dados[1] = rs.getString("barbeiro");
@@ -236,11 +284,17 @@ public class PesquisarServicoPrestado extends JFrame {
 						dados[3] = servico.ConverterDataParaABNT(rs.getString("data"));
 						modelo.addRow(dados);
 					}
-				} catch (SQLException e) {
+				}
+				catch (SQLException e) 
+				{
 					mostrarMensagemDeErro(e.getMessage());
-				} catch (ParseException e) {
+				} 
+				catch (ParseException e)
+				{
 					mostrarMensagemDeErro(e.getMessage());
-				} catch (ServicoException e) {
+				} 
+				catch (ServicoException e) 
+				{
 					mostrarMensagemDeErro(e.getMessage());
 				}
 
@@ -251,13 +305,15 @@ public class PesquisarServicoPrestado extends JFrame {
 	}
 
 	// Método que mostra uma mensagem de erro, utilizado no tratamento das exceções da classe
-	private void mostrarMensagemDeErro(String informacao) {
+	private void mostrarMensagemDeErro (String informacao) 
+	{
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 	
-	
-	public static String getTempNome() {
+	// Método de acesso ao valor da variavel de nome temporario
+	public static String getTempNome () 
+	{
 		return tempNome;
 	}
 }
