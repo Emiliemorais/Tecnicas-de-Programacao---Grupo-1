@@ -6,30 +6,39 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import model.ServicoPrestado;
 // Fim da importação
 
 // Início da classe
-public class ServicoPrestadoDAO {
-
+public class ServicoPrestadoDAO
+{
 	private static ServicoPrestadoDAO instance;
 
-	private ServicoPrestadoDAO() {
-
+	private ServicoPrestadoDAO()
+	{
+        // Blank
 	}
 
 // Instanciamento
-	public static ServicoPrestadoDAO getInstance() {
+	public static ServicoPrestadoDAO getInstance()
+	{
 		if (instance == null)
-			instance = new ServicoPrestadoDAO();
+        {
+            instance = new ServicoPrestadoDAO();
+        }
+        else
+        {
+            // Nothing to do
+        }
 		return instance;
 	}
 // Fim do método
 
 // Método que inclui um serviço prestado
-	public boolean incluir(ServicoPrestado servico) throws SQLException {
-		if (servico != null) {
+	public boolean incluir(ServicoPrestado servico) throws SQLException
+	{
+		if (servico != null)
+            {
 			this.updateQuery("INSERT INTO "
 					+ "servicoprestado (nome, preco, barbeiro, data) VALUES ("
 					+ "\"" + servico.getNomeServico() + "\", " + "\""
@@ -37,26 +46,35 @@ public class ServicoPrestadoDAO {
 					+ servico.getNomeBarbeiro() + "\", " + "\""
 					+ servico.getData() + "\"); ");
 			return true;
-		}
-
+            }
+        else
+            {
+                // Nothing to do
+            }
 		return false;
 	}
 // Fim do método
 
 // Método que exclui um serviço prestado
-	public boolean excluir(ServicoPrestado servico) throws SQLException {
-		if (servico != null) {
+	public boolean excluir(ServicoPrestado servico) throws SQLException
+	{
+		if (servico != null)
+            {
 			this.updateQuery("DELETE FROM servicoprestado WHERE "
 				+ "servicoprestado.idservicoprestado = \"" + pesquisar(servico)+ "\";");
 			return true;
-		}
-
+            }
+        else
+            {
+                // Nothing to do
+            }
 		return false;
 	}
 // Fim do método
 
 // Método que pesquisa por um serviço prestado
-	private String pesquisar(ServicoPrestado servico) throws SQLException {
+	private String pesquisar(ServicoPrestado servico) throws SQLException
+	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement preparedStatement = connection
 				.prepareStatement("SELECT * FROM servicoprestado WHERE "
@@ -75,7 +93,8 @@ public class ServicoPrestadoDAO {
 // Fim do método
 
 // Método que atualiza os dados incluídos
-	private void updateQuery(String message) throws SQLException {
+	private void updateQuery(String message) throws SQLException
+	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement preparedStatement = connection
 				.prepareStatement(message);
@@ -86,7 +105,8 @@ public class ServicoPrestadoDAO {
 // Fim do método
 
 // Interface que provê acesso aos serviços prestados que constam no banco
-	public ResultSet mostrarServicosPrestadosCadastrados(ServicoPrestado servico) throws SQLException {
+	public ResultSet mostrarServicosPrestadosCadastrados(ServicoPrestado servico) throws SQLException
+	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		ResultSet rs = connection.createStatement().executeQuery(
 						"SELECT nome, preco, barbeiro, data FROM servicoprestado ORDER BY data;");
