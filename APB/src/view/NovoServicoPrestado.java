@@ -28,34 +28,45 @@ import dao.FactoryConnection;
 import exception.ServicoException;
 
 @SuppressWarnings("serial")
-public class NovoServicoPrestado extends JFrame {
+public class NovoServicoPrestado extends JFrame
+{
 
 	private JPanel contentPane;
 	private JTextField textValor;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					NovoServicoPrestado frame = new NovoServicoPrestado();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
+	public static void main(String[] args)
+	{
+		EventQueue.invokeLater
+		(
+			new Runnable()
+			{
+				public void run()
+				{
+					try
+					{
+						NovoServicoPrestado frame = new NovoServicoPrestado();
+						frame.setVisible(true);
+					} 
+					catch (Exception e)
+					{
+						e.printStackTrace();
+					}
 				}
 			}
-		});
+		);
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	// Construtor
-	public NovoServicoPrestado() {
+	public NovoServicoPrestado()
+	{
 
 		// Define as descrições do painel
 		setTitle("Criar nova presta\u00E7\u00E3o de servi\u00E7o");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 474, 214);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder( new EmptyBorder(5, 5, 5, 5) );
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
@@ -89,27 +100,38 @@ public class NovoServicoPrestado extends JFrame {
 		
 		// Adiciona o ComboBox 'Selecione o tipo de servico' ao painel
 		final JComboBox comboBoxServico = new JComboBox();
-		comboBoxServico.addItemListener(new ItemListener() {
+		comboBoxServico.addItemListener(new ItemListener()
+		{
 			
 			// Lê do banco de dados as informações do ComboBox
-			public void itemStateChanged(ItemEvent arg0) {
+			public void itemStateChanged(ItemEvent arg0)
+			{
 				Connection connection;
-				if (comboBoxServico.getSelectedIndex() != 0)
-					try {
+				if ( comboBoxServico.getSelectedIndex() != 0 )
+				{
+					try
+					{
 						String[] nome = comboBoxServico.getSelectedItem()
 								.toString().split(" - ");
 						connection = FactoryConnection.getInstance()
 								.getConnection();
 						java.sql.PreparedStatement pst1 = connection
 								.prepareStatement("SELECT preco FROM tipoServico WHERE nome = \""
-										+ nome[1] + "\";");
+												  + nome[1] + "\";");
 						ResultSet rs1 = pst1.executeQuery();
 						rs1.next();
 
-						textValor.setText(rs1.getString("preco"));
-					} catch (SQLException e) {
-						mostrarMensagemDeErro(e.getMessage());
+						textValor.setText( rs1.getString("preco") );
+					} 
+					catch (SQLException e)
+					{
+						mostrarMensagemDeErro( e.getMessage() );
 					}
+				}
+				else
+				{
+					// Nothing to do
+				}
 			}
 
 		});
@@ -119,8 +141,8 @@ public class NovoServicoPrestado extends JFrame {
 		comboBoxServico.setBounds(129, 22, 289, 20);
 		contentPane.add(comboBoxServico);
 		
-		// Captura exceções SQL caso ocorram, e mostra mensagem de erro.
-		try {
+		try 
+		{
 			int cont = 0;
 			Connection connection = FactoryConnection.getInstance()
 					.getConnection();
@@ -132,52 +154,61 @@ public class NovoServicoPrestado extends JFrame {
 			ResultSet rs2 = pst2.executeQuery();
 			
 			// Lista os nomes dos barbeiros por cadeira
-			while (rs.next()) {
+			while ( rs.next() ) 
+			{
 				String nome = rs.getString("nome");
 				String cadeira = rs.getString("cadeira");
 				comboBoxBarbeiro.addItem(cadeira + " - " + nome);
 			}
 			
 			// Lista os tipos de serviço
-			while (rs2.next()) {
+			while ( rs2.next() )
+			{
 				cont++;
 				String nome = rs2.getString("nome");
 				comboBoxServico.addItem(cont + " - " + nome);
 			}
 
-		} catch (SQLException e) {
-			mostrarMensagemDeErro(e.getMessage());
+		} 
+		catch (SQLException e)
+		{
+			mostrarMensagemDeErro( e.getMessage() );
 		}
 		
 		// Adiciona o botão 'Salvar' ao painel
 		JButton botaoSalvar = new JButton("Salvar");
-		botaoSalvar.addMouseListener(new MouseAdapter() {
+		botaoSalvar.addMouseListener(new MouseAdapter()
+		{
 			@Override
 			// Ação do botão
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent arg0) 
+			{
 				
 				// Captura excessões SQL, de Parse e do tipo Serviço Exception
-				try {
+				try
+				{
 					
 					// Verifica se foi selecionado algum tipo de serviço
 					if (comboBoxServico.getSelectedIndex() == 0)
-						JOptionPane.showMessageDialog(null,
-								"VocÃª deve selecionar um tipo de serviÃ§o.");
+					{
+						JOptionPane.showMessageDialog(null, "VocÃª deve selecionar um tipo de serviÃ§o.");
+					}
 					// Verifica se foi selecionado algum barbeiro
 					else if (comboBoxBarbeiro.getSelectedIndex() == 0)
-						JOptionPane.showMessageDialog(null,
-								"VocÃª deve selecionar um barbeiro.");
-					else {
+					{
+						JOptionPane.showMessageDialog(null, "VocÃª deve selecionar um barbeiro.");
+					}
+					else 
+					{
 						String data;
 						Date d = new Date();
-						SimpleDateFormat sdf = new SimpleDateFormat(
-								"yyyy-MM-dd");
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 						data = sdf.format(d);
 
 						String[] nome = comboBoxServico.getSelectedItem()
-								.toString().split(" - ");
+										.toString().split(" - ");
 						String[] barbeiro = comboBoxBarbeiro.getSelectedItem()
-								.toString().split(" - ");
+											.toString().split(" - ");
 
 						ServicoPrestado servico_prestado = new ServicoPrestado();
 
@@ -188,23 +219,28 @@ public class NovoServicoPrestado extends JFrame {
 						
 						// Faz o tratamento dos dados na classe ServicoPrestadoController
 						ServicoPrestadoController servicoController = ServicoPrestadoController
-								.getInstance();
+																	  .getInstance();
 						servicoController.inserir(servico_prestado);
 
-						JOptionPane.showMessageDialog(null,
-								"ServiÃ§o criado com sucesso");
+						JOptionPane.showMessageDialog(null, "ServiÃ§o criado com sucesso");
 
 						comboBoxBarbeiro.setSelectedIndex(0);
 						comboBoxServico.setSelectedIndex(0);
 
 						textValor.setText("");
 					}
-				} catch (ServicoException e) {
-					mostrarMensagemDeErro(e.getMessage());
-				} catch (SQLException e) {
-					mostrarMensagemDeErro(e.getMessage());
-				} catch (ParseException e) {
-					mostrarMensagemDeErro(e.getMessage());
+				} 
+				catch (ServicoException e)
+				{
+					mostrarMensagemDeErro( e.getMessage() );
+				} 
+				catch (SQLException e)
+				{
+					mostrarMensagemDeErro( e.getMessage() );
+				}
+				catch (ParseException e)
+				{
+					mostrarMensagemDeErro( e.getMessage() );
 				}
 
 			}
@@ -214,10 +250,12 @@ public class NovoServicoPrestado extends JFrame {
 		
 		// Adiciona o botão 'Limpar Campos' ao painel
 		JButton botaoLimparCampos = new JButton("Limpar Campos");
-		botaoLimparCampos.addMouseListener(new MouseAdapter() {
+		botaoLimparCampos.addMouseListener(new MouseAdapter()
+		{
 			@Override
 			// Ação do botão
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent arg0)
+			{
 				
 				// "Apaga" os campos
 				textValor.setText("");
@@ -230,10 +268,12 @@ public class NovoServicoPrestado extends JFrame {
 		
 		// Adiciona o botão 'Voltar' ao painel
 		JButton botaoVoltar = new JButton("Voltar");
-		botaoVoltar.addMouseListener(new MouseAdapter() {
+		botaoVoltar.addMouseListener(new MouseAdapter()
+		{
 			@Override
 			// Ação do botão
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent arg0) 
+			{
 				dispose();
 				CadastrarServicoPrestado frame = new CadastrarServicoPrestado();
 				frame.setVisible(true);
@@ -247,8 +287,10 @@ public class NovoServicoPrestado extends JFrame {
 	// Fim construtor
 	
 	// Mostra uma mensagem de erro de acordo com uma dada informação
-	private void mostrarMensagemDeErro(String informacao) {
+	private void mostrarMensagemDeErro (String informacao)
+	{
 		JOptionPane.showMessageDialog(null, informacao, "AtenÃ§Ã£o",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
+	
 }
