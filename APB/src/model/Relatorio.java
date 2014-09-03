@@ -5,12 +5,12 @@ package model;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import exception.RelatorioException;
 // Fim da importação de classes
 
 // Início da classe
-public class Relatorio {
+public class Relatorio
+{
 
 // Declaração de variáveis
 	private String dataInicial;
@@ -26,7 +26,8 @@ public class Relatorio {
 
 // Classe relatório
 	public Relatorio(String dataInicial, String dataFinal, String barbeiro,
-			String tipoServico) throws RelatorioException {
+			String tipoServico) throws RelatorioException
+    {
 		// super();
 		this.dataInicial = dataInicial;
 		this.dataFinal = dataFinal;
@@ -34,23 +35,35 @@ public class Relatorio {
 		this.tipoServico = tipoServico;
 
 		if (this.dataInicial == null)
-			throw new IllegalArgumentException(DATA_INICIAL_BRANCO);
-
+        {
+            throw new IllegalArgumentException(DATA_INICIAL_BRANCO);
+        }
 		if (this.dataFinal == null)
-			throw new IllegalArgumentException(DATA_FINAL_BRANCO);
-
+        {
+            throw new IllegalArgumentException(DATA_FINAL_BRANCO);
+        }
 		if (this.barbeiro == null)
-			throw new IllegalArgumentException(BARBEIRO_BRANCO);
-
+        {
+            throw new IllegalArgumentException(BARBEIRO_BRANCO);
+        }
 		if (this.tipoServico == null)
-			throw new IllegalArgumentException(TIPO_SERVICO_BRANCO);
-	}
+        {
+            throw new IllegalArgumentException(TIPO_SERVICO_BRANCO);
+        }
+        else
+        {
+            // Nothing to do
+        }
+    }
 
-	public Relatorio() {
+	public Relatorio()
+	{
+	    // Blank
 	}
 
 // Método que recebe a data inicial
-	public String getDataInicial() {
+	public String getDataInicial()
+	{
 		return dataInicial;
 	}
 // Fim do método
@@ -60,13 +73,18 @@ public class Relatorio {
  * Tratamento de exceções
  */
 	public void setDataInicial(String dataInicial) throws RelatorioException,
-			NullPointerException, ParseException {
+			NullPointerException, ParseException
+    {
 		if (dataInicial == null)
-			throw new NullPointerException(DATA_INICIAL_BRANCO);
+        {
+            throw new NullPointerException(DATA_INICIAL_BRANCO);
+        }
 		else if ("".equals(dataInicial))
-			throw new AssertionError(DATA_INICIAL_BRANCO);
-		else {
-
+        {
+            throw new AssertionError(DATA_INICIAL_BRANCO);
+        }
+		else
+        {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			Date dataIso = sdf.parse(dataInicial);
 
@@ -75,12 +93,12 @@ public class Relatorio {
 
 			this.dataInicial = dataISO;
 		}
-
 	}
 // Fim do método
 
 // Método que recebe a data final
-	public String getDataFinal() {
+	public String getDataFinal()
+	{
 		return dataFinal;
 	}
 // Fim do método
@@ -90,14 +108,18 @@ public class Relatorio {
  * Tratamento de exceções
  */
  	public void setDataFinal(String dataFinal) throws RelatorioException, NullPointerException,
-			ParseException {
-
+			ParseException
+    {
 		if (dataFinal == null)
-			throw new NullPointerException(DATA_FINAL_BRANCO);
+        {
+            throw new NullPointerException(DATA_FINAL_BRANCO);
+        }
 		else if ("".equals(dataFinal))
-			throw new AssertionError(DATA_FINAL_BRANCO);
-		else {
-
+        {
+            throw new AssertionError(DATA_FINAL_BRANCO);
+        }
+		else
+        {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			Date dataIso = sdf.parse(dataFinal);
 
@@ -110,7 +132,8 @@ public class Relatorio {
 // Fim do método
 
 // Método que recebe os dados acerca do barbeiro
-	public String getBarbeiro() {
+	public String getBarbeiro()
+	{
 		return barbeiro;
 	}
 // Fim do método
@@ -119,18 +142,26 @@ public class Relatorio {
  * Método que "seta" o barbeiro
  * Tratamento de exceções
  */
-	public void setBarbeiro(String barbeiro) throws RelatorioException {
+	public void setBarbeiro(String barbeiro) throws RelatorioException
+	{
 		if (barbeiro == null)
-			throw new NullPointerException(BARBEIRO_BRANCO);
+        {
+            throw new NullPointerException(BARBEIRO_BRANCO);
+        }
 		else if ("".equals(barbeiro))
-			throw new AssertionError(BARBEIRO_BRANCO);
+        {
+            throw new AssertionError(BARBEIRO_BRANCO);
+        }
 		else
-			this.barbeiro = barbeiro;
+        {
+            this.barbeiro = barbeiro;
+        }
 	}
 // Fim do método
 
 // Método que recebe o tipo de serviço
-	public String getTipoServico() {
+	public String getTipoServico()
+	{
 		return tipoServico;
 	}
 // Fim do método
@@ -139,19 +170,26 @@ public class Relatorio {
  * Método que "seta" o tipo de serviço
  * Tratamento de exceções
  */
-	public void setTipoServico(String tipoServico) throws RelatorioException {
+	public void setTipoServico(String tipoServico) throws RelatorioException
+	{
 		if (tipoServico == null)
-			throw new NullPointerException(TIPO_SERVICO_BRANCO);
+        {
+            throw new NullPointerException(TIPO_SERVICO_BRANCO);
+        }
 		else if ("".equals(tipoServico))
-			throw new AssertionError(TIPO_SERVICO_BRANCO);
+        {
+            throw new AssertionError(TIPO_SERVICO_BRANCO);
+        }
 		else
-			this.tipoServico = tipoServico;
+        {
+            this.tipoServico = tipoServico;
+        }
 	}
 // Fim do método
 
 // Método que converte a data para o padrão ABNT
-	public String ConverterDataParaABNT(String data) throws ParseException{
-
+	public String ConverterDataParaABNT(String data) throws ParseException
+	{
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date dataISO = sdf.parse(data);
 
