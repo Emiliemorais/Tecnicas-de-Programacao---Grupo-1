@@ -19,7 +19,8 @@ import control.BarbeiroController;
 import exception.BarbeiroException;
 
 @SuppressWarnings("serial")
-public class AlterarBarbeiro extends JFrame {
+public class AlterarBarbeiro extends JFrame 
+{
 
 	private JPanel contentPane;
 	private JTextField textFieldNome;
@@ -29,28 +30,38 @@ public class AlterarBarbeiro extends JFrame {
 	private String nome;
 	private JTextField textFieldCpf;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AlterarBarbeiro frame = new AlterarBarbeiro();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
+	public static void main(String[] args)
+	{
+		EventQueue.invokeLater
+		(
+			new Runnable()
+			{
+				public void run() 
+				{
+					try
+					{
+						AlterarBarbeiro frame = new AlterarBarbeiro();
+						frame.setVisible(true);
+					} 
+					catch (Exception e) 
+					{
+						e.printStackTrace();
+					}
 				}
 			}
-		});
+		);
 	}
 	
 	// Construtor 
-	public AlterarBarbeiro()  {
+	public AlterarBarbeiro() 
+	{
 		
 		// Define as descrições do painel 
 		setTitle("Alterar Barbeiro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 475, 283);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder( new EmptyBorder(5, 5, 5, 5) );
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
@@ -110,58 +121,70 @@ public class AlterarBarbeiro extends JFrame {
 		contentPane.add(labelCadeira);
 
 		// Testa se não há disparo de exceções com os dados informados
-		try {
+		try
+		{
 			Barbeiro barbeiro = new Barbeiro();
 			BarbeiroController barbeiroController = BarbeiroController.getInstance();
-			barbeiro.setNome(Barbeiro.getTempNome());
+			barbeiro.setNome( Barbeiro.getTempNome() );
 			
 			ResultSet rs = barbeiroController.pesquisarPorNome(barbeiro);
 			
-			while (rs.next()) {
-				textFieldNome.setText(rs.getString("nome"));
-				textFieldCpf.setText(rs.getString("cpf"));
-				textFieldRg.setText(rs.getString("rg"));
-				textFieldTelefone.setText(rs.getString("telefone"));
-				textFieldCadeira.setText(rs.getString("cadeira"));
+			while ( rs.next() ) 
+			{
+				textFieldNome.setText( rs.getString("nome") );
+				textFieldCpf.setText( rs.getString("cpf") );
+				textFieldRg.setText( rs.getString("rg") );
+				textFieldTelefone.setText( rs.getString("telefone") );
+				textFieldCadeira.setText( rs.getString("cadeira") );
 			}
 			nome = textFieldCpf.getText();
-		} catch (SQLException e) {
-			mostrarMensagemDeErro(e.getMessage());
-		} catch (BarbeiroException e) {
-			mostrarMensagemDeErro(e.getMessage());
+		} 
+		catch (SQLException e)
+		{
+			mostrarMensagemDeErro( e.getMessage() );
+		} 
+		catch (BarbeiroException e)
+		{
+			mostrarMensagemDeErro( e.getMessage() );
 		}
 		
 		// Cria um botão 'Salvar' e o adiciona no painel
 		JButton buttonSalvar = new JButton("Salvar");
-		buttonSalvar.addActionListener(new ActionListener() {
+		buttonSalvar.addActionListener(new ActionListener() 
+		{
 			
 			// Define ação do botão
-			public void actionPerformed(ActionEvent e) {
-				try {
+			public void actionPerformed(ActionEvent e)
+			{
+				try 
+				{
 					Barbeiro barbeiro = new Barbeiro();
-					barbeiro.setNome(textFieldNome.getText());
-					barbeiro.setCpf(textFieldCpf.getText());
-					barbeiro.setRg(textFieldRg.getText());
-					barbeiro.setTelefone(textFieldTelefone.getText());
-					barbeiro.setCadeira(textFieldCadeira.getText());
+					barbeiro.setNome( textFieldNome.getText() );
+					barbeiro.setCpf( textFieldCpf.getText() );
+					barbeiro.setRg( textFieldRg.getText() );
+					barbeiro.setTelefone( textFieldTelefone.getText() );
+					barbeiro.setCadeira( textFieldCadeira.getText() );
 
-					BarbeiroController barbeiroController = BarbeiroController
-							.getInstance();
+					BarbeiroController barbeiroController = BarbeiroController.getInstance();
 					barbeiroController.alterar(nome, barbeiro);
 
 					JOptionPane.showMessageDialog(null, "Barbeiro "
-							+ textFieldNome.getText()
-							+ " foi alterado com sucesso");
+												  		 + textFieldNome.getText()
+												  		 + " foi alterado com sucesso");
 
 					dispose();
 					CadastrarBarbeiro frame = new CadastrarBarbeiro();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 
-				} catch (BarbeiroException e1) {
-					mostrarMensagemDeErro(e1.getMessage());
-				} catch (SQLException k) {
-					mostrarMensagemDeErro(k.getMessage());
+				}
+				catch (BarbeiroException e1)
+				{
+					mostrarMensagemDeErro( e1.getMessage() );
+				} 
+				catch (SQLException k) 
+				{
+					mostrarMensagemDeErro( k.getMessage() );
 				}
 			}
 		});
@@ -170,10 +193,12 @@ public class AlterarBarbeiro extends JFrame {
 		
 		// Cria um botão 'Limpar Campos' e o adiciona no painel
 		JButton buttonLimpar = new JButton("Limpar Campos");
-		buttonLimpar.addActionListener(new ActionListener() {
+		buttonLimpar.addActionListener(new ActionListener()
+		{
 			
 			// Define a ação do botão
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e)
+			{
 				textFieldNome.setText("");
 				textFieldRg.setText("");
 				textFieldTelefone.setText("");
@@ -185,10 +210,12 @@ public class AlterarBarbeiro extends JFrame {
 		
 		// Cria um botão 'Voltar' e o adiciona no painel
 		JButton buttonVoltar = new JButton("Voltar");
-		buttonVoltar.addActionListener(new ActionListener() {
+		buttonVoltar.addActionListener(new ActionListener()
+		{
 			
 			// Define a ação do botão
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e)
+			{
 				dispose();
 				CadastrarBarbeiro frame = new CadastrarBarbeiro();
 				frame.setVisible(true);
@@ -197,14 +224,15 @@ public class AlterarBarbeiro extends JFrame {
 		});
 		buttonVoltar.setBounds(158, 196, 125, 23);
 		contentPane.add(buttonVoltar);
-		
-		
+				
 	}
 	// Fim do construtor
 	
 	// Mostra uma mensagem de erro de acordo com uma dada informação
-	private void mostrarMensagemDeErro(String informacao) {
+	private void mostrarMensagemDeErro(String informacao)
+	{
 		JOptionPane.showMessageDialog(null, informacao, "Atenï¿½ï¿½o",
-				JOptionPane.INFORMATION_MESSAGE);
+									  JOptionPane.INFORMATION_MESSAGE);
 	}
+	
 }
