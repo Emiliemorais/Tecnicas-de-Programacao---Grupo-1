@@ -20,7 +20,7 @@ public class AgendaController
     // Método que recebe como parâmetro o objeto agenda e inclui no banco de dados
 	public boolean incluir (Agenda agenda) throws SQLException 
 	{
-		if(agenda == null )
+		if(agenda == null)
 		{
 			return false;
 		}

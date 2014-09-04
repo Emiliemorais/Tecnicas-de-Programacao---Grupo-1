@@ -89,7 +89,7 @@ public class VisualizarRelatorios extends JFrame
 
 		final DefaultTableModel modelo = new DefaultTableModel(null,
 				new String[] { "Nome do Serviço", "Quantidade", "Valor total",
-						"Valor recebido" }) 
+							   "Valor recebido" }) 
 		{
 			boolean[] columnEditables = new boolean[] { false, false, false,
 					false };
