@@ -79,7 +79,7 @@ public class PesquisarServicoPrestado extends JFrame
 		contentPane.add(scrollPane);
 
 		final DefaultTableModel modelo = new DefaultTableModel(null,
-				new String[] { "Serviço", "Realizado por", "Valor", "Data" });
+																new String[] { "Serviço", "Realizado por", "Valor", "Data" });
 		final JTable table = new JTable(modelo);
 		scrollPane.setViewportView(table);
 
@@ -105,10 +105,11 @@ public class PesquisarServicoPrestado extends JFrame
 
 					connection = FactoryConnection.getInstance().getConnection();
 					ResultSet rs = connection.createStatement().executeQuery(
-							"SELECT nome, preco, barbeiro, data FROM servicoprestado WHERE nome = '"
-									+ servico.getNomeServico() + "' ORDER BY data;");
+																			"SELECT nome, preco, barbeiro,"
+																			+ " data FROM servicoprestado WHERE nome = '"
+																			+ servico.getNomeServico() + "' ORDER BY data;");
 
-					while (rs.next()) 
+					while(rs.next()) 
 					{
 						String[] dados = new String[4];
 						dados[0] = rs.getString("nome");
@@ -150,8 +151,9 @@ public class PesquisarServicoPrestado extends JFrame
 
 					connection = FactoryConnection.getInstance().getConnection();
 					ResultSet rs = connection.createStatement().executeQuery(
-							"SELECT nome, preco, barbeiro, data FROM servicoprestado WHERE barbeiro = '"
-									+ servico.getNomeBarbeiro() + "' ORDER BY data;");
+																			"SELECT nome, preco, barbeiro,"
+																			+ " data FROM servicoprestado WHERE barbeiro = '"
+																			+ servico.getNomeBarbeiro() + "' ORDER BY data;");
 
 					while (rs.next())
 					{
@@ -204,7 +206,7 @@ public class PesquisarServicoPrestado extends JFrame
 					int confirmacao = JOptionPane.showConfirmDialog(null,
 							"Remover " + nome + " da lista?");
 
-					if (confirmacao == JOptionPane.YES_OPTION)
+					if(confirmacao == JOptionPane.YES_OPTION)
 					{
 						ServicoPrestadoController servicoController = ServicoPrestadoController.getInstance();
 						servicoController.excluir(servico);
@@ -272,8 +274,9 @@ public class PesquisarServicoPrestado extends JFrame
 
 					connection = FactoryConnection.getInstance().getConnection();
 					ResultSet rs = connection.createStatement().executeQuery(
-							"Select nome, preco, barbeiro, data from servicoprestado where data = '"
-									+ servico.getData() + "' order by data;");
+																			"Select nome, preco, barbeiro,"
+																			+ " data from servicoprestado where data = '"
+																			+ servico.getData() + "' order by data;");
 
 					while (rs.next()) 
 					{

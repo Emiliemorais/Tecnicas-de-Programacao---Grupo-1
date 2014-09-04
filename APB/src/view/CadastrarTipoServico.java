@@ -161,7 +161,7 @@ public class CadastrarTipoServico extends JFrame
 				}
 
 				int confirmacao = JOptionPane.showConfirmDialog(null,
-						"Remover " + nome + " da lista?");
+																"Remover " + nome + " da lista?");
 
 				if(confirmacao == JOptionPane.YES_OPTION) 
 				{
