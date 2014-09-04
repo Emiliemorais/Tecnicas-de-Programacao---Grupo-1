@@ -1,0 +1,7 @@
+
+class AgendaException
+AgendaException() 
+	
+
+AgendaException(String message)
+message

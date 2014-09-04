@@ -1,0 +1,135 @@
+
+
+ class AgendaTeste 
+
+	
+	Agenda contato   Agenda
+	
+	/* 
+	 * Método utilizado para receber os atributos de forma correta,
+	 * de uma Agenda para realização do teste
+	*/
+	@Before
+	 void setUp 
+	
+		 
+		
+			contato.setNome"Alessandro"
+			contato.setTelefone"4568-9856"
+		 
+		 BarbeiroException e1 
+		
+			e1.printStackTrace
+		
+		contato.setDescricao"ASDAS"
+	
+	
+	 
+	// Método utilizado para testar o funcionamento do construtor de uma Agenda
+	@Test
+	 void contrutorDeAgendaDeveFuncionar 
+	
+		Agenda contato   Agenda"Alessandro", "6589-5689", "aaaa"
+		assertEquals"Alessandro", contato.getNome
+		assertEquals"6589-5689", contato.getTelefone
+		assertEquals"aaaa", contato.getDescricao
+	
+	
+	// Método que testa o recebimento de um nome de um contato pelo método de acesso get 
+	@Test
+	 void getterDeNomeDeveFuncionar 
+	
+		assertEquals"Alessandro", contato.getNome
+	
+	
+	// Método que testa o recebimento de um telefone de um contato pelo método de acesso get 
+	@Test
+	 void getterDeTelefoneDeveFuncionar 
+	
+		assertEquals"4568-9856", contato.getTelefone
+	
+	
+	// Método que testa o recebimento de uma descrição de um contato pelo método de acesso get 
+	@Test
+	 void getterDeDescricaoDeveFuncionar 
+	
+		assertEquals"ASDAS", contato.getDescricao
+	
+	
+	/* 
+	 * Método utilizado para receber um nome em branco para 
+	 * realização do teste do lançamento da exceção
+	*/ 
+	@Testexpected  BarbeiroException.class
+	 void nomeDoBarbeiroNaoPodePassarQuandoEmBranco   BarbeiroException
+	
+		contato.setNome""
+		Assert.fail"Deve lanÃ§ar uma exceÃ§Ã£o"
+	
+	
+	/* 
+	 * Método utilizado para receber um telefone em branco para 
+	 * realização do teste do lançamento da exceção
+	*/ 
+	@Testexpected  BarbeiroException.class
+	 void telefoneDoBarbeiroNaoPodePassarQuandoEmBranco   BarbeiroException
+	
+		contato.setTelefone""
+		Assert.fail"Deve lanÃ§ar uma exceÃ§Ã£o"
+	
+	
+	/* 
+	 * Método utilizado para receber um nome fora do formato estabelecido caracteres especiais
+	 * para realização do teste do lançamento da exceção
+	*/ 
+	@Testexpected  BarbeiroException.class
+	 void nomeDoBarbeiroNaoPodePassarQuandoForaDeFormato   BarbeiroException
+	
+		contato.setNome"ASDAS!!"
+		Assert.fail"Deve lanÃ§ar uma exceÃ§Ã£o"
+	
+	
+	/* 
+	 * Método utilizado para receber um telefone fora do formato estabelecido
+	 * caracteres especiais, letraspara realização do teste do lançamento da exceção
+	*/
+	@Testexpected  BarbeiroException.class
+	 void telefoneDoBarbeiroNaoPodePassarQuandoForaDeFormato   BarbeiroException
+	
+		contato.setTelefone"45645aa-a54654"
+		Assert.fail"Deve lanÃ§ar uma exceÃ§Ã£o"
+	
+	
+	// Método que testa o recebimento do nome temporario pelo método de acesso get
+	@Test expected  AssertionError.class
+	 void getterDeTempNomeDeveRetornarValorPassado   ServicoException 
+	
+		assertEquals"Barba", Agenda.getTempNome
+	
+	
+	
+	// Método que testa a passagem de um nome temporario nulo pelo método de acesso set	 
+	@Test expected  AssertionFailedError.class
+	 void setterDeTempNomeNaoPodeSerNulo   ServicoException 
+	
+		Agenda.setTempNomenull
+		Assert.fail"Deve lanÃ§ar exceÃ§Ã£o"
+	
+	
+	// Método que testa a passagem de um nome temporario em branco pelo método de acesso set
+	@Test expected  AssertionFailedError.class
+	 void setterDeTempNomeNaoPodeSerEmBranco  
+	
+		Agenda.setTempNome""
+		Assert.fail"Deve lanÃ§ar exceÃ§Ã£o"
+	
+	
+	// Método que testa a passagem de um nome temporário pelo método de acesso set
+	@Test
+	 void tempNomeValido   BarbeiroException 
+	
+		Agenda.setTempNome"Paulo"
+		assertEquals"Paulo", Agenda.getTempNome
+	
+
+

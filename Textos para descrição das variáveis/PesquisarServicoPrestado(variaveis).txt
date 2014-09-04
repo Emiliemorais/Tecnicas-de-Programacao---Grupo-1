@@ -1,0 +1,290 @@
+
+ class PesquisarServicoPrestado extends JFrame
+
+
+	 JPanel contentPane
+	 JTextField textField
+	 Connection connection
+	  String tempNome
+
+	  void mainString[] args 
+	
+		EventQueue.invokeLater Runnable 
+		
+			
+			// Método que inicializa a janela de pesquisa de serviço prestado
+			 void run  
+			
+				 
+				
+					PesquisarServicoPrestado frame =  PesquisarServicoPrestado
+					frame.setVisibletrue
+				 
+				 Exception e 
+				
+					e.prStackTrace
+				
+			
+		
+	
+	
+	// Construtor dos componentes da janela de pesquisa de serviço prestado
+	 PesquisarServicoPrestado 
+	
+		inicializarComponentes
+	
+
+	// Método que inicializa os componentes da VIEW de uma pesquisa de Serviço Prestado
+	 void inicializarComponentes 
+	
+		setTitle"Pesquisar Servi\u00E7o"
+		setDefaultCloseOperationJFrame.EXIT_ON_CLOSE
+		setBounds100, 100, 500, 300
+		contentPane =  JPanel
+		contentPane.setBorder EmptyBorder5, 5, 5, 5
+		setContentPanecontentPane
+		contentPane.setLayoutnull
+
+		JScrollPane scrollPane =  JScrollPane
+		scrollPane.setBounds10, 11, 464, 115
+		contentPane.addscrollPane
+
+		final DefaultTableModel modelo =  DefaultTableModelnull,
+				 String[]  "Serviço", "Realizado por", "Valor", "Data" 
+		final JTable table =  JTablemodelo
+		scrollPane.setViewportViewtable
+
+		textField =  JTextField
+		textField.setBounds82, 137, 392, 20
+		contentPane.addtextField
+		textField.setColumns10
+
+		JLabel lblPesquisar =  JLabel"Pesquisar:"
+		lblPesquisar.setBounds20, 137, 66, 14
+		contentPane.addlblPesquisar
+
+		JButton btnPesquisarServico =  JButton"Pesquisar Serviço"
+		btnPesquisarServico.addActionListener ActionListener 
+			
+			// Método da VIEW que é utilizado para pesquisar um Serviço Prestado 
+			 void actionPerformed ActionEvent arg0 
+			
+				 
+				
+					ServicoPrestado servico =  ServicoPrestado
+					servico.setNomeServicotextField.getText
+
+					connection = FactoryConnection.getInstance.getConnection
+					ResultSet rs = connection.createStatement.executeQuery
+							"SELECT nome, preco, barbeiro, data FROM servicoprestado WHERE nome = '"
+									+ servico.getNomeServico + "' ORDER BY data"
+
+					 rs.next 
+					
+						String[] dados =  String[4]
+						dados[0] = rs.getString"nome"
+						dados[1] = rs.getString"barbeiro"
+						dados[2] = rs.getString"preco"
+						dados[3] = servico.ConverterDataParaABNTrs.getString"data"
+						modelo.addRowdados
+					
+				 
+				 ServicoException e 
+				
+					mostrarMensagemDeErroe.getMessage
+				 
+				 SQLException e 
+				
+					mostrarMensagemDeErroe.getMessage
+				 
+				 ParseException e
+				
+					mostrarMensagemDeErroe.getMessage
+				
+
+			
+		
+		btnPesquisarServico.setBounds10, 168, 148, 23
+		contentPane.addbtnPesquisarServico
+
+		JButton btnPesquisarBarbeiro =  JButton"Pesquisar Barbeiro"
+		btnPesquisarBarbeiro.addMouseListener MouseAdapter 
+			
+			// Método da VIEW que é utilizado para pesquisar um Barbeiro
+			@Override
+			 void mouseClicked MouseEvent arg0 
+			
+				
+				
+					ServicoPrestado servico =  ServicoPrestado
+					servico.setNomeBarbeirotextField.getText
+
+					connection = FactoryConnection.getInstance.getConnection
+					ResultSet rs = connection.createStatement.executeQuery
+							"SELECT nome, preco, barbeiro, data FROM servicoprestado WHERE barbeiro = '"
+									+ servico.getNomeBarbeiro + "' ORDER BY data"
+
+					 rs.next
+					
+						String[] dados =  String[4]
+						dados[0] = rs.getString"nome"
+						dados[1] = rs.getString"barbeiro"
+						dados[2] = rs.getString"preco"
+						dados[3] = servico.ConverterDataParaABNTrs.getString"data"
+						modelo.addRowdados
+					
+				
+				 ServicoException e 
+				
+					mostrarMensagemDeErroe.getMessage
+				
+				 SQLException e 
+				
+					mostrarMensagemDeErroe.getMessage
+				 
+				 ParseException e
+				
+					mostrarMensagemDeErroe.getMessage
+				
+
+			
+		
+		btnPesquisarBarbeiro.setBounds168, 168, 148, 23
+		contentPane.addbtnPesquisarBarbeiro
+
+		JButton btnRemover =  JButton"Remover"
+		btnRemover.addMouseListener MouseAdapter 
+		
+			
+			// Método da VIEW que é utilizado para remover um Servico Prestado
+			@Override
+			 void mouseClicked MouseEvent arg0 
+			
+				 
+				
+					String nome = String table.getValueAttable.getSelectedRow, 0
+					String barbeiro = String table.getValueAttable.getSelectedRow, 1
+					String valor = String table.getValueAttable.getSelectedRow, 2
+					String data = String table.getValueAttable.getSelectedRow, 3
+					ServicoPrestado servico =  ServicoPrestado
+					servico.setNomeServiconome
+					servico.setNomeBarbeirobarbeiro
+					servico.setPrecovalor
+					servico.setDatadata
+
+					 confirmacao = JOptionPane.showConfirmDialognull,
+							"Remover " + nome + " da lista?"
+
+					 confirmacao == JOptionPane.YES_OPTION
+					
+						ServicoPrestadoController servicoController = ServicoPrestadoController.getInstance
+						servicoController.excluirservico
+
+						dispose
+						CadastrarServicoPrestado frame =  CadastrarServicoPrestado
+						frame.setVisibletrue
+						frame.setLocationRelativeTonull
+					
+					
+						// Nothing to do
+					
+				 
+				 ArrayIndexOutOfBoundsException e 
+				
+					mostrarMensagemDeErro"Selecione um Serviço para remover"
+				 
+				 ServicoException e 
+				
+					mostrarMensagemDeErroe.getMessage
+				
+				 SQLException e 
+				
+					mostrarMensagemDeErroe.getMessage
+				 
+				 ParseException e 
+				
+					mostrarMensagemDeErroe.getMessage
+				
+
+			
+		
+		btnRemover.setBounds123, 228, 89, 23
+		contentPane.addbtnRemover
+
+		JButton btnVoltar =  JButton"Voltar"
+		btnVoltar.addMouseListener MouseAdapter 
+		
+			
+			// Método da VIEW que é utilizado para voltar a janela de Cadastrar Servico
+			@Override
+			 void mouseClicked MouseEvent e 
+			
+				dispose
+				CadastrarServicoPrestado frame =  CadastrarServicoPrestado
+				frame.setVisibletrue
+				frame.setLocationRelativeTonull
+			
+		
+		btnVoltar.setBounds279, 228, 89, 23
+		contentPane.addbtnVoltar
+
+		JButton btnPesquisarData =  JButton"Pesquisar Data"
+		btnPesquisarData.addMouseListener MouseAdapter 
+		
+			
+			// Método da VIEW que é utilizado para pesquisar um Servico Prestado pela data
+			@Override
+			 void mouseClicked MouseEvent arg0 
+			
+				
+				
+					ServicoPrestado servico =  ServicoPrestado
+					servico.setDatatextField.getText
+
+					connection = FactoryConnection.getInstance.getConnection
+					ResultSet rs = connection.createStatement.executeQuery
+							"Select nome, preco, barbeiro, data from servicoprestado where data = '"
+									+ servico.getData + "' order by data"
+
+					 rs.next 
+					
+						String[] dados =  String[4]
+						dados[0] = rs.getString"nome"
+						dados[1] = rs.getString"barbeiro"
+						dados[2] = rs.getString"preco"
+						dados[3] = servico.ConverterDataParaABNTrs.getString"data"
+						modelo.addRowdados
+					
+				
+				 SQLException e 
+				
+					mostrarMensagemDeErroe.getMessage
+				 
+				 ParseException e
+				
+					mostrarMensagemDeErroe.getMessage
+				 
+				 ServicoException e 
+				
+					mostrarMensagemDeErroe.getMessage
+				
+
+			
+		
+		btnPesquisarData.setBounds326, 168, 148, 23
+		contentPane.addbtnPesquisarData
+	
+
+	// Método que mostra uma mensagem de erro, utilizado no tratamento das exceções da classe
+	 void mostrarMensagemDeErro String informacao 
+	
+		JOptionPane.showMessageDialognull, informacao, "Atenção",
+				JOptionPane.INFORMATION_MESSAGE
+	
+	
+	// Método de acesso ao valor da variavel de nome temporario
+	  String getTempNome  
+	
+		 tempNome
+	
+
