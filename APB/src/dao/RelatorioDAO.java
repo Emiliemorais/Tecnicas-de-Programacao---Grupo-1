@@ -36,7 +36,8 @@ public class RelatorioDAO
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE data BETWEEN '"
-				+relatorio.getDataInicial()+"' AND '"+relatorio.getDataFinal()+"';");
+				                                            +relatorio.getDataInicial()+"' AND '"
+				                                            +relatorio.getDataFinal()+"';");
 		ResultSet rs = pst.executeQuery();
 		
 		return rs;
@@ -47,8 +48,9 @@ public class RelatorioDAO
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE data BETWEEN '"
-				+relatorio.getDataInicial()+"' AND '"+relatorio.getDataFinal()+"' AND barbeiro = '"
-				+relatorio.getBarbeiro()+"';");
+															+relatorio.getDataInicial()+"' AND '"
+															+relatorio.getDataFinal()+"' AND barbeiro = '"
+															+relatorio.getBarbeiro()+"';");
 		ResultSet rs = pst.executeQuery();
 		
 		return rs;
@@ -59,8 +61,9 @@ public class RelatorioDAO
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE data BETWEEN '"
-				+relatorio.getDataInicial()+"' AND '"+relatorio.getDataFinal()+"' AND nome = '"
-				+relatorio.getTipoServico()+"';");
+															+relatorio.getDataInicial()+"' AND '"
+															+relatorio.getDataFinal()+"' AND nome = '"
+															+relatorio.getTipoServico()+"';");
 		ResultSet rs = pst.executeQuery();
 		
 		return rs;
@@ -71,7 +74,7 @@ public class RelatorioDAO
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE barbeiro = '"
-				+relatorio.getBarbeiro()+"';");
+															+relatorio.getBarbeiro()+"';");
 		ResultSet rs = pst.executeQuery();
 		
 		return rs;
@@ -82,7 +85,8 @@ public class RelatorioDAO
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE barbeiro = '"
-				+relatorio.getBarbeiro()+"' AND nome = '"+relatorio.getTipoServico()+"';");
+															+relatorio.getBarbeiro()+"' AND nome = '"	
+															+relatorio.getTipoServico()+"';");
 		ResultSet rs = pst.executeQuery();
 		
 		return rs;
@@ -93,7 +97,7 @@ public class RelatorioDAO
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE nome = '"
-				+relatorio.getTipoServico()+"';");
+															+relatorio.getTipoServico()+"';");
 		ResultSet rs = pst.executeQuery();
 		
 		return rs;
@@ -104,8 +108,10 @@ public class RelatorioDAO
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE data BETWEEN '"
-				+relatorio.getDataInicial()+"' AND '"+relatorio.getDataFinal()+"' AND barbeiro = '"
-				+relatorio.getBarbeiro()+"' AND nome = '"+relatorio.getTipoServico()+"';");
+															+relatorio.getDataInicial()+"' AND '"
+															+relatorio.getDataFinal()+"' AND barbeiro = '"
+															+relatorio.getBarbeiro()+"' AND nome = '"
+															+relatorio.getTipoServico()+"';");
 		ResultSet rs = pst.executeQuery();
 		
 		return rs;
