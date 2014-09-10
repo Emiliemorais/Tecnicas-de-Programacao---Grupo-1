@@ -22,7 +22,8 @@ public class Cliente
     Scanner input = new Scanner(System.in);
     Scanner lerString = new Scanner(System.in);
     
-     Livraria_ABC livraria = new Livraria_ABC();
+    Livraria_ABC livraria = new Livraria_ABC();
+        
         // Menu específico para o cliente
         public void menuCliente()
         {
@@ -200,7 +201,7 @@ public class Cliente
                 clienteAtual = "blank";
                 nomeClienteAtual = "blank";
                                 
-                Livraria_ABC.Cesta.Esvaziar_cesta();
+                Cesta.Esvaziar_cesta();
                 
                 livraria.Menu();
                 
@@ -379,7 +380,7 @@ public class Cliente
                 String nome;
                 String option;
                 
-                if( !Livraria_ABC.Cesta.Itens_quant.isEmpty() )
+                if( !Cesta.Itens_quant.isEmpty() )
                 {
                     System.out.println("\nVocê perderá os itens "
                                        + "adicionados à sua cesta."
@@ -396,7 +397,7 @@ public class Cliente
                        
                         boolean ok;
                         
-                        ok = Livraria_ABC.Cesta.Esvaziar_cesta();
+                        ok = Cesta.Esvaziar_cesta();
                         
                         if(ok)
                         {
@@ -410,7 +411,7 @@ public class Cliente
                     }
                     else
                     {
-                        Livraria_ABC.Livro.Mostrar_catalogo();
+                        Livro.Mostrar_catalogo();
                     }
                 }
                 else
@@ -443,7 +444,7 @@ public class Cliente
                 String nome;
                 String option;
                 
-                if( !Livraria_ABC.Cesta.Itens_quant.isEmpty() )
+                if( !Cesta.Itens_quant.isEmpty() )
                 {
                     System.out.println("\nVocê perderá os itens"
                                        + " adicionados à sua cesta."
@@ -460,7 +461,7 @@ public class Cliente
                        
                         boolean ok;
                         
-                        ok = Livraria_ABC.Cesta.Esvaziar_cesta();
+                        ok = Cesta.Esvaziar_cesta();
                         
                         if(ok)
                         {
