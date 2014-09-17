@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
-import control.TipoServicoController;
+import control.ServiceTypeController;
 import exception.ServicoException;
 import model.TipoServico;
 import java.awt.event.ActionListener;
@@ -84,9 +84,9 @@ public class AlterarTipoServico extends JFrame
 		try
 		{
 			TipoServico tiposervico = new TipoServico();
-			TipoServicoController servicoController = TipoServicoController.getInstance();
+			ServiceTypeController servicoController = ServiceTypeController.getInstance();
 			tiposervico.setNomeTipoServico(TipoServico.getTempNome() );
-			ResultSet rs = servicoController.pesquisarPorNome(tiposervico);
+			ResultSet rs = servicoController.searchServiceTypeByName(tiposervico);
 
 			while (rs.next())
             {
@@ -115,8 +115,8 @@ public class AlterarTipoServico extends JFrame
 					tipoServico.setNomeTipoServico(textFieldNome.getText() );
 					tipoServico.setPreco(textFieldPreco.getText() );
 
-					TipoServicoController tipoServicoController = TipoServicoController.getInstance();
-					tipoServicoController.alterar(nome,tipoServico);
+					ServiceTypeController tipoServicoController = ServiceTypeController.getInstance();
+					tipoServicoController.modifyServiceType(nome,tipoServico);
 
 					JOptionPane.showMessageDialog(null, "Tipo de Serviço "
 							+ textFieldNome.getText()

@@ -15,7 +15,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
-import control.TipoServicoController;
+import control.ServiceTypeController;
 import model.TipoServico;
 import exception.ServicoException;
 
@@ -74,9 +74,9 @@ public class CadastrarTipoServico extends JFrame
 		final JTable table = new JTable(modelo);
 		try 
 		{
-			TipoServicoController servicoController = TipoServicoController.getInstance();
+			ServiceTypeController servicoController = ServiceTypeController.getInstance();
 			TipoServico servico= new TipoServico();
-			ResultSet rs = servicoController.mostrarTipoServicoCadastrados(servico);
+			ResultSet rs = servicoController.showRegistredServiceTypes(servico);
 			while (rs.next())
 			{
 				String[] dados = new String[5];
@@ -165,10 +165,10 @@ public class CadastrarTipoServico extends JFrame
 
 				if(confirmacao == JOptionPane.YES_OPTION) 
 				{
-					TipoServicoController tipoServicoController = TipoServicoController.getInstance();
+					ServiceTypeController tipoServicoController = ServiceTypeController.getInstance();
 					try 
 					{
-						tipoServicoController.excluir(tipoServico);
+						tipoServicoController.deleteServiceType(tipoServico);
 					}
 					catch (SQLException e1) 
 					{
@@ -197,7 +197,7 @@ public class CadastrarTipoServico extends JFrame
 			public void actionPerformed (ActionEvent arg0)
 			{
 				dispose();
-				Administrativo frame = new Administrativo();
+				Administrative frame = new Administrative();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}

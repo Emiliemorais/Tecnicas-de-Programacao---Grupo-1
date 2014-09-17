@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import control.TipoServicoController;
+import control.ServiceTypeController;
 import exception.ServicoException;
 import model.TipoServico;
 import java.awt.event.ActionListener;
@@ -95,9 +95,9 @@ public class NovoTipoServico extends JFrame
 					tipoServico.setNomeTipoServico(textFieldServico.getText() );
 					tipoServico.setPreco(textFieldPreco.getText() );
 
-					TipoServicoController tipoServicoController = TipoServicoController
+					ServiceTypeController tipoServicoController = ServiceTypeController
 							.getInstance();
-					tipoServicoController.inserir(tipoServico);
+					tipoServicoController.includeServiceType(tipoServico);
 
 					JOptionPane.showMessageDialog(null, "Serviço "
 							+ textFieldServico.getText()

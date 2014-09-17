@@ -77,7 +77,7 @@ public class MenuPrincipal extends JFrame
 			public void actionPerformed ( ActionEvent e ) 
 			{
 				dispose();
-				Administrativo frame = new Administrativo ();
+				Administrative frame = new Administrative ();
 				frame.setVisible ( true );
 				frame.setLocationRelativeTo ( null );
 			}

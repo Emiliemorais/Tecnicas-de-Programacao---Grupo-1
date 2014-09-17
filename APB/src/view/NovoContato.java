@@ -92,7 +92,7 @@ public class NovoContato extends JFrame
 					textFieldDescricao.setText ( "" );
 					
 					dispose();
-					CadastrarAgenda frame =  new CadastrarAgenda () ;
+					RegisterPhonebook frame =  new RegisterPhonebook () ;
 					frame.setVisible ( true );
 					frame.setLocationRelativeTo ( null );
 					
@@ -118,7 +118,7 @@ public class NovoContato extends JFrame
 			public void mouseClicked ( MouseEvent e ) 
 			{
 				dispose();
-				CadastrarAgenda frame = new CadastrarAgenda ();
+				RegisterPhonebook frame = new RegisterPhonebook ();
 				frame.setVisible ( true );
 				frame.setLocationRelativeTo ( null );
 			}// Fim do metodo

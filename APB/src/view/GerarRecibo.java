@@ -23,7 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
 
-import control.BarbeiroController;
+import control.BarberController;
 import control.ReciboController;
 
 import com.javadocx.CreateDocx;
@@ -47,7 +47,7 @@ public class GerarRecibo extends JFrame
 	 * Launch the application.
 	 */
 
-	// Método utilizado para converter a data no formato da ABNT
+	// Mï¿½todo utilizado para converter a data no formato da ABNT
 	public String ConverterDataParaABNT (String data) throws ParseException
 	{
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -59,7 +59,7 @@ public class GerarRecibo extends JFrame
 		return databr;
 	}
 
-	// Método utilizado para converter a data no formato da ABNT sem a barra
+	// Mï¿½todo utilizado para converter a data no formato da ABNT sem a barra
 	public String ConverterDataParaABNTSemBarra(String data) throws ParseException 
 	{
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -71,7 +71,7 @@ public class GerarRecibo extends JFrame
 		return databr;
 	}
 
-	// Método utilizado para converter a data no formato da ISO
+	// Mï¿½todo utilizado para converter a data no formato da ISO
 	private String ConverterDataParaISO (String data) throws ParseException
 	{
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -90,7 +90,7 @@ public class GerarRecibo extends JFrame
 			new Runnable()
 			{
 			
-				// Método que inicializa a janela de geração de recibo
+				// Mï¿½todo que inicializa a janela de geraï¿½ï¿½o de recibo
 				public void run()
 				{
 					try 
@@ -130,7 +130,7 @@ public class GerarRecibo extends JFrame
 
 		try
 		{
-			ResultSet rs = BarbeiroController.getInstance().pesquisar();
+			ResultSet rs = BarberController.getInstance().searchBarbers();
 			
 			while ( rs.next() ) 
 			{
@@ -167,7 +167,7 @@ public class GerarRecibo extends JFrame
 		btnGerarRecibo.addMouseListener(new MouseAdapter() 
 		{
 			
-			// Método utilizado para gerar um recibo no formato "docx"
+			// Mï¿½todo utilizado para gerar um recibo no formato "docx"
 			@Override
 			public void mouseClicked(MouseEvent e)
 			{
@@ -295,12 +295,12 @@ public class GerarRecibo extends JFrame
 		btnVoltar.addMouseListener(new MouseAdapter()
 		{
 			
-			// Método que volta para a janela administrativa
+			// Mï¿½todo que volta para a janela administrativa
 			@Override
 			public void mouseClicked(MouseEvent arg0)
 			{
 				dispose();
-				Administrativo frame = new Administrativo();
+				Administrative frame = new Administrative();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}
@@ -309,7 +309,7 @@ public class GerarRecibo extends JFrame
 		contentPane.add(btnVoltar);
 	}
 
-	// Método que mostra uma mensagem de erro, utilizado no tratamento das exceções da classe
+	// Mï¿½todo que mostra uma mensagem de erro, utilizado no tratamento das exceï¿½ï¿½es da classe
 	private void mostrarMensagemDeErro(String informacao)
 	{
 		JOptionPane.showMessageDialog(null, informacao, "AtenÃ§Ã£o",

@@ -11,7 +11,7 @@ import model.TipoServico;
 import org.junit.Before;
 import org.junit.Test;
 
-import control.TipoServicoController;
+import control.ServiceTypeController;
 import exception.ServicoException;
 
 // Inicio da Classe TipoServicoControllerTeste
@@ -20,7 +20,7 @@ public class TipoServicoControllerTeste
 
 	// Instancias da classe
 	TipoServico servico = new TipoServico();
-	TipoServicoController servicoController = TipoServicoController
+	ServiceTypeController servicoController = ServiceTypeController
 			.getInstance();
 
 	@Before
@@ -38,7 +38,7 @@ public class TipoServicoControllerTeste
 	@Test
 	public void getInstanceDeTipoServicoControllerDeveRetornarInstanciaCorrente()
 	{
-		assertEquals(TipoServicoController.getInstance(), servicoController);
+		assertEquals(ServiceTypeController.getInstance(), servicoController);
 	}//Fim  do metodo
 
 	@Test
@@ -46,7 +46,7 @@ public class TipoServicoControllerTeste
 	public void inserirDeTipoServicoControllerDeveEnviarUmTipoServico()
 	{
 		try {
-			assertTrue(servicoController.inserir(servico));
+			assertTrue(servicoController.includeServiceType(servico));
 		} catch (SQLException e) 
 		{
 			e.printStackTrace();
@@ -58,7 +58,7 @@ public class TipoServicoControllerTeste
 	public void excluirDeTipoServicoControllerDeveRemoverUmTipoServico() 
 	{
 		try {
-			assertTrue(servicoController.excluir(servico));
+			assertTrue(servicoController.deleteServiceType(servico));
 		} catch (SQLException e) 
 		{
 			e.printStackTrace();
@@ -70,7 +70,7 @@ public class TipoServicoControllerTeste
 	public void alterarDeTipoServicoControllerDeveAlterarUmTipoServico()
 	{
 		try {
-			assertTrue(servicoController.alterar(servico.getNomeTipoServico(),
+			assertTrue(servicoController.modifyServiceType(servico.getNomeTipoServico(),
 					servico));
 		} catch (SQLException e) 
 		{
@@ -83,7 +83,7 @@ public class TipoServicoControllerTeste
 	public void inserirTipoServicoNaoPodePassarTipoServicoNullo()
 	{
 		try {
-			assertFalse(servicoController.inserir(null));
+			assertFalse(servicoController.includeServiceType(null));
 		} catch (SQLException e) 
 		{
 			e.printStackTrace();
@@ -99,7 +99,7 @@ public class TipoServicoControllerTeste
 	public void excluirTipoServicoNaoPodePassarTipoServicoNullo() 
 	{
 		try {
-			assertFalse(servicoController.excluir(null));
+			assertFalse(servicoController.deleteServiceType(null));
 		} catch (SQLException e) 
 		{
 			e.printStackTrace();
@@ -115,7 +115,7 @@ public class TipoServicoControllerTeste
 	public void alterarTipoServicoNaoPodePassarTipoServicoNullo() 
 	{
 		try {
-			assertFalse(servicoController.alterar(null, null));
+			assertFalse(servicoController.modifyServiceType(null, null));
 		} catch (SQLException e) 
 		{
 			e.printStackTrace();
@@ -128,7 +128,7 @@ public class TipoServicoControllerTeste
 	public void mostrarBarbeirosDeBarbeiroControllerDeveMostrarUmBarbeiro()
 			throws SQLException 
 			{
-		ResultSet rs = servicoController.mostrarTipoServicoCadastrados(servico);
+		ResultSet rs = servicoController.showRegistredServiceTypes(servico);
 		while (rs.next())
 			;
 	}//Fim  do metodo
@@ -138,7 +138,7 @@ public class TipoServicoControllerTeste
 	public void pesquisarPorNomeDeTipoServicoControllerDeveMostrarUmServico()
 			throws SQLException 
 			{
-		ResultSet rs = servicoController.pesquisarPorNome(servico);
+		ResultSet rs = servicoController.searchServiceTypeByName(servico);
 		while (rs.next())
 			;
 	}//Fim  do metodo

@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import model.Barbeiro;
-import control.BarbeiroController;
+import control.BarberController;
 import exception.BarbeiroException;
 
 @SuppressWarnings("serial")
@@ -124,10 +124,10 @@ public class AlterarBarbeiro extends JFrame
 		try
 		{
 			Barbeiro barbeiro = new Barbeiro();
-			BarbeiroController barbeiroController = BarbeiroController.getInstance();
+			BarberController barbeiroController = BarberController.getInstance();
 			barbeiro.setNome( Barbeiro.getTempNome() );
 			
-			ResultSet rs = barbeiroController.pesquisarPorNome(barbeiro);
+			ResultSet rs = barbeiroController.searchBarberByName(barbeiro);
 			
 			while ( rs.next() ) 
 			{
@@ -165,7 +165,7 @@ public class AlterarBarbeiro extends JFrame
 					barbeiro.setTelefone( textFieldTelefone.getText() );
 					barbeiro.setCadeira( textFieldCadeira.getText() );
 
-					BarbeiroController barbeiroController = BarbeiroController.getInstance();
+					BarberController barbeiroController = BarberController.getInstance();
 					barbeiroController.alterar(nome, barbeiro);
 
 					JOptionPane.showMessageDialog(null, "Barbeiro "

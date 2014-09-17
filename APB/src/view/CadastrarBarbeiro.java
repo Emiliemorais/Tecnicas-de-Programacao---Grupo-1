@@ -17,7 +17,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import model.Barbeiro;
-import control.BarbeiroController;
+import control.BarberController;
 import exception.BarbeiroException;
 // Inicio da classe CadastrarBarbeiro
 @SuppressWarnings ( "serial" )
@@ -74,9 +74,9 @@ public class CadastrarBarbeiro extends JFrame
 
 		try 
 		{
-			BarbeiroController barbeiroController = BarbeiroController.getInstance();
+			BarberController barbeiroController = BarberController.getInstance();
 			Barbeiro barbeiro = new Barbeiro();
-			ResultSet rs = barbeiroController.mostrarBarbeirosCadastrados(barbeiro);
+			ResultSet rs = barbeiroController.showRegisteredBarbers(barbeiro);
 			while ( rs.next () )
 			{
 				String[] dados = new String[5];
@@ -154,8 +154,8 @@ public class CadastrarBarbeiro extends JFrame
 
 					if ( confirmacao == JOptionPane.YES_OPTION ) 
 					{
-						BarbeiroController barbeiroController = BarbeiroController.getInstance();
-						barbeiroController.excluir ( barbeiro );
+						BarberController barbeiroController = BarberController.getInstance();
+						barbeiroController.deleteBarber ( barbeiro );
 
 						dispose();
 						CadastrarBarbeiro frame = new CadastrarBarbeiro ();
@@ -183,7 +183,7 @@ public class CadastrarBarbeiro extends JFrame
 			@Override
 			public void mouseClicked ( MouseEvent arg0 ) 
 			{
-				Administrativo frame = new Administrativo();
+				Administrative frame = new Administrative();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 				dispose();

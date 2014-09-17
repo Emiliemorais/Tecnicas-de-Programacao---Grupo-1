@@ -195,7 +195,7 @@ public class PesquisarContato extends JFrame
 					Agenda.setTempNome ( modelo.getValueAt (
 							table.getSelectedRow (), 0).toString () );
 					dispose ();
-					AlterarContato frame = new AlterarContato();
+					ModifyContact frame = new ModifyContact();
 					frame.setVisible ( true) ;
 					frame.setLocationRelativeTo ( null );
 
@@ -268,7 +268,7 @@ public class PesquisarContato extends JFrame
 			{
 				
 				dispose();
-				CadastrarAgenda frame = new CadastrarAgenda();
+				RegisterPhonebook frame = new RegisterPhonebook();
 				frame.setVisible ( true );
 				frame.setLocationRelativeTo ( null );
 			}// Fim do metodo

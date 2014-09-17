@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 
 import model.Barbeiro;
-import control.BarbeiroController;
+import control.BarberController;
 import exception.BarbeiroException;
 
 import java.awt.event.MouseAdapter;
@@ -137,8 +137,8 @@ public class NovoBarbeiro extends JFrame
 					barbeiro.setTelefone ( textFieldTelefone.getText ( ) );
 					barbeiro.setCadeira ( textFieldCadeira.getText () );
 
-					BarbeiroController barbeiroController = BarbeiroController.getInstance ();
-					barbeiroController.inserir ( barbeiro );
+					BarberController barbeiroController = BarberController.getInstance ();
+					barbeiroController.includeBarber ( barbeiro );
 
 					JOptionPane.showMessageDialog (null, "Barbeiro "
 							+ textFieldNome.getText ()
