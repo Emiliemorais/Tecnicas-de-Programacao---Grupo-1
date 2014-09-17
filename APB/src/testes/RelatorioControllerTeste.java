@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-import model.Relatorio;
+import model.Report;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +17,7 @@ import exception.RelatorioException;
 public class RelatorioControllerTeste 
 {
 
-	Relatorio relatorio = new Relatorio();
+	Report relatorio = new Report();
 	
 	/* 
 	 * Método utilizado para receber os atributos de um Relatorio de forma correta,
@@ -28,10 +28,10 @@ public class RelatorioControllerTeste
 	{
 		try 
 		{
-			relatorio.setBarbeiro("Luciano");
-			relatorio.setDataFinal("09/09/2013");
-			relatorio.setDataInicial("01/01/2013");
-			relatorio.setTipoServico("corte");
+			relatorio.setBarberName("Luciano");
+			relatorio.setFinalDate("09/09/2013");
+			relatorio.setInitialDate("01/01/2013");
+			relatorio.setServiceType("corte");
 		}
 		catch (NullPointerException e) 
 		{

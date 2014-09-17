@@ -158,7 +158,8 @@ public class NewServiceType extends JFrame
 		contentPane.add(btnBack);
 	}
 	
-	/* Method that shows the error message when a exception is triggered
+	/* 
+	 * Method that shows the error message when a exception is triggered
 	 * Parameter: exceptionInformation - String that contains the message from the exception 
 	 */
 	private void mostrarMensagemDeErro(String exceptionInformation)

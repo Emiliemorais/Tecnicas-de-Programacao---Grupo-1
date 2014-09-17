@@ -275,7 +275,7 @@ public class NovoServicoPrestado extends JFrame
 			public void mouseClicked(MouseEvent arg0) 
 			{
 				dispose();
-				CadastrarServicoPrestado frame = new CadastrarServicoPrestado();
+				RegisterDoneService frame = new RegisterDoneService();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}

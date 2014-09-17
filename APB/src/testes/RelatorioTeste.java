@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 
 import java.text.ParseException;
 
-import model.Relatorio;
+import model.Report;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +16,7 @@ import exception.RelatorioException;
 public class RelatorioTeste 
 {
 
-	Relatorio relatorio;
+	Report relatorio;
 
 	@Before
 	/*
@@ -26,12 +26,12 @@ public class RelatorioTeste
 	public void setUp () throws ParseException 
 	{
 		try {
-			relatorio = new Relatorio () ;
+			relatorio = new Report () ;
 
-			relatorio.setBarbeiro ( "Chico" );
-			relatorio.setTipoServico ( "barba" );
-			relatorio.setDataInicial ( "01/01/2013" );
-			relatorio.setDataFinal ( "09/09/2013");
+			relatorio.setBarberName ( "Chico" );
+			relatorio.setServiceType ( "barba" );
+			relatorio.setInitialDate ( "01/01/2013" );
+			relatorio.setFinalDate ( "09/09/2013");
 
 		} catch  ( NullPointerException e ) 
 		{
@@ -51,7 +51,7 @@ public class RelatorioTeste
 	public void dataInicialNaoPodeSerSettadaNula() throws NullPointerException,
 			ParseException {
 		try {
-			relatorio.setDataInicial(null);
+			relatorio.setInitialDate(null);
 		} catch ( RelatorioException e ) 
 		{
 			e.printStackTrace();
@@ -70,7 +70,7 @@ public class RelatorioTeste
 
 		// Comeco do try
 		try {
-			relatorio.setDataInicial("");
+			relatorio.setInitialDate("");
 		} catch ( RelatorioException e ) 
 		{
 			e.printStackTrace();
@@ -88,7 +88,7 @@ public class RelatorioTeste
 
 		// Inicio do try
 		try {
-			relatorio.setDataFinal(null);
+			relatorio.setFinalDate(null);
 		} catch ( RelatorioException e ) 
 		{
 			e.printStackTrace();
@@ -107,7 +107,7 @@ public class RelatorioTeste
 
 		// Inicio do try
 		try {
-			relatorio.setDataFinal("");
+			relatorio.setFinalDate("");
 		} catch ( RelatorioException e ) 
 		{
 			e.printStackTrace();
@@ -122,7 +122,7 @@ public class RelatorioTeste
 	public void barbeiroNaoPodeSerSettadoNulo() 
 	{
 		try {
-			relatorio.setBarbeiro ( null );
+			relatorio.setBarberName ( null );
 		} catch ( RelatorioException e ) 
 		{
 			e.printStackTrace ();
@@ -137,7 +137,7 @@ public class RelatorioTeste
 	public void barbeiroNaoPodeSerSettoEmBranco () 
 	{
 		try {
-			relatorio.setBarbeiro("");
+			relatorio.setBarberName("");
 		} catch ( RelatorioException e )
 		{
 			e.printStackTrace();
@@ -152,7 +152,7 @@ public class RelatorioTeste
 	public void tipoDeServicoNaoPodeSerSettadoNulo ()
 	{
 		try {
-			relatorio.setTipoServico( null );
+			relatorio.setServiceType( null );
 		} catch ( RelatorioException e ) 
 		{
 			e.printStackTrace ();
@@ -167,7 +167,7 @@ public class RelatorioTeste
 	public void tipoDeServicoNaoPodeSerSettoEmBranco () 
 	{
 		try {
-			relatorio.setTipoServico("");
+			relatorio.setServiceType("");
 		} catch ( RelatorioException e )
 		{
 			e.printStackTrace();
@@ -182,7 +182,7 @@ public class RelatorioTeste
 	public void construtorDeRelatorioNaoPodePassarBarbeiroNulo () 
 	{
 		try {
-			new Relatorio ( "2013-01-01", "2013-01-01", null, "barba" );
+			new Report ( "2013-01-01", "2013-01-01", null, "barba" );
 		} catch ( RelatorioException e ) {
 			e.printStackTrace ();
 		}
@@ -196,7 +196,7 @@ public class RelatorioTeste
 	public void construtorDeRelatorioNaoPodePassarDataFinalNula() 
 	{
 		try {
-			new Relatorio ( "2013-01-01", null, "Chico", "barba" );
+			new Report ( "2013-01-01", null, "Chico", "barba" );
 		} catch ( RelatorioException e ) 
 		{
 			e.printStackTrace ();
@@ -211,7 +211,7 @@ public class RelatorioTeste
 	public void construtorDeRelatorioNaoPodePassarDataInicialNula ()
 	{
 		try {
-			new Relatorio(null, "2013-01-01", "Chico", "barba");
+			new Report(null, "2013-01-01", "Chico", "barba");
 		} catch (RelatorioException e) 
 		{
 			e.printStackTrace();
@@ -226,7 +226,7 @@ public class RelatorioTeste
 	public void construtorDeRelatorioNaoPodePassarTipoServicoNulo () 
 	{
 		try {
-			new Relatorio ( "2013-01-01", "2013-01-01", "Chico", null );
+			new Report ( "2013-01-01", "2013-01-01", "Chico", null );
 		} catch ( RelatorioException e ) 
 		{
 			e.printStackTrace ();
@@ -238,7 +238,7 @@ public class RelatorioTeste
 	public void construtorDeRelatorioPassandoTodosOsDadosCorretos () 
 	{
 		try {
-			new Relatorio ( "2013-01-01", "2013-12-31", "Chico", "barba" );
+			new Report ( "2013-01-01", "2013-12-31", "Chico", "barba" );
 			assertEquals ( relatorio, relatorio );
 		} catch (RelatorioException e) {
 			e.printStackTrace ();
@@ -249,28 +249,28 @@ public class RelatorioTeste
 	@Test
 	public void metodoParaTestarGetterDeBarbeiro () 
 	{
-		assertEquals ( "Chico", relatorio.getBarbeiro () );
+		assertEquals ( "Chico", relatorio.getBarberName () );
 	}// Fim do metodo
 		// Chamada para metodo que testa TipoDeServico()
 
 	@Test
 	public void metodoParaTestarGetterDeTipoDeServico () 
 	{
-		assertEquals ( "barba", relatorio.getTipoServico () );
+		assertEquals ( "barba", relatorio.getServiceType () );
 	}// Fim do metodo
 		// Chamada para metodo que testa DataInicial
 
 	@Test
 	public void metodoParaTestarGetterDeDataInicial ()
 	{
-		assertEquals ( "2013-01-01", relatorio.getDataInicial () );
+		assertEquals ( "2013-01-01", relatorio.getInitialDate () );
 	}// Fim do metodo
 		// Chamada para metodo que testa DataFinal
 
 	@Test
 	public void metodoParaTestarGetterDeDataFinal() 
 	{
-		assertEquals( "2013-09-09", relatorio.getDataFinal () );
+		assertEquals( "2013-09-09", relatorio.getFinalDate () );
 	}// Fim do metodo
 		// Chamada para metodo que testa Converter
 
@@ -278,7 +278,7 @@ public class RelatorioTeste
 	public void testeDataParaConverter () 
 	{
 		try {
-			relatorio.ConverterDataParaABNT( "2010-10-10" );
+			relatorio.convertDateToAbntFormat( "2010-10-10" );
 		} catch ( ParseException e ) {
 			e.printStackTrace();
 		}

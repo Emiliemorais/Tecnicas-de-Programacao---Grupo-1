@@ -87,7 +87,8 @@ public class Administrative extends JFrame
 		btnBarber.setBounds(10, 45, 157, 37);
 		administrativePanel.add(btnBarber);
 		
-		/* Button that calls the class 'RegisterServiceType'
+		/* 
+		 * Button that calls the class 'RegisterServiceType'
 		 *  (Create a frame to register a service type)
 		 */
 		JButton btnServiceType = new JButton("Tipo de Servi\u00E7o");
@@ -106,7 +107,8 @@ public class Administrative extends JFrame
 		btnServiceType.setBounds(215, 45, 149, 37);
 		administrativePanel.add(btnServiceType);
 		
-		/* Button that calls the class 'RegisterPhonebook'
+		/* 
+		 * Button that calls the class 'RegisterPhonebook'
 		 * (Create a frame to register a phonebook)
 		 */
 		JButton btnPhonebook = new JButton("Agenda");
@@ -127,7 +129,8 @@ public class Administrative extends JFrame
 		btnPhonebook.setBounds(10, 93, 157, 37);
 		administrativePanel.add(btnPhonebook);
 		
-		/* Button that calls the class 'MainMenu' 
+		/* 
+		 * Button that calls the class 'MainMenu' 
 		 * (Create a frame that links to the main menu)
 		 */
 		JButton btnBack = new JButton("Voltar");
@@ -147,7 +150,8 @@ public class Administrative extends JFrame
 		btnBack.setBounds(151, 141, 89, 23);
 		administrativePanel.add(btnBack);
 		
-		/* Button that calls the class 'GenerateReceipt' 
+		/*
+		 * Button that calls the class 'GenerateReceipt' 
 		 * (Create a frame that allows to create a receipt)
 		 */
 		JButton btnReceipt = new JButton("Recibo");

@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import model.Relatorio;
+import model.Report;
 
 public class RelatorioDAO 
 {
@@ -32,86 +32,86 @@ public class RelatorioDAO
 	}
 
     // Interface que provê acesso aos relatorios cadastrados e permite que sejam pesquisados por data
-	public ResultSet pesquisarPorData (Relatorio relatorio) throws SQLException
+	public ResultSet pesquisarPorData (Report relatorio) throws SQLException
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE data BETWEEN '"
-				                                            +relatorio.getDataInicial()+"' AND '"
-				                                            +relatorio.getDataFinal()+"';");
+				                                            +relatorio.getInitialDate()+"' AND '"
+				                                            +relatorio.getFinalDate()+"';");
 		ResultSet rs = pst.executeQuery();
 		
 		return rs;
 	}
         
     // Interface que provê acesso aos relatorios cadastrados e permite que sejam pesquisados por data e por barbeiro 
-	public ResultSet pesquisarPorDataEBarbeiro(Relatorio relatorio) throws SQLException 
+	public ResultSet pesquisarPorDataEBarbeiro(Report relatorio) throws SQLException 
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE data BETWEEN '"
-															+relatorio.getDataInicial()+"' AND '"
-															+relatorio.getDataFinal()+"' AND barbeiro = '"
-															+relatorio.getBarbeiro()+"';");
+															+relatorio.getInitialDate()+"' AND '"
+															+relatorio.getFinalDate()+"' AND barbeiro = '"
+															+relatorio.getBarberName()+"';");
 		ResultSet rs = pst.executeQuery();
 		
 		return rs;
 	}
         
     // Interface que provê acesso aos relatorios cadastrados e permite que sejam pesquisados por data e serviço
-	public ResultSet pesquisarPorDataEServico(Relatorio relatorio) throws SQLException
+	public ResultSet pesquisarPorDataEServico(Report relatorio) throws SQLException
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE data BETWEEN '"
-															+relatorio.getDataInicial()+"' AND '"
-															+relatorio.getDataFinal()+"' AND nome = '"
-															+relatorio.getTipoServico()+"';");
+															+relatorio.getInitialDate()+"' AND '"
+															+relatorio.getFinalDate()+"' AND nome = '"
+															+relatorio.getServiceType()+"';");
 		ResultSet rs = pst.executeQuery();
 		
 		return rs;
 	}
         
     // Interface que provê acesso aos relatorios cadastrados e permite que sejam pesquisados por barbeiro
-	public ResultSet pesquisarPorBarbeiro(Relatorio relatorio) throws SQLException
+	public ResultSet pesquisarPorBarbeiro(Report relatorio) throws SQLException
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE barbeiro = '"
-															+relatorio.getBarbeiro()+"';");
+															+relatorio.getBarberName()+"';");
 		ResultSet rs = pst.executeQuery();
 		
 		return rs;
 	}
         
     // Interface que provê acesso aos relatorios cadastrados e permite que sejam pesquisados por barbeiro e servico
-	public ResultSet pesquisarPorBarbeiroEServico(Relatorio relatorio) throws SQLException 
+	public ResultSet pesquisarPorBarbeiroEServico(Report relatorio) throws SQLException 
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE barbeiro = '"
-															+relatorio.getBarbeiro()+"' AND nome = '"	
-															+relatorio.getTipoServico()+"';");
+															+relatorio.getBarberName()+"' AND nome = '"	
+															+relatorio.getServiceType()+"';");
 		ResultSet rs = pst.executeQuery();
 		
 		return rs;
 	}
         
     // Interface que provê acesso aos relatorios cadastrados e permite que sejam pesquisados por servico
-	public ResultSet pesquisarPorServico(Relatorio relatorio)throws SQLException 
+	public ResultSet pesquisarPorServico(Report relatorio)throws SQLException 
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE nome = '"
-															+relatorio.getTipoServico()+"';");
+															+relatorio.getServiceType()+"';");
 		ResultSet rs = pst.executeQuery();
 		
 		return rs;
 	}
         
     // Interface que provê acesso aos relatorios cadastrados e permite que sejam pesquisados por data, barbeiro e serviço
-	public ResultSet pesquisarPorDataBarbeiroEServico(Relatorio relatorio)throws SQLException
+	public ResultSet pesquisarPorDataBarbeiroEServico(Report relatorio)throws SQLException
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE data BETWEEN '"
-															+relatorio.getDataInicial()+"' AND '"
-															+relatorio.getDataFinal()+"' AND barbeiro = '"
-															+relatorio.getBarbeiro()+"' AND nome = '"
-															+relatorio.getTipoServico()+"';");
+															+relatorio.getInitialDate()+"' AND '"
+															+relatorio.getFinalDate()+"' AND barbeiro = '"
+															+relatorio.getBarberName()+"' AND nome = '"
+															+relatorio.getServiceType()+"';");
 		ResultSet rs = pst.executeQuery();
 		
 		return rs;

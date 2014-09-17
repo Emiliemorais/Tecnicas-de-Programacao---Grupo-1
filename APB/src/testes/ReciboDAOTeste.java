@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
-import model.Relatorio;
+import model.Report;
 import org.junit.Before;
 import org.junit.Test;
 import dao.AgendaDAO;
@@ -18,7 +18,7 @@ import exception.RelatorioException;
 // Início da classe
 public class ReciboDAOTeste
 {
-	Relatorio relatorio = new Relatorio();
+	Report relatorio = new Report();
 
 // Tratamento de exceções
 	@Before
@@ -26,9 +26,9 @@ public class ReciboDAOTeste
 	{
 		try
 		{
-			relatorio.setBarbeiro("Fulano");
-			relatorio.setDataFinal("09/09/2013");
-			relatorio.setDataInicial("01/01/2013");
+			relatorio.setBarberName("Fulano");
+			relatorio.setFinalDate("09/09/2013");
+			relatorio.setInitialDate("01/01/2013");
 		}
 		catch (RelatorioException e)
 		{
@@ -51,8 +51,8 @@ public class ReciboDAOTeste
 		{
 			ReciboDAO reciboDAO = ReciboDAO.getInstance();
 			ResultSet rs = reciboDAO.pesquisarServicosDoBarbeiro(
-					relatorio.getBarbeiro(), relatorio.getDataInicial(),
-					relatorio.getDataFinal());
+					relatorio.getBarberName(), relatorio.getInitialDate(),
+					relatorio.getFinalDate());
 
 			while (rs.next())
                 {

@@ -55,7 +55,7 @@ public class RegisterPhonebook extends JFrame
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		// Add a scrool pane to the frame
+		// Add a scroll pane to the frame
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 21, 435, 401);
 		contentPane.add(scrollPane);
@@ -95,7 +95,8 @@ public class RegisterPhonebook extends JFrame
 			
 			while ( queryForContactsResult.next() )
             {
-				/* Array used to receive the data from every column (from queryForContactsResult)
+				/* 
+				 * Array used to receive the data from every column (from queryForContactsResult)
 				 *   and then add on the rows.
 				 */
 				String[] dataFromQuery = new String[3];
@@ -178,7 +179,8 @@ public class RegisterPhonebook extends JFrame
 	}
 
 
-	/* Method that shows the error message when a exception is triggered
+	/* 
+	 * Method that shows the error message when a exception is triggered
 	 * Parameter: excceptionInformation - String that contains the message from the exception 
 	 */
 	private void showErrorMessage(String exceptionInformation)

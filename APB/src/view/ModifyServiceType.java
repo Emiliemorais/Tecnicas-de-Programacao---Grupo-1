@@ -89,7 +89,8 @@ public class ModifyServiceType extends JFrame
 
 		try
 		{
-			/* Used to pass as argument on the method 'searchServiceTypeByName' 
+			/* 
+			 * Used to pass as argument on the method 'searchServiceTypeByName' 
 			 * (service type name to search on DB )
 			 */
 			TipoServico serviceType = new TipoServico();
@@ -136,7 +137,7 @@ public class ModifyServiceType extends JFrame
 					serviceType.setNomeTipoServico(textFieldServiceTypeName.getText() );
 					serviceType.setPreco(textFieldServiceTypePrice.getText() );
 					
-					// Intantiated to get access to the method 'modifyServiceType' 
+					// Instantiated to get access to the method 'modifyServiceType' 
 					ServiceTypeController serviceTypeController;
 					
 					serviceTypeController = ServiceTypeController.getInstance();
@@ -202,7 +203,8 @@ public class ModifyServiceType extends JFrame
 		contentPane.add(btnVoltar);
 	}
 	
-	/* Method that shows the error message when a exception is triggered
+	/* 
+	 * Method that shows the error message when a exception is triggered
 	 * Parameter: exceptionInformation - String that contains the message from the exception 
 	 */
 	private void showErrorMessage(String exceptionInformation)

@@ -91,7 +91,7 @@ public class MenuPrincipal extends JFrame
 			public void actionPerformed ( ActionEvent e ) 
 			{
 				dispose ();
-				CadastrarServicoPrestado frame = new CadastrarServicoPrestado ();
+				RegisterDoneService frame = new RegisterDoneService ();
 				frame.setVisible ( true );
 				frame.setLocationRelativeTo ( null );
 			}

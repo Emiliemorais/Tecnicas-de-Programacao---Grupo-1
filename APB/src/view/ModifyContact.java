@@ -177,7 +177,8 @@ public class ModifyContact extends JFrame
 		btnSaveChanges.setBounds(83, 136, 153, 31);
 		contentPane.add(btnSaveChanges);
 		
-		/* Button that calls the class 'RegisterPhonebook'
+		/* 
+		 * Button that calls the class 'RegisterPhonebook'
 		 * (Create a frame to go back in phonebook options) 
 		 */
 		JButton btnBack = new JButton("Voltar");
@@ -199,7 +200,8 @@ public class ModifyContact extends JFrame
 		contentPane.add(btnBack);
 	}
 
-	/* Method that shows the error message when a exception is triggered
+	/* 
+	 * Method that shows the error message when a exception is triggered
 	 * Parameter: exceptionInformation - String that contains the message from the exception 
 	 */
 	private void showErrorMessage(String exceptionInformation)

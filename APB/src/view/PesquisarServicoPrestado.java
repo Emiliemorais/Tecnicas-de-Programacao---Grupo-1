@@ -212,7 +212,7 @@ public class PesquisarServicoPrestado extends JFrame
 						servicoController.excluir(servico);
 
 						dispose();
-						CadastrarServicoPrestado frame = new CadastrarServicoPrestado();
+						RegisterDoneService frame = new RegisterDoneService();
 						frame.setVisible(true);
 						frame.setLocationRelativeTo(null);
 					}
@@ -251,7 +251,7 @@ public class PesquisarServicoPrestado extends JFrame
 			public void mouseClicked (MouseEvent e) 
 			{
 				dispose();
-				CadastrarServicoPrestado frame = new CadastrarServicoPrestado();
+				RegisterDoneService frame = new RegisterDoneService();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}

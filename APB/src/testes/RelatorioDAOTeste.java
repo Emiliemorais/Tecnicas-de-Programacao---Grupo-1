@@ -9,14 +9,14 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import model.Relatorio;
+import model.Report;
 import dao.RelatorioDAO;
 import exception.RelatorioException;
 
 public class RelatorioDAOTeste
 {
 
-	Relatorio relatorio = new Relatorio();
+	Report relatorio = new Report();
 
 	/* 
 	 * Método utilizado para receber os atributos de um relatorio de forma correta,
@@ -27,10 +27,10 @@ public class RelatorioDAOTeste
 	{
 		try
 		{
-			relatorio.setBarbeiro("Luciano");
-			relatorio.setDataFinal("09/09/2013");
-			relatorio.setDataInicial("01/01/2013");
-			relatorio.setTipoServico("corte");
+			relatorio.setBarberName("Luciano");
+			relatorio.setFinalDate("09/09/2013");
+			relatorio.setInitialDate("01/01/2013");
+			relatorio.setServiceType("corte");
 		} 
 		catch (NullPointerException e)
 		{
