@@ -200,12 +200,12 @@ public class ModifyContact extends JFrame
 	}
 
 	/* Method that shows the error message when a exception is triggered
-	 * Parameter: excceptionInformation - String that contains the message from the exception 
+	 * Parameter: exceptionInformation - String that contains the message from the exception 
 	 */
 	private void showErrorMessage(String exceptionInformation)
 	{
 		JOptionPane.showMessageDialog(null, exceptionInformation, "Atenção",
-				JOptionPane.INFORMATION_MESSAGE);
+									  JOptionPane.INFORMATION_MESSAGE);
 	}
 
 }

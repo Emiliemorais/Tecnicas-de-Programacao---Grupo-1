@@ -102,7 +102,7 @@ public class CadastrarTipoServico extends JFrame
 			{
 
 				dispose();
-				NovoTipoServico frame = new NovoTipoServico();
+				NewServiceType frame = new NewServiceType();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 
@@ -122,7 +122,7 @@ public class CadastrarTipoServico extends JFrame
 				try 
 				{
 					TipoServico.setTempNome(modelo.getValueAt(table.getSelectedRow(), 0).toString());
-					AlterarTipoServico frame = new AlterarTipoServico();
+					ModifyServiceType frame = new ModifyServiceType();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 					dispose();
