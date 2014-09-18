@@ -47,7 +47,7 @@ import static livraria_abc.Livraria_ABC.clienteAtual;
             
             comp.Endereco_entrega = end_compra;
             comp.Tipo_pag = tipo_pag;
-            comp.Valor_compra = Cesta.Calcula_valor_compra();
+            comp.Valor_compra = Cart.calculateCartValue();
             comp.Cod_compra = COD_compra;
            
             Compras.add(comp);
@@ -112,7 +112,7 @@ import static livraria_abc.Livraria_ABC.clienteAtual;
             float total;
             String tipo_p;
             
-            total = Cesta.Calcula_valor_compra();
+            total = Cart.calculateCartValue();
             
             System.out.printf("\nO valor total a ser pago é R$%.2f.\n",total);
             
@@ -150,7 +150,7 @@ import static livraria_abc.Livraria_ABC.clienteAtual;
             
             System.out.println("\nSeu pedido é: ");
             
-            Cesta.Listar_itens_cesta_();
+            Cart.Listar_itens_cesta_();
             
             System.out.println("\nEndereço de entrega: "+end_compra);
             System.out.println("\nTipo de pagamento: "+tipo_pag);
@@ -162,7 +162,7 @@ import static livraria_abc.Livraria_ABC.clienteAtual;
             {
                 System.out.println("\nCompra realizada com sucesso!\n");
                 
-                Cesta.Esvaziar_cesta();
+                Cart.emptyCart();
                 
                 Cadastrar_compra();
                 

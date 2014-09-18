@@ -121,7 +121,7 @@ public class Livro
                                        + Titulo.get(i) + "' desejada: ");
                     quant = input.nextInt();
                     
-                    Cesta.Adicionar_itens_a_cesta(ISBN.get(i),quant,cliente_log);
+                    Cart.addItemsToCart(ISBN.get(i),quant,cliente_log);
                 }
                 else
                 {
