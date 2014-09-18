@@ -5,7 +5,7 @@ package control;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import dao.ServicoPrestadoDAO;
+import dao.DoneServiceDAO;
 import model.ServicoPrestado;
 // Fim das importações
 
@@ -40,7 +40,7 @@ public class ServicoPrestadoController
 	{
 		if (servico != null)
         {
-			ServicoPrestadoDAO.getInstance().incluir(servico);
+			DoneServiceDAO.getInstance().includeServiceType(servico);
 			return true;
 		}
 		else
@@ -57,7 +57,7 @@ public class ServicoPrestadoController
 	{
 		if (servico !=  null)
         {
-			ServicoPrestadoDAO.getInstance().excluir(servico);
+			DoneServiceDAO.getInstance().deleteServiceType(servico);
 			return true;
 		}
 		else
@@ -71,7 +71,7 @@ public class ServicoPrestadoController
 	// Metodo que prove informações sobre os servico prestados que estao cadastrados
 	public ResultSet mostrarServicosPrestadosCadastrados(ServicoPrestado servico) throws SQLException
 	{
-		return ServicoPrestadoDAO.getInstance().mostrarServicosPrestadosCadastrados(servico);
+		return DoneServiceDAO.getInstance().showRegistredDoneServices(servico);
 	}
     // Fim do metodo
 

@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import model.TipoServico;
+import model.ServiceType;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +19,7 @@ public class TipoServicoControllerTeste
 {
 
 	// Instancias da classe
-	TipoServico servico = new TipoServico();
+	ServiceType servico = new ServiceType();
 	ServiceTypeController servicoController = ServiceTypeController
 			.getInstance();
 
@@ -27,8 +27,8 @@ public class TipoServicoControllerTeste
 	// Motodo setUp, com fun;'ao de atribuir os valores de teste da classe 
 	public void setUp() {
 		try {
-			servico.setNomeTipoServico("Corte");
-			servico.setPreco("15,00");
+			servico.setServiceTypeName("Corte");
+			servico.setServiceTypePrice("15,00");
 		} catch (ServicoException e) 
 		{
 			e.printStackTrace();
@@ -70,7 +70,7 @@ public class TipoServicoControllerTeste
 	public void alterarDeTipoServicoControllerDeveAlterarUmTipoServico()
 	{
 		try {
-			assertTrue(servicoController.modifyServiceType(servico.getNomeTipoServico(),
+			assertTrue(servicoController.modifyServiceType(servico.getServiceTypeName(),
 					servico));
 		} catch (SQLException e) 
 		{

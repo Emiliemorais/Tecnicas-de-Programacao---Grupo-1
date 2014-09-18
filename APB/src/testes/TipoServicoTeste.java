@@ -2,7 +2,7 @@ package testes;
 
 import static org.junit.Assert.assertEquals;
 import junit.framework.Assert;
-import model.TipoServico;
+import model.ServiceType;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +13,7 @@ import exception.ServicoException;
 public class TipoServicoTeste 
 {
 	
-	TipoServico  servico =  new TipoServico();
+	ServiceType  servico =  new ServiceType();
 	
 	@Before
 	/*
@@ -24,8 +24,8 @@ public class TipoServicoTeste
 	{
 		try
 		{
-			servico.setNomeTipoServico("Corte");
-			servico.setPreco("14,50");
+			servico.setServiceTypeName("Corte");
+			servico.setServiceTypePrice("14,50");
 		} 
 		catch (ServicoException e)
 		{
@@ -40,7 +40,7 @@ public class TipoServicoTeste
 	 */
 	public void getterDeNomeDeveRetornarValorPassado()
 	{
-		assertEquals( "Corte", servico.getNomeTipoServico() );
+		assertEquals( "Corte", servico.getServiceTypeName() );
 	}
 	
 	@Test
@@ -50,7 +50,7 @@ public class TipoServicoTeste
 	 */
 	public void getterDePrecoDeveRetornarValorPassado()
 	{
-		assertEquals( "14,50", servico.getPreco() );
+		assertEquals( "14,50", servico.getServiceTypePrice() );
 	}
 	
 	// Define o erro esperado
@@ -62,7 +62,7 @@ public class TipoServicoTeste
 	 */
 	public void setterDePrecoNaoPodeSerNulo() throws ServicoException
 	{
-		servico.setPreco(null);
+		servico.setServiceTypePrice(null);
 		Assert.fail("Deve lançar exceção");
 	}
 	
@@ -75,7 +75,7 @@ public class TipoServicoTeste
 	 */
 	public void setterDeNomeNaoPodeSerNulo() throws ServicoException 
 	{
-		servico.setNomeTipoServico(null);
+		servico.setServiceTypeName(null);
 		Assert.fail("Deve lançar exceção");
 	}
 	
@@ -88,7 +88,7 @@ public class TipoServicoTeste
 	 */
 	public void setterDePrecoNaoPodeSerInvalido() throws ServicoException 
 	{
-		servico.setPreco("14.50%");
+		servico.setServiceTypePrice("14.50%");
 		Assert.fail("Deve lançar exceção");
 	}
 	
@@ -101,7 +101,7 @@ public class TipoServicoTeste
 	 */
 	public void setterDePrecoServicoNaoPodeSerEmBranco() throws ServicoException
 	{
-		servico.setPreco("");
+		servico.setServiceTypePrice("");
 		Assert.fail("Deve lançar exceção");
 	}
 	
@@ -114,7 +114,7 @@ public class TipoServicoTeste
 	 */
 	public void setterDeNomeServicoNaoPodeSerEmBranco() throws ServicoException
 	{
-		servico.setNomeTipoServico("");
+		servico.setServiceTypeName("");
 		Assert.fail("Deve lançar exceção");
 	}
 	
@@ -128,7 +128,7 @@ public class TipoServicoTeste
 	 */
 	public void getterDeTempNomeDeveRetornarValorPassado() throws ServicoException
 	{
-		assertEquals( "Corte", TipoServico.getTempNome() );
+		assertEquals( "Corte", ServiceType.getTemporaryName() );
 	}
 	
 	// Define o erro esperado
@@ -140,7 +140,7 @@ public class TipoServicoTeste
 	 */
 	public void setterDeTempNomeNaoPodeSerNulo() throws ServicoException 
 	{
-		TipoServico.setTempNome(null);
+		ServiceType.setTemporaryName(null);
 		Assert.fail("Deve lançar exceção");
 	}
 	
@@ -153,7 +153,7 @@ public class TipoServicoTeste
 	 */
 	public void setterDeTempNomeNaoPodeSerEmBranco() throws ServicoException
 	{
-		TipoServico.setTempNome("");
+		ServiceType.setTemporaryName("");
 		Assert.fail("Deve lançar exceção");
 	}
 	
@@ -167,14 +167,14 @@ public class TipoServicoTeste
 	{
 		try
 		{
-			TipoServico.setTempNome("Barba");
+			ServiceType.setTemporaryName("Barba");
 		} 
 		catch (ServicoException e)
 		{
 			e.printStackTrace();
 			Assert.fail("Não Deve lançar exceção");
 		}
-		assertEquals( "Barba", TipoServico.getTempNome() );
+		assertEquals( "Barba", ServiceType.getTemporaryName() );
 	}
 
 }

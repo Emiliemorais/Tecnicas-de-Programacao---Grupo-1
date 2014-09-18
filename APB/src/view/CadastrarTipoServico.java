@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import control.ServiceTypeController;
-import model.TipoServico;
+import model.ServiceType;
 import exception.ServicoException;
 
 @SuppressWarnings("serial")
@@ -75,7 +75,7 @@ public class CadastrarTipoServico extends JFrame
 		try 
 		{
 			ServiceTypeController servicoController = ServiceTypeController.getInstance();
-			TipoServico servico= new TipoServico();
+			ServiceType servico= new ServiceType();
 			ResultSet rs = servicoController.showRegistredServiceTypes(servico);
 			while (rs.next())
 			{
@@ -121,7 +121,7 @@ public class CadastrarTipoServico extends JFrame
 			{
 				try 
 				{
-					TipoServico.setTempNome(modelo.getValueAt(table.getSelectedRow(), 0).toString());
+					ServiceType.setTemporaryName(modelo.getValueAt(table.getSelectedRow(), 0).toString());
 					ModifyServiceType frame = new ModifyServiceType();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
@@ -149,11 +149,11 @@ public class CadastrarTipoServico extends JFrame
 			public void mouseClicked(MouseEvent e) 
 			{
 				String nome = (String) table.getValueAt(table.getSelectedRow(),	0);
-				TipoServico tipoServico = new TipoServico();
+				ServiceType tipoServico = new ServiceType();
 				
 				try 
 				{	
-					tipoServico.setNomeTipoServico(nome);
+					tipoServico.setServiceTypeName(nome);
 				} 
 				catch (ServicoException e1) 
 				{

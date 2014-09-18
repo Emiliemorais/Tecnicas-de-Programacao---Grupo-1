@@ -19,7 +19,7 @@ import javax.swing.JButton;
 
 import control.ServiceTypeController;
 import exception.ServicoException;
-import model.TipoServico;
+import model.ServiceType;
 
 @SuppressWarnings("serial")
 public class NewServiceType extends JFrame
@@ -98,10 +98,10 @@ public class NewServiceType extends JFrame
 				try
 				{
 					// Instance used to set the changes made and then save on DB
-					TipoServico serviceType = new TipoServico();
+					ServiceType serviceType = new ServiceType();
 					
-					serviceType.setNomeTipoServico(textFieldServiceTypeName.getText() );
-					serviceType.setPreco(textFieldServiceTypePrice.getText() );
+					serviceType.setServiceTypeName(textFieldServiceTypeName.getText() );
+					serviceType.setServiceTypePrice(textFieldServiceTypePrice.getText() );
 					
 					// Intantiated to get access to the method 'includeServiceType' 
 					ServiceTypeController serviceTypeController = ServiceTypeController

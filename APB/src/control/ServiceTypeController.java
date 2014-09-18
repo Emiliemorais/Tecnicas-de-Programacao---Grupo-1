@@ -4,7 +4,7 @@ package control;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import dao.TipoServicoDAO;
-import model.TipoServico;
+import model.ServiceType;
 
 public class ServiceTypeController
 {
@@ -14,7 +14,7 @@ public class ServiceTypeController
 	/* Method that includes a new service type
 	 * Parameter: serviceTypeToInclude - Service type to be included
 	 */
-	public boolean includeServiceType (TipoServico serviceTypeToInclude) throws SQLException
+	public boolean includeServiceType (ServiceType serviceTypeToInclude) throws SQLException
 	{
 		if( serviceTypeToInclude == null )
         {
@@ -33,7 +33,7 @@ public class ServiceTypeController
 	 * Parameter: newServiceType - New service type that will replace the old one on DB
 	 */
 	public boolean modifyServiceType ( String serviceTypeToChangeName,
-									   TipoServico newServiceType ) throws SQLException
+									   ServiceType newServiceType ) throws SQLException
 	{
 		if ( newServiceType == null )
         {
@@ -42,7 +42,7 @@ public class ServiceTypeController
 		else
         {
 			// Auxiliar variable used to change the service type
-			TipoServico changedServiceType = newServiceType;
+			ServiceType changedServiceType = newServiceType;
 			
 			TipoServicoDAO.getInstance().alterar (serviceTypeToChangeName, changedServiceType,
 												  newServiceType);
@@ -54,7 +54,7 @@ public class ServiceTypeController
 	/* Method that delete a service type on the system
 	 * Parameter: serviceTypeToDelete - Contains the service type to be deleted
 	 */
-	public boolean deleteServiceType (TipoServico serviceTypeToDelete) throws SQLException
+	public boolean deleteServiceType (ServiceType serviceTypeToDelete) throws SQLException
 	{
 		if ( serviceTypeToDelete == null )
         {
@@ -90,7 +90,7 @@ public class ServiceTypeController
 	/* Return a ResultSet interface object with the service types registered on the system
 	 * Parameter: service - Never usede ahead, Check need.
 	 */
-	public ResultSet showRegistredServiceTypes (TipoServico service) throws SQLException
+	public ResultSet showRegistredServiceTypes (ServiceType service) throws SQLException
 	{
 		return TipoServicoDAO.getInstance().mostrarTipoServicoCadastrados(service);
 	}
@@ -99,7 +99,7 @@ public class ServiceTypeController
 	/* Search for an specific service type name
 	 * Parameter: serviceTypeToSearch - Service type to search for
 	 */
-	public ResultSet searchServiceTypeByName (TipoServico serviceTypeToSearch) throws SQLException
+	public ResultSet searchServiceTypeByName (ServiceType serviceTypeToSearch) throws SQLException
 	{
 		return TipoServicoDAO.getInstance().pesquisarPorNome(serviceTypeToSearch);
 	}

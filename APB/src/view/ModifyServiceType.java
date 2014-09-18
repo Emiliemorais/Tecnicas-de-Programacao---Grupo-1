@@ -18,7 +18,7 @@ import javax.swing.JButton;
 
 import control.ServiceTypeController;
 import exception.ServicoException;
-import model.TipoServico;
+import model.ServiceType;
 
 @SuppressWarnings("serial")
 public class ModifyServiceType extends JFrame
@@ -93,12 +93,12 @@ public class ModifyServiceType extends JFrame
 			 * Used to pass as argument on the method 'searchServiceTypeByName' 
 			 * (service type name to search on DB )
 			 */
-			TipoServico serviceType = new TipoServico();
+			ServiceType serviceType = new ServiceType();
 			
 			// Intantiated to get access to the method 'searchServiceTypeByName'
 			ServiceTypeController serviceTypeController = ServiceTypeController.getInstance();
 			
-			serviceType.setNomeTipoServico(TipoServico.getTempNome() );
+			serviceType.setServiceTypeName(ServiceType.getTemporaryName() );
 			
 			// Used to receive the result from the method 'searchServiceTypeByName'
 			ResultSet queryForServicesTypeResult;
@@ -132,10 +132,10 @@ public class ModifyServiceType extends JFrame
 				try
 				{
 					// Instance used to set the changes made and then save on DB
-					TipoServico serviceType = new TipoServico();
+					ServiceType serviceType = new ServiceType();
 					
-					serviceType.setNomeTipoServico(textFieldServiceTypeName.getText() );
-					serviceType.setPreco(textFieldServiceTypePrice.getText() );
+					serviceType.setServiceTypeName(textFieldServiceTypeName.getText() );
+					serviceType.setServiceTypePrice(textFieldServiceTypePrice.getText() );
 					
 					// Instantiated to get access to the method 'modifyServiceType' 
 					ServiceTypeController serviceTypeController;

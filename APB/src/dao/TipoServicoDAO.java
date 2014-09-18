@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 // Importando dados do modelo da classe Tipo de Servico
-import model.TipoServico;
+import model.ServiceType;
 
 public class TipoServicoDAO 
 {
@@ -25,20 +25,20 @@ public class TipoServicoDAO
 		return instance;
 	}
 
-	public boolean incluir ( TipoServico tipoServico ) throws SQLException 
+	public boolean incluir ( ServiceType tipoServico ) throws SQLException 
 	{
 		if ( tipoServico == null )
 			return false;
 		
 		this.updateQuery("INSERT INTO "
 				+ "tiposervico (nome, preco) VALUES ("
-				+ "\"" + tipoServico.getNomeTipoServico() + "\", " + "\""
-				+ tipoServico.getPreco() + "\"); ");
+				+ "\"" + tipoServico.getServiceTypeName() + "\", " + "\""
+				+ tipoServico.getServiceTypePrice() + "\"); ");
 
 		return true;
 	}
 
-	public boolean alterar ( String nome, TipoServico tipoServicoAlterado, TipoServico tipoServico ) throws SQLException 
+	public boolean alterar ( String nome, ServiceType tipoServicoAlterado, ServiceType tipoServico ) throws SQLException 
 	{
 		if ( tipoServicoAlterado == null || tipoServico == null ) 
 			return false;
@@ -48,8 +48,8 @@ public class TipoServicoDAO
 		 */
 		
 		this.updateQuery ("UPDATE tiposervico SET nome = '"
-				+ tipoServicoAlterado.getNomeTipoServico () + "', " + "preco = '"
-				+ tipoServicoAlterado.getPreco ()  + "' WHERE"
+				+ tipoServicoAlterado.getServiceTypeName () + "', " + "preco = '"
+				+ tipoServicoAlterado.getServiceTypePrice ()  + "' WHERE"
 				+ " nome = '" + nome + "';");
 
 		return true;
@@ -61,13 +61,13 @@ public class TipoServicoDAO
 	}// Fim do metodo alterar
 
 	// Metodo que retorna true caso o tipo de servico contenha alguma informacao
-	public boolean excluir ( TipoServico tipoServico ) throws SQLException 
+	public boolean excluir ( ServiceType tipoServico ) throws SQLException 
 	{
 		if ( tipoServico == null )
 			return false;
 		
 		this.updateQuery ( "DELETE FROM tiposervico WHERE "
-				+ "tipoServico.nome = \"" + tipoServico.getNomeTipoServico() + "\";");
+				+ "tipoServico.nome = \"" + tipoServico.getServiceTypeName() + "\";");
 		return true;
 	}// Fim do metodo excluir
 
@@ -85,7 +85,7 @@ public class TipoServicoDAO
 	}// Fim do metodo updateQuery
 	
 	// Metodo que cede o acesso aos relatorios cadastrados e da a opcao de que sejam mostrados
-	public ResultSet mostrarTipoServicoCadastrados ( TipoServico servico ) throws SQLException 
+	public ResultSet mostrarTipoServicoCadastrados ( ServiceType servico ) throws SQLException 
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		ResultSet rs = connection.createStatement().executeQuery ( 
@@ -95,11 +95,11 @@ public class TipoServicoDAO
 	}//Fim do metodo Result mostrarTipoServicoCadastrados
 	
 	// Metodo que cede o acesso aos relatorios cadastrados e da a opcao de que sejam pesquisados por nome
-	public ResultSet pesquisarPorNome ( TipoServico servico ) throws SQLException 
+	public ResultSet pesquisarPorNome ( ServiceType servico ) throws SQLException 
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		java.sql.PreparedStatement pst = connection.prepareStatement ( "SELECT * FROM tiposervico WHERE "
-				+ "nome = '" + servico.getNomeTipoServico() + "';" );
+				+ "nome = '" + servico.getServiceTypeName() + "';" );
 		ResultSet rs = pst.executeQuery();
 		
 		return rs;

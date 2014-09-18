@@ -10,7 +10,7 @@ import model.ServicoPrestado;
 import org.junit.Before;
 import org.junit.Test;
 
-import dao.ServicoPrestadoDAO;
+import dao.DoneServiceDAO;
 import exception.ServicoException;
 
 public class ServicoPrestadoDAOTeste
@@ -51,7 +51,7 @@ public class ServicoPrestadoDAOTeste
 		}
 	}
 
-	ServicoPrestadoDAO servicoDAO = ServicoPrestadoDAO.getInstance();
+	DoneServiceDAO servicoDAO = DoneServiceDAO.getInstance();
 	
 	/* 
 	 * Método utilizado para testar o getInstance da classe ServicoPrestadoDAO
@@ -59,7 +59,7 @@ public class ServicoPrestadoDAOTeste
 	@Test
 	public void getInstanceDeServicoPrestadoDAODeveRetonarInstanciaCorrente ()
 	{
-		assertEquals(ServicoPrestadoDAO.getInstance(), servicoDAO);
+		assertEquals(DoneServiceDAO.getInstance(), servicoDAO);
 	}
 
 	/* 
@@ -70,7 +70,7 @@ public class ServicoPrestadoDAOTeste
 	{
 		try 
 		{
-			assertTrue(servicoDAO.incluir(servico));
+			assertTrue(servicoDAO.includeServiceType(servico));
 		} 
 		catch (SQLException e) 
 		{
@@ -87,7 +87,7 @@ public class ServicoPrestadoDAOTeste
 	{
 		try 
 		{
-			assertTrue(servicoDAO.excluir(servico));
+			assertTrue(servicoDAO.deleteServiceType(servico));
 		} 
 		catch (SQLException e)
 		{
@@ -103,7 +103,7 @@ public class ServicoPrestadoDAOTeste
 	{
 		try 
 		{
-			assertFalse(servicoDAO.incluir(null));
+			assertFalse(servicoDAO.includeServiceType(null));
 		} 
 		catch (SQLException e) 
 		{
@@ -119,7 +119,7 @@ public class ServicoPrestadoDAOTeste
 	{
 		try
 		{
-			assertFalse(servicoDAO.excluir(null));
+			assertFalse(servicoDAO.deleteServiceType(null));
 		} 
 		catch (SQLException e)
 		{

@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import model.TipoServico;
+import model.ServiceType;
 
 import org.junit.Test;
 
@@ -14,8 +14,8 @@ import dao.TipoServicoDAO;
 public class TipoServicoDAOTeste 
 {
 
-	TipoServico tiposervico = new TipoServico();
-	TipoServico tiposervico2 = new TipoServico();
+	ServiceType tiposervico = new ServiceType();
+	ServiceType tiposervico2 = new ServiceType();
 	TipoServicoDAO servicoDAO = TipoServicoDAO.getInstance();
 	
 	// Test if a instance previous declared is the current one
@@ -59,7 +59,7 @@ public class TipoServicoDAOTeste
 	{
 		try 
 		{
-			assertTrue( servicoDAO.alterar(tiposervico.getNomeTipoServico(),
+			assertTrue( servicoDAO.alterar(tiposervico.getServiceTypeName(),
 										   tiposervico, tiposervico2) );
 		}
 		catch(SQLException e) 
@@ -102,7 +102,7 @@ public class TipoServicoDAOTeste
 	{
 		try 
 		{
-			assertFalse( servicoDAO.alterar(tiposervico.getNomeTipoServico(),
+			assertFalse( servicoDAO.alterar(tiposervico.getServiceTypeName(),
 											tiposervico, null));
 		}
 		catch(SQLException e) 
@@ -117,7 +117,7 @@ public class TipoServicoDAOTeste
 	{
 		try 
 		{
-			assertFalse( servicoDAO.alterar(tiposervico.getNomeTipoServico(),
+			assertFalse( servicoDAO.alterar(tiposervico.getServiceTypeName(),
 											null, tiposervico));
 		} 
 		catch(SQLException e) 
