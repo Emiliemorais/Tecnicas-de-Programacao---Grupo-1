@@ -201,7 +201,7 @@ public class Cliente
                 clienteAtual = "blank";
                 nomeClienteAtual = "blank";
                                 
-                Cesta.Esvaziar_cesta();
+                Cart.emptyCart();
                 
                 livraria.Menu();
                 
@@ -380,7 +380,7 @@ public class Cliente
                 String nome;
                 String option;
                 
-                if( !Cesta.Itens_quant.isEmpty() )
+                if( !Cart.itemsAndQuantity.isEmpty() )
                 {
                     System.out.println("\nVocê perderá os itens "
                                        + "adicionados à sua cesta."
@@ -397,7 +397,7 @@ public class Cliente
                        
                         boolean ok;
                         
-                        ok = Cesta.Esvaziar_cesta();
+                        ok = Cart.emptyCart();
                         
                         if(ok)
                         {
@@ -444,7 +444,7 @@ public class Cliente
                 String nome;
                 String option;
                 
-                if( !Cesta.Itens_quant.isEmpty() )
+                if( !Cart.itemsAndQuantity.isEmpty() )
                 {
                     System.out.println("\nVocê perderá os itens"
                                        + " adicionados à sua cesta."
@@ -461,7 +461,7 @@ public class Cliente
                        
                         boolean ok;
                         
-                        ok = Cesta.Esvaziar_cesta();
+                        ok = Cart.emptyCart();
                         
                         if(ok)
                         {

@@ -86,7 +86,7 @@ public class Livraria_ABC
                         System.out.println("\nInforme a quantidade de '"+Livro.Titulo.get(i)+"' desejada:");
                         quantidade_livros = input.nextInt();
                         
-                        Cesta.Adicionar_itens_a_cesta(Livro.ISBN.get(i), quantidade_livros, clienteAtual);
+                        Cart.addItemsToCart(Livro.ISBN.get(i), quantidade_livros, clienteAtual);
                     }
                     else
                     {
@@ -98,7 +98,7 @@ public class Livraria_ABC
                 }
                 case "4":
                 {
-                    Cesta.Listar_itens_cesta();
+                    Cart.listCartItems();
                     break;
                 }
                 case "5":
@@ -108,19 +108,19 @@ public class Livraria_ABC
                 }
                 case "6":
                 {
-                    Cesta.Retirar_itens_cesta();
+                    Cart.removeCartItem();
                     break;
                 }
                 case "7":
                 {
-                    Cesta.Incluir_desconto();
+                    Cart.includeDiscount();
                     break;
                 }
                 case "8":
                 {
                     int cod_compra;
                     
-                    cod_compra = Cesta.Fechar_cesta();
+                    cod_compra = Cart.closeCart();
                     
                     if(cod_compra==-1)
                         Menu();
