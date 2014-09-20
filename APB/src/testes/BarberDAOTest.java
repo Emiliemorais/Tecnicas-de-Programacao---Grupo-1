@@ -18,11 +18,12 @@ import dao.BarberDAO;
 import dao.FactoryConnection;
 import exception.BarbeiroException;
 
-public class BarbeiroDAOTeste
+public class BarberDAOTest
 {
 
+	// Barber class's instance to access the class
 	Barber barber = new Barber();
-	Barber barbeiro2 = new Barber();
+	Barber secondBarber = new Barber();
 	
 	@Before
 	/*
@@ -38,14 +39,15 @@ public class BarbeiroDAOTeste
 			barber.setBarberTelephone("3389-9085");
 			barber.setBarberCpf("02919594150");
 			barber.setBarberChair("5");
-			barbeiro2.setBarberName("Luciano");
-			barbeiro2.setBarberRg("418757896");
-			barbeiro2.setBarberTelephone("3389-9085");
-			barbeiro2.setBarberCpf("02919594150");
-			barbeiro2.setBarberChair("5");
+			secondBarber.setBarberName("Luciano");
+			secondBarber.setBarberRg("418757896");
+			secondBarber.setBarberTelephone("3389-9085");
+			secondBarber.setBarberCpf("02919594150");
+			secondBarber.setBarberChair("5");
 			
-			BarberDAO barbeiroDao = BarberDAO.getInstance();
-			barbeiroDao.includeBarber(barber);
+			// BarberDAO class's instanceto access the class
+			BarberDAO barberDao = BarberDAO.getInstance();
+			barberDao.includeBarber(barber);
 		}
 		catch (NullPointerException e)
 		{
@@ -68,7 +70,7 @@ public class BarbeiroDAOTeste
 	 * Define uma assertiva que é disparada se o retorno do método 'getInstance()' 
 	 * não for igual à instância declarada logo acima (barbeiroDAO).
 	 */
-	public void getInstanceDeBarbeiroDAODeveRetonarInstanciaCorrente()
+	public void getInstanceMethodTest()
 	{	
 		assertEquals( BarberDAO.getInstance(), barberDAO );
 	}
@@ -81,19 +83,22 @@ public class BarbeiroDAOTeste
 	 *	 com o que foi realmente pedido para se cadastrar.
 	 * Captura exceções SQL que possam ocorrer.
 	 */
-	public void inserirDeBarbeiroDAODeveCadastrarUmBarbeiro()
+	public void includeBarberMethodTest()
 	{
 		try
 		{
 			assertTrue( barberDAO.includeBarber(barber) );
 			
+			// Connection interface's instance to connect with the database
 			Connection connection = FactoryConnection.getInstance().getConnection();
-			ResultSet rs = connection.createStatement()
+			
+			// ResultSet interface instance to query a barber's name
+			ResultSet queryForBarberName = connection.createStatement()
 						   .executeQuery("SELECT nome FROM barbeiro WHERE "
 								   		+ " nome = \"" + barber.getBarberName() + "\";");
-			rs.next();
-			assertEquals( "Alessandro", rs.getString("nome") );
-			rs.close();
+			queryForBarberName.next();
+			assertEquals( "Alessandro", queryForBarberName.getString("nome") );
+			queryForBarberName.close();
 		} 
 		catch (SQLException e)
 		{
@@ -110,19 +115,19 @@ public class BarbeiroDAOTeste
 	 * Testa se o método 'fail()' funcionou (erro esperado).
 	 * Captura exceções SQL que possam ocorrer.
 	 */
-	public void excluirDeBarbeiroDAODeveEnviarUmBarbeiro()
+	public void deleteBarberMethodTeste()
 	{
 		try 
 		{
 			assertTrue( barberDAO.deleteBarber(barber) );
 			
 			Connection connection = FactoryConnection.getInstance().getConnection();
-			ResultSet rs = connection.createStatement()
+			ResultSet queryForBarberName = connection.createStatement()
 						   .executeQuery("SELECT nome FROM barbeiro WHERE "
 								   		 + " nome = \"" + barber.getBarberName() + "\";");
-			rs.next();
+			queryForBarberName.next();
 			fail();
-			rs.close();
+			queryForBarberName.close();
 		}
 		catch (SQLException e)
 		{
@@ -138,28 +143,29 @@ public class BarbeiroDAOTeste
 	 * 	 da coluna 'nome' procurando pelo nome 'Alessandro'.
 	 * Captura exceções SQL que possam ocorrer.
 	 */
-	public void alterarDeBarbeiroDaoDeveAlterarUmBarbeiro()
+	public void changeBarberMethodTest()
 	{
 		try
 		{
-			assertTrue( barberDAO.changeBarber( barber.getBarberName(), barber, barbeiro2 ) );
+			assertTrue( barberDAO.changeBarber( barber.getBarberName(), barber, secondBarber ) );
 			
-			barberDAO.changeBarber( barber.getBarberCpf(),barbeiro2, barber );
+			barberDAO.changeBarber( barber.getBarberCpf(),secondBarber, barber );
 			Connection connection = FactoryConnection.getInstance().getConnection();
 			
-			java.sql.PreparedStatement pst1;
+			// java.sql.PreparedStatement instance to query in the database
+			java.sql.PreparedStatement preparedStatement;
 
-			pst1 = connection.prepareStatement("SELECT nome FROM barbeiro WHERE "
+			preparedStatement = connection.prepareStatement("SELECT nome FROM barbeiro WHERE "
 												+ " nome = \"" + barber.getBarberName() + "\";");
 			
-			ResultSet rs = pst1.executeQuery();
+			ResultSet queryForBarberName = preparedStatement.executeQuery();
 						
-			while( rs.next() )
+			while( queryForBarberName.next() )
 			{
-				assertEquals( "Alessandro", rs.getString("nome") );
+				assertEquals( "Alessandro", queryForBarberName.getString("nome") );
 			}
 			
-			rs.close();
+			queryForBarberName.close();
 		} 
 		catch (SQLException e)
 		{
@@ -172,7 +178,7 @@ public class BarbeiroDAOTeste
 	 * Testa se ocorre a inclusão de um barbeiro com passagem de argumento nulo.
 	 * Captura exceções SQL que possam ocorrer.
 	 */
-	public void inserirDeBarbeiroDAOPassandoUmBarbeiroNulo() 
+	public void includeBarberNullMethodTest() 
 	{
 		try
 		{
@@ -189,7 +195,7 @@ public class BarbeiroDAOTeste
 	 * Testa se ocorre a exclusão de um barbeiro com passagem de argumento nulo.
 	 * Captura exceções SQL que possam ocorrer.
 	 */
-	public void excluirDeBarbeiroDAOPassandoUmBarbeiroNulo()
+	public void deleteBarberNullMethodTest()
 	{
 		try
 		{
@@ -206,7 +212,7 @@ public class BarbeiroDAOTeste
 	 * Testa se ocorre a alteração de um barbeiro com passagem de argumentos nulos.
 	 * Captura exceções SQL que possam ocorrer.
 	 */
-	public void alterarDeBarbeiroDaoPassandoUmBarbeiroNulo()
+	public void changeBarberNullMethodTest()
 	{
 		try
 		{
@@ -223,7 +229,7 @@ public class BarbeiroDAOTeste
 	 * Testa se ocorre a inclusão de um barbeiro com passagem do argumento 'barbeiro_alterado' nulo.
 	 * Captura exceções SQL que possam ocorrer.
 	 */
-	public void alterarDeBarbeiroDaoPassandoUmBarbeiroAlteradoNulo() 
+	public void changeChangedBarberNullMethodTest() 
 	{
 		try
 		{
@@ -240,16 +246,17 @@ public class BarbeiroDAOTeste
 	 * Define uma assertiva que é disparada se há algum nome nulo no banco de dados. 
 	 * Captura exceções SQL que possam ocorrer.
 	 */
-	public void pesquisarDeBarbeiroDAODeveMostrarUmBarbeiro() 
+	public void searchBarberTest() 
 	{
 		try 
 		{
-			ResultSet rs = barberDAO.searchBarber();
+			ResultSet queryForBarber = barberDAO.searchBarber();
 			
-			while ( rs.next() )
+			while ( queryForBarber.next() )
 			{
-				String nome = rs.getString("nome");
-				assertNotNull(nome);
+				// Receives a name of a barber
+				String barberName = queryForBarber.getString("nome");
+				assertNotNull(barberName);
 			}
 		}
 		catch (SQLException e)
@@ -263,16 +270,17 @@ public class BarbeiroDAOTeste
 	 * Define uma assertiva que é disparada se há algum nome nulo no banco de dados. 
 	 * Captura exceções SQL que possam ocorrer.
 	 */
-	public void mostrarBarbeirosCadastradosDeBarbeiroDAODeveMostrarBarbeiros() 
+	public void showRegisteredBarberMethodTest() 
 	{
 		try
 		{
-			ResultSet rs = barberDAO.showRegisteredBarber(barber);
+			ResultSet queryForBarber = barberDAO.showRegisteredBarber(barber);
 			
-			while ( rs.next() )
-			{
-				String nome = rs.getString("nome");
-				assertNotNull(nome);
+			while ( queryForBarber.next() )
+			{			
+				// Receives a name of a barber
+				String barberName = queryForBarber.getString("nome");
+				assertNotNull(barberName);
 			}
 		} 
 		catch (SQLException e)
@@ -286,16 +294,17 @@ public class BarbeiroDAOTeste
 	 * Define uma assertiva que é disparada se o nome do barbeiro cadastrado no banco de dados for nulo. 
 	 * Captura exceções SQL que possam ocorrer.
 	 */
-	public void pesquisarPorNomeDeBarbeiroDAODeveMostrarBarbeiros() 
+	public void searchByNameMethodTest() 
 	{
 		try
 		{
-			ResultSet rs = barberDAO.searchByName(barber);
+			ResultSet queryForBarber = barberDAO.searchByName(barber);
 			
-			while ( rs.next() )
+			while ( queryForBarber.next() )
 			{
-				String nome = rs.getString("nome");
-				assertNotNull(nome);
+				// Receives a name of a barber
+				String barberName = queryForBarber.getString("nome");
+				assertNotNull(barberName);
 			}
 		} 
 		catch (SQLException e)
