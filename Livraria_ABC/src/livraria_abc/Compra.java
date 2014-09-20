@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static livraria_abc.Livraria_ABC.end_compra;
-import static livraria_abc.Livraria_ABC.tipo_pag;
-import static livraria_abc.Livraria_ABC.COD_compra;
-import static livraria_abc.Livraria_ABC.Menu;
-import static livraria_abc.Livraria_ABC.clienteAtual;
+import static livraria_abc.ABCBookStore.deliveryAddress;
+import static livraria_abc.ABCBookStore.paymentType;
+import static livraria_abc.ABCBookStore.buyingCode;
+import static livraria_abc.ABCBookStore.showMenu;
+import static livraria_abc.ABCBookStore.currentClient;
 
     public class Compra
     {
@@ -45,10 +45,10 @@ import static livraria_abc.Livraria_ABC.clienteAtual;
         {
             Compra comp = new Compra();
             
-            comp.Endereco_entrega = end_compra;
-            comp.Tipo_pag = tipo_pag;
+            comp.Endereco_entrega = deliveryAddress;
+            comp.Tipo_pag = paymentType;
             comp.Valor_compra = Cart.calculateCartValue();
-            comp.Cod_compra = COD_compra;
+            comp.Cod_compra = buyingCode;
            
             Compras.add(comp);
             
@@ -64,11 +64,11 @@ import static livraria_abc.Livraria_ABC.clienteAtual;
             
             if(opcao.equals("1"))
             {
-                end_compra="blank";
-                tipo_pag="blank";
-                COD_compra = -1;
+                deliveryAddress="blank";
+                paymentType="blank";
+                buyingCode = -1;
                 
-                Menu();
+                showMenu();
             }
             else
             {
@@ -82,14 +82,14 @@ import static livraria_abc.Livraria_ABC.clienteAtual;
             int i;
             String opcao;
             
-            i = Cliente.cpf.indexOf(clienteAtual);
+            i = Cliente.cpf.indexOf(currentClient);
                         
             System.out.println("\nO endereço de entrega será: '"+Cliente.endereco.get(i)+"'?\n1-SIM  0- ALTERAR ENDEREÇO");
             opcao = lerString.nextLine();
             
             if(opcao.equals("1"))
             {
-                end_compra = Cliente.endereco.get(i);
+                deliveryAddress = Cliente.endereco.get(i);
                 
                 Verificar_pagamento();
             }
@@ -100,13 +100,13 @@ import static livraria_abc.Livraria_ABC.clienteAtual;
                 System.out.println("\nInforme o novo endereço de entrega: ");
                 novo_endereco = lerString.nextLine();
                 
-                end_compra = novo_endereco;
+                deliveryAddress = novo_endereco;
                 
                 Verificar_pagamento();
             }
         }
         
-        // Verifica o valor final e qual o tipo do pagamento
+        // Verifica o valor final e qual o paymentType do pagamento
         public static void Verificar_pagamento()
         {
             float total;
@@ -125,12 +125,12 @@ import static livraria_abc.Livraria_ABC.clienteAtual;
             
                 if(tipo_p.equals("1"))
                 {
-                    tipo_pag = Tipo_pagamento.Tipos.get(0).tipo;
+                    paymentType = PaymentType.listTypes.get(0).paymentType;
                     ok = true;
                 }
                 else if(tipo_p.equals("2"))
                 {
-                    tipo_pag = Tipo_pagamento.Tipos.get(1).tipo;
+                    paymentType = PaymentType.listTypes.get(1).paymentType;
                     ok = true;
                 }
                 else
@@ -152,8 +152,8 @@ import static livraria_abc.Livraria_ABC.clienteAtual;
             
             Cart.Listar_itens_cesta_();
             
-            System.out.println("\nEndereço de entrega: "+end_compra);
-            System.out.println("\nTipo de pagamento: "+tipo_pag);
+            System.out.println("\nEndereço de entrega: "+deliveryAddress);
+            System.out.println("\nTipo de pagamento: "+paymentType);
             
             System.out.println("\nDeseja finalizar a compra?\n 1-SIM  |  0-CANCELAR COMPRA");
             opcao = lerString.nextLine();
@@ -166,7 +166,7 @@ import static livraria_abc.Livraria_ABC.clienteAtual;
                 
                 Cadastrar_compra();
                 
-                Menu();
+                showMenu();
             }
             else
             {
