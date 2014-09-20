@@ -11,7 +11,7 @@ import model.Report;
 import org.junit.Before;
 import org.junit.Test;
 
-import control.RelatorioController;
+import control.ReportController;
 import exception.RelatorioException;
 
 public class RelatorioControllerTeste 
@@ -47,8 +47,8 @@ public class RelatorioControllerTeste
 	@Test
 	public void getInstanceDeRelatorioDAODeveRetonarInstanciaCorrente ()
 	{
-		RelatorioController relatorioController = RelatorioController.getInstance();
-		assertEquals(RelatorioController.getInstance(), relatorioController);
+		ReportController relatorioController = ReportController.getInstance();
+		assertEquals(ReportController.getInstance(), relatorioController);
 	}
 	
 	/* 
@@ -58,8 +58,8 @@ public class RelatorioControllerTeste
 	@Test
 	public void procurarPorServicoDeRelatorioControllerDeveMostrarUmRelatorio () throws SQLException
 	{
-		RelatorioController relatorioController = new RelatorioController();
-		ResultSet rs = relatorioController.pesquisarPorServico(relatorio);
+		ReportController relatorioController = new ReportController();
+		ResultSet rs = relatorioController.searchByService(relatorio);
 		
 		while(rs.next());
 	}
@@ -71,8 +71,8 @@ public class RelatorioControllerTeste
 	@Test
 	public void procurarPorDataDeRelatorioControllerDeveMostrarUmRelatorio () throws SQLException
 	{
-		RelatorioController relatorioController = new RelatorioController();
-		ResultSet rs = relatorioController.pesquisarPorData(relatorio);
+		ReportController relatorioController = new ReportController();
+		ResultSet rs = relatorioController.searchByDate(relatorio);
 		
 		while(rs.next());
 	}
@@ -84,8 +84,8 @@ public class RelatorioControllerTeste
 	@Test
 	public void procurarPorBarbeiroEServicoDeRelatorioControllerDeveMostrarUmRelatorio () throws SQLException 
 	{
-		RelatorioController relatorioController = new RelatorioController();
-		ResultSet rs = relatorioController.pesquisarPorBarbeiroEServico(relatorio);
+		ReportController relatorioController = new ReportController();
+		ResultSet rs = relatorioController.searchByBarberAndService(relatorio);
 		
 		while(rs.next());
 	}
@@ -97,8 +97,8 @@ public class RelatorioControllerTeste
 	@Test
 	public void procurarPorDataBarbeiroEServicoDeRelatorioControllerDeveMostrarUmRelatorio () throws SQLException
 	{
-		RelatorioController relatorioController = new RelatorioController();
-		ResultSet rs = relatorioController.pesquisarPorDataBarbeiroEServico(relatorio);
+		ReportController relatorioController = new ReportController();
+		ResultSet rs = relatorioController.searchByDateBarberAndService(relatorio);
 		
 		while(rs.next());
 	}
@@ -110,8 +110,8 @@ public class RelatorioControllerTeste
 	@Test
 	public void procurarPorDataEBarbeiroDeRelatorioControllerDeveMostrarUmRelatorio () throws SQLException 
 	{
-		RelatorioController relatorioController = new RelatorioController();
-		ResultSet rs = relatorioController.pesquisarPorDataEBarbeiro(relatorio);
+		ReportController relatorioController = new ReportController();
+		ResultSet rs = relatorioController.searchByDateAndBarber(relatorio);
 		
 		while(rs.next());
 	}
@@ -123,8 +123,8 @@ public class RelatorioControllerTeste
 	@Test
 	public void procurarPorDataEServicoDeRelatorioControllerDeveMostrarUmRelatorio () throws SQLException
 	{
-		RelatorioController relatorioController = new RelatorioController();
-		ResultSet rs = relatorioController.pesquisarPorDataEServico(relatorio);
+		ReportController relatorioController = new ReportController();
+		ResultSet rs = relatorioController.searchByDateAndService(relatorio);
 		
 		while(rs.next());
 	}
@@ -136,8 +136,8 @@ public class RelatorioControllerTeste
 	@Test
 	public void procurarPorBarbeiroDeRelatorioControllerDeveMostrarUmRelatorio () throws SQLException
 	{
-		RelatorioController relatorioController = new RelatorioController();
-		ResultSet rs = relatorioController.pesquisarPorBarbeiro(relatorio);
+		ReportController relatorioController = new ReportController();
+		ResultSet rs = relatorioController.searchByBarber(relatorio);
 		
 		while(rs.next());
 	}

@@ -24,7 +24,7 @@ import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
 
 import control.BarberController;
-import control.ReciboController;
+import control.ReceiptController;
 
 import com.javadocx.CreateDocx;
 
@@ -203,7 +203,7 @@ public class GenerateReceipt extends JFrame
 			@Override
 			public void mouseClicked(MouseEvent e)
 			{
-				ReciboController reciboController = ReciboController.getInstance();
+				ReceiptController reciboController = ReceiptController.getInstance();
 				
 				try
 				{
@@ -259,7 +259,7 @@ public class GenerateReceipt extends JFrame
 
 						// ResultSet interface instance to query a barber service
 						ResultSet queryForBarberService = reciboController.getInstance()
-								.pesquisarServicosDoBarbeiro(barberName[1],
+								.barberServicesSearch(barberName[1],
 										isoInitialDate, isoFinalDate);
 						
 						while ( queryForBarberService.next() )

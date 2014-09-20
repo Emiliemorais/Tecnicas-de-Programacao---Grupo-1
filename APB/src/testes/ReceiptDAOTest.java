@@ -62,7 +62,7 @@ public class ReceiptDAOTest
 			
 			// Used to receive the result from the search for barber services on DB
 			ResultSet queryForBarberServicesResult = receipt
-													 .pesquisarServicosDoBarbeiro(
+													 .barberServicesSearch(
 													 report.getBarberName(),
 													 report.getInitialDate(),
 													 report.getFinalDate() );

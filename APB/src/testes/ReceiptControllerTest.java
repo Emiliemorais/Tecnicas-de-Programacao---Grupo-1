@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import model.Report;
-import control.ReciboController;
+import control.ReceiptController;
 import exception.ReceiptException;
 import exception.RelatorioException;
 
@@ -41,9 +41,9 @@ public class ReceiptControllerTest
 	public void getInstanceMethodTest()
 	{
 		// Used to test the method getInstance on a 'ReceiptController' instance
-		ReciboController receiptControllerToTest = ReciboController.getInstance();
+		ReceiptController receiptControllerToTest = ReceiptController.getInstance();
 		
-		assertEquals(ReciboController.getInstance(), receiptControllerToTest);
+		assertEquals(ReceiptController.getInstance(), receiptControllerToTest);
 	}
 
 	@Test
@@ -51,10 +51,10 @@ public class ReceiptControllerTest
 	public void searchForBarberServicesMethodTest() throws SQLException
 	{
 		// Instantiated to get access to the method 'pesquisarServicosDoBarbeiro'
-		ReciboController receiptControllerToTest = new ReciboController();
+		ReceiptController receiptControllerToTest = new ReceiptController();
 		
 		ResultSet queryForReceiptResult = receiptControllerToTest
-										  .pesquisarServicosDoBarbeiro(report.getBarberName(),
+										  .barberServicesSearch(report.getBarberName(),
 												  					   report.getInitialDate(),
 												  					   report.getFinalDate());
 

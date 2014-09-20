@@ -26,7 +26,7 @@ public class ReciboDAO
 	}
 
 	// Metodo que cede direito para pesquisar por tipos de servico do barbeiro
-	public ResultSet pesquisarServicosDoBarbeiro ( String barbeiro,
+	public ResultSet barberServicesSearch ( String barbeiro,
 			String dataInicial, String dataFinal ) throws SQLException 
 			{
 

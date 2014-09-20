@@ -32,7 +32,7 @@ public class RelatorioDAO
 	}
 
     // Interface que provê acesso aos relatorios cadastrados e permite que sejam pesquisados por data
-	public ResultSet pesquisarPorData (Report relatorio) throws SQLException
+	public ResultSet searchByDate (Report relatorio) throws SQLException
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE data BETWEEN '"
@@ -44,7 +44,7 @@ public class RelatorioDAO
 	}
         
     // Interface que provê acesso aos relatorios cadastrados e permite que sejam pesquisados por data e por barbeiro 
-	public ResultSet pesquisarPorDataEBarbeiro(Report relatorio) throws SQLException 
+	public ResultSet searchByDateAndBarber(Report relatorio) throws SQLException 
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE data BETWEEN '"
@@ -57,7 +57,7 @@ public class RelatorioDAO
 	}
         
     // Interface que provê acesso aos relatorios cadastrados e permite que sejam pesquisados por data e serviço
-	public ResultSet pesquisarPorDataEServico(Report relatorio) throws SQLException
+	public ResultSet searchByDateAndService(Report relatorio) throws SQLException
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE data BETWEEN '"
@@ -70,7 +70,7 @@ public class RelatorioDAO
 	}
         
     // Interface que provê acesso aos relatorios cadastrados e permite que sejam pesquisados por barbeiro
-	public ResultSet pesquisarPorBarbeiro(Report relatorio) throws SQLException
+	public ResultSet searchByBarber(Report relatorio) throws SQLException
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE barbeiro = '"
@@ -81,7 +81,7 @@ public class RelatorioDAO
 	}
         
     // Interface que provê acesso aos relatorios cadastrados e permite que sejam pesquisados por barbeiro e servico
-	public ResultSet pesquisarPorBarbeiroEServico(Report relatorio) throws SQLException 
+	public ResultSet searchByBarberAndService(Report relatorio) throws SQLException 
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE barbeiro = '"
@@ -93,7 +93,7 @@ public class RelatorioDAO
 	}
         
     // Interface que provê acesso aos relatorios cadastrados e permite que sejam pesquisados por servico
-	public ResultSet pesquisarPorServico(Report relatorio)throws SQLException 
+	public ResultSet searchByService(Report relatorio)throws SQLException 
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE nome = '"
@@ -104,7 +104,7 @@ public class RelatorioDAO
 	}
         
     // Interface que provê acesso aos relatorios cadastrados e permite que sejam pesquisados por data, barbeiro e serviço
-	public ResultSet pesquisarPorDataBarbeiroEServico(Report relatorio)throws SQLException
+	public ResultSet searchByDateBarberAndService(Report relatorio)throws SQLException
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE data BETWEEN '"

@@ -21,7 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import model.Report;
 
-import control.RelatorioController;
+import control.ReportController;
 
 import view.SearchReport;
 
@@ -108,7 +108,7 @@ public class VisualizarRelatorios extends JFrame
 		table.getColumnModel().getColumn(3).setResizable(false);
 		scrollPane.setViewportView(table);
 
-		RelatorioController relatorioController = RelatorioController
+		ReportController relatorioController = ReportController
 				.getInstance();
 
 		Report relatorio = new Report();
@@ -118,7 +118,7 @@ public class VisualizarRelatorios extends JFrame
 
 			relatorio.setBarberName(SearchReport.barber);
 
-			ResultSet rs = relatorioController.pesquisarPorBarbeiro(relatorio);
+			ResultSet rs = relatorioController.searchByBarber(relatorio);
 
 			while (rs.next()) {
 
@@ -174,7 +174,7 @@ public class VisualizarRelatorios extends JFrame
 			relatorio.setServiceType(SearchReport.service);
 
 			ResultSet rs = relatorioController
-					.pesquisarPorBarbeiroEServico(relatorio);
+					.searchByBarberAndService(relatorio);
 
 			while (rs.next())
 			{
@@ -238,7 +238,7 @@ public class VisualizarRelatorios extends JFrame
 			relatorio.setInitialDate(SearchReport.initialDate);
 
 			ResultSet rs = relatorioController
-					.pesquisarPorDataEBarbeiro(relatorio);
+					.searchByDateAndBarber(relatorio);
 
 			while (rs.next())
 			{
@@ -303,7 +303,7 @@ public class VisualizarRelatorios extends JFrame
 			relatorio.setInitialDate(SearchReport.initialDate);
 
 			ResultSet rs = relatorioController
-					.pesquisarPorDataBarbeiroEServico(relatorio);
+					.searchByDateBarberAndService(relatorio);
 
 			while (rs.next()) 
 			{
@@ -361,7 +361,7 @@ public class VisualizarRelatorios extends JFrame
 
 			relatorio.setServiceType(SearchReport.service);
 
-			ResultSet rs = relatorioController.pesquisarPorServico(relatorio);
+			ResultSet rs = relatorioController.searchByService(relatorio);
 
 			while (rs.next())
 			{
@@ -421,7 +421,7 @@ public class VisualizarRelatorios extends JFrame
 			relatorio.setInitialDate(SearchReport.initialDate);
 
 			ResultSet rs = relatorioController
-					.pesquisarPorDataEServico(relatorio);
+					.searchByDateAndService(relatorio);
 
 			while (rs.next())
 			{
@@ -479,7 +479,7 @@ public class VisualizarRelatorios extends JFrame
 			relatorio.setFinalDate(SearchReport.finalDate);
 			relatorio.setInitialDate(SearchReport.initialDate);
 
-			ResultSet rs = relatorioController.pesquisarPorData(relatorio);
+			ResultSet rs = relatorioController.searchByDate(relatorio);
 
 			while (rs.next())
 			{
@@ -705,7 +705,7 @@ public class VisualizarRelatorios extends JFrame
 			{
 				relatorio.setBarberName(SearchReport.barber);
 
-				rs = RelatorioController.getInstance().pesquisarPorBarbeiro(
+				rs = ReportController.getInstance().searchByBarber(
 						relatorio);
 			}
 			if(SearchReport.searchType == 2)
@@ -713,8 +713,8 @@ public class VisualizarRelatorios extends JFrame
 				relatorio.setBarberName(SearchReport.barber);
 				relatorio.setServiceType(SearchReport.service);
 
-				rs = RelatorioController.getInstance()
-						.pesquisarPorBarbeiroEServico(relatorio);
+				rs = ReportController.getInstance()
+						.searchByBarberAndService(relatorio);
 			}
 			if(SearchReport.searchType == 3)
 			{
@@ -722,8 +722,8 @@ public class VisualizarRelatorios extends JFrame
 				relatorio.setFinalDate(SearchReport.finalDate);
 				relatorio.setInitialDate(SearchReport.initialDate);
 
-				rs = RelatorioController.getInstance()
-						.pesquisarPorDataEBarbeiro(relatorio);
+				rs = ReportController.getInstance()
+						.searchByDateAndBarber(relatorio);
 			}
 			if(SearchReport.searchType == 4) 
 			{
@@ -732,14 +732,14 @@ public class VisualizarRelatorios extends JFrame
 				relatorio.setFinalDate(SearchReport.finalDate);
 				relatorio.setInitialDate(SearchReport.initialDate);
 
-				rs = RelatorioController.getInstance()
-						.pesquisarPorDataBarbeiroEServico(relatorio);
+				rs = ReportController.getInstance()
+						.searchByDateBarberAndService(relatorio);
 			}
 			if(SearchReport.searchType == 5) 
 			{
 				relatorio.setServiceType(SearchReport.service);
 
-				rs = RelatorioController.getInstance().pesquisarPorServico(
+				rs = ReportController.getInstance().searchByService(
 						relatorio);
 			}
 			if(SearchReport.searchType == 6) 
@@ -748,15 +748,15 @@ public class VisualizarRelatorios extends JFrame
 				relatorio.setFinalDate(SearchReport.finalDate);
 				relatorio.setInitialDate(SearchReport.initialDate);
 
-				rs = RelatorioController.getInstance()
-						.pesquisarPorDataEServico(relatorio);
+				rs = ReportController.getInstance()
+						.searchByDateAndService(relatorio);
 			}
 			if(SearchReport.searchType == 7)
 			{
 				relatorio.setFinalDate(SearchReport.finalDate);
 				relatorio.setInitialDate(SearchReport.initialDate);
 
-				rs = RelatorioController.getInstance().pesquisarPorData(
+				rs = ReportController.getInstance().searchByDate(
 						relatorio);
 			}
 		}

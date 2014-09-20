@@ -58,7 +58,7 @@ public class ReportDAOTest
 			RelatorioDAO reportDAO = RelatorioDAO.getInstance();
 			
 			// ResultSet interface instance to query a report
-			ResultSet queryForReport = reportDAO.pesquisarPorData(report);
+			ResultSet queryForReport = reportDAO.searchByDate(report);
 			
 			while( queryForReport.next() )
 			{
@@ -84,7 +84,7 @@ public class ReportDAOTest
 		try 
 		{
 			RelatorioDAO reportDAO = RelatorioDAO.getInstance();
-			ResultSet queryForReport = reportDAO.pesquisarPorDataEServico(report);
+			ResultSet queryForReport = reportDAO.searchByDateAndService(report);
 			
 			while ( queryForReport.next() )
 			{
@@ -107,7 +107,7 @@ public class ReportDAOTest
 		try
 		{
 			RelatorioDAO reportDAO = RelatorioDAO.getInstance();
-			ResultSet queryForReport = reportDAO.pesquisarPorBarbeiro(report);
+			ResultSet queryForReport = reportDAO.searchByBarber(report);
 			
 			while( queryForReport.next() ) 
 			{
@@ -133,7 +133,7 @@ public class ReportDAOTest
 		try
 		{
 			RelatorioDAO reportDAO = RelatorioDAO.getInstance();
-			ResultSet queryForReport = reportDAO.pesquisarPorBarbeiroEServico(report);
+			ResultSet queryForReport = reportDAO.searchByBarberAndService(report);
 			
 			while( queryForReport.next() ) 
 			{
@@ -156,7 +156,7 @@ public class ReportDAOTest
 		try
 		{
 			RelatorioDAO reportDAO = RelatorioDAO.getInstance();
-			ResultSet queryForReport = reportDAO.pesquisarPorServico(report);
+			ResultSet queryForReport = reportDAO.searchByService(report);
 			
 			while ( queryForReport.next() )
 			{
@@ -182,7 +182,7 @@ public class ReportDAOTest
 		try
 		{
 			RelatorioDAO reportDAO = RelatorioDAO.getInstance();
-			ResultSet queryForReport = reportDAO.pesquisarPorDataEBarbeiro(report);
+			ResultSet queryForReport = reportDAO.searchByDateAndBarber(report);
 			
 			while ( queryForReport.next() ) 
 			{
@@ -208,7 +208,7 @@ public class ReportDAOTest
 		try 
 		{
 			RelatorioDAO reportDAO = RelatorioDAO.getInstance();
-			ResultSet queryForReport = reportDAO.pesquisarPorDataBarbeiroEServico(report);
+			ResultSet queryForReport = reportDAO.searchByDateBarberAndService(report);
 			
 			while ( queryForReport.next() ) 
 			{
