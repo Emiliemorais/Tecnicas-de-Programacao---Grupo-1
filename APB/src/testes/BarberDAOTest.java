@@ -16,7 +16,7 @@ import org.junit.Test;
 import model.Barber;
 import dao.BarberDAO;
 import dao.FactoryConnection;
-import exception.BarbeiroException;
+import exception.BarberException;
 
 public class BarberDAOTest
 {
@@ -53,7 +53,7 @@ public class BarberDAOTest
 		{
 			e.printStackTrace();
 		}
-		catch (BarbeiroException e)
+		catch (BarberException e)
 		{
 			e.printStackTrace();
 		}

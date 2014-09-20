@@ -13,7 +13,7 @@ import javax.swing.JButton;
 
 import model.Barber;
 import control.BarberController;
-import exception.BarbeiroException;
+import exception.BarberException;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -148,7 +148,7 @@ public class NovoBarbeiro extends JFrame
 					CadastrarBarbeiro frame = new CadastrarBarbeiro ();
 					frame.setVisible ( true );
 					frame.setLocationRelativeTo ( null );
-				} catch ( BarbeiroException e )
+				} catch ( BarberException e )
 				{
 					mostrarMensagemDeErro ( e.getMessage () );
 				} catch ( SQLException e ) 

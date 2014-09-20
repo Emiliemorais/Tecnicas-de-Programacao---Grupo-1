@@ -1,6 +1,6 @@
 package model;
 
-import exception.BarbeiroException;
+import exception.BarberException;
 
 public class Agenda 
 {
@@ -47,11 +47,11 @@ public class Agenda
 	}
 
 	// Método de acesso do nome, que lança uma exceção se o nome não estiver no formato requerido
-	public void setNome (String nome) throws BarbeiroException 
+	public void setNome (String nome) throws BarberException 
 	{
 		if ("".equals(nome))
 		{
-			throw new BarbeiroException(NOME_BRANCO);
+			throw new BarberException(NOME_BRANCO);
 		}
 		else if (nome.matches("^[[ ]|\\p{L}*]+$"))
 		{
@@ -59,7 +59,7 @@ public class Agenda
 		}
 		else
 		{
-			throw new BarbeiroException(NOME_INVALIDO);
+			throw new BarberException(NOME_INVALIDO);
 		}
 	}
 
@@ -67,11 +67,11 @@ public class Agenda
 	 *  Método de acesso do telefone, que lança uma exceção 
 	 *  se o telefone não estiver no formato requerido
 	 */
-	public void setTelefone (String telefone) throws BarbeiroException 
+	public void setTelefone (String telefone) throws BarberException 
 	{
 		if ("".equals(telefone))
 		{
-			throw new BarbeiroException(TELEFONE_BRANCO);
+			throw new BarberException(TELEFONE_BRANCO);
 		}
 		else if (telefone.matches("(\\([\\d]{2,3}\\))?[ ]*[\\d]{4,4}[ ]*-[ ]*[\\d]{4,4}[ ]*$"))
 		{
@@ -80,7 +80,7 @@ public class Agenda
 		else
 		{
 			// Lança uma exceção da classe Barbeiro de um telefone inválido(exceto telefone em branco)
-			throw new BarbeiroException(TELEFONE_INVALIDO);
+			throw new BarberException(TELEFONE_INVALIDO);
 		}
 	}
 

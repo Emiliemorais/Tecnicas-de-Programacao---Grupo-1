@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import control.AgendaController;
-import exception.BarbeiroException;
+import exception.BarberException;
 import model.Agenda;
 
 import java.awt.event.MouseAdapter;
@@ -128,7 +128,7 @@ public class PesquisarContato extends JFrame
 				{
 					
 					mostrarMensagemDeErro ( e.getMessage () );
-				} catch ( BarbeiroException e ) 
+				} catch ( BarberException e ) 
 				{
 					
 					mostrarMensagemDeErro ( e.getMessage () );
@@ -173,7 +173,7 @@ public class PesquisarContato extends JFrame
 				} catch ( SQLException e ) {
 					
 					mostrarMensagemDeErro ( e.getMessage () );
-				} catch ( BarbeiroException e ) 
+				} catch ( BarberException e ) 
 				{
 					
 					mostrarMensagemDeErro( e.getMessage() );
@@ -245,7 +245,7 @@ public class PesquisarContato extends JFrame
 				{
 					
 					mostrarMensagemDeErro ( "Selecione um contato para remover" );
-				} catch ( BarbeiroException e1 ) 
+				} catch ( BarberException e1 ) 
 				{
 					
 					mostrarMensagemDeErro( e1.getMessage () );

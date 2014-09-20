@@ -13,7 +13,7 @@ import java.text.ParseException;
 import dao.AgendaDAO;
 import dao.ReciboDAO;
 import model.Report;
-import exception.ReciboException;
+import exception.ReceiptException;
 import exception.RelatorioException;
 
 public class ReceiptDAOTest
@@ -23,7 +23,7 @@ public class ReceiptDAOTest
 	
 	@Before
 	// Initialize the atributes of 'report'
-	public void setUp() throws ReciboException, ParseException
+	public void setUp() throws ReceiptException, ParseException
 	{
 		try
 		{

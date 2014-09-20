@@ -7,7 +7,7 @@ import junit.framework.AssertionFailedError;
 import org.junit.Before;
 import org.junit.Test;
 
-import exception.BarbeiroException;
+import exception.BarberException;
 import exception.ServicoException;
 import model.Agenda;
 
@@ -28,7 +28,7 @@ public class AgendaTeste
 			contato.setNome("Alessandro");
 			contato.setTelefone("4568-9856");
 		} 
-		catch (BarbeiroException e1) 
+		catch (BarberException e1) 
 		{
 			e1.printStackTrace();
 		}
@@ -71,8 +71,8 @@ public class AgendaTeste
 	 * Método utilizado para receber um nome em branco para 
 	 * realização do teste do lançamento da exceção
 	*/ 
-	@Test(expected = BarbeiroException.class)
-	public void nomeDoBarbeiroNaoPodePassarQuandoEmBranco () throws BarbeiroException
+	@Test(expected = BarberException.class)
+	public void nomeDoBarbeiroNaoPodePassarQuandoEmBranco () throws BarberException
 	{
 		contato.setNome("");
 		Assert.fail("Deve lanÃ§ar uma exceÃ§Ã£o");
@@ -82,8 +82,8 @@ public class AgendaTeste
 	 * Método utilizado para receber um telefone em branco para 
 	 * realização do teste do lançamento da exceção
 	*/ 
-	@Test(expected = BarbeiroException.class)
-	public void telefoneDoBarbeiroNaoPodePassarQuandoEmBranco () throws BarbeiroException
+	@Test(expected = BarberException.class)
+	public void telefoneDoBarbeiroNaoPodePassarQuandoEmBranco () throws BarberException
 	{
 		contato.setTelefone("");
 		Assert.fail("Deve lanÃ§ar uma exceÃ§Ã£o");
@@ -93,8 +93,8 @@ public class AgendaTeste
 	 * Método utilizado para receber um nome fora do formato estabelecido (caracteres especiais)
 	 * para realização do teste do lançamento da exceção
 	*/ 
-	@Test(expected = BarbeiroException.class)
-	public void nomeDoBarbeiroNaoPodePassarQuandoForaDeFormato () throws BarbeiroException
+	@Test(expected = BarberException.class)
+	public void nomeDoBarbeiroNaoPodePassarQuandoForaDeFormato () throws BarberException
 	{
 		contato.setNome("ASDAS!!");
 		Assert.fail("Deve lanÃ§ar uma exceÃ§Ã£o");
@@ -104,8 +104,8 @@ public class AgendaTeste
 	 * Método utilizado para receber um telefone fora do formato estabelecido
 	 * (caracteres especiais, letras)para realização do teste do lançamento da exceção
 	*/
-	@Test(expected = BarbeiroException.class)
-	public void telefoneDoBarbeiroNaoPodePassarQuandoForaDeFormato () throws BarbeiroException
+	@Test(expected = BarberException.class)
+	public void telefoneDoBarbeiroNaoPodePassarQuandoForaDeFormato () throws BarberException
 	{
 		contato.setTelefone("45645aa-a54654");
 		Assert.fail("Deve lanÃ§ar uma exceÃ§Ã£o");
@@ -137,7 +137,7 @@ public class AgendaTeste
 	
 	// Método que testa a passagem de um nome temporário pelo método de acesso set
 	@Test
-	public void tempNomeValido () throws BarbeiroException 
+	public void tempNomeValido () throws BarberException 
 	{
 		Agenda.setTempNome("Paulo");
 		assertEquals("Paulo", Agenda.getTempNome());

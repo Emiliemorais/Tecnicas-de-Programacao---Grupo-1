@@ -16,7 +16,7 @@ import javax.swing.border.EmptyBorder;
 
 import model.Barber;
 import control.BarberController;
-import exception.BarbeiroException;
+import exception.BarberException;
 
 @SuppressWarnings("serial")
 public class AlterarBarbeiro extends JFrame 
@@ -143,7 +143,7 @@ public class AlterarBarbeiro extends JFrame
 		{
 			mostrarMensagemDeErro( e.getMessage() );
 		} 
-		catch (BarbeiroException e)
+		catch (BarberException e)
 		{
 			mostrarMensagemDeErro( e.getMessage() );
 		}
@@ -178,7 +178,7 @@ public class AlterarBarbeiro extends JFrame
 					frame.setLocationRelativeTo(null);
 
 				}
-				catch (BarbeiroException e1)
+				catch (BarberException e1)
 				{
 					mostrarMensagemDeErro( e1.getMessage() );
 				} 

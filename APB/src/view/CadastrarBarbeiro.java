@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
 
 import model.Barber;
 import control.BarberController;
-import exception.BarbeiroException;
+import exception.BarberException;
 // Inicio da classe CadastrarBarbeiro
 @SuppressWarnings ( "serial" )
 public class CadastrarBarbeiro extends JFrame 
@@ -165,7 +165,7 @@ public class CadastrarBarbeiro extends JFrame
 				} catch ( ArrayIndexOutOfBoundsException e ) 
 				{
 					mostrarMensagemDeErro("Selecione um Barbeiro para remover");
-				} catch ( BarbeiroException e ) 
+				} catch ( BarberException e ) 
 				{
 					mostrarMensagemDeErro( e.getMessage () );
 				} catch ( SQLException e ) 

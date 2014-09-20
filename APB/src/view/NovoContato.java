@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 
 import control.AgendaController;
-import exception.BarbeiroException;
+import exception.BarberException;
 import model.Agenda;
 
 import java.awt.event.MouseEvent;
@@ -99,7 +99,7 @@ public class NovoContato extends JFrame
 				} catch ( SQLException e1 ) 
 				{
 					mostrarMensagemDeErro ( e1.getMessage () );
-				} catch ( BarbeiroException e1 )
+				} catch ( BarberException e1 )
 				{
 					mostrarMensagemDeErro ( e1.getMessage () );
 				}

@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 import model.Agenda;
 import control.AgendaController;
-import exception.BarbeiroException;
+import exception.BarberException;
 
 public class PhonebookControllerTest
 {
@@ -27,7 +27,7 @@ public class PhonebookControllerTest
 			contact.setTelefone("3895-5698");
 			contact.setDescricao("AAA");
 		}
-		catch (BarbeiroException e)
+		catch (BarberException e)
 		{
 			e.printStackTrace();
 		}

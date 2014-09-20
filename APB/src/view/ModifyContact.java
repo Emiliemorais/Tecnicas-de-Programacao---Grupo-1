@@ -17,7 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 
 import control.AgendaController;
-import exception.BarbeiroException;
+import exception.BarberException;
 import model.Agenda;
 
 @SuppressWarnings("serial")
@@ -126,7 +126,7 @@ public class ModifyContact extends JFrame
 		{
 			showErrorMessage(e.getMessage());
 		}
-		catch (BarbeiroException e)
+		catch (BarberException e)
 		{
 			showErrorMessage(e.getMessage());
 		}
@@ -163,7 +163,7 @@ public class ModifyContact extends JFrame
 					registerPhonebookFrame.setVisible(true);
 					registerPhonebookFrame.setLocationRelativeTo(null);
 				}
-				catch (BarbeiroException e1)
+				catch (BarberException e1)
 				{
 					showErrorMessage(e1.getMessage());
 				}

@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import control.BarberController;
-import exception.BarbeiroException;
+import exception.BarberException;
 
 //Inicio da classe
 public class BarbeiroControllerTeste 
@@ -37,7 +37,7 @@ public class BarbeiroControllerTeste
 		} catch ( NullPointerException e )
 		{
 			e.printStackTrace ();
-		} catch ( BarbeiroException e ) 
+		} catch ( BarberException e ) 
 		{
 			e.printStackTrace ();
 		}

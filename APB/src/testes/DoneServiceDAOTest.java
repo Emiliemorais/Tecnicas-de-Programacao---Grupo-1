@@ -13,11 +13,12 @@ import org.junit.Test;
 import dao.DoneServiceDAO;
 import exception.ServicoException;
 
-public class ServicoPrestadoDAOTeste
+public class DoneServiceDAOTest
 {
 
-	ServicoPrestado servico = new ServicoPrestado();
-	ServicoPrestado servico2 = new ServicoPrestado();
+	// Given Service class's instance to access the class
+	ServicoPrestado doneService = new ServicoPrestado();
+	ServicoPrestado doneService2 = new ServicoPrestado();
 	
 	/* 
 	 * Método utilizado para receber os atributos de um Serviço Prestado de forma correta,
@@ -28,14 +29,14 @@ public class ServicoPrestadoDAOTeste
 	{
 		try
 		{
-			servico.setNomeServico("Corte");
-			servico.setNomeBarbeiro("Alessandro");
-			servico.setData("10/10/2010");
-			servico.setPreco("10,00");
-			servico2.setNomeServico("Barba");
-			servico2.setNomeBarbeiro("Luciano");
-			servico2.setData("01/01/2010");
-			servico2.setPreco("9,90");
+			doneService.setNomeServico("Corte");
+			doneService.setNomeBarbeiro("Alessandro");
+			doneService.setData("10/10/2010");
+			doneService.setPreco("10,00");
+			doneService2.setNomeServico("Barba");
+			doneService2.setNomeBarbeiro("Luciano");
+			doneService2.setData("01/01/2010");
+			doneService2.setPreco("9,90");
 		} 
 		catch (NullPointerException e)
 		{
@@ -51,26 +52,26 @@ public class ServicoPrestadoDAOTeste
 		}
 	}
 
-	DoneServiceDAO servicoDAO = DoneServiceDAO.getInstance();
+	DoneServiceDAO doneServiceDAO = DoneServiceDAO.getInstance();
 	
 	/* 
 	 * Método utilizado para testar o getInstance da classe ServicoPrestadoDAO
 	*/
 	@Test
-	public void getInstanceDeServicoPrestadoDAODeveRetonarInstanciaCorrente ()
+	public void getInstanceTest ()
 	{
-		assertEquals(DoneServiceDAO.getInstance(), servicoDAO);
+		assertEquals(DoneServiceDAO.getInstance(), doneServiceDAO);
 	}
 
 	/* 
 	 * Método utilizado para testar a inserçao correta de um Servico Prestado
 	*/
 	@Test
-	public void inserirDeServicoPrestadoDAODeveCadastrarUmServicoPrestado ()
+	public void includeDoneServiceTest ()
 	{
 		try 
 		{
-			assertTrue(servicoDAO.includeServiceType(servico));
+			assertTrue(doneServiceDAO.includeServiceType(doneService));
 		} 
 		catch (SQLException e) 
 		{
@@ -83,11 +84,11 @@ public class ServicoPrestadoDAOTeste
 	 * Método utilizado para testar a exclusão correta de um Servico Prestado
 	*/
 	@Test
-	public void excluirDeServicoPrestadoDAODeveEnviarUmServicoPrestado () 
+	public void deleteDoneServiceTest () 
 	{
 		try 
 		{
-			assertTrue(servicoDAO.deleteServiceType(servico));
+			assertTrue(doneServiceDAO.deleteServiceType(doneService));
 		} 
 		catch (SQLException e)
 		{
@@ -99,11 +100,11 @@ public class ServicoPrestadoDAOTeste
 	 * Método utilizado para testar a inserçao de um Servico nulo na classe Serviço Prestado
 	*/
 	@Test
-	public void inserirDeServicoPrestadoDAOPassandoUmServicoNulo () 
+	public void includeDoneServiceNullTest () 
 	{
 		try 
 		{
-			assertFalse(servicoDAO.includeServiceType(null));
+			assertFalse(doneServiceDAO.includeServiceType(null));
 		} 
 		catch (SQLException e) 
 		{
@@ -115,11 +116,11 @@ public class ServicoPrestadoDAOTeste
 	 * Método utilizado para testar a exclusão de um Servico nulo na classe Serviço Prestado
 	*/
 	@Test
-	public void excluirDeServicoPrestadoDAOPassandoUmServicoNulo () 
+	public void deleteDoneServiceNullTest () 
 	{
 		try
 		{
-			assertFalse(servicoDAO.deleteServiceType(null));
+			assertFalse(doneServiceDAO.deleteServiceType(null));
 		} 
 		catch (SQLException e)
 		{

@@ -1,6 +1,6 @@
 package model;
 
-import exception.BarbeiroException;
+import exception.BarberException;
 
 public class Barber
 {
@@ -60,7 +60,7 @@ public class Barber
 	
 	// Construtor - Testa se os argumentos passados não são nulos
 	public Barber(String barberName, String barberCpf, String barberRg, String barberTelephone,
-					String barberChair) throws BarbeiroException
+					String barberChair) throws BarberException
 	{
 		this.barberName = barberName;
 		this.barberCpf = barberCpf;
@@ -151,7 +151,7 @@ public class Barber
 	 *  Testa se o barberName é válido, e dispara exceções caso contrário
 	 *	@params barberName - receives the name of a barber to validate
 	 */
-	public void setBarberName (String barberName) throws BarbeiroException 
+	public void setBarberName (String barberName) throws BarberException 
 	{
 		if (barberName == null)
 		{
@@ -159,7 +159,7 @@ public class Barber
 		}
 		else if ( "".equals(barberName) )
 		{
-			throw new BarbeiroException(BLANK_NAME);
+			throw new BarberException(BLANK_NAME);
 		}
 		else if ( barberName.matches("^[[ ]|\\p{L}*]+$") )
 		{
@@ -167,7 +167,7 @@ public class Barber
 		}
 		else
 		{
-			throw new BarbeiroException(INVALID_NAME);
+			throw new BarberException(INVALID_NAME);
 		}
 	}
 	
@@ -175,7 +175,7 @@ public class Barber
 	 *  Testa se o barberCpf é válido, e dispara exceções caso contrário
 	 *	@param barberCpf - receives the cpf of a barber to validate
 	 */
-	public void setBarberCpf (String barberCpf) throws BarbeiroException
+	public void setBarberCpf (String barberCpf) throws BarberException
 	{
 		// Exemplo CPF vÃ¡lido: 493.751.185-84
 		try 
@@ -199,12 +199,12 @@ public class Barber
 			}
 			else
 			{
-				throw new BarbeiroException(INVALID_CPF);
+				throw new BarberException(INVALID_CPF);
 			}
 		}
 		catch (AssertionError e) 
 		{
-			throw new BarbeiroException(INVALID_CPF);
+			throw new BarberException(INVALID_CPF);
 		}
 	}
 	
@@ -213,7 +213,7 @@ public class Barber
 	 * @param barberRg - receives the rg of a barber to validate
 	 */
 
-	public void setBarberRg (String barberRg) throws BarbeiroException
+	public void setBarberRg (String barberRg) throws BarberException
 	{
 		if (barberRg == null)
 		{
@@ -221,7 +221,7 @@ public class Barber
 		}
 		else if ( "".equals(barberRg) )
 		{
-			throw new BarbeiroException(BLANK_RG);
+			throw new BarberException(BLANK_RG);
 		}
 		else if ( barberRg.matches("^[[ ]|\\p{L}*]+$") )
 		{
@@ -241,7 +241,7 @@ public class Barber
 	 *  Testa se o barberTelephone é válido, e dispara exceções caso contrário
 	 * 	@params barberTelephone - receives the telephone of a barber to validate
 	 */
-	public void setBarberTelephone (String barberTelephone) throws BarbeiroException
+	public void setBarberTelephone (String barberTelephone) throws BarberException
 	{
 		if (barberTelephone == null)
 		{
@@ -249,7 +249,7 @@ public class Barber
 		}
 		else if ( "".equals(barberTelephone) )
 		{
-			throw new BarbeiroException(BLANK_TELEPHONE);
+			throw new BarberException(BLANK_TELEPHONE);
 		}
 		else if ( barberTelephone.matches("(\\([\\d]{2,3}\\))?[ ]*[\\d]{4,4}[ ]*-[ ]*[\\d]{4,4}[ ]*$") )
 		{
@@ -265,7 +265,7 @@ public class Barber
 	 *  Testa se o argumento barberChair é válido, e dispara exceções caso contrário
 	 * 	@param barberChair- receives the chair of a barber to validate
 	 */
-	public void setBarberChair (String barberChair) throws BarbeiroException
+	public void setBarberChair (String barberChair) throws BarberException
 	{
 		if (barberChair == null)
 		{
@@ -273,7 +273,7 @@ public class Barber
 		}
 		else if ("".equals(barberChair))
 		{
-			throw new BarbeiroException(BLANK_CHAIR);
+			throw new BarberException(BLANK_CHAIR);
 		}
 		else if ( "0".equals(barberChair) || barberChair.matches("^[[ ]|\\p{L}*]+$") )
 		{
@@ -285,7 +285,7 @@ public class Barber
 		}
 		else
 		{
-			throw new BarbeiroException(INVALID_CHAIR);
+			throw new BarberException(INVALID_CHAIR);
 		}
 	}
 	

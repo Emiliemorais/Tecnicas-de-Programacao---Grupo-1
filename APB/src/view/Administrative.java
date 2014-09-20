@@ -161,11 +161,11 @@ public class Administrative extends JFrame
 			public void mouseClicked(MouseEvent arg0)
             {
 				dispose();
-				GerarRecibo generateReceiptFrame = null;
+				GenerateReceipt generateReceiptFrame = null;
 				try
 				{
 					// Frame used to generate a receipt
-					generateReceiptFrame = new GerarRecibo();
+					generateReceiptFrame = new GenerateReceipt();
 				}
 				catch (ParseException e)
 				{

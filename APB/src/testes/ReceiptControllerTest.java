@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import model.Report;
 import control.ReciboController;
-import exception.ReciboException;
+import exception.ReceiptException;
 import exception.RelatorioException;
 
 public class ReceiptControllerTest
@@ -20,7 +20,7 @@ public class ReceiptControllerTest
 
 	@Before
 	// Initialize the attributes of 'report' (instance variable above)
-	public void setUp() throws ReciboException, ParseException
+	public void setUp() throws ReceiptException, ParseException
 	{
         try
         {
