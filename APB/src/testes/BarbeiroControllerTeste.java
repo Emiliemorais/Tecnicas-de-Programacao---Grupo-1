@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import model.Barbeiro;
+import model.Barber;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +19,7 @@ public class BarbeiroControllerTeste
 {
 
 	// Instancia de Barbeiro
-	Barbeiro barbeiro = new Barbeiro();
+	Barber barber = new Barber();
 
 	@Before
 	/*
@@ -29,11 +29,11 @@ public class BarbeiroControllerTeste
 	public void setUp () 
 	{
 		try {
-			barbeiro.setNome ( "Alessandro" );
-			barbeiro.setRg ( "418757896" );
-			barbeiro.setTelefone ( "3389-9085" );
-			barbeiro.setCpf ( "02919594150" );
-			barbeiro.setCadeira ( "5" );
+			barber.setBarberName ( "Alessandro" );
+			barber.setBarberRg ( "418757896" );
+			barber.setBarberTelephone ( "3389-9085" );
+			barber.setBarberCpf ( "02919594150" );
+			barber.setBarberChair ( "5" );
 		} catch ( NullPointerException e )
 		{
 			e.printStackTrace ();
@@ -56,7 +56,7 @@ public class BarbeiroControllerTeste
 	public void inserirDeBarbeiroControllerDeveEnviarUmBarbeiro () 
 	{
 		try {
-			assertTrue ( barbeiroController.includeBarber ( barbeiro ) );
+			assertTrue ( barbeiroController.includeBarber ( barber ) );
 		} catch ( SQLException e ) 
 		{
 			e.printStackTrace ();
@@ -68,7 +68,7 @@ public class BarbeiroControllerTeste
 	public void excluirDeBarbeiroControllerDeveEnviarUmBarbeiro () 
 	{
 		try {
-			assertTrue ( barbeiroController.deleteBarber ( barbeiro ) );
+			assertTrue ( barbeiroController.deleteBarber ( barber ) );
 		} catch ( SQLException e ) 
 		{
 			e.printStackTrace ();
@@ -80,7 +80,7 @@ public class BarbeiroControllerTeste
 	public void alterarDeBarbeiroControllerDeveEnviarUmBarbeiro () 
 	{
 		try {
-			assertTrue ( barbeiroController.alterar(barbeiro.getNome (), barbeiro ) );
+			assertTrue ( barbeiroController.alterar(barber.getBarberName (), barber ) );
 		} catch ( SQLException e ) 
 		{
 			e.printStackTrace ();
@@ -148,7 +148,7 @@ public class BarbeiroControllerTeste
 	public void mostrarBarbeirosDeBarbeiroControllerDeveMostrarUmBarbeiro ()
 			throws SQLException 
 			{
-		ResultSet rs = barbeiroController.showRegisteredBarbers ( barbeiro );
+		ResultSet rs = barbeiroController.showRegisteredBarbers ( barber );
 		while ( rs.next () )
 			;
 	}// Fim do metodo
@@ -157,7 +157,7 @@ public class BarbeiroControllerTeste
 	public void pesquisarPorNomeDeBarbeiroControllerDeveMostrarUmBarbeiro ()
 			throws SQLException 
 			{
-		ResultSet rs = barbeiroController.searchBarberByName ( barbeiro );
+		ResultSet rs = barbeiroController.searchBarberByName ( barber );
 		while ( rs.next () )
 			;
 	}// Fim do metodo

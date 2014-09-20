@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import model.Barbeiro;
+import model.Barber;
 import control.BarberController;
 import exception.BarbeiroException;
 
@@ -123,11 +123,11 @@ public class AlterarBarbeiro extends JFrame
 		// Testa se não há disparo de exceções com os dados informados
 		try
 		{
-			Barbeiro barbeiro = new Barbeiro();
+			Barber barber = new Barber();
 			BarberController barbeiroController = BarberController.getInstance();
-			barbeiro.setNome( Barbeiro.getTempNome() );
+			barber.setBarberName( Barber.getTemporaryName() );
 			
-			ResultSet rs = barbeiroController.searchBarberByName(barbeiro);
+			ResultSet rs = barbeiroController.searchBarberByName(barber);
 			
 			while ( rs.next() ) 
 			{
@@ -158,15 +158,15 @@ public class AlterarBarbeiro extends JFrame
 			{
 				try 
 				{
-					Barbeiro barbeiro = new Barbeiro();
-					barbeiro.setNome( textFieldNome.getText() );
-					barbeiro.setCpf( textFieldCpf.getText() );
-					barbeiro.setRg( textFieldRg.getText() );
-					barbeiro.setTelefone( textFieldTelefone.getText() );
-					barbeiro.setCadeira( textFieldCadeira.getText() );
+					Barber barber = new Barber();
+					barber.setBarberName( textFieldNome.getText() );
+					barber.setBarberCpf( textFieldCpf.getText() );
+					barber.setBarberRg( textFieldRg.getText() );
+					barber.setBarberTelephone( textFieldTelefone.getText() );
+					barber.setBarberChair( textFieldCadeira.getText() );
 
 					BarberController barbeiroController = BarberController.getInstance();
-					barbeiroController.alterar(nome, barbeiro);
+					barbeiroController.alterar(nome, barber);
 
 					JOptionPane.showMessageDialog(null, "Barbeiro "
 												  		 + textFieldNome.getText()

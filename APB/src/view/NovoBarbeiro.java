@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
-import model.Barbeiro;
+import model.Barber;
 import control.BarberController;
 import exception.BarbeiroException;
 
@@ -130,15 +130,15 @@ public class NovoBarbeiro extends JFrame
 			public void mouseClicked ( MouseEvent k ) 
 			{
 				try {
-					Barbeiro barbeiro = new Barbeiro ();
-					barbeiro.setNome ( textFieldNome.getText () );
-					barbeiro.setCpf ( textFieldCpf.getText () );
-					barbeiro.setRg ( textFieldRg.getText () );
-					barbeiro.setTelefone ( textFieldTelefone.getText ( ) );
-					barbeiro.setCadeira ( textFieldCadeira.getText () );
+					Barber barber = new Barber ();
+					barber.setBarberName ( textFieldNome.getText () );
+					barber.setBarberCpf ( textFieldCpf.getText () );
+					barber.setBarberRg ( textFieldRg.getText () );
+					barber.setBarberTelephone ( textFieldTelefone.getText ( ) );
+					barber.setBarberChair ( textFieldCadeira.getText () );
 
 					BarberController barbeiroController = BarberController.getInstance ();
-					barbeiroController.includeBarber ( barbeiro );
+					barbeiroController.includeBarber ( barber );
 
 					JOptionPane.showMessageDialog (null, "Barbeiro "
 							+ textFieldNome.getText ()

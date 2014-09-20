@@ -16,7 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import model.Barbeiro;
+import model.Barber;
 import control.BarberController;
 import exception.BarbeiroException;
 // Inicio da classe CadastrarBarbeiro
@@ -75,8 +75,8 @@ public class CadastrarBarbeiro extends JFrame
 		try 
 		{
 			BarberController barbeiroController = BarberController.getInstance();
-			Barbeiro barbeiro = new Barbeiro();
-			ResultSet rs = barbeiroController.showRegisteredBarbers(barbeiro);
+			Barber barber = new Barber();
+			ResultSet rs = barbeiroController.showRegisteredBarbers(barber);
 			while ( rs.next () )
 			{
 				String[] dados = new String[5];
@@ -124,7 +124,7 @@ public class CadastrarBarbeiro extends JFrame
 			public void mouseClicked(MouseEvent e)
 			{
 				try{
-					Barbeiro.setTempNome( modelo.getValueAt ( table.getSelectedRow (), 0).toString () );
+					Barber.setTemporaryName( modelo.getValueAt ( table.getSelectedRow (), 0).toString () );
 					AlterarBarbeiro frame = new AlterarBarbeiro ();
 					frame.setVisible ( true );
 					frame.setLocationRelativeTo ( null );
@@ -146,8 +146,8 @@ public class CadastrarBarbeiro extends JFrame
 			{
 				try {
 					String nome = (String) table.getValueAt ( table.getSelectedRow (), 0 );
-					Barbeiro barbeiro = new Barbeiro ();
-					barbeiro.setNome ( nome );
+					Barber barber = new Barber ();
+					barber.setBarberName ( nome );
 					
 					int confirmacao = JOptionPane.showConfirmDialog ( null,
 							"Remover " + nome + " da lista?" );
@@ -155,7 +155,7 @@ public class CadastrarBarbeiro extends JFrame
 					if ( confirmacao == JOptionPane.YES_OPTION ) 
 					{
 						BarberController barbeiroController = BarberController.getInstance();
-						barbeiroController.deleteBarber ( barbeiro );
+						barbeiroController.deleteBarber ( barber );
 
 						dispose();
 						CadastrarBarbeiro frame = new CadastrarBarbeiro ();

@@ -6,7 +6,7 @@ import junit.framework.AssertionFailedError;
 import exception.BarbeiroException;
 import exception.ServicoException;
 import model.Agenda;
-import model.Barbeiro;
+import model.Barber;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +15,7 @@ import org.junit.Test;
 public class BarbeiroTeste 
 {
 
-	Barbeiro barbeiro;
+	Barber barber;
 	
 	/* 
 	 * M�todo utilizado para receber os atributos de um Barbeiro de forma correta,
@@ -26,12 +26,12 @@ public class BarbeiroTeste
 	{
 		try 
 		{
-			barbeiro =  new Barbeiro();
-			barbeiro.setNome("Alessandro");
-			barbeiro.setRg("418757896");
-			barbeiro.setTelefone("3389-9085");
-			barbeiro.setCpf("02919594150");
-			barbeiro.setCadeira("10");
+			barber =  new Barber();
+			barber.setBarberName("Alessandro");
+			barber.setBarberRg("418757896");
+			barber.setBarberTelephone("3389-9085");
+			barber.setBarberCpf("02919594150");
+			barber.setBarberChair("10");
 		} 
 		catch (NullPointerException e) 
 		{
@@ -53,7 +53,7 @@ public class BarbeiroTeste
 	{
 		try 
 		{
-			barbeiro.setNome(null);
+			barber.setBarberName(null);
 		} 
 		catch (BarbeiroException e) 
 		{
@@ -71,7 +71,7 @@ public class BarbeiroTeste
 	{
 		try 
 		{
-			barbeiro.setCpf(null);
+			barber.setBarberCpf(null);
 		} 
 		catch (BarbeiroException e) 
 		{
@@ -89,7 +89,7 @@ public class BarbeiroTeste
 	{
 		try
 		{
-			barbeiro.setRg(null);
+			barber.setBarberRg(null);
 		}
 		catch (BarbeiroException e) 
 		{
@@ -107,7 +107,7 @@ public class BarbeiroTeste
 	{
 		try
 		{
-			barbeiro.setTelefone(null);
+			barber.setBarberTelephone(null);
 		}
 		catch (BarbeiroException e) 
 		{
@@ -125,7 +125,7 @@ public class BarbeiroTeste
 	{
 		try 
 		{
-			barbeiro.setCadeira(null);
+			barber.setBarberChair(null);
 		}
 		catch (BarbeiroException e)
 		{
@@ -143,7 +143,7 @@ public class BarbeiroTeste
 	{
 		try 
 		{
-			new Barbeiro(null, "493.751.185-84", "2258256", "3389-9085", "10");
+			new Barber(null, "493.751.185-84", "2258256", "3389-9085", "10");
 		} catch (BarbeiroException e)
 		{
 			e.printStackTrace();
@@ -160,7 +160,7 @@ public class BarbeiroTeste
 	{
 		try 
 		{
-			new Barbeiro("Alessandro", null, "2258256", "3389-9085", "10");
+			new Barber("Alessandro", null, "2258256", "3389-9085", "10");
 		} 
 		catch (BarbeiroException e) 
 		{
@@ -178,7 +178,7 @@ public class BarbeiroTeste
 	{
 		try
 		{
-			new Barbeiro("Alessandro", "493.751.185-84", null, "3389-9085", "10");
+			new Barber("Alessandro", "493.751.185-84", null, "3389-9085", "10");
 		}
 		catch (BarbeiroException e) 
 		{
@@ -196,7 +196,7 @@ public class BarbeiroTeste
 	{
 		try 
 		{
-			new Barbeiro("Alessandro", "493.751.185-84", "2258256", null, "10");
+			new Barber("Alessandro", "493.751.185-84", "2258256", null, "10");
 		} 
 		catch (BarbeiroException e) 
 		{
@@ -213,7 +213,7 @@ public class BarbeiroTeste
 	{
 		try 
 		{
-			new Barbeiro("Alessandro", "493.751.185-84", "2258256", "3389-9085", null);
+			new Barber("Alessandro", "493.751.185-84", "2258256", "3389-9085", null);
 		} 
 		catch (BarbeiroException e) 
 		{
@@ -230,7 +230,7 @@ public class BarbeiroTeste
 	{
 		try 
 		{
-			barbeiro.setCpf("000000000");
+			barber.setBarberCpf("000000000");
 			fail();
 		}
 		catch (BarbeiroException e) 
@@ -248,7 +248,7 @@ public class BarbeiroTeste
 	{
 		try 
 		{
-			barbeiro.setRg("4654654ASD");
+			barber.setBarberRg("4654654ASD");
 		} 
 		catch (BarbeiroException e)
 		{
@@ -265,7 +265,7 @@ public class BarbeiroTeste
 	{
 		try 
 		{
-			barbeiro.setCadeira("asd");
+			barber.setBarberChair("asd");
 		} 
 		catch (BarbeiroException e)
 		{
@@ -282,7 +282,7 @@ public class BarbeiroTeste
 	{
 		try
 		{
-			barbeiro.setTelefone("65465a4");
+			barber.setBarberTelephone("65465a4");
 		} 
 		catch (BarbeiroException e) 
 		{
@@ -295,42 +295,42 @@ public class BarbeiroTeste
 	@Test
 	public void testeParaGetterDeNomeDeBarbeiro () 
 	{
-		assertEquals("Alessandro", barbeiro.getNome());
+		assertEquals("Alessandro", barber.getBarberName());
 	}
 	
 	// M�todo que testa o recebimento de um CPF do Barbeiro pelo m�todo de acesso get 
 	@Test
 	public void testeParaGetterDeCPFDeBarbeiro ()
 	{
-		assertEquals("02919594150", barbeiro.getCpf());
+		assertEquals("02919594150", barber.getBarberCpf());
 	}
 	
 	// M�todo que testa o recebimento de um RG do Barbeiro pelo m�todo de acesso get 
 	@Test
 	public void testeParaGetterDeRGDeBarbeiro () 
 	{
-		assertEquals("418757896", barbeiro.getRg());
+		assertEquals("418757896", barber.getBarberRg());
 	}
 	
 	// M�todo que testa o recebimento de um telefone do Barbeiro pelo m�todo de acesso get 
 	@Test
 	public void testeParaGetterDeTelefoneDeBarbeiro () 
 	{
-		assertEquals("3389-9085", barbeiro.getTelefone());
+		assertEquals("3389-9085", barber.getBarberTelephone());
 	}
 	
 	// M�todo que testa o recebimento de uma cadeira do Barbeiro pelo m�todo de acesso get 
 	@Test
 	public void testeParaGetterDeCadeiraDeBarbeiro ()
 	{
-		assertEquals("10", barbeiro.getCadeira());
+		assertEquals("10", barber.getBarberChair());
 	}
 	
 	// M�todo que testa o recebimento de um nome temporario do Barbeiro pelo m�todo de acesso get 
 	@Test
 	public void testeParaGetterDeTempNomeDeBarbeiro ()
 	{
-		assertEquals(null, Barbeiro.getTempNome());
+		assertEquals(null, Barber.getTemporaryName());
 	}
 	
 	// M�todo que testa a passagem de um nome do Barbeiro pelo m�todo de acesso set 
@@ -339,7 +339,7 @@ public class BarbeiroTeste
 	{
 		try 
 		{
-			barbeiro.setNome("Alessandro");
+			barber.setBarberName("Alessandro");
 		} 
 		catch (NullPointerException e) 
 		{
@@ -349,14 +349,14 @@ public class BarbeiroTeste
 		{
 			e.printStackTrace();
 		}
-		assertEquals("Alessandro", barbeiro.getNome());
+		assertEquals("Alessandro", barber.getBarberName());
 	}
 	
 	// M�todo que testa a passagem de um nome com n�mero do Barbeiro pelo m�todo de acesso set
 	@Test (expected = BarbeiroException.class)
 	public void nomeComNumero () throws BarbeiroException 
 	{
-		barbeiro.setNome("J040");
+		barber.setBarberName("J040");
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
@@ -364,7 +364,7 @@ public class BarbeiroTeste
 	@Test (expected =  BarbeiroException.class)
 	public void cpfPassadoEmBranco () throws BarbeiroException
 	{
-		barbeiro.setCpf("");
+		barber.setBarberCpf("");
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
@@ -372,7 +372,7 @@ public class BarbeiroTeste
 	@Test (expected =  BarbeiroException.class)
 	public void cpfInvalido () throws BarbeiroException 
 	{
-		barbeiro.setCpf("123.654.456-75");
+		barber.setBarberCpf("123.654.456-75");
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
@@ -380,7 +380,7 @@ public class BarbeiroTeste
 	@Test (expected =  AssertionError.class)
 	public void rgPassadoComLetras () throws BarbeiroException 
 	{
-		barbeiro.setRg("asasa");
+		barber.setBarberRg("asasa");
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
@@ -388,7 +388,7 @@ public class BarbeiroTeste
 	@Test (expected =  BarbeiroException.class)
 	public void rgPassadoEmBrancro () throws BarbeiroException
 	{
-		barbeiro.setRg("");
+		barber.setBarberRg("");
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
@@ -396,7 +396,7 @@ public class BarbeiroTeste
 	@Test (expected =  BarbeiroException.class)
 	public void nomePassadoEmBrancro () throws BarbeiroException
 	{
-		barbeiro.setNome("");
+		barber.setBarberName("");
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
@@ -404,7 +404,7 @@ public class BarbeiroTeste
 	@Test (expected =  BarbeiroException.class)
 	public void telefonePassadoEmBrancro () throws BarbeiroException
 	{
-		barbeiro.setTelefone("");
+		barber.setBarberTelephone("");
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
@@ -412,7 +412,7 @@ public class BarbeiroTeste
 	@Test (expected =  BarbeiroException.class)
 	public void cadeiraPassadoEmBrancro () throws BarbeiroException 
 	{
-		barbeiro.setCadeira("");
+		barber.setBarberChair("");
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
@@ -423,7 +423,7 @@ public class BarbeiroTeste
 	@Test (expected =  AssertionError.class)
 	public void cadeiraPassadoComoZero () throws BarbeiroException 
 	{
-		barbeiro.setCadeira("0");
+		barber.setBarberChair("0");
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
@@ -434,7 +434,7 @@ public class BarbeiroTeste
 	@Test (expected = BarbeiroException.class)
 	public void cadeiraPassadoComMaisDeDoisDigitos () throws BarbeiroException
 	{
-		barbeiro.setCadeira("1000");
+		barber.setBarberChair("1000");
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
@@ -449,7 +449,7 @@ public class BarbeiroTeste
 	@Test (expected = AssertionFailedError.class)
 	public void setterDeTempNomeNaoPodeSerNulo () throws ServicoException 
 	{
-		Barbeiro.setTempNome(null);
+		Barber.setTemporaryName(null);
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
@@ -458,7 +458,7 @@ public class BarbeiroTeste
 	@Test (expected = AssertionFailedError.class)
 	public void setterDeTempNomeNaoPodeSerEmBranco () 
 	{
-		Barbeiro.setTempNome("");
+		Barber.setTemporaryName("");
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
@@ -466,7 +466,7 @@ public class BarbeiroTeste
 	@Test (expected = AssertionError.class)
 	public void tempNomeValido () throws BarbeiroException
 	{
-		Barbeiro.setTempNome("João");
+		Barber.setTemporaryName("João");
 		assertEquals("João", Agenda.getTempNome());
 	}
 }
