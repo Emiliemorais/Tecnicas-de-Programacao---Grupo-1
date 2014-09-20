@@ -125,7 +125,7 @@ public class CadastrarBarbeiro extends JFrame
 			{
 				try{
 					Barber.setTemporaryName( modelo.getValueAt ( table.getSelectedRow (), 0).toString () );
-					AlterarBarbeiro frame = new AlterarBarbeiro ();
+					ChangeBarber frame = new ChangeBarber ();
 					frame.setVisible ( true );
 					frame.setLocationRelativeTo ( null );
 					dispose();
