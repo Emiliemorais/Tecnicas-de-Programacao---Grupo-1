@@ -133,7 +133,7 @@ public class RegisterDoneService extends JFrame
 				dispose();
 				
 				// Frame used to open a window to add a new done service
-				NovoServicoPrestado newDoneServiceFrame = new NovoServicoPrestado();
+				NewDoneService newDoneServiceFrame = new NewDoneService();
 				newDoneServiceFrame.setVisible(true);
 				newDoneServiceFrame.setLocationRelativeTo(null);
 			}
