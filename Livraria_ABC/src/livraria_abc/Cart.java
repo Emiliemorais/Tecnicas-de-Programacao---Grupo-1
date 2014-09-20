@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-import static livraria_abc.Livraria_ABC.acessoAtual;
-import static livraria_abc.Livraria_ABC.Menu;
-import static livraria_abc.Livraria_ABC.desconto;
-import static livraria_abc.Livraria_ABC.clienteAtual;
+import static livraria_abc.ABCBookStore.currentAccess;
+import static livraria_abc.ABCBookStore.showMenu;
+import static livraria_abc.ABCBookStore.discount;
+import static livraria_abc.ABCBookStore.currentClient;
 
     public class Cart
     {
@@ -71,7 +71,7 @@ import static livraria_abc.Livraria_ABC.clienteAtual;
         
         /**
          * Add items to a cart
-         * @param bookToAddIsbn - Book ISBN to add on cart
+         * @param bookToAddIsbn - Book listISBN to add on cart
          * @param quantityToAdd - Quantity of books to add on cart
          * @param clientCpfToAddItems - Client who is shopping the books
          */
@@ -79,7 +79,7 @@ import static livraria_abc.Livraria_ABC.clienteAtual;
                                           int quantityToAdd,
                                           String clientCpfToAddItems)
         {
-           if( acessoAtual ) 
+           if( currentAccess ) 
            {
             /*
              * Check if there is a cart open to client "clientCpfToAddItems".
@@ -128,7 +128,7 @@ import static livraria_abc.Livraria_ABC.clienteAtual;
              */
             int bookIndex = 0;
             
-            bookIndex = Livro.ISBN.indexOf(bookToAddIsbn);
+            bookIndex = Book.listISBN.indexOf(bookToAddIsbn);
             
             // Contains the items and quantity to include on cart
             Cart itemsAndQuantityToAddOnList = new Cart(bookToAddIsbn, quantityToAdd);
@@ -140,7 +140,7 @@ import static livraria_abc.Livraria_ABC.clienteAtual;
             
             if( okAddOnList ) 
             {
-                System.out.println("'" + Livro.Titulo.get(bookIndex) 
+                System.out.println("'" + Book.listTitle.get(bookIndex) 
                                    + "' foi adicionado à sua cesta!");
             }
             else
@@ -148,7 +148,7 @@ import static livraria_abc.Livraria_ABC.clienteAtual;
                 // Nothing to do
             }
             
-            Menu();
+            showMenu();
           }
           else
           {
@@ -170,7 +170,7 @@ import static livraria_abc.Livraria_ABC.clienteAtual;
               {
                   System.out.println("\nLogin mal sucedido. Tente Novamente.\n");
                   
-                  Menu();
+                  showMenu();
               }
           }
         }
@@ -180,7 +180,7 @@ import static livraria_abc.Livraria_ABC.clienteAtual;
         {
             cartCode = "blank";
             cpfOfCartOwner = "blank";
-            desconto = 0;
+            discount = 0;
             
             // Used to acess the index of List to remove items
             int t = 0;
@@ -202,14 +202,14 @@ import static livraria_abc.Livraria_ABC.clienteAtual;
         // List all items on cart
         public static void listCartItems ()
         {
-            if( acessoAtual )
+            if( currentAccess )
             {
                 /* Receive the position of client cpf on the list of clients 
                  * (Refers to 'Client' class)
                  */
                 int loggedClientIndex = 0;
                 
-                loggedClientIndex = Cliente.cpf.indexOf(clienteAtual);
+                loggedClientIndex = Cliente.cpf.indexOf(currentClient);
                 
                 System.out.println("\nOlá " + Cliente.nome.get(loggedClientIndex) + "!\n");
                 
@@ -233,16 +233,16 @@ import static livraria_abc.Livraria_ABC.clienteAtual;
                     // 'p' is used to walk through cart items list
                     for( int p = 0; p < itemsAndQuantity.size(); p++ )
                     {
-                        bookIndex = Livro.ISBN.indexOf(itemsAndQuantity.get(p).getItens_add());
+                        bookIndex = Book.listISBN.indexOf(itemsAndQuantity.get(p).getItens_add());
                     
-                        bookTitle = Livro.Titulo.get(bookIndex);
+                        bookTitle = Book.listTitle.get(bookIndex);
                         
                         System.out.println("Item " + (p+1) + ": '" + bookTitle + "'");
                         System.out.println("Quantidade: "  + itemsAndQuantity
                                                              .get(p)
                                                              .getQuantityOfItens());
                         System.out.println("Preço(un.): R$" 
-                                           + Livro.Preco.get(bookIndex) + "\n");
+                                           + Book.listPrice.get(bookIndex) + "\n");
                         
                     }
                     
@@ -252,13 +252,13 @@ import static livraria_abc.Livraria_ABC.clienteAtual;
                     System.out.printf("\nPreço total até agora: R$%.2f\n", totalValueOfCart);
                 }
                 
-                Menu();
+                showMenu();
             }
             else
             {
                 System.out.println("\nNenhum cliente logado. Faça login primeiro!");
                 
-                Menu();
+                showMenu();
             }
         }
         
@@ -267,7 +267,7 @@ import static livraria_abc.Livraria_ABC.clienteAtual;
         {
                 int indice_Clogado;
                 
-                indice_Clogado = Cliente.cpf.indexOf(clienteAtual);
+                indice_Clogado = Cliente.cpf.indexOf(currentClient);
                 
                            
                 if(itemsAndQuantity.isEmpty())
@@ -283,13 +283,13 @@ import static livraria_abc.Livraria_ABC.clienteAtual;
                     System.out.println("Código da cesta: "+cartCode);
                     for(p=0; p<itemsAndQuantity.size(); p++)
                     {
-                        indice_Livro = Livro.ISBN.indexOf(itemsAndQuantity.get(p).getItens_add());
+                        indice_Livro = Book.listISBN.indexOf(itemsAndQuantity.get(p).getItens_add());
                     
-                        livro = Livro.Titulo.get(indice_Livro);
+                        livro = Book.listTitle.get(indice_Livro);
                         
                         System.out.println("Item "+(p+1)+": '"+livro+"'");
                         System.out.println("Quantidade: "  +itemsAndQuantity.get(p).getQuantityOfItens());
-                        System.out.println("Preço(un.): R$"+Livro.Preco.get(indice_Livro)+"\n");
+                        System.out.println("Preço(un.): R$"+Book.listPrice.get(indice_Livro)+"\n");
                         
                     }
                     
@@ -304,7 +304,7 @@ import static livraria_abc.Livraria_ABC.clienteAtual;
         // Return the catalogue of books
         public static void continueShopping()
         {
-            Livro.Mostrar_catalogo();
+            Book.showCatalog();
         }
         
         //  Remove an item from cart
@@ -313,7 +313,7 @@ import static livraria_abc.Livraria_ABC.clienteAtual;
             if( itemsAndQuantity.isEmpty() )
             {
                 System.out.println("\nCesta vazia. Vamos lá, inclua algo agora mesmo!\n");
-                Menu();
+                showMenu();
             }
             else
             {
@@ -333,9 +333,9 @@ import static livraria_abc.Livraria_ABC.clienteAtual;
                 // 'p' is used to walk through cart items list
                 for(int p = 0; p < itemsAndQuantity.size(); p++)
                 {
-                    bookIndex = Livro.ISBN.indexOf(itemsAndQuantity.get(p).getItens_add());
+                    bookIndex = Book.listISBN.indexOf(itemsAndQuantity.get(p).getItens_add());
                     
-                    bookNameOnCart = Livro.Titulo.get(bookIndex);
+                    bookNameOnCart = Book.listTitle.get(bookIndex);
                         
                     System.out.println("Item " + (p+1) + ": '" + bookNameOnCart + "'");
                     System.out.println("Quantidade: "  + itemsAndQuantity.get(p).getQuantityOfItens());
@@ -374,11 +374,11 @@ import static livraria_abc.Livraria_ABC.clienteAtual;
                  */
                 int indexOfRemovedBook = 0;
                 
-                indexOfRemovedBook = Livro.ISBN.indexOf(removedBookName.itemsToAddOnCart);
+                indexOfRemovedBook = Book.listISBN.indexOf(removedBookName.itemsToAddOnCart);
                 
-                System.out.println("\n'"+Livro.Titulo.get(indexOfRemovedBook)+"'/"+removedBookName.quantityOfItens+" foi removido da cesta.\n");
+                System.out.println("\n'"+Book.listTitle.get(indexOfRemovedBook)+"'/"+removedBookName.quantityOfItens+" foi removido da cesta.\n");
                 
-                Menu();
+                showMenu();
             }
         }
         
@@ -391,7 +391,7 @@ import static livraria_abc.Livraria_ABC.clienteAtual;
             }
             else
             {
-                // Receive the ISBN of the book added on the position 'p' on the cart items list
+                // Receive the listISBN of the book added on the position 'p' on the cart items list
                 String bookIsbnOnCart = "";
                 
                 // Receive the price of the book on the position 'p' on the cart items list
@@ -417,9 +417,9 @@ import static livraria_abc.Livraria_ABC.clienteAtual;
                 {
                     bookIsbnOnCart = itemsAndQuantity.get(p).itemsToAddOnCart;
                     
-                    bookIndex = Livro.ISBN.indexOf(bookIsbnOnCart);
+                    bookIndex = Book.listISBN.indexOf(bookIsbnOnCart);
                     
-                    bookPriceString = Livro.Preco.get(bookIndex);
+                    bookPriceString = Book.listPrice.get(bookIndex);
                     
                     bookPriceFloat = Float.parseFloat(bookPriceString);
                     
@@ -428,7 +428,7 @@ import static livraria_abc.Livraria_ABC.clienteAtual;
                     totalValueOfCart +=subtotal;                                        
                 }
                 
-                totalValueOfCart = totalValueOfCart - (totalValueOfCart*desconto);
+                totalValueOfCart = totalValueOfCart - (totalValueOfCart*discount);
                                                 
                 return totalValueOfCart;
             }
@@ -460,13 +460,13 @@ import static livraria_abc.Livraria_ABC.clienteAtual;
                                    + couponDiscountValue 
                                    + "% de desconto em qualquer livro!\n");
                 
-                desconto = couponDiscountValue/100;
+                discount = couponDiscountValue/100;
                 
             }
             else
             {
                 System.out.println("\nCumpom não cadastrado em nosso sistema.\n");
-                Menu();              
+                showMenu();              
             }
             
         }
@@ -480,7 +480,7 @@ import static livraria_abc.Livraria_ABC.clienteAtual;
             
                 purchaseCode = randomGenerator.nextInt(10000);
                 
-                desconto = 0;
+                discount = 0;
                             
                 return purchaseCode;
             }

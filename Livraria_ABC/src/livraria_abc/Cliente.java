@@ -1,9 +1,9 @@
 package livraria_abc;
 
 import java.util.*;
-import static livraria_abc.Livraria_ABC.acessoAtual;
-import static livraria_abc.Livraria_ABC.clienteAtual;
-import static livraria_abc.Livraria_ABC.nomeClienteAtual;
+import static livraria_abc.ABCBookStore.currentAccess;
+import static livraria_abc.ABCBookStore.currentClient;
+import static livraria_abc.ABCBookStore.currentClientName;
 
 
 public class Cliente 
@@ -22,16 +22,16 @@ public class Cliente
     Scanner input = new Scanner(System.in);
     Scanner lerString = new Scanner(System.in);
     
-    Livraria_ABC livraria = new Livraria_ABC();
+    ABCBookStore livraria = new ABCBookStore();
         
-        // Menu específico para o cliente
+        // showMenu específico para o cliente
         public void menuCliente()
         {
             int opcaoCliente = 0;
             
             do 
             {
-                System.out.println("\nOlá " + nomeClienteAtual + "! Aqui você pode gerenciar sua conta.");
+                System.out.println("\nOlá " + currentClientName + "! Aqui você pode gerenciar sua conta.");
                 System.out.println("1- Alterar dados conta");
                 System.out.println("2- Consultar dados da conta");
                 System.out.println("3- Excluir conta");
@@ -62,7 +62,7 @@ public class Cliente
                     }
                     case 4:
                     {
-                        livraria.Menu();
+                        livraria.showMenu();
                         break;
                     }
                     default:
@@ -81,7 +81,7 @@ public class Cliente
         {
             int i = 0;
             
-            i = cpf.indexOf(clienteAtual);
+            i = cpf.indexOf(currentClient);
             
             System.out.println("\nDigite o nome do cliente: ");
             String novoNome = lerString.nextLine();
@@ -117,8 +117,8 @@ public class Cliente
             dataNascimento.set(i,novaDataNascimento);
             telefone.set(i,novoTelefone);
             
-            clienteAtual = novoCpf;
-            nomeClienteAtual = novoNome;
+            currentClient = novoCpf;
+            currentClientName = novoNome;
             
             System.out.println("\nDados atualizados com sucesso!\n");
             
@@ -154,9 +154,9 @@ public class Cliente
         {
             int i = 0;
             
-            i = cpf.indexOf(clienteAtual);
+            i = cpf.indexOf(currentClient);
             
-            System.out.println("\nDados cadastrados para '" + nomeClienteAtual + "':");
+            System.out.println("\nDados cadastrados para '" + currentClientName + "':");
             System.out.println("CPF: " + cpf.get(i) );
             System.out.println("RG: " + rg.get(i) );
             System.out.println("Sexo: " + sexo.get(i) );
@@ -176,7 +176,7 @@ public class Cliente
         {
             String opcao = "";
             System.out.println("\nDeseja mesmo exluir sua conta " 
-                               + nomeClienteAtual + "?\n 1-SIM  |  0-NÃO\n");
+                               + currentClientName + "?\n 1-SIM  |  0-NÃO\n");
             
             opcao =  lerString.nextLine();
             
@@ -184,7 +184,7 @@ public class Cliente
             {
                 int i = 0;
                 
-                i = cpf.indexOf(clienteAtual);
+                i = cpf.indexOf(currentClient);
                                 
                 cpf.remove(i);
                 rg.remove(i);
@@ -197,13 +197,13 @@ public class Cliente
                 conta.remove(i);
                 senha.remove(i);
                 
-                acessoAtual = false;
-                clienteAtual = "blank";
-                nomeClienteAtual = "blank";
+                currentAccess = false;
+                currentClient = "blank";
+                currentClientName = "blank";
                                 
                 Cart.emptyCart();
                 
-                livraria.Menu();
+                livraria.showMenu();
                 
             }
             else
@@ -258,9 +258,9 @@ public class Cliente
                 Cliente.conta.add(login);
                 Cliente.senha.add(senha);
                 
-                acessoAtual = true;
-                clienteAtual = cpf;
-                nomeClienteAtual = nome;
+                currentAccess = true;
+                currentClient = cpf;
+                currentClientName = nome;
                 
                 System.out.println("\nCliente cadastrado com sucesso!\n");
                 menuCliente();
@@ -270,7 +270,7 @@ public class Cliente
         public String efetuarLogin()
         {
             String verifyCadastro = "1";
-            if( !acessoAtual && !Cliente.conta.isEmpty() )  
+            if( !currentAccess && !Cliente.conta.isEmpty() )  
             {
                 System.out.println("\nJá possui cadastro em nosso site?\nSe sim,"
                                    + " digite 1 e continue com sua compra. Se não,"
@@ -284,7 +284,7 @@ public class Cliente
             
             if( "1".equals(verifyCadastro) )
             {
-                if(!acessoAtual)
+                if(!currentAccess)
                 {
                     if( !Cliente.conta.isEmpty() )
                     {
@@ -311,9 +311,9 @@ public class Cliente
                                 if( senha.get(indice).equals(psw) )
                                 {
                                     verify_psw = true;
-                                    acessoAtual = true;
-                                    clienteAtual = cpf.get(indice);
-                                    nomeClienteAtual = nome.get(indice);
+                                    currentAccess = true;
+                                    currentClient = cpf.get(indice);
+                                    currentClientName = nome.get(indice);
                                 
                                     cliente_logado = cpf.get(indice);
                                     tries = 0;
@@ -348,7 +348,7 @@ public class Cliente
                             // Nothing to do
                         }
             
-                        livraria.Menu();
+                        livraria.showMenu();
                         return cliente_logado;
                     }
                     else
@@ -361,7 +361,7 @@ public class Cliente
                 }
                 else
                 {
-                    return clienteAtual;
+                    return currentClient;
                 } 
             }
             else
@@ -375,7 +375,7 @@ public class Cliente
         // Verifica se possui itens na cesta do cliente logado e então efetua o logout
         public void efetuarLogout()
         {
-            if(acessoAtual)
+            if(currentAccess)
             {
                 String nome;
                 String option;
@@ -389,11 +389,11 @@ public class Cliente
                     
                     if( "1".equals(option) )
                     {
-                        nome = nomeClienteAtual;
+                        nome = currentClientName;
                 
-                        acessoAtual = false;
-                        clienteAtual = "blank";
-                        nomeClienteAtual = "blank";
+                        currentAccess = false;
+                        currentClient = "blank";
+                        currentClientName = "blank";
                        
                         boolean ok;
                         
@@ -411,35 +411,35 @@ public class Cliente
                     }
                     else
                     {
-                        Livro.Mostrar_catalogo();
+                        Book.showCatalog();
                     }
                 }
                 else
                 {
-                    nome = nomeClienteAtual;
+                    nome = currentClientName;
                 
-                    acessoAtual = false;
-                    clienteAtual = "blank";
-                    nomeClienteAtual = "blank";
+                    currentAccess = false;
+                    currentClient = "blank";
+                    currentClientName = "blank";
                 
                     System.out.println("\n" + nome + ", sua conta"
                                        + " foi encerrada com sucesso!\n");
                 }
                 
-                livraria.Menu();
+                livraria.showMenu();
             }
             else
             {
                 System.out.println("\nNenhuma conta logada no momento.\n");
                 
-                livraria.Menu();
+                livraria.showMenu();
             }
         }
         
         // Logout alternativo
         public  void efetuarLogout_()
         {
-            if(acessoAtual)
+            if(currentAccess)
             {
                 String nome;
                 String option;
@@ -453,11 +453,11 @@ public class Cliente
                     
                     if( "1".equals(option) )
                     {
-                        nome = nomeClienteAtual;
+                        nome = currentClientName;
                 
-                        acessoAtual = false;
-                        clienteAtual = "blank";
-                        nomeClienteAtual = "blank";
+                        currentAccess = false;
+                        currentClient = "blank";
+                        currentClientName = "blank";
                        
                         boolean ok;
                         
@@ -475,17 +475,17 @@ public class Cliente
                     }
                     else
                     {
-                        livraria.Menu();
+                        livraria.showMenu();
                     }
                     
                 }
                 else
                 {
-                    nome = nomeClienteAtual;
+                    nome = currentClientName;
                 
-                    acessoAtual = false;
-                    clienteAtual = "blank";
-                    nomeClienteAtual = "blank";
+                    currentAccess = false;
+                    currentClient = "blank";
+                    currentClientName = "blank";
                 
                     System.out.println("\n" + nome + ", sua conta"
                                        + " foi encerrada com sucesso!\n");
