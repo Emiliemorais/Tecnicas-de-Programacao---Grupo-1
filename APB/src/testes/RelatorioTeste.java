@@ -10,7 +10,7 @@ import model.Report;
 import org.junit.Before;
 import org.junit.Test;
 
-import exception.RelatorioException;
+import exception.ReportException;
 
 // Inicio da classe
 public class RelatorioTeste 
@@ -36,7 +36,7 @@ public class RelatorioTeste
 		} catch  ( NullPointerException e ) 
 		{
 			e.printStackTrace();
-		} catch  ( RelatorioException e ) 
+		} catch  ( ReportException e ) 
 		{
 			e.printStackTrace ();
 		}
@@ -52,7 +52,7 @@ public class RelatorioTeste
 			ParseException {
 		try {
 			relatorio.setInitialDate(null);
-		} catch ( RelatorioException e ) 
+		} catch ( ReportException e ) 
 		{
 			e.printStackTrace();
 		}
@@ -71,7 +71,7 @@ public class RelatorioTeste
 		// Comeco do try
 		try {
 			relatorio.setInitialDate("");
-		} catch ( RelatorioException e ) 
+		} catch ( ReportException e ) 
 		{
 			e.printStackTrace();
 		}// Fim do try
@@ -89,7 +89,7 @@ public class RelatorioTeste
 		// Inicio do try
 		try {
 			relatorio.setFinalDate(null);
-		} catch ( RelatorioException e ) 
+		} catch ( ReportException e ) 
 		{
 			e.printStackTrace();
 		}// Fim do try
@@ -108,7 +108,7 @@ public class RelatorioTeste
 		// Inicio do try
 		try {
 			relatorio.setFinalDate("");
-		} catch ( RelatorioException e ) 
+		} catch ( ReportException e ) 
 		{
 			e.printStackTrace();
 		}// Fim do try
@@ -123,7 +123,7 @@ public class RelatorioTeste
 	{
 		try {
 			relatorio.setBarberName ( null );
-		} catch ( RelatorioException e ) 
+		} catch ( ReportException e ) 
 		{
 			e.printStackTrace ();
 		}
@@ -138,7 +138,7 @@ public class RelatorioTeste
 	{
 		try {
 			relatorio.setBarberName("");
-		} catch ( RelatorioException e )
+		} catch ( ReportException e )
 		{
 			e.printStackTrace();
 		}
@@ -153,7 +153,7 @@ public class RelatorioTeste
 	{
 		try {
 			relatorio.setServiceType( null );
-		} catch ( RelatorioException e ) 
+		} catch ( ReportException e ) 
 		{
 			e.printStackTrace ();
 		}
@@ -168,7 +168,7 @@ public class RelatorioTeste
 	{
 		try {
 			relatorio.setServiceType("");
-		} catch ( RelatorioException e )
+		} catch ( ReportException e )
 		{
 			e.printStackTrace();
 		}
@@ -183,7 +183,7 @@ public class RelatorioTeste
 	{
 		try {
 			new Report ( "2013-01-01", "2013-01-01", null, "barba" );
-		} catch ( RelatorioException e ) {
+		} catch ( ReportException e ) {
 			e.printStackTrace ();
 		}
 	}// Fim do metodo
@@ -197,7 +197,7 @@ public class RelatorioTeste
 	{
 		try {
 			new Report ( "2013-01-01", null, "Chico", "barba" );
-		} catch ( RelatorioException e ) 
+		} catch ( ReportException e ) 
 		{
 			e.printStackTrace ();
 		}
@@ -212,7 +212,7 @@ public class RelatorioTeste
 	{
 		try {
 			new Report(null, "2013-01-01", "Chico", "barba");
-		} catch (RelatorioException e) 
+		} catch (ReportException e) 
 		{
 			e.printStackTrace();
 		}
@@ -227,7 +227,7 @@ public class RelatorioTeste
 	{
 		try {
 			new Report ( "2013-01-01", "2013-01-01", "Chico", null );
-		} catch ( RelatorioException e ) 
+		} catch ( ReportException e ) 
 		{
 			e.printStackTrace ();
 		}
@@ -240,7 +240,7 @@ public class RelatorioTeste
 		try {
 			new Report ( "2013-01-01", "2013-12-31", "Chico", "barba" );
 			assertEquals ( relatorio, relatorio );
-		} catch (RelatorioException e) {
+		} catch (ReportException e) {
 			e.printStackTrace ();
 		}
 	}// Fim do metodo

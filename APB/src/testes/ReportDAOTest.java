@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import model.Report;
 import dao.RelatorioDAO;
-import exception.RelatorioException;
+import exception.ReportException;
 
 public class ReportDAOTest
 {
@@ -24,7 +24,7 @@ public class ReportDAOTest
 	 * para realização do teste, lançando exceçoes de atributos nulos e problemas de conversão
 	 */
 	@Before
-	public void setUp() throws RelatorioException, ParseException
+	public void setUp() throws ReportException, ParseException
 	{
 		try
 		{

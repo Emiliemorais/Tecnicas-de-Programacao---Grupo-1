@@ -14,7 +14,7 @@ import dao.AgendaDAO;
 import dao.ReciboDAO;
 import model.Report;
 import exception.ReceiptException;
-import exception.RelatorioException;
+import exception.ReportException;
 
 public class ReceiptDAOTest
 {
@@ -31,7 +31,7 @@ public class ReceiptDAOTest
 			report.setFinalDate("09/09/2013");
 			report.setInitialDate("01/01/2013");
 		}
-		catch (RelatorioException e)
+		catch (ReportException e)
 		{
 			e.printStackTrace();
 		}

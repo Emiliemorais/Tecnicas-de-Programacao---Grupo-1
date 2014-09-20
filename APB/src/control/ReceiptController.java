@@ -33,7 +33,9 @@ public class ReceiptController
 
 		return instance;
 	}
+	
 	/*
+     * Method that gives access to the barber services search
 	 * @param barberName - Contains the barber name  
 	 * @param initialDate - Contains the initial date
 	 * @param finalDate - Contains the final date

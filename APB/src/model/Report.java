@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 
 import java.util.Date;
 
-import exception.RelatorioException;
+import exception.ReportException;
 
 public class Report
 {
@@ -30,7 +30,7 @@ public class Report
 
 	// Class constructor
 	public Report(String initialDate, String finalDate, String barberName,
-				  String serviceType) throws RelatorioException
+				  String serviceType) throws ReportException
     {
 		// super();
 		this.initialDate = initialDate;
@@ -88,7 +88,7 @@ public class Report
 	}
 
 	// Setter of 'initialDate'
-	public void setInitialDate(String initialDate) throws RelatorioException,
+	public void setInitialDate(String initialDate) throws ReportException,
 														  NullPointerException,
 														  ParseException
     {
@@ -125,7 +125,7 @@ public class Report
 
 	
 	// Setter of 'finalDate'
- 	public void setFinalDate(String finalDate) throws RelatorioException, NullPointerException,
+ 	public void setFinalDate(String finalDate) throws ReportException, NullPointerException,
 			ParseException
     {
 		if( finalDate == null )
@@ -160,7 +160,7 @@ public class Report
 
 
 	// Setter of 'barberName'
-	public void setBarberName(String barberName) throws RelatorioException
+	public void setBarberName(String barberName) throws ReportException
 	{
 		if( barberName == null )
         {
@@ -184,7 +184,7 @@ public class Report
 
 
 	// Setter of 'serviceType'
-	public void setServiceType(String serviceType) throws RelatorioException
+	public void setServiceType(String serviceType) throws ReportException
 	{
 		if( serviceType == null )
         {

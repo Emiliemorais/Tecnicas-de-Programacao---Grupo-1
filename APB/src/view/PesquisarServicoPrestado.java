@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-import control.ServicoPrestadoController;
+import control.ProvidedServiceController;
 
 import dao.FactoryConnection;
 import exception.ServicoException;
@@ -208,8 +208,8 @@ public class PesquisarServicoPrestado extends JFrame
 
 					if(confirmacao == JOptionPane.YES_OPTION)
 					{
-						ServicoPrestadoController servicoController = ServicoPrestadoController.getInstance();
-						servicoController.excluir(servico);
+						ProvidedServiceController servicoController = ProvidedServiceController.getInstance();
+						servicoController.deleteProvidedService(servico);
 
 						dispose();
 						RegisterDoneService frame = new RegisterDoneService();

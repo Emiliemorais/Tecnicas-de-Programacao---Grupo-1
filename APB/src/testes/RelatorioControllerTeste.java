@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import control.ReportController;
-import exception.RelatorioException;
+import exception.ReportException;
 
 public class RelatorioControllerTeste 
 {
@@ -24,7 +24,7 @@ public class RelatorioControllerTeste
 	 * para realização do teste, lançando exceçoes de atributos nulos e problemas de conversão
 	*/
 	@Before
-	public void setUp () throws RelatorioException, ParseException 
+	public void setUp () throws ReportException, ParseException 
 	{
 		try 
 		{

@@ -17,43 +17,64 @@ private static ReportController instance;
 		
 	}
 	
-	// Method that gives access to the registered reports and also gives the option to search it by date
-	public ResultSet searchByDate ( Report relatorio ) throws SQLException 
+	/*
+	 *  Method that gives access to the registered reports and also gives the option to search it by date
+	 *  @param report - Contains the report object
+	 */
+	public ResultSet searchByDate ( Report report ) throws SQLException 
 	{
-		return RelatorioDAO.getInstance().searchByDate ( relatorio );
+		return RelatorioDAO.getInstance().searchByDate ( report );
 	}
 	
-	// Method that gives access to the registered reports and also gives the option to search it by date and barber
+	/*
+	 *  Method that gives access to the registered reports and also gives the option to search it by date and barber
+	 *  @param report - Contains the report object
+	 */
 	public ResultSet searchByDateAndBarber ( Report report ) throws SQLException 
 	{	
 		return RelatorioDAO.getInstance().searchByDateAndBarber ( report );
 	}
 	
-	// Method that gives access to the registered reports and also gives the option to search it by date and service
+	/*
+	 *  Method that gives access to the registered reports and also gives the option to search it by date and service
+	 *  @param report - Contains the report object
+	 */
 	public ResultSet searchByDateAndService(Report report) throws SQLException 
 	{	
 		return RelatorioDAO.getInstance().searchByDateAndService ( report );
 	}
 	
-	// Method that gives access to the registered reports and also gives the option to search it by barber
+	/*
+	 *  Method that gives access to the registered reports and also gives the option to search it by barber
+	 *  @param report - Contains the report object
+	 */
 	public ResultSet searchByBarber ( Report report ) throws SQLException 
 	{	
 		return RelatorioDAO.getInstance().searchByBarber ( report );
 	}
 	
-	// Method that gives access to the registered reports and also gives the option to search it by barber and service
+	/*
+	 *  Method that gives access to the registered reports and also gives the option to search it by barber and service
+	 *  @param report - Contains the report object
+	 */
 	public ResultSet searchByBarberAndService(Report report) throws SQLException 
 	{	
 		return RelatorioDAO.getInstance().searchByBarberAndService(report);
 	}
 	
-	// Method that gives access to the registered reports and also gives the option to search it by service
+	/*
+	 *  Method that gives access to the registered reports and also gives the option to search it by service
+	 *  @param report - Contains the report object
+	 */
 	public ResultSet searchByService ( Report report ) throws SQLException 
 	{	
 		return RelatorioDAO.getInstance().searchByService ( report );
 	}
 	
-	// Method that gives access to the registered reports and also gives the option to search it by date, barber and service
+	/*
+	 *  Method that gives access to the registered reports and also gives the option to search it by date, barber and service
+	 *  @param report - Contains the report object
+	 */
 	public ResultSet searchByDateBarberAndService ( Report report ) throws SQLException 
 	{		
 		return RelatorioDAO.getInstance().searchByDateBarberAndService ( report );

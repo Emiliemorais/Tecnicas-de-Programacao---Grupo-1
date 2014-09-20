@@ -21,7 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import control.ServicoPrestadoController;
+import control.ProvidedServiceController;
 import model.ServicoPrestado;
 import exception.ServicoException;
 
@@ -84,7 +84,7 @@ public class RegisterDoneService extends JFrame
 			 * Intantiated to get access to the methods 
 			 *   'mostrarServicosPrestadosCadastrados' e 'ConverterDataParaABNT' 
 			 */
-			ServicoPrestadoController serviceController = ServicoPrestadoController.getInstance();
+			ProvidedServiceController serviceController = ProvidedServiceController.getInstance();
 			
 			/* 
 			 * Used to pass as argument to the method 'mostarServicosPrestadosCadastrados' 
@@ -95,7 +95,7 @@ public class RegisterDoneService extends JFrame
 			
 			// Used to receive the result from the method 'mostrarServicosPrestadosCadastrados'
 			ResultSet queryForDoneServicesResult = serviceController
-											      .mostrarServicosPrestadosCadastrados(service);
+											      .displayRegisteredProvidedServices(service);
 			
 			while ( queryForDoneServicesResult.next() )
             {
@@ -223,10 +223,10 @@ public class RegisterDoneService extends JFrame
 					if( deleteConfirmation == JOptionPane.YES_OPTION )
                     {
 						// Instantiated to get access to the method 'excluir' 
-						ServicoPrestadoController serviceController;
+						ProvidedServiceController serviceController;
 						
-						serviceController = ServicoPrestadoController.getInstance();
-						serviceController.excluir(serviceToBeDeleted);
+						serviceController = ProvidedServiceController.getInstance();
+						serviceController.deleteProvidedService(serviceToBeDeleted);
 
 						dispose();
 						

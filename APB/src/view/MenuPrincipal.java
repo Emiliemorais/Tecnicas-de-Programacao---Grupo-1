@@ -10,7 +10,7 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
-import exception.RelatorioException;
+import exception.ReportException;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -114,7 +114,7 @@ public class MenuPrincipal extends JFrame
 				} catch ( SQLException e1 ) 
 				{
 					mostrarMensagemDeErro ( e1.getMessage () );
-				} catch ( RelatorioException e1 ) 
+				} catch ( ReportException e1 ) 
 				{
 					e1.printStackTrace();
 				} catch ( NullPointerException e1)

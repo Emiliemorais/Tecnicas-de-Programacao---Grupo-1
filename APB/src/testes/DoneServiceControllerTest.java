@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 import model.ServicoPrestado;
-import control.ServicoPrestadoController;
+import control.ProvidedServiceController;
 import exception.ServicoException;
 
 public class DoneServiceControllerTest
@@ -20,7 +20,7 @@ public class DoneServiceControllerTest
 	ServicoPrestado doneService = new ServicoPrestado();
 	
 	// Used in the test to get access to the methods of class 'ServicoPrestadoController.java'
-	ServicoPrestadoController doneServiceController = ServicoPrestadoController.getInstance();
+	ProvidedServiceController doneServiceController = ProvidedServiceController.getInstance();
 
 
 	@Before
@@ -38,7 +38,7 @@ public class DoneServiceControllerTest
 	// Test if a instance previous declared is the current one
 	public void getInstanceMethodTest()
 	{
-		assertEquals(ServicoPrestadoController.getInstance(), doneServiceController);
+		assertEquals(ProvidedServiceController.getInstance(), doneServiceController);
 	}
 
 	@Test
@@ -50,7 +50,7 @@ public class DoneServiceControllerTest
 	{
 		try
 		{
-			assertTrue(doneServiceController.inserir(doneService));
+			assertTrue(doneServiceController.insertProvidedService(doneService));
 		}
 		catch (SQLException e)
 		{
@@ -67,7 +67,7 @@ public class DoneServiceControllerTest
 	{
 		try
 		{
-			assertTrue(doneServiceController.excluir(doneService));
+			assertTrue(doneServiceController.deleteProvidedService(doneService));
 		}
 		catch (SQLException e)
 		{
@@ -81,7 +81,7 @@ public class DoneServiceControllerTest
 	{
 		try
 		{
-			assertFalse(doneServiceController.inserir(null));
+			assertFalse(doneServiceController.insertProvidedService(null));
 		}
 		catch (SQLException e)
 		{
@@ -95,7 +95,7 @@ public class DoneServiceControllerTest
 	{
 		try
 		{
-			assertFalse(doneServiceController.excluir(null));
+			assertFalse(doneServiceController.deleteProvidedService(null));
 		}
 		catch (SQLException e)
 		{
@@ -108,7 +108,7 @@ public class DoneServiceControllerTest
 	public void showRegisteredDoneServicesMethodTest() throws SQLException
 	{
 		// Used to receive the result from the search for done services on DB
-		ResultSet queryForDoneServicesResult = doneServiceController.mostrarServicosPrestadosCadastrados(doneService);
+		ResultSet queryForDoneServicesResult = doneServiceController.displayRegisteredProvidedServices(doneService);
 		
 		while( queryForDoneServicesResult.next() );
 	}

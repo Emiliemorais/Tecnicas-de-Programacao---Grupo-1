@@ -32,7 +32,7 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-import exception.RelatorioException;
+import exception.ReportException;
 
 @SuppressWarnings("serial")
 public class VisualizarRelatorios extends JFrame 
@@ -72,7 +72,7 @@ public class VisualizarRelatorios extends JFrame
 	}
 
 	// Construtor dos componentes da janela VIzualizar Relatorios
-	public VisualizarRelatorios() throws SQLException, RelatorioException,
+	public VisualizarRelatorios() throws SQLException, ReportException,
 			NullPointerException, ParseException 
 	{
 		setTitle("Relat\u00F3rios");
@@ -628,7 +628,7 @@ public class VisualizarRelatorios extends JFrame
 			{
 				mostrarMensagemDeErro(e.getMessage());
 			} 
-			catch (RelatorioException e) 
+			catch (ReportException e) 
 			{
 				mostrarMensagemDeErro(e.getMessage());
 			}
@@ -693,7 +693,7 @@ public class VisualizarRelatorios extends JFrame
 
 	// Interface utilizada para implementar os dados a serem exibidos no gráfico
 	private CategoryDataset createDatasetRelatorio () throws SQLException,
-			RelatorioException, NullPointerException, ParseException
+			ReportException, NullPointerException, ParseException
 			{
 
 		Report relatorio = new Report();

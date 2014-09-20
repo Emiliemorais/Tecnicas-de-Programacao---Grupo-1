@@ -23,7 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import model.ServicoPrestado;
-import control.ServicoPrestadoController;
+import control.ProvidedServiceController;
 import dao.FactoryConnection;
 import exception.ServicoException;
 
@@ -239,9 +239,9 @@ public class NewDoneService extends JFrame
 						doneService.setData(serviceDate);
 						
 						// Service Controller class's instance to control the data received
-						ServicoPrestadoController serviceController = ServicoPrestadoController
+						ProvidedServiceController serviceController = ProvidedServiceController
 																	  .getInstance();
-						serviceController.inserir(doneService);
+						serviceController.insertProvidedService(doneService);
 
 						JOptionPane.showMessageDialog(null, "Serviço criado com sucesso");
 

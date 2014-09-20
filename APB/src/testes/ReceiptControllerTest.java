@@ -12,7 +12,7 @@ import org.junit.Test;
 import model.Report;
 import control.ReceiptController;
 import exception.ReceiptException;
-import exception.RelatorioException;
+import exception.ReportException;
 
 public class ReceiptControllerTest
 {
@@ -28,7 +28,7 @@ public class ReceiptControllerTest
             report.setFinalDate("09/09/2013");
             report.setInitialDate("01/01/2013");
         }
-        catch (RelatorioException e)
+        catch (ReportException e)
         {
             // TODO Auto-generated catch block
             e.printStackTrace();

@@ -20,7 +20,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 
-import exception.RelatorioException;
+import exception.ReportException;
 
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
@@ -390,7 +390,7 @@ public class SearchReport extends JFrame
 					{
 						showErrorMessage( e.getMessage() );
 					}
-					catch (RelatorioException e) 
+					catch (ReportException e) 
 					{
 						showErrorMessage( e.getMessage() );
 					}
@@ -434,7 +434,7 @@ public class SearchReport extends JFrame
 				{
 					showErrorMessage( e1.getMessage() );
 				} 
-				catch (RelatorioException e1)
+				catch (ReportException e1)
 				{
 					showErrorMessage( e1.getMessage() );
 				} 
