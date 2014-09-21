@@ -9,7 +9,7 @@ import model.Agenda;
 
 import org.junit.Test;
 
-import dao.AgendaDAO;
+import dao.PhonebookDAO;
 // Inicio da classe
 public class AgendaDAOTeste 
 {
@@ -17,13 +17,13 @@ public class AgendaDAOTeste
 	// Instancias da classe
 	Agenda contato = new Agenda ();
 	Agenda contato2 = new Agenda ();
-	AgendaDAO agendaDAO = AgendaDAO.getInstance ();
+	PhonebookDAO agendaDAO = PhonebookDAO.getInstance ();
 
 	@Test
 	// Metodo que retorna a instancia
 	public void getInstanceDeAgendaDAODeveRetonarInstanciaCorrente ()
 	{
-		assertEquals ( AgendaDAO.getInstance ( ), agendaDAO );
+		assertEquals ( PhonebookDAO.getInstance ( ), agendaDAO );
 	}// Fim do metodo
 
 	@Test
@@ -32,7 +32,7 @@ public class AgendaDAOTeste
 	{
 		
 		try {
-			assertTrue(   agendaDAO.incluir ( contato ) );
+			assertTrue(   agendaDAO.includeDataToPhonebook ( contato ) );
 		} catch ( SQLException e ) 
 		{
 			e.printStackTrace () ;
@@ -44,7 +44,7 @@ public class AgendaDAOTeste
 	public void excluirDeAgendaDAODeveEnviarUmAgenda () 
 	{
 		try {
-			assertTrue ( agendaDAO.excluir ( contato ) );
+			assertTrue ( agendaDAO.deletePhonebookData ( contato ) );
 		} catch ( SQLException e )
 		{
 			e.printStackTrace ();
@@ -56,7 +56,7 @@ public class AgendaDAOTeste
 	public void alterarDeAgendaDAODeveEnviarUmContato () 
 	{
 		try {
-			assertTrue ( agendaDAO.alterar ( contato.getNome(), contato, contato2) );
+			assertTrue ( agendaDAO.editPhonebookData ( contato.getNome(), contato, contato2) );
 		} catch ( SQLException e )
 		{
 			e.printStackTrace ();
@@ -72,7 +72,7 @@ public class AgendaDAOTeste
 	public void inserirDeAgendaDAOPassandoUmContatoNulo () 
 	{
 		try {
-			assertFalse ( agendaDAO.incluir (null) );
+			assertFalse ( agendaDAO.includeDataToPhonebook (null) );
 		} catch ( SQLException e ) 
 		{
 			e.printStackTrace ();
@@ -87,7 +87,7 @@ public class AgendaDAOTeste
 	public void excluirDeAgendaDAOPassandoUmContatoNulo () 
 	{
 		try {
-			assertFalse(agendaDAO.excluir ( null ) );
+			assertFalse(agendaDAO.deletePhonebookData ( null ) );
 		} catch ( SQLException e ) 
 		{
 			e.printStackTrace () ;
@@ -102,7 +102,7 @@ public class AgendaDAOTeste
 	public void alterarDeAgendaDAOPassandoUmContatoNulo() 
 	{
 		try {
-			assertFalse( agendaDAO.alterar ( contato.getNome (), contato, null ) );
+			assertFalse( agendaDAO.editPhonebookData ( contato.getNome (), contato, null ) );
 		} catch ( SQLException e ) 
 		{
 			e.printStackTrace ();
@@ -118,7 +118,7 @@ public class AgendaDAOTeste
 	
 	{
 		try {
-			assertFalse ( agendaDAO.alterar ( contato.getNome (), null, contato ) );
+			assertFalse ( agendaDAO.editPhonebookData ( contato.getNome (), null, contato ) );
 		} catch ( SQLException e ) 
 		{
 			e.printStackTrace ();
@@ -130,7 +130,7 @@ public class AgendaDAOTeste
 	public void mostrarContatosAgendaDAODeveMostrarContato ()
 	{
 		try {
-			ResultSet rs = agendaDAO.mostrarContatosCadastrados ( contato );
+			ResultSet rs = agendaDAO.showRegisteredContacts ( contato );
 
 			while ( rs.next () ) {
 				String nome = rs.getString( "nome" );
@@ -145,7 +145,7 @@ public class AgendaDAOTeste
 	public void pesquisaPorNomeDeAgendaDAODeveMostrarContato () 
 	{
 		try {
-			ResultSet rs = agendaDAO.pesquisarPorNome ( contato );
+			ResultSet rs = agendaDAO.searchByName ( contato );
 
 			while (rs.next()) {
 				String nome = rs.getString ( "nome" );
@@ -163,7 +163,7 @@ public class AgendaDAOTeste
 	{
 		try 
 		{
-			ResultSet rs = agendaDAO.pesquisarPorTelefone ( contato );
+			ResultSet rs = agendaDAO.searchByPhone ( contato );
 
 			while ( rs.next() ) 
 			{

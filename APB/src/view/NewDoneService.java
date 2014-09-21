@@ -25,7 +25,7 @@ import javax.swing.border.EmptyBorder;
 import model.ServicoPrestado;
 import control.ProvidedServiceController;
 import dao.FactoryConnection;
-import exception.ServicoException;
+import exception.ServiceException;
 
 @SuppressWarnings("serial")
 public class NewDoneService extends JFrame
@@ -251,7 +251,7 @@ public class NewDoneService extends JFrame
 						textGlobal.setText("");
 					}
 				} 
-				catch (ServicoException e)
+				catch (ServiceException e)
 				{
 					showErrorMessage( e.getMessage() );
 				} 

@@ -3,7 +3,7 @@ package control;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import dao.AgendaDAO;
+import dao.PhonebookDAO;
 import model.Agenda;
 
 
@@ -27,7 +27,7 @@ public class AgendaController
 		
 		// Se o objeto agenda não for nulo o método inclui no banco de dados
 		else{
-			AgendaDAO.getInstance().incluir(agenda);
+			PhonebookDAO.getInstance().includeDataToPhonebook(agenda);
 			return true;
 		}
 	}
@@ -43,7 +43,7 @@ public class AgendaController
 		// Se o objeto agenda não for nulo o método altera no banco de dados
 		else{
 			Agenda agenda_alterado = agenda;
-			AgendaDAO.getInstance().alterar(nome, agenda_alterado, agenda);
+			PhonebookDAO.getInstance().editPhonebookData(nome, agenda_alterado, agenda);
 			return true;		
 		}
 	}
@@ -60,7 +60,7 @@ public class AgendaController
 		// Se o objeto agenda não for nulo o método exclui no banco de dados
 		else
 		{
-			AgendaDAO.getInstance().excluir(contato);
+			PhonebookDAO.getInstance().deletePhonebookData(contato);
 			return true;
 		}
 
@@ -83,19 +83,19 @@ public class AgendaController
         // Interface que provê acesso aos contatos cadastrados e mostra todos os contatos
 	public ResultSet mostrarContatosCadastrados(Agenda contato) throws SQLException 
 	{
-		return AgendaDAO.getInstance().mostrarContatosCadastrados(contato);
+		return PhonebookDAO.getInstance().showRegisteredContacts(contato);
 	}
 	
         // Interface que provê acesso aos contatos cadastrados e permite que sejam pesquisados pelo nome
 	public ResultSet pesquisarPorNome(Agenda contato) throws SQLException 
 	{
-		return AgendaDAO.getInstance().pesquisarPorNome(contato);
+		return PhonebookDAO.getInstance().searchByName(contato);
 	}
 	
         // Interface que provê acesso aos contatos cadastrados e permite que sejam pesquisados pelo telefone
 	public ResultSet pesquisarPorTelefone(Agenda contato) throws SQLException 
 	{
-		return AgendaDAO.getInstance().pesquisarPorTelefone(contato);
+		return PhonebookDAO.getInstance().searchByPhone(contato);
 	}
 
 }

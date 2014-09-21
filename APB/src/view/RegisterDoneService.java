@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 
 import control.ProvidedServiceController;
 import model.ServicoPrestado;
-import exception.ServicoException;
+import exception.ServiceException;
 
 @SuppressWarnings("serial")
 public class RegisterDoneService extends JFrame
@@ -244,7 +244,7 @@ public class RegisterDoneService extends JFrame
 				{
 					showErrorMessage("Selecione um Serviço para remover");
 				}
-				catch (ServicoException e)
+				catch (ServiceException e)
 				{
 					showErrorMessage(e.getMessage() );
 				}

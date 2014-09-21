@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import control.ServiceTypeController;
-import exception.ServicoException;
+import exception.ServiceException;
 
 // Inicio da Classe TipoServicoControllerTeste
 public class TipoServicoControllerTeste 
@@ -29,7 +29,7 @@ public class TipoServicoControllerTeste
 		try {
 			servico.setServiceTypeName("Corte");
 			servico.setServiceTypePrice("15,00");
-		} catch (ServicoException e) 
+		} catch (ServiceException e) 
 		{
 			e.printStackTrace();
 		}

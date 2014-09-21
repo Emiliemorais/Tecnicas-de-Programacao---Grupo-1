@@ -3,7 +3,7 @@ package model;
 // Importando dados das bases
 import java.util.Date;
 
-import exception.ServicoException;
+import exception.ServiceException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -71,16 +71,16 @@ public class ServicoPrestado
 	 * classe igual ao nome do servico de outra classe passada por
 	 * encapsulamento
 	 */
-	public void setNomeServico (  String nomeServico ) throws ServicoException 
+	public void setNomeServico (  String nomeServico ) throws ServiceException 
 	{
 		if ( nomeServico == null )
 			throw new NullPointerException ( NOME_BRANCO );
 		else if ("".equals ( nomeServico ) )
-			throw new ServicoException ( NOME_BRANCO );
+			throw new ServiceException ( NOME_BRANCO );
 		else if ( nomeServico.matches("^[[ ]|\\p{L}*]+$" ) )
 			this.nomeServico = nomeServico;
 		else
-			throw new ServicoException ( NOME_INVALIDO );
+			throw new ServiceException ( NOME_INVALIDO );
 	}
 
 	/*
@@ -89,16 +89,16 @@ public class ServicoPrestado
 	 * classe igual ao nome do barbeiro de outra classe passada por
 	 * encapsulamento
 	 */
-	public void setNomeBarbeiro ( String nomeBarbeiro ) throws ServicoException 
+	public void setNomeBarbeiro ( String nomeBarbeiro ) throws ServiceException 
 	{
 		if ( nomeBarbeiro == null )
 			throw new NullPointerException ( BARBEIRO_BRANCO );
 		else if ( "".equals(nomeBarbeiro ) )
-			throw new ServicoException ( BARBEIRO_BRANCO );
+			throw new ServiceException ( BARBEIRO_BRANCO );
 		else if ( nomeBarbeiro.matches ("^[[ ]|\\p{L}*]+$" ) )
 			this.nomeBarbeiro = nomeBarbeiro;
 		else
-			throw new ServicoException ( BARBEIRO_INVALIDO );
+			throw new ServiceException ( BARBEIRO_INVALIDO );
 	}
 
 	/*
@@ -106,16 +106,16 @@ public class ServicoPrestado
 	 * o nome esteja de acordo com a comparacao, fara preco dessa classe igual
 	 * ao preco de outra classe passada por encapsulamento
 	 */
-	public void setPreco ( String preco ) throws ServicoException 
+	public void setPreco ( String preco ) throws ServiceException 
 	{
 		if ( preco == null )
 			throw new NullPointerException ( PRECO_BRANCO);
 		else if ( "".equals ( preco ) )
-			throw new ServicoException ( PRECO_BRANCO );
+			throw new ServiceException ( PRECO_BRANCO );
 		else if (preco.matches ( "[\\d]{1,3},[\\d]{1,2}" ) )
 			this.preco = preco;
 		else
-			throw new ServicoException ( PRECO_INVALIDO );
+			throw new ServiceException ( PRECO_INVALIDO );
 	}
 
 	/*
@@ -123,13 +123,13 @@ public class ServicoPrestado
 	 * o nome esteja de acordo com a comparacao, fara dara dessa classe igual a
 	 * dara de outra classe passada por encapsulamento
 	 */
-	public void setData ( String data ) throws ServicoException, ParseException 
+	public void setData ( String data ) throws ServiceException, ParseException 
 	{
 
 		if ( data == null )
 			throw new NullPointerException ( DATA_BRANCO );
 		else if ("".equals(data))
-			throw new ServicoException ( DATA_BRANCO );
+			throw new ServiceException ( DATA_BRANCO );
 		else if (data.matches ( "[\\d]{1,4}-[\\d]{1,2}-[\\d]{1,2}" ) ) 
 		{
 			this.data = data;
@@ -144,7 +144,7 @@ public class ServicoPrestado
 
 			this.data = dataISO;
 		} else
-			throw new ServicoException ( DATA_INVALIDA );
+			throw new ServiceException ( DATA_INVALIDA );
 	}
 
 	// Metodo para converter os valores das datas

@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import exception.BarberException;
-import exception.ServicoException;
+import exception.ServiceException;
 import model.Agenda;
 
 public class AgendaTeste 
@@ -113,7 +113,7 @@ public class AgendaTeste
 	
 	// Método que testa o recebimento do nome temporario pelo método de acesso get
 	@Test (expected = AssertionError.class)
-	public void getterDeTempNomeDeveRetornarValorPassado () throws ServicoException 
+	public void getterDeTempNomeDeveRetornarValorPassado () throws ServiceException 
 	{
 		assertEquals("Barba", Agenda.getTempNome());
 	}
@@ -121,7 +121,7 @@ public class AgendaTeste
 	
 	// Método que testa a passagem de um nome temporario nulo pelo método de acesso set	 
 	@Test (expected = AssertionFailedError.class)
-	public void setterDeTempNomeNaoPodeSerNulo () throws ServicoException 
+	public void setterDeTempNomeNaoPodeSerNulo () throws ServiceException 
 	{
 		Agenda.setTempNome(null);
 		Assert.fail("Deve lanÃ§ar exceÃ§Ã£o");

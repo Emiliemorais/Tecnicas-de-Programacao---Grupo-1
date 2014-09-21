@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import dao.DoneServiceDAO;
-import exception.ServicoException;
+import exception.ServiceException;
 
 public class DoneServiceDAOTest
 {
@@ -42,7 +42,7 @@ public class DoneServiceDAOTest
 		{
 			e.printStackTrace();
 		} 
-		catch (ServicoException e)
+		catch (ServiceException e)
 		{
 			e.printStackTrace();
 		}

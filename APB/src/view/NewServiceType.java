@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import control.ServiceTypeController;
-import exception.ServicoException;
+import exception.ServiceException;
 import model.ServiceType;
 
 @SuppressWarnings("serial")
@@ -121,7 +121,7 @@ public class NewServiceType extends JFrame
 					registerServiceTypeFrame.setVisible(true);
 
 				}
-				catch (ServicoException e)
+				catch (ServiceException e)
 				{
 					mostrarMensagemDeErro(e.getMessage());
 				}

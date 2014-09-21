@@ -17,7 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 
 import control.ServiceTypeController;
-import exception.ServicoException;
+import exception.ServiceException;
 import model.ServiceType;
 
 @SuppressWarnings("serial")
@@ -118,7 +118,7 @@ public class ModifyServiceType extends JFrame
 		{
 			showErrorMessage(e.getMessage() );
 		}
-		catch (ServicoException e)
+		catch (ServiceException e)
 		{
 			showErrorMessage(e.getMessage() );
 		}
@@ -156,7 +156,7 @@ public class ModifyServiceType extends JFrame
 					registerServiceTypeFrame.setVisible(true);
 					registerServiceTypeFrame.setLocationRelativeTo(null);
 				}
-				catch (ServicoException e1)
+				catch (ServiceException e1)
 				{
 					showErrorMessage(e1.getMessage() );
 				}

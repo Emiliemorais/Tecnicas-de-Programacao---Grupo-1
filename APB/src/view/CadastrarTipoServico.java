@@ -17,7 +17,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import control.ServiceTypeController;
 import model.ServiceType;
-import exception.ServicoException;
+import exception.ServiceException;
 
 @SuppressWarnings("serial")
 public class CadastrarTipoServico extends JFrame 
@@ -127,7 +127,7 @@ public class CadastrarTipoServico extends JFrame
 					frame.setLocationRelativeTo(null);
 					dispose();
 				} 
-				catch (ServicoException e1) 
+				catch (ServiceException e1) 
 				{
 					mostrarMensagemDeErro(e1.getMessage());
 				} 
@@ -155,7 +155,7 @@ public class CadastrarTipoServico extends JFrame
 				{	
 					tipoServico.setServiceTypeName(nome);
 				} 
-				catch (ServicoException e1) 
+				catch (ServiceException e1) 
 				{
 					e1.printStackTrace();
 				}

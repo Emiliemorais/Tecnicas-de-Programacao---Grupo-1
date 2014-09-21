@@ -23,7 +23,7 @@ import javax.swing.JButton;
 import control.ProvidedServiceController;
 
 import dao.FactoryConnection;
-import exception.ServicoException;
+import exception.ServiceException;
 
 import model.ServicoPrestado;
 
@@ -119,7 +119,7 @@ public class PesquisarServicoPrestado extends JFrame
 						modelo.addRow(dados);
 					}
 				} 
-				catch (ServicoException e) 
+				catch (ServiceException e) 
 				{
 					mostrarMensagemDeErro(e.getMessage());
 				} 
@@ -165,7 +165,7 @@ public class PesquisarServicoPrestado extends JFrame
 						modelo.addRow(dados);
 					}
 				}
-				catch (ServicoException e) 
+				catch (ServiceException e) 
 				{
 					mostrarMensagemDeErro(e.getMessage());
 				}
@@ -224,7 +224,7 @@ public class PesquisarServicoPrestado extends JFrame
 				{
 					mostrarMensagemDeErro("Selecione um Serviço para remover");
 				} 
-				catch (ServicoException e) 
+				catch (ServiceException e) 
 				{
 					mostrarMensagemDeErro(e.getMessage());
 				}
@@ -296,7 +296,7 @@ public class PesquisarServicoPrestado extends JFrame
 				{
 					mostrarMensagemDeErro(e.getMessage());
 				} 
-				catch (ServicoException e) 
+				catch (ServiceException e) 
 				{
 					mostrarMensagemDeErro(e.getMessage());
 				}

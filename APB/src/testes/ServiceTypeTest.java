@@ -7,7 +7,7 @@ import model.ServiceType;
 import org.junit.Before;
 import org.junit.Test;
 
-import exception.ServicoException;
+import exception.ServiceException;
 
 
 public class ServiceTypeTest 
@@ -26,7 +26,7 @@ public class ServiceTypeTest
 			serviceType.setServiceTypeName("Corte");
 			serviceType.setServiceTypePrice("14,50");
 		} 
-		catch (ServicoException e)
+		catch (ServiceException e)
 		{
 			e.printStackTrace();
 		}
@@ -58,7 +58,7 @@ public class ServiceTypeTest
 	/* 
 	 * Define an assertive that throws a exception if the price of the service type is null
 	 */
-	public void setterPriceNullTest() throws ServicoException
+	public void setterPriceNullTest() throws ServiceException
 	{
 		serviceType.setServiceTypePrice(null);
 		Assert.fail("Deve lançar exceção");
@@ -70,7 +70,7 @@ public class ServiceTypeTest
 	/* 
 	 *	Define an assertive that throws a exception if the service type name is null
 	 */
-	public void setterServiceTypeNameTest() throws ServicoException 
+	public void setterServiceTypeNameTest() throws ServiceException 
 	{
 		serviceType.setServiceTypeName(null);
 		Assert.fail("Deve lançar exceção");
@@ -82,30 +82,30 @@ public class ServiceTypeTest
 	/*
 	 * Define an assertive that throws a exception if the service type price is invalid
 	 */
-	public void setterPriceInvalidTest() throws ServicoException 
+	public void setterPriceInvalidTest() throws ServiceException 
 	{
 		serviceType.setServiceTypePrice("14.50%");
 		Assert.fail("Deve lançar exceção");
 	}
 	
-	@Test (expected =  ServicoException.class)
+	@Test (expected =  ServiceException.class)
 	
 	/*
 	 *	Define an assertive that throws a exception if the  service type price is blank
 	 */
-	public void setterPriceBlankTest() throws ServicoException
+	public void setterPriceBlankTest() throws ServiceException
 	{
 		serviceType.setServiceTypePrice("");
 		Assert.fail("Deve lançar exceção");
 	}
 	
 
-	@Test (expected =  ServicoException.class)
+	@Test (expected =  ServiceException.class)
 	
 	/*
 	 * Define an assertive that throws a exception if the service type name is blank
 	 */
-	public void setterServiceTypeNameBlankTest() throws ServicoException
+	public void setterServiceTypeNameBlankTest() throws ServiceException
 	{
 		serviceType.setServiceTypeName("");
 		Assert.fail("Deve lançar exceção");
@@ -118,7 +118,7 @@ public class ServiceTypeTest
 	 * Define an assertive that compares the value of the service type temporary name ('Corte') included
 	 *   with the service type temporary name registered   
 	 */
-	public void getterTemporaryNameTest() throws ServicoException
+	public void getterTemporaryNameTest() throws ServiceException
 	{
 		assertEquals( "Corte", ServiceType.getTemporaryName() );
 	}
@@ -129,19 +129,19 @@ public class ServiceTypeTest
 	/* 
 	 * Define an assertive that throws a exception if the service type temporary name is null
 	 */
-	public void setterTemporaryNameNullTest() throws ServicoException 
+	public void setterTemporaryNameNullTest() throws ServiceException 
 	{
 		ServiceType.setTemporaryName(null);
 		Assert.fail("Deve lançar exceção");
 	}
 	
 
-	@Test (expected = ServicoException.class)
+	@Test (expected = ServiceException.class)
 	
 	/* 
 	 * Define an assertive that throws a exception if the service type temporary name is blank
 	 */
-	public void setterTemporaryNameBlankTest() throws ServicoException
+	public void setterTemporaryNameBlankTest() throws ServiceException
 	{
 		ServiceType.setTemporaryName("");
 		Assert.fail("Deve lançar exceção");
@@ -159,7 +159,7 @@ public class ServiceTypeTest
 		{
 			ServiceType.setTemporaryName("Barba");
 		} 
-		catch (ServicoException e)
+		catch (ServiceException e)
 		{
 			e.printStackTrace();
 			Assert.fail("Não Deve lançar exceção");

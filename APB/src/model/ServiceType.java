@@ -1,7 +1,7 @@
 
 package model;
 
-import exception.ServicoException;
+import exception.ServiceException;
 
 public class ServiceType
 {
@@ -47,7 +47,7 @@ public class ServiceType
 	}
 
 	// Setter of 'serviceTypeName'
-	public void setServiceTypeName(String serviceTypeName) throws ServicoException
+	public void setServiceTypeName(String serviceTypeName) throws ServiceException
 	{
 		if( serviceTypeName == null )
         {
@@ -55,7 +55,7 @@ public class ServiceType
         }
 		else if( "".equals(serviceTypeName) )
         {
-            throw new ServicoException(BLANK_SERVICE_TYPE_NAME);
+            throw new ServiceException(BLANK_SERVICE_TYPE_NAME);
         }
 		else
         {
@@ -65,7 +65,7 @@ public class ServiceType
 
 
 	// Setter of 'serviceTypePrice'
-	public void setServiceTypePrice(String serviceTypePrice) throws ServicoException
+	public void setServiceTypePrice(String serviceTypePrice) throws ServiceException
 	{
 		if( serviceTypePrice == null )
         {
@@ -73,7 +73,7 @@ public class ServiceType
         }
 		else if( "".equals(serviceTypePrice) )
         {
-            throw new ServicoException(BLANK_SERVICE_TYPE_PRICE);
+            throw new ServiceException(BLANK_SERVICE_TYPE_PRICE);
         }
 		else if( serviceTypePrice.matches("[\\d]{1,3},[\\d]{1,2}") )
         {
@@ -87,7 +87,7 @@ public class ServiceType
 
 	
 	// Setter of 'temporaryName'
-	public static void setTemporaryName(String temporaryName) throws ServicoException
+	public static void setTemporaryName(String temporaryName) throws ServiceException
 	{
 		if( temporaryName == null )
         {
@@ -95,7 +95,7 @@ public class ServiceType
         }
 		else if( "".equals(temporaryName) )
         {
-            throw new ServicoException(BLANK_SERVICE_TYPE_NAME);
+            throw new ServiceException(BLANK_SERVICE_TYPE_NAME);
         }
 		else
         {

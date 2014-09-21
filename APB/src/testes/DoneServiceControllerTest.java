@@ -12,7 +12,7 @@ import java.text.ParseException;
 
 import model.ServicoPrestado;
 import control.ProvidedServiceController;
-import exception.ServicoException;
+import exception.ServiceException;
 
 public class DoneServiceControllerTest
 {
@@ -25,7 +25,7 @@ public class DoneServiceControllerTest
 
 	@Before
 	// Initialize the attributes of 'doneService'
-	public void setUp() throws ServicoException, ParseException
+	public void setUp() throws ServiceException, ParseException
 	{
 		doneService.setNomeServico("Corte");
 		doneService.setNomeBarbeiro("Joao");

@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 import junit.framework.Assert;
 import junit.framework.AssertionFailedError;
 import exception.BarberException;
-import exception.ServicoException;
+import exception.ServiceException;
 import model.Agenda;
 import model.Barber;
 
@@ -440,14 +440,14 @@ public class BarbeiroTeste
 	
 	// M�todo que testa o recebimento do nome temporario pelo m�todo de acesso get
 	@Test (expected = AssertionError.class)
-	public void getterDeTempNomeDeveRetornarValorPassado () throws ServicoException
+	public void getterDeTempNomeDeveRetornarValorPassado () throws ServiceException
 	{
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
 	 // M�todo que testa a passagem de um nome temporario nulo 
 	@Test (expected = AssertionFailedError.class)
-	public void setterDeTempNomeNaoPodeSerNulo () throws ServicoException 
+	public void setterDeTempNomeNaoPodeSerNulo () throws ServiceException 
 	{
 		Barber.setTemporaryName(null);
 		Assert.fail("Deve lançar uma exceção");

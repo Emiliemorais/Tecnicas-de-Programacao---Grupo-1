@@ -12,7 +12,7 @@ import java.text.ParseException;
 
 import model.ServicoPrestado;
 
-import exception.ServicoException;
+import exception.ServiceException;
 
 public class DoneServiceTest
 {
@@ -32,23 +32,23 @@ public class DoneServiceTest
 
 	@Test (expected = NullPointerException.class)
 	// Test if the setter of 'doneServiceName' don't accept null argument
-	public void setterDoneServiceNameTestForNullArgument() throws ServicoException
+	public void setterDoneServiceNameTestForNullArgument() throws ServiceException
 	{
 		service.setNomeServico(null);
 		Assert.fail("Deve lan�ar exce��o");
 	}
 
-	@Test (expected = ServicoException.class)
+	@Test (expected = ServiceException.class)
 	// Test if the setter of 'doneServiceName' don't accept blank names
-	public void setterDoneServiceNameTestForBlankArgument() throws ServicoException
+	public void setterDoneServiceNameTestForBlankArgument() throws ServiceException
 	{
 		service.setNomeServico("");
 		Assert.fail("Deve lan�ar uma exce��o");
 	}
 
-	@Test (expected = ServicoException.class)
+	@Test (expected = ServiceException.class)
 	// Test if the setter of 'doneServiceName' don't accept nonstandard names
-	public void setterDoneServiceNameTestForInvalidArgument() throws ServicoException
+	public void setterDoneServiceNameTestForInvalidArgument() throws ServiceException
 	{
 		service.setNomeServico("123");
 		Assert.fail("Deve lan�ar uma exce��o");
@@ -62,7 +62,7 @@ public class DoneServiceTest
 		{
 			service.setNomeServico("Corte");
 		}
-		catch (ServicoException e)
+		catch (ServiceException e)
 		{
 			e.printStackTrace();
 			Assert.fail("N�o deve lan�ar exce��o");
@@ -70,9 +70,9 @@ public class DoneServiceTest
 		assertEquals("Corte", service.getNomeServico());
 	}
 
-	@Test (expected = ServicoException.class)
+	@Test (expected = ServiceException.class)
 	// Test if the setter of 'doneServicePrice' don't accept ilegal prices
-	public void setterDoneServicePriceTestForInvalidArgument() throws ServicoException
+	public void setterDoneServicePriceTestForInvalidArgument() throws ServiceException
 	{
 		service.setPreco("as");
 		Assert.fail("Deve lan�ar uma exce��o");
@@ -80,15 +80,15 @@ public class DoneServiceTest
 
 	@Test (expected = NullPointerException.class)
 	// Test if the setter of 'doneServicePrice' don't accept null argument
-	public void setterDoneServicePriceTestForNullArgument() throws ServicoException
+	public void setterDoneServicePriceTestForNullArgument() throws ServiceException
 	{
 		service.setPreco(null);
 		Assert.fail("Deve lan�ar uma exce��o");
 	}
 
-	@Test (expected = ServicoException.class)
+	@Test (expected = ServiceException.class)
 	// Test if the setter of 'doneServicePrice' don't accept blank prices
-	public void setterDoneServicePriceTestForBlankArgument() throws ServicoException
+	public void setterDoneServicePriceTestForBlankArgument() throws ServiceException
 	{
 		service.setPreco("");
 		Assert.fail("Deve lan�ar uma exce��o");
@@ -102,7 +102,7 @@ public class DoneServiceTest
 		{
 			service.setPreco("123,45");
 		}
-		catch (ServicoException e)
+		catch (ServiceException e)
 		{
 			Assert.fail("N�o deve lan�ar exce��o");
 		}
@@ -111,23 +111,23 @@ public class DoneServiceTest
 
 	@Test (expected = NullPointerException.class)
 	// Test if the setter of 'barberName' don't accept null argument
-	public void setterBarberNameTestForNullArgument() throws ServicoException
+	public void setterBarberNameTestForNullArgument() throws ServiceException
 	{
 		service.setNomeBarbeiro(null);
 		Assert.fail("Deve lan�ar uma exce��o");
 	}
 
-	@Test (expected = ServicoException.class)
+	@Test (expected = ServiceException.class)
 	// Test if the setter of 'barberName' don't accept blank barber names
-	public void setterBarberNameTestForBlankArgument() throws ServicoException
+	public void setterBarberNameTestForBlankArgument() throws ServiceException
 	{
 		service.setNomeBarbeiro("");
 		Assert.fail("Deve lan�ar uma exce��o");
 	}
 
-	@Test (expected = ServicoException.class)
+	@Test (expected = ServiceException.class)
 	// Test if the setter of 'barberName' don't accept ilegal names
-	public void setterBarberNameTestForInvalidArgument() throws ServicoException
+	public void setterBarberNameTestForInvalidArgument() throws ServiceException
 	{
 		service.setNomeBarbeiro("123");
 		Assert.fail("Deve lan�ar uma exce��o");
@@ -141,7 +141,7 @@ public class DoneServiceTest
 		{
 			service.setNomeBarbeiro("Jo�o");
 		}
-		catch (ServicoException e)
+		catch (ServiceException e)
 		{
 			Assert.fail("Não deve lançar uma exceção");
 		}
@@ -150,7 +150,7 @@ public class DoneServiceTest
 
 	@Test (expected = NullPointerException.class)
 	// Test if the setter of 'doneServiceDate' don't accept null arguments
-	public void setterDoneServiceDateTestForNullArgument() throws ServicoException
+	public void setterDoneServiceDateTestForNullArgument() throws ServiceException
 	{
 		try
 		{
@@ -167,9 +167,9 @@ public class DoneServiceTest
 		Assert.fail("Deve lan�ar uma exce��o");
 	}
 
-	@Test (expected = ServicoException.class)
+	@Test (expected = ServiceException.class)
 	// Test if the setter of 'doneServiceDate' don't accept blank date
-	public void setterDoneServiceDateTestForBlankArgument() throws ServicoException
+	public void setterDoneServiceDateTestForBlankArgument() throws ServiceException
 	{
 		try
 		{
@@ -186,9 +186,9 @@ public class DoneServiceTest
 		Assert.fail("Deve lan�ar uma exce��o");
 	}
 
-	@Test (expected = ServicoException.class)
+	@Test (expected = ServiceException.class)
 	// Test if the setter of 'doneServiceDate' don't accept ilegal types of date
-	public void setterDoneServiceDateTestForInvalidArgument() throws ServicoException
+	public void setterDoneServiceDateTestForInvalidArgument() throws ServiceException
 	{
 		try
 		{
@@ -227,7 +227,7 @@ public class DoneServiceTest
 		{
 			service.setData("10/10/2012");
 		}
-		catch (ServicoException e)
+		catch (ServiceException e)
 		{
 			e.printStackTrace();
 		}
