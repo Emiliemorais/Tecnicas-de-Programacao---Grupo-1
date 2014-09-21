@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
-import control.AgendaController;
+import control.ControllerPhonebook;
 import exception.BarberException;
 import model.Phonebook;
 
@@ -83,7 +83,7 @@ public class NewContact extends JFrame
 					phonebookData.setPhonebook ( phoneTextField.getText () );
 					phonebookData.setPhonebookDs ( descriptionTextField.getText () );
 
-					AgendaController phonebookController = AgendaController.getInstance ();
+					ControllerPhonebook phonebookController = ControllerPhonebook.getInstance ();
 					// phonebookController - Instance of "PhonebookController" class
 					phonebookController.incluir ( phonebookData );
 

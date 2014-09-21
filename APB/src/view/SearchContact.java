@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-import control.AgendaController;
+import control.ControllerPhonebook;
 import exception.BarberException;
 import model.Phonebook;
 
@@ -108,7 +108,7 @@ public class SearchContact extends JFrame
 					}
 
 					Phonebook contact = new Phonebook (); // contact - // Instance of "Agenda"
-					AgendaController agendaController = AgendaController
+					ControllerPhonebook agendaController = ControllerPhonebook
 							.getInstance();
 					contact.setPhonebookName ( textField.getText () );
 					ResultSet resultInstance = agendaController.pesquisarPorNome ( contact );
@@ -155,7 +155,7 @@ public class SearchContact extends JFrame
 					}
 
 					Phonebook contact = new Phonebook (); // contact - Instance of "AgendaController"
-					AgendaController agendaController = AgendaController
+					ControllerPhonebook agendaController = ControllerPhonebook
 							.getInstance();
 					contact.setPhonebook ( textField.getText () );
 					ResultSet resultInstance = agendaController
@@ -247,7 +247,7 @@ public class SearchContact extends JFrame
 
 					if ( confirmation == JOptionPane.YES_OPTION ) 
 					{
-						AgendaController phonebookController = AgendaController
+						ControllerPhonebook phonebookController = ControllerPhonebook
 								.getInstance ();
 						// phonebookController - Instance of "AgendaController"
 						phonebookController.excluir ( phonebook );

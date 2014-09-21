@@ -7,22 +7,22 @@ import java.sql.SQLException;
 
 import model.Report;
 
-public class RelatorioDAO 
+public class ResultBarber 
 {
 
-	private static RelatorioDAO instance;
+	private static ResultBarber instance;
 	
-	private RelatorioDAO()
+	private ResultBarber()
 	{
 		
 	}
 
-	// Método que pega a instância de um relatório
-	public static RelatorioDAO getInstance ()
+	// Method that takes an instance of a report
+	public static ResultBarber getInstance ()
 	{
 		if (instance == null)
 		{
-			instance = new RelatorioDAO();
+			instance = new ResultBarber();
 		}
 		else
 		{
@@ -31,19 +31,19 @@ public class RelatorioDAO
 		return instance;
 	}
 
-    // Interface que provê acesso aos relatorios cadastrados e permite que sejam pesquisados por data
+    // Interface that provides access to registered reports and allows them to be searched by date
 	public ResultSet searchByDate (Report relatorio) throws SQLException
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE data BETWEEN '"
 				                                            +relatorio.getInitialDate()+"' AND '"
 				                                            +relatorio.getFinalDate()+"';");
-		ResultSet rs = pst.executeQuery();
+		ResultSet instanceStatement = pst.executeQuery();
 		
-		return rs;
+		return instanceStatement;
 	}
         
-    // Interface que provê acesso aos relatorios cadastrados e permite que sejam pesquisados por data e por barbeiro 
+    // Interface that provides access to registered reports and allows them to be searched by date and by barber
 	public ResultSet searchByDateAndBarber(Report relatorio) throws SQLException 
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
@@ -56,7 +56,7 @@ public class RelatorioDAO
 		return rs;
 	}
         
-    // Interface que provê acesso aos relatorios cadastrados e permite que sejam pesquisados por data e serviço
+    // Interface that provides access to registered reports and allows them to be searched by date and service
 	public ResultSet searchByDateAndService(Report relatorio) throws SQLException
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
@@ -69,7 +69,7 @@ public class RelatorioDAO
 		return rs;
 	}
         
-    // Interface que provê acesso aos relatorios cadastrados e permite que sejam pesquisados por barbeiro
+    // Interface that provides access to registered reports and allows them to be searched by Barber
 	public ResultSet searchByBarber(Report relatorio) throws SQLException
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
@@ -80,7 +80,7 @@ public class RelatorioDAO
 		return rs;
 	}
         
-    // Interface que provê acesso aos relatorios cadastrados e permite que sejam pesquisados por barbeiro e servico
+    // Interface that provides access to registered reports and allows them to be searched by Barber and service
 	public ResultSet searchByBarberAndService(Report relatorio) throws SQLException 
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
@@ -92,7 +92,7 @@ public class RelatorioDAO
 		return rs;
 	}
         
-    // Interface que provê acesso aos relatorios cadastrados e permite que sejam pesquisados por servico
+    // Interface that provides access to registered reports and allows them to be searched by service
 	public ResultSet searchByService(Report relatorio)throws SQLException 
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
@@ -103,7 +103,7 @@ public class RelatorioDAO
 		return rs;
 	}
         
-    // Interface que provê acesso aos relatorios cadastrados e permite que sejam pesquisados por data, barbeiro e serviço
+    // Interface that provides access to registered reports and allows them to be searched by date, barber and service
 	public ResultSet searchByDateBarberAndService(Report relatorio)throws SQLException
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
