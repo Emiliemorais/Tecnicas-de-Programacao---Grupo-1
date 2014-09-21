@@ -141,7 +141,7 @@ public class Administrative extends JFrame
 				dispose();
 				
 				// Frame used to "go back" to the main menu
-				MenuPrincipal mainMenuFrame = new MenuPrincipal();
+				MainMenu mainMenuFrame = new MainMenu();
 				mainMenuFrame.setVisible(true);
 				mainMenuFrame.setLocationRelativeTo(null);
 			}

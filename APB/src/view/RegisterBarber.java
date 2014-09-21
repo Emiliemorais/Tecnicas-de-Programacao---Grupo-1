@@ -105,11 +105,11 @@ public class RegisterBarber extends JFrame
 			public void mouseClicked ( MouseEvent e ) 
 			{
 				dispose();
-				NovoBarbeiro frame;
+				NewBarber frame;
 				try 
 				{
 					
-					frame = new NovoBarbeiro ();
+					frame = new NewBarber ();
 					frame.setVisible ( true );
 					frame.setLocationRelativeTo ( null );
 				} 

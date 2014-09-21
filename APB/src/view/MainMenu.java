@@ -1,5 +1,5 @@
 package view;
-// Importando dados
+
 import java.awt.EventQueue;
 
 import javax.swing.JButton;
@@ -19,51 +19,50 @@ import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-// Inicio da classe
 @SuppressWarnings ( "serial" )
-public class MenuPrincipal extends JFrame 
+public class MainMenu extends JFrame 
 {
 
-	// Declarando instancia de interface
-	private JPanel contentPane;
+	// Creating a panel
+	private JPanel contentPane; // contentPane - Variable with the contents of the panel
 
 	/**
 	 * Launch the application.
 	 */
-	// Iniciando a aplicacao da interface
 	public static void main (String[] args ) 
 	{
 		EventQueue.invokeLater(new Runnable () 
 		{
-			public void run () {
-				try {
-					MenuPrincipal frame = new MenuPrincipal ();
-					// Mostrando interface
+			public void run () 
+			{
+				try 
+				{
+					MainMenu frame = new MainMenu (); // frame - Instance of "MainMenu" class
 					frame.setVisible ( true );
-				} catch ( Exception e ) 
+				} 
+				catch ( Exception e ) 
 				{
 					e.printStackTrace ();
 				}
 			}
 		});
-	}// Fim do metodo
+	}
 
 	/**
 	 * Create the frame.
 	 */
-	// Criando um paineldp menu pincipal
-	public MenuPrincipal ( ) 
+	public MainMenu ( ) 
 	{
 		setTitle( "APB" );
 		setDefaultCloseOperation ( JFrame.EXIT_ON_CLOSE );
 		setBounds ( 100, 100, 540, 200);
-		contentPane = new JPanel ();
+		contentPane = new JPanel (); // contentPane - Variable with the contents of the panel
 		contentPane.setToolTipText ( "Menu Principal" );
 		contentPane.setBorder( new EmptyBorder ( 5, 5, 5, 5) );
 		setContentPane ( contentPane);
 		contentPane.setLayout ( null );
 
-		JPanel panel = new JPanel ();
+		JPanel panel = new JPanel (); // panel - Instance of "Jpanel" class
 		panel.setBorder ( new TitledBorder(UIManager
 				.getBorder ( "TitledBorder.border" ), "Menu Principal",
 				TitledBorder.CENTER, TitledBorder.TOP, null, null ) );
@@ -71,8 +70,8 @@ public class MenuPrincipal extends JFrame
 		contentPane.add ( panel );
 		panel.setLayout ( null );
 
-		JButton btnAdministrativo = new JButton ( "Administrativo" );
-		btnAdministrativo.addActionListener ( new ActionListener () 
+		JButton adminButton = new JButton ( "Administrativo" ); // adminButton - Button that says "Administrative"
+		adminButton.addActionListener ( new ActionListener () 
 		{
 			public void actionPerformed ( ActionEvent e ) 
 			{
@@ -82,11 +81,12 @@ public class MenuPrincipal extends JFrame
 				frame.setLocationRelativeTo ( null );
 			}
 		});
-		btnAdministrativo.setBounds ( 10, 60, 157, 37 );
-		panel.add ( btnAdministrativo );
+		adminButton.setBounds ( 10, 60, 157, 37 );
+		panel.add ( adminButton );
 
-		JButton btnServicosPrestados = new JButton ( "Servi\u00E7os Prestados" );
-		btnServicosPrestados.addActionListener ( new ActionListener () 
+		JButton givenServicesButton = new JButton ( "Servi\u00E7os Prestados" ); 
+		// givenServicesButton - Button that says "Given Services"
+		givenServicesButton.addActionListener ( new ActionListener () 
 		{
 			public void actionPerformed ( ActionEvent e ) 
 			{
@@ -96,44 +96,54 @@ public class MenuPrincipal extends JFrame
 				frame.setLocationRelativeTo ( null );
 			}
 		});
-		btnServicosPrestados.setBounds ( 179, 60, 157, 37 );
-		panel.add( btnServicosPrestados );
+		givenServicesButton.setBounds ( 179, 60, 157, 37 );
+		panel.add( givenServicesButton );
 
-		JButton btnRelatorios = new JButton ( "Relat\u00F3rios" );
-		btnRelatorios.addMouseListener ( new MouseAdapter ()
+		JButton reportsButton = new JButton ( "Relat\u00F3rios" ); // reportsButton - Button that says "Reports"
+		reportsButton.addMouseListener ( new MouseAdapter ()
 		{
 			@Override
 			public void mouseClicked ( MouseEvent e ) 
 			{
-				try {
+				try 
+				{
 					SearchReport.searchType = 0;
 					VisualizarRelatorios frame = new VisualizarRelatorios ();
 					frame.setVisible( true );
 					frame.setLocationRelativeTo( null );
 					dispose ();
-				} catch ( SQLException e1 ) 
+				} 
+				catch ( SQLException e1 ) 
 				{
-					mostrarMensagemDeErro ( e1.getMessage () );
-				} catch ( ReportException e1 ) 
+					showErrorMessage ( e1.getMessage () );
+				} 
+				catch ( ReportException e1 ) 
 				{
 					e1.printStackTrace();
-				} catch ( NullPointerException e1)
+				} 
+				catch ( NullPointerException e1)
 				{
 					e1.printStackTrace ();
-				} catch ( ParseException e1 ) 
+				} 
+				catch ( ParseException e1 ) 
 				{
 					e1.printStackTrace ();
 				}
 			}
 		});
-		btnRelatorios.setBounds ( 346, 60, 149, 37 );
-		panel.add ( btnRelatorios );
-	}// Fim do metodo
-
-	// Metodo retorna erro encontrado no menu
-	private void mostrarMensagemDeErro ( String informacao ) 
+		reportsButton.setBounds ( 346, 60, 149, 37 );
+		panel.add ( reportsButton );
+	}
+	
+	/*
+	 * Method that shows a error message
+	 * @param errorInformation - Shows a error message to the user
+	 */
+	private void showErrorMessage ( String errorInformation ) 
 	{
-		JOptionPane.showMessageDialog( null, informacao, "Atenção",
+		JOptionPane.showMessageDialog( null, errorInformation, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE );
-	}// Fim do metodo
-}// Fim da classe
+	}
+
+}
+

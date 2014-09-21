@@ -569,7 +569,7 @@ public class VisualizarRelatorios extends JFrame
 			@Override
 			public void mouseClicked (MouseEvent e)
 			{
-				MenuPrincipal frame = new MenuPrincipal();
+				MainMenu frame = new MainMenu();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 				dispose();
