@@ -99,7 +99,7 @@ public class Administrative extends JFrame
 				dispose();
 				
 				// Frame used to register a serviceType
-				CadastrarTipoServico registerServiceTypeFrame = new CadastrarTipoServico();
+				IncludeTypeService registerServiceTypeFrame = new IncludeTypeService();
 				registerServiceTypeFrame.setVisible(true);
 				registerServiceTypeFrame.setLocationRelativeTo(null);
 			}

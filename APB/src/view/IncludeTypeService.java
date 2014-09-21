@@ -20,7 +20,7 @@ import model.ServiceType;
 import exception.ServiceException;
 
 @SuppressWarnings("serial")
-public class CadastrarTipoServico extends JFrame 
+public class IncludeTypeService extends JFrame 
 {
 
 	private JPanel contentPane;
@@ -39,7 +39,7 @@ public class CadastrarTipoServico extends JFrame
 			{
 				try
 				{
-					CadastrarTipoServico frame = new CadastrarTipoServico();
+					IncludeTypeService frame = new IncludeTypeService();
 					frame.setVisible(true);
 				} 
 				catch (Exception e) 
@@ -55,7 +55,7 @@ public class CadastrarTipoServico extends JFrame
 	 */
 	
 	// Construtor dos componentes da janela de Cadastro de tipo de serviço
-	public CadastrarTipoServico() 
+	public IncludeTypeService() 
 	{
 		setTitle("Tipo de Servi\u00E7o");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -176,7 +176,7 @@ public class CadastrarTipoServico extends JFrame
 					}
 					
 					dispose();
-					CadastrarTipoServico frame = new CadastrarTipoServico();
+					IncludeTypeService frame = new IncludeTypeService();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				}

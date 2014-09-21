@@ -28,7 +28,7 @@ import exception.ServiceException;
 import model.GivenService;
 
 @SuppressWarnings("serial")
-public class PesquisarServicoPrestado extends JFrame
+public class SearchServiceProvided extends JFrame
 {
 
 	private JPanel contentPane;
@@ -41,12 +41,12 @@ public class PesquisarServicoPrestado extends JFrame
 		EventQueue.invokeLater(new Runnable() 
 		{
 			
-			// Método que inicializa a janela de pesquisa de serviço prestado
+			// method that initializes the search window service
 			public void run () 
 			{
 				try 
 				{
-					PesquisarServicoPrestado frame = new PesquisarServicoPrestado();
+					SearchServiceProvided frame = new SearchServiceProvided();
 					frame.setVisible(true);
 				} 
 				catch (Exception e) 
@@ -57,13 +57,13 @@ public class PesquisarServicoPrestado extends JFrame
 		});
 	}
 	
-	// Construtor dos componentes da janela de pesquisa de serviço prestado
-	public PesquisarServicoPrestado() 
+	// Builder components of the search window service
+	public SearchServiceProvided() 
 	{
 		inicializarComponentes();
 	}
 
-	// Método que inicializa os componentes da VIEW de uma pesquisa de Serviço Prestado
+	// Builder components of the search window service
 	public void inicializarComponentes ()
 	{
 		setTitle("Pesquisar Servi\u00E7o");
@@ -95,7 +95,7 @@ public class PesquisarServicoPrestado extends JFrame
 		JButton btnPesquisarServico = new JButton("Pesquisar Serviço");
 		btnPesquisarServico.addActionListener(new ActionListener() {
 			
-			// Método da VIEW que é utilizado para pesquisar um Serviço Prestado 
+			// VIEW method that is used to search a Service Provided
 			public void actionPerformed (ActionEvent arg0) 
 			{
 				try 
@@ -104,19 +104,19 @@ public class PesquisarServicoPrestado extends JFrame
 					servico.setServiceName(textField.getText());
 
 					connection = FactoryConnection.getInstance().getConnection();
-					ResultSet rs = connection.createStatement().executeQuery(
+					ResultSet instanceStatement = connection.createStatement().executeQuery(
 																			"SELECT nome, preco, barbeiro,"
 																			+ " data FROM servicoprestado WHERE nome = '"
 																			+ servico.getServiceName() + "' ORDER BY data;");
 
-					while(rs.next()) 
+					while(instanceStatement.next()) 
 					{
-						String[] dados = new String[4];
-						dados[0] = rs.getString("nome");
-						dados[1] = rs.getString("barbeiro");
-						dados[2] = rs.getString("preco");
-						dados[3] = servico.convertServiceDateToABNT(rs.getString("data"));
-						modelo.addRow(dados);
+						String[] data = new String[4];
+						data[0] = instanceStatement.getString("nome");
+						data[1] = instanceStatement.getString("barbeiro");
+						data[2] = instanceStatement.getString("preco");
+						data[3] = servico.convertServiceDateToABNT(instanceStatement.getString("data"));
+						modelo.addRow(data);
 					}
 				} 
 				catch (ServiceException e) 
@@ -140,7 +140,7 @@ public class PesquisarServicoPrestado extends JFrame
 		JButton btnPesquisarBarbeiro = new JButton("Pesquisar Barbeiro");
 		btnPesquisarBarbeiro.addMouseListener(new MouseAdapter() {
 			
-			// Método da VIEW que é utilizado para pesquisar um Barbeiro
+			// VIEW method that is used to search a Barber
 			@Override
 			public void mouseClicked (MouseEvent arg0) 
 			{
@@ -187,7 +187,7 @@ public class PesquisarServicoPrestado extends JFrame
 		btnRemover.addMouseListener(new MouseAdapter() 
 		{
 			
-			// Método da VIEW que é utilizado para remover um Servico Prestado
+			// VIEW method that is used to remove a service provided
 			@Override
 			public void mouseClicked (MouseEvent arg0) 
 			{
@@ -246,7 +246,7 @@ public class PesquisarServicoPrestado extends JFrame
 		btnVoltar.addMouseListener(new MouseAdapter() 
 		{
 			
-			// Método da VIEW que é utilizado para voltar a janela de Cadastrar Servico
+			// VIEW method that is used to return the window to Sign Servico
 			@Override
 			public void mouseClicked (MouseEvent e) 
 			{
@@ -263,7 +263,7 @@ public class PesquisarServicoPrestado extends JFrame
 		btnPesquisarData.addMouseListener(new MouseAdapter() 
 		{
 			
-			// Método da VIEW que é utilizado para pesquisar um Servico Prestado pela data
+			// VIEW method that is used to search for services rendered by date
 			@Override
 			public void mouseClicked (MouseEvent arg0) 
 			{
@@ -307,14 +307,14 @@ public class PesquisarServicoPrestado extends JFrame
 		contentPane.add(btnPesquisarData);
 	}
 
-	// Método que mostra uma mensagem de erro, utilizado no tratamento das exceções da classe
+	// Method that shows an error message, used in the treatment of exceptions class
 	private void mostrarMensagemDeErro (String informacao) 
 	{
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 	
-	// Método de acesso ao valor da variavel de nome temporario
+	// Method of accessing the value of the temporary variable name
 	public static String getTempNome () 
 	{
 		return tempNome;

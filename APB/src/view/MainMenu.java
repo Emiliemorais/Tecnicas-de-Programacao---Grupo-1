@@ -108,7 +108,7 @@ public class MainMenu extends JFrame
 				try 
 				{
 					SearchReport.searchType = 0;
-					VisualizarRelatorios frame = new VisualizarRelatorios ();
+					ViewResult frame = new ViewResult ();
 					frame.setVisible( true );
 					frame.setLocationRelativeTo( null );
 					dispose ();

@@ -35,18 +35,18 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import exception.ReportException;
 
 @SuppressWarnings("serial")
-public class VisualizarRelatorios extends JFrame 
+public class ViewResult extends JFrame 
 {
 
 	private JPanel contentPane;
-	private double total = 0;
-	private String numero;
-	List<String> servicos = new ArrayList<String>();
-	private int contador = 0;
-	private int numeroTotalDeServicos = 0;
-	private double valorTotalDoServico = 0;
-	private double valorTotalASerPAgo = 0;
-	private double total2 = 0;
+	private double valueTotalBuy = 0;
+	private String numberCliente;
+	List<String> typeService = new ArrayList<String>();
+	private int conterService = 0;
+	private int numberTotalService = 0;
+	private double valueTotalService = 0;
+	private double valueTotalPay = 0;
+	private double valueTotalBuyPay = 0;
 
 	DecimalFormat decimal = new DecimalFormat("##0.00");
 
@@ -60,7 +60,7 @@ public class VisualizarRelatorios extends JFrame
 			{
 				try 
 				{
-					VisualizarRelatorios frame = new VisualizarRelatorios();
+					ViewResult frame = new ViewResult();
 					frame.setVisible(true);
 				} 
 				catch (Exception e)
@@ -72,7 +72,7 @@ public class VisualizarRelatorios extends JFrame
 	}
 
 	// Construtor dos componentes da janela VIzualizar Relatorios
-	public VisualizarRelatorios() throws SQLException, ReportException,
+	public ViewResult() throws SQLException, ReportException,
 			NullPointerException, ParseException 
 	{
 		setTitle("Relat\u00F3rios");
@@ -118,28 +118,28 @@ public class VisualizarRelatorios extends JFrame
 
 			relatorio.setBarberName(SearchReport.barber);
 
-			ResultSet rs = relatorioController.searchByBarber(relatorio);
+			ResultSet instanceStatement = relatorioController.searchByBarber(relatorio);
 
-			while (rs.next()) {
+			while (instanceStatement.next()) {
 
-				if (servicos.contains(rs.getString("nome")) == false)
+				if (typeService.contains(instanceStatement.getString("nome")) == false)
 				{
-					servicos.add(rs.getString("nome"));
-					contador++;
+					typeService.add(instanceStatement.getString("nome"));
+					conterService++;
 				}
 			}
 
-			for(int i=0; i<contador; i++)
+			for(int i=0; i<conterService; i++)
 			{
-				rs.beforeFirst();
-				while (rs.next()) {
-					if (servicos.get(i).equals(rs.getString("nome"))) 
+				instanceStatement.beforeFirst();
+				while (instanceStatement.next()) {
+					if (typeService.get(i).equals(instanceStatement.getString("nome"))) 
 					{
-						numero = rs.getString("preco").replace(",", ".");
-						double valor = Double.parseDouble(numero);
-						valorTotalDoServico = valorTotalDoServico + valor;
+						numberCliente = instanceStatement.getString("preco").replace(",", ".");
+						double valor = Double.parseDouble(numberCliente);
+						valueTotalService = valueTotalService + valor;
 
-						numeroTotalDeServicos++;
+						numberTotalService++;
 					}
 					else
 					{
@@ -148,23 +148,23 @@ public class VisualizarRelatorios extends JFrame
 				}
 
 				String[] dados = new String[4];
-				dados[0] = servicos.get(i);
-				dados[1] = Integer.toString(numeroTotalDeServicos);
-				dados[2] = Double.toString(valorTotalDoServico)
+				dados[0] = typeService.get(i);
+				dados[1] = Integer.toString(numberTotalService);
+				dados[2] = Double.toString(valueTotalService)
 						.replace(".", ",")
-						.valueOf(decimal.format(valorTotalDoServico));
-				valorTotalASerPAgo = valorTotalDoServico / 2;
-				dados[3] = Double.toString(valorTotalASerPAgo)
+						.valueOf(decimal.format(valueTotalService));
+				valueTotalPay = valueTotalService / 2;
+				dados[3] = Double.toString(valueTotalPay)
 						.replace(".", ",")
-						.valueOf(decimal.format(valorTotalASerPAgo));
+						.valueOf(decimal.format(valueTotalPay));
 				
-				total = total + valorTotalDoServico;
-				total2 = total2 + valorTotalASerPAgo;
+				valueTotalBuy = valueTotalBuy + valueTotalService;
+				valueTotalBuyPay = valueTotalBuyPay + valueTotalPay;
 				modelo.addRow(dados);
 
-				numeroTotalDeServicos = 0;
-				valorTotalASerPAgo = 0;
-				valorTotalDoServico = 0;
+				numberTotalService = 0;
+				valueTotalPay = 0;
+				valueTotalService = 0;
 			}
 		}
 		if(SearchReport.searchType == 2)
@@ -179,10 +179,10 @@ public class VisualizarRelatorios extends JFrame
 			while (rs.next())
 			{
 
-				if (servicos.contains(rs.getString("nome")) == false)
+				if (typeService.contains(rs.getString("nome")) == false)
 				{
-					servicos.add(rs.getString("nome"));
-					contador++;
+					typeService.add(rs.getString("nome"));
+					conterService++;
 				}
 				else
 				{
@@ -190,18 +190,18 @@ public class VisualizarRelatorios extends JFrame
 				}
 			}
 
-			for(int i=0; i<contador; i++) 
+			for(int i=0; i<conterService; i++) 
 			{
 				rs.beforeFirst();
 				while (rs.next())
 				{
-					if (servicos.get(i).equals(rs.getString("nome"))) 
+					if (typeService.get(i).equals(rs.getString("nome"))) 
 					{
-						numero = rs.getString("preco").replace(",", ".");
-						double valor = Double.parseDouble(numero);
-						valorTotalDoServico = valorTotalDoServico + valor;
+						numberCliente = rs.getString("preco").replace(",", ".");
+						double valor = Double.parseDouble(numberCliente);
+						valueTotalService = valueTotalService + valor;
 
-						numeroTotalDeServicos++;
+						numberTotalService++;
 					}
 					else
 					{
@@ -210,24 +210,24 @@ public class VisualizarRelatorios extends JFrame
 				}
 
 				String[] dados = new String[4];
-				dados[0] = servicos.get(i);
-				dados[1] = Integer.toString(numeroTotalDeServicos);
-				dados[2] = Double.toString(valorTotalDoServico)
+				dados[0] = typeService.get(i);
+				dados[1] = Integer.toString(numberTotalService);
+				dados[2] = Double.toString(valueTotalService)
 						.replace(".", ",")
-						.valueOf(decimal.format(valorTotalDoServico));
-				valorTotalASerPAgo = valorTotalDoServico / 2;
-				dados[3] = Double.toString(valorTotalASerPAgo)
+						.valueOf(decimal.format(valueTotalService));
+				valueTotalPay = valueTotalService / 2;
+				dados[3] = Double.toString(valueTotalPay)
 						.replace(".", ",")
-						.valueOf(decimal.format(valorTotalASerPAgo));
+						.valueOf(decimal.format(valueTotalPay));
 
 				modelo.addRow(dados);
 				
-				total = total + valorTotalDoServico;
-				total2 = total2 + valorTotalASerPAgo;
+				valueTotalBuy = valueTotalBuy + valueTotalService;
+				valueTotalBuyPay = valueTotalBuyPay + valueTotalPay;
 				
-				numeroTotalDeServicos = 0;
-				valorTotalASerPAgo = 0;
-				valorTotalDoServico = 0;
+				numberTotalService = 0;
+				valueTotalPay = 0;
+				valueTotalService = 0;
 			}
 		}
 		if(SearchReport.searchType == 3) 
@@ -243,10 +243,10 @@ public class VisualizarRelatorios extends JFrame
 			while (rs.next())
 			{
 
-				if (servicos.contains(rs.getString("nome")) == false) 
+				if (typeService.contains(rs.getString("nome")) == false) 
 				{
-					servicos.add(rs.getString("nome"));
-					contador++;
+					typeService.add(rs.getString("nome"));
+					conterService++;
 				}
 				else
 				{
@@ -254,18 +254,18 @@ public class VisualizarRelatorios extends JFrame
 				}
 			}
 
-			for(int i= 0; i<contador; i++) 
+			for(int i= 0; i<conterService; i++) 
 			{
 				rs.beforeFirst();
 				while (rs.next()) 
 				{
-					if (servicos.get(i).equals(rs.getString("nome"))) 
+					if (typeService.get(i).equals(rs.getString("nome"))) 
 					{
-						numero = rs.getString("preco").replace(",", ".");
-						double valor = Double.parseDouble(numero);
-						valorTotalDoServico = valorTotalDoServico + valor;
+						numberCliente = rs.getString("preco").replace(",", ".");
+						double valor = Double.parseDouble(numberCliente);
+						valueTotalService = valueTotalService + valor;
 
-						numeroTotalDeServicos++;
+						numberTotalService++;
 					}
 					else
 					{
@@ -274,24 +274,24 @@ public class VisualizarRelatorios extends JFrame
 				}
 
 				String[] dados = new String[4];
-				dados[0] = servicos.get(i);
-				dados[1] = Integer.toString(numeroTotalDeServicos);
-				dados[2] = Double.toString(valorTotalDoServico)
+				dados[0] = typeService.get(i);
+				dados[1] = Integer.toString(numberTotalService);
+				dados[2] = Double.toString(valueTotalService)
 						.replace(".", ",")
-						.valueOf(decimal.format(valorTotalDoServico));
-				valorTotalASerPAgo = valorTotalDoServico / 2;
-				dados[3] = Double.toString(valorTotalASerPAgo)
+						.valueOf(decimal.format(valueTotalService));
+				valueTotalPay = valueTotalService / 2;
+				dados[3] = Double.toString(valueTotalPay)
 						.replace(".", ",")
-						.valueOf(decimal.format(valorTotalASerPAgo));
+						.valueOf(decimal.format(valueTotalPay));
 
 				modelo.addRow(dados);
 				
-				total = total + valorTotalDoServico;
-				total2 = total2 + valorTotalASerPAgo;
+				valueTotalBuy = valueTotalBuy + valueTotalService;
+				valueTotalBuyPay = valueTotalBuyPay + valueTotalPay;
 				
-				numeroTotalDeServicos = 0;
-				valorTotalASerPAgo = 0;
-				valorTotalDoServico = 0;
+				numberTotalService = 0;
+				valueTotalPay = 0;
+				valueTotalService = 0;
 			}
 		}
 		if(SearchReport.searchType == 4) 
@@ -308,10 +308,10 @@ public class VisualizarRelatorios extends JFrame
 			while (rs.next()) 
 			{
 
-				if (servicos.contains(rs.getString("nome")) == false) 
+				if (typeService.contains(rs.getString("nome")) == false) 
 				{
-					servicos.add(rs.getString("nome"));
-					contador++;
+					typeService.add(rs.getString("nome"));
+					conterService++;
 				}
 				else
 				{
@@ -319,40 +319,40 @@ public class VisualizarRelatorios extends JFrame
 				}
 			}
 
-			for(int i=0; i<contador; i++) 
+			for(int i=0; i<conterService; i++) 
 			{
 				rs.beforeFirst();
 				while (rs.next()) 
 				{
-					if (servicos.get(i).equals(rs.getString("nome"))) 
+					if (typeService.get(i).equals(rs.getString("nome"))) 
 					{
-						numero = rs.getString("preco").replace(",", ".");
-						double valor = Double.parseDouble(numero);
-						valorTotalDoServico = valorTotalDoServico + valor;
+						numberCliente = rs.getString("preco").replace(",", ".");
+						double valor = Double.parseDouble(numberCliente);
+						valueTotalService = valueTotalService + valor;
 						
-						numeroTotalDeServicos++;
+						numberTotalService++;
 					}
 				}
 
 				String[] dados = new String[4];
-				dados[0] = servicos.get(i);
-				dados[1] = Integer.toString(numeroTotalDeServicos);
-				dados[2] = Double.toString(valorTotalDoServico)
+				dados[0] = typeService.get(i);
+				dados[1] = Integer.toString(numberTotalService);
+				dados[2] = Double.toString(valueTotalService)
 						.replace(".", ",")
-						.valueOf(decimal.format(valorTotalDoServico));
-				valorTotalASerPAgo = valorTotalDoServico / 2;
-				dados[3] = Double.toString(valorTotalASerPAgo)
+						.valueOf(decimal.format(valueTotalService));
+				valueTotalPay = valueTotalService / 2;
+				dados[3] = Double.toString(valueTotalPay)
 						.replace(".", ",")
-						.valueOf(decimal.format(valorTotalASerPAgo));
+						.valueOf(decimal.format(valueTotalPay));
 
 				modelo.addRow(dados);
 
-				total = total + valorTotalDoServico;
-				total2 = total2 + valorTotalASerPAgo;
+				valueTotalBuy = valueTotalBuy + valueTotalService;
+				valueTotalBuyPay = valueTotalBuyPay + valueTotalPay;
 				
-				numeroTotalDeServicos = 0;
-				valorTotalASerPAgo = 0;
-				valorTotalDoServico = 0;
+				numberTotalService = 0;
+				valueTotalPay = 0;
+				valueTotalService = 0;
 
 			}
 		}
@@ -366,10 +366,10 @@ public class VisualizarRelatorios extends JFrame
 			while (rs.next())
 			{
 
-				if (servicos.contains(rs.getString("nome")) == false)
+				if (typeService.contains(rs.getString("nome")) == false)
 				{
-					servicos.add(rs.getString("nome"));
-					contador++;
+					typeService.add(rs.getString("nome"));
+					conterService++;
 				}
 				else
 				{
@@ -377,40 +377,40 @@ public class VisualizarRelatorios extends JFrame
 				}
 			}
 
-			for(int i=0; i<contador; i++)
+			for(int i=0; i<conterService; i++)
 			{
 				rs.beforeFirst();
 				while (rs.next()) 
 				{
-					if (servicos.get(i).equals(rs.getString("nome")))
+					if (typeService.get(i).equals(rs.getString("nome")))
 					{
-						numero = rs.getString("preco").replace(",", ".");
-						double valor = Double.parseDouble(numero);
-						valorTotalDoServico = valorTotalDoServico + valor;
+						numberCliente = rs.getString("preco").replace(",", ".");
+						double valor = Double.parseDouble(numberCliente);
+						valueTotalService = valueTotalService + valor;
 
-						numeroTotalDeServicos++;
+						numberTotalService++;
 					}
 				}
 
 				String[] dados = new String[4];
-				dados[0] = servicos.get(i);
-				dados[1] = Integer.toString(numeroTotalDeServicos);
-				dados[2] = Double.toString(valorTotalDoServico)
+				dados[0] = typeService.get(i);
+				dados[1] = Integer.toString(numberTotalService);
+				dados[2] = Double.toString(valueTotalService)
 						.replace(".", ",")
-						.valueOf(decimal.format(valorTotalDoServico));
-				valorTotalASerPAgo = valorTotalDoServico / 2;
-				dados[3] = Double.toString(valorTotalASerPAgo)
+						.valueOf(decimal.format(valueTotalService));
+				valueTotalPay = valueTotalService / 2;
+				dados[3] = Double.toString(valueTotalPay)
 						.replace(".", ",")
-						.valueOf(decimal.format(valorTotalASerPAgo));
+						.valueOf(decimal.format(valueTotalPay));
 
 				modelo.addRow(dados);
 
-				total = total + valorTotalDoServico;
-				total2 = total2 + valorTotalASerPAgo;
+				valueTotalBuy = valueTotalBuy + valueTotalService;
+				valueTotalBuyPay = valueTotalBuyPay + valueTotalPay;
 				
-				numeroTotalDeServicos = 0;
-				valorTotalASerPAgo = 0;
-				valorTotalDoServico = 0;
+				numberTotalService = 0;
+				valueTotalPay = 0;
+				valueTotalService = 0;
 			}
 		}
 		if(SearchReport.searchType == 6)
@@ -426,25 +426,25 @@ public class VisualizarRelatorios extends JFrame
 			while (rs.next())
 			{
 
-				if (servicos.contains(rs.getString("nome")) == false)
+				if (typeService.contains(rs.getString("nome")) == false)
 				{
-					servicos.add(rs.getString("nome"));
-					contador++;
+					typeService.add(rs.getString("nome"));
+					conterService++;
 				}
 			}
 
-			for(int i=0; i<contador; i++)
+			for(int i=0; i<conterService; i++)
 			{
 				rs.beforeFirst();
 				while (rs.next())
 				{
-					if (servicos.get(i).equals(rs.getString("nome"))) 
+					if (typeService.get(i).equals(rs.getString("nome"))) 
 					{
-						numero = rs.getString("preco").replace(",", ".");
-						double valor = Double.parseDouble(numero);
-						valorTotalDoServico = valorTotalDoServico + valor;
+						numberCliente = rs.getString("preco").replace(",", ".");
+						double valor = Double.parseDouble(numberCliente);
+						valueTotalService = valueTotalService + valor;
 
-						numeroTotalDeServicos++;
+						numberTotalService++;
 					}
 					else
 					{
@@ -453,24 +453,24 @@ public class VisualizarRelatorios extends JFrame
 				}
 
 				String[] dados = new String[4];
-				dados[0] = servicos.get(i);
-				dados[1] = Integer.toString(numeroTotalDeServicos);
-				dados[2] = Double.toString(valorTotalDoServico)
+				dados[0] = typeService.get(i);
+				dados[1] = Integer.toString(numberTotalService);
+				dados[2] = Double.toString(valueTotalService)
 						.replace(".", ",")
-						.valueOf(decimal.format(valorTotalDoServico));
-				valorTotalASerPAgo = valorTotalDoServico / 2;
-				dados[3] = Double.toString(valorTotalASerPAgo)
+						.valueOf(decimal.format(valueTotalService));
+				valueTotalPay = valueTotalService / 2;
+				dados[3] = Double.toString(valueTotalPay)
 						.replace(".", ",")
-						.valueOf(decimal.format(valorTotalASerPAgo));
+						.valueOf(decimal.format(valueTotalPay));
 
 				modelo.addRow(dados);
 
-				total = total + valorTotalDoServico;
-				total2 = total2 + valorTotalASerPAgo;
+				valueTotalBuy = valueTotalBuy + valueTotalService;
+				valueTotalBuyPay = valueTotalBuyPay + valueTotalPay;
 				
-				numeroTotalDeServicos = 0;
-				valorTotalASerPAgo = 0;
-				valorTotalDoServico = 0;
+				numberTotalService = 0;
+				valueTotalPay = 0;
+				valueTotalService = 0;
 			}
 		}
 		if(SearchReport.searchType == 7) 
@@ -484,10 +484,10 @@ public class VisualizarRelatorios extends JFrame
 			while (rs.next())
 			{
 
-				if (servicos.contains(rs.getString("nome")) == false)
+				if (typeService.contains(rs.getString("nome")) == false)
 				{
-					servicos.add(rs.getString("nome"));
-					contador++;
+					typeService.add(rs.getString("nome"));
+					conterService++;
 				}
 				else
 				{
@@ -495,18 +495,18 @@ public class VisualizarRelatorios extends JFrame
 				}
 			}
 
-			for(int i=0; i<contador; i++)
+			for(int i=0; i<conterService; i++)
 			{
 				rs.beforeFirst();
 				while (rs.next())
 				{
-					if (servicos.get(i).equals(rs.getString("nome")))
+					if (typeService.get(i).equals(rs.getString("nome")))
 					{
-						numero = rs.getString("preco").replace(",", ".");
-						double valor = Double.parseDouble(numero);
-						valorTotalDoServico = valorTotalDoServico + valor;
+						numberCliente = rs.getString("preco").replace(",", ".");
+						double valor = Double.parseDouble(numberCliente);
+						valueTotalService = valueTotalService + valor;
 
-						numeroTotalDeServicos++;
+						numberTotalService++;
 					}
 					else
 					{
@@ -515,24 +515,24 @@ public class VisualizarRelatorios extends JFrame
 				}
 
 				String[] dados = new String[4];
-				dados[0] = servicos.get(i);
-				dados[1] = Integer.toString(numeroTotalDeServicos);
-				dados[2] = Double.toString(valorTotalDoServico)
+				dados[0] = typeService.get(i);
+				dados[1] = Integer.toString(numberTotalService);
+				dados[2] = Double.toString(valueTotalService)
 						.replace(".", ",")
-						.valueOf(decimal.format(valorTotalDoServico));
-				valorTotalASerPAgo = valorTotalDoServico / 2;
-				dados[3] = Double.toString(valorTotalASerPAgo)
+						.valueOf(decimal.format(valueTotalService));
+				valueTotalPay = valueTotalService / 2;
+				dados[3] = Double.toString(valueTotalPay)
 						.replace(".", ",")
-						.valueOf(decimal.format(valorTotalASerPAgo));
+						.valueOf(decimal.format(valueTotalPay));
 
 				modelo.addRow(dados);
 
-				total = total + valorTotalDoServico;
-				total2 = total2 + valorTotalASerPAgo;
+				valueTotalBuy = valueTotalBuy + valueTotalService;
+				valueTotalBuyPay = valueTotalBuyPay + valueTotalPay;
 				
-				numeroTotalDeServicos = 0;
-				valorTotalASerPAgo = 0;
-				valorTotalDoServico = 0;
+				numberTotalService = 0;
+				valueTotalPay = 0;
+				valueTotalService = 0;
 			}
 		}
 		JButton btnPesquisar = new JButton("Pesquisar");
@@ -588,7 +588,7 @@ public class VisualizarRelatorios extends JFrame
 		panel.add(lblLucroTotal);
 
 		JLabel lblValor = new JLabel("R$ "
-				+ String.valueOf(decimal.format(total)));
+				+ String.valueOf(decimal.format(valueTotalBuy)));
 		lblValor.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblValor.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblValor.setBounds(476, 4, 174, 14);
@@ -603,8 +603,8 @@ public class VisualizarRelatorios extends JFrame
 		{
 			try 
 			{
-				CategoryDataset cds;
-				cds = createDatasetRelatorio();
+				CategoryDataset createDataSet;
+				createDataSet = createDatasetRelatorio();
 				String titulo = "Total Por Dia";
 				String eixoy = "Valores";
 				String txt_legenda = "Ledenda:";
@@ -612,7 +612,7 @@ public class VisualizarRelatorios extends JFrame
 				boolean tooltips = true;
 				boolean urls = true;
 				JFreeChart graf = ChartFactory.createBarChart(titulo,
-						txt_legenda, eixoy, cds, PlotOrientation.VERTICAL,
+						txt_legenda, eixoy, createDataSet, PlotOrientation.VERTICAL,
 						legenda, tooltips, urls);
 				ChartPanel myChartPanel = new ChartPanel(graf, true);
 				myChartPanel.setSize(painelGrafico.getWidth(),
@@ -684,7 +684,7 @@ public class VisualizarRelatorios extends JFrame
 		painelTotalPago.add(lblNewLabel);
 		
 		JLabel lblvalorTotalDoBarbeiro = new JLabel("R$ "
-				+ String.valueOf(decimal.format(total2)));
+				+ String.valueOf(decimal.format(valueTotalBuyPay)));
 		lblvalorTotalDoBarbeiro.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblvalorTotalDoBarbeiro.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblvalorTotalDoBarbeiro.setBounds(476, 4, 174, 14);

@@ -150,7 +150,7 @@ public class RegisterDoneService extends JFrame
 			public void mouseClicked(MouseEvent e)
             {
 				// Frame used to open a window to search for a done service
-				PesquisarServicoPrestado searchForDoneServiceFrame = new PesquisarServicoPrestado();
+				SearchServiceProvided searchForDoneServiceFrame = new SearchServiceProvided();
 				searchForDoneServiceFrame.setVisible(true);
 				searchForDoneServiceFrame.setLocationRelativeTo(null);
 				
