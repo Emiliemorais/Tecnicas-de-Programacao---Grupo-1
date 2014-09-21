@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 import dao.PhonebookDAO;
-import dao.ReciboDAO;
+import dao.ReceiptDAO;
 import model.Report;
 import exception.ReceiptException;
 import exception.ReportException;
@@ -43,9 +43,9 @@ public class ReceiptDAOTest
 	public void getInstanceMethodTest()
 	{
 		// Used to test the method getInstance on a 'ReceiptDAO' instance
-		ReciboDAO receipt = ReciboDAO.getInstance();
+		ReceiptDAO receipt = ReceiptDAO.getInstance();
 		
-		assertEquals(ReciboDAO.getInstance(), receipt);
+		assertEquals(ReceiptDAO.getInstance(), receipt);
 	}
 
 	@Test
@@ -58,7 +58,7 @@ public class ReceiptDAOTest
 		try
 		{
 			// Instantiated to get access to the method 'pesquisarServicosDoBarbeiro'
-			ReciboDAO receipt = ReciboDAO.getInstance();
+			ReceiptDAO receipt = ReceiptDAO.getInstance();
 			
 			// Used to receive the result from the search for barber services on DB
 			ResultSet queryForBarberServicesResult = receipt

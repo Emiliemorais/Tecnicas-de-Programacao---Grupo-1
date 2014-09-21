@@ -3,7 +3,7 @@ package control;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import dao.TipoServicoDAO;
+import dao.ServiceTypeDAO;
 import model.ServiceType;
 
 public class ServiceTypeController
@@ -22,7 +22,7 @@ public class ServiceTypeController
 		}
 		else
         {
-			TipoServicoDAO.getInstance ().incluir(serviceTypeToInclude);
+			ServiceTypeDAO.getInstance ().includeServiceType(serviceTypeToInclude);
 			return true;
 		}
 	}
@@ -44,7 +44,7 @@ public class ServiceTypeController
 			// Auxiliar variable used to change the service type
 			ServiceType changedServiceType = newServiceType;
 			
-			TipoServicoDAO.getInstance().alterar (serviceTypeToChangeName, changedServiceType,
+			ServiceTypeDAO.getInstance().editServiceType (serviceTypeToChangeName, changedServiceType,
 												  newServiceType);
 			return true;
 		}
@@ -62,7 +62,7 @@ public class ServiceTypeController
 		}
 		else
         {
-			TipoServicoDAO.getInstance().excluir(serviceTypeToDelete);
+			ServiceTypeDAO.getInstance().deleteServiceType(serviceTypeToDelete);
 			return true;
 		}
 	}
@@ -92,7 +92,7 @@ public class ServiceTypeController
 	 */
 	public ResultSet showRegistredServiceTypes (ServiceType service) throws SQLException
 	{
-		return TipoServicoDAO.getInstance().mostrarTipoServicoCadastrados(service);
+		return ServiceTypeDAO.getInstance().displayRegisteredTypesOfService(service);
 	}
 
 
@@ -101,7 +101,7 @@ public class ServiceTypeController
 	 */
 	public ResultSet searchServiceTypeByName (ServiceType serviceTypeToSearch) throws SQLException
 	{
-		return TipoServicoDAO.getInstance().pesquisarPorNome(serviceTypeToSearch);
+		return ServiceTypeDAO.getInstance().searchByName(serviceTypeToSearch);
 	}
 
 }

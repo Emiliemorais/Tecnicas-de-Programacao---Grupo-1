@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 //Importando classes da DAO
-import dao.ReciboDAO;
+import dao.ReceiptDAO;
 
 public class ReceiptController 
 {
@@ -43,7 +43,7 @@ public class ReceiptController
 	public ResultSet barberServicesSearch ( String barberName , String initialDate, String finalDate ) throws SQLException 
 	{
 		
-		return ReciboDAO.getInstance().barberServicesSearch ( barberName , initialDate, finalDate );
+		return ReceiptDAO.getInstance().barberServicesSearch ( barberName , initialDate, finalDate );
 	}
 	
 }

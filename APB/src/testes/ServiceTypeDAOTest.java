@@ -9,7 +9,7 @@ import model.ServiceType;
 
 import org.junit.Test;
 
-import dao.TipoServicoDAO;
+import dao.ServiceTypeDAO;
 
 public class ServiceTypeDAOTest 
 {
@@ -18,13 +18,13 @@ public class ServiceTypeDAOTest
 	ServiceType serviceType2 = new ServiceType();
 	
 	// Used in test to get access to 'TipoServico'DAO Methods
-	TipoServicoDAO serviceTypeDAO = TipoServicoDAO.getInstance();
+	ServiceTypeDAO serviceTypeDAO = ServiceTypeDAO.getInstance();
 	
 	// Test if a instance previous declared is the current one
 	@Test
 	public void getInstanceMethodTest() 
 	{
-		assertEquals( TipoServicoDAO.getInstance(), serviceTypeDAO );
+		assertEquals( ServiceTypeDAO.getInstance(), serviceTypeDAO );
 	}
 	
 	// Test if a inclusion of a service type was made right
@@ -33,7 +33,7 @@ public class ServiceTypeDAOTest
 	{
 		try 
 		{
-			assertTrue( serviceTypeDAO.incluir(serviceType) );
+			assertTrue( serviceTypeDAO.includeServiceType(serviceType) );
 		}
 		catch(SQLException e) 
 		{
@@ -47,7 +47,7 @@ public class ServiceTypeDAOTest
 	{
 		try 
 		{
-			assertTrue( serviceTypeDAO.excluir(serviceType) );
+			assertTrue( serviceTypeDAO.deleteServiceType(serviceType) );
 		}
 		catch(SQLException e)
 		{
@@ -61,7 +61,7 @@ public class ServiceTypeDAOTest
 	{
 		try 
 		{
-			assertTrue( serviceTypeDAO.alterar(serviceType.getServiceTypeName(),
+			assertTrue( serviceTypeDAO.editServiceType(serviceType.getServiceTypeName(),
 										   serviceType, serviceType2) );
 		}
 		catch(SQLException e) 
@@ -76,7 +76,7 @@ public class ServiceTypeDAOTest
 	{
 		try 
 		{
-			assertFalse( serviceTypeDAO.incluir(null) );
+			assertFalse( serviceTypeDAO.includeServiceType(null) );
 		}
 		catch(SQLException e) 
 		{
@@ -90,7 +90,7 @@ public class ServiceTypeDAOTest
 	{
 		try 
 		{
-			assertFalse( serviceTypeDAO.excluir(null) );
+			assertFalse( serviceTypeDAO.deleteServiceType(null) );
 		}
 		catch(SQLException e) 
 		{
@@ -104,7 +104,7 @@ public class ServiceTypeDAOTest
 	{
 		try 
 		{
-			assertFalse( serviceTypeDAO.alterar(serviceType.getServiceTypeName(),
+			assertFalse( serviceTypeDAO.editServiceType(serviceType.getServiceTypeName(),
 											serviceType, null));
 		}
 		catch(SQLException e) 
@@ -119,7 +119,7 @@ public class ServiceTypeDAOTest
 	{
 		try 
 		{
-			assertFalse( serviceTypeDAO.alterar(serviceType.getServiceTypeName(),
+			assertFalse( serviceTypeDAO.editServiceType(serviceType.getServiceTypeName(),
 											null, serviceType));
 		} 
 		catch(SQLException e) 
@@ -138,7 +138,7 @@ public class ServiceTypeDAOTest
 		try 
 		{
 			// Used to receive the result from the search for service types on DB
-			ResultSet queryForServiceTypesResult = serviceTypeDAO.mostrarTipoServicoCadastrados(serviceType);
+			ResultSet queryForServiceTypesResult = serviceTypeDAO.displayRegisteredTypesOfService(serviceType);
 			
 			while( queryForServiceTypesResult.next() ) 
 			{
@@ -164,7 +164,7 @@ public class ServiceTypeDAOTest
 		try 
 		{
 			// Used to receive the result from the search for service types on DB 
-			ResultSet queryForServiceTypesResult = serviceTypeDAO.pesquisarPorNome(serviceType);
+			ResultSet queryForServiceTypesResult = serviceTypeDAO.searchByName(serviceType);
 			
 			while ( queryForServiceTypesResult.next() ) 
 			{
