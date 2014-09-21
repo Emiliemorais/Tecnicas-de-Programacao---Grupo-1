@@ -17,7 +17,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import model.Agenda;
+import model.Phonebook;
 import control.AgendaController;
 
 @SuppressWarnings("serial")
@@ -87,7 +87,7 @@ public class RegisterPhonebook extends JFrame
 			AgendaController phonebookController = AgendaController.getInstance();
 			
 			// Used to pass as argument to the method 'showRegisteredContacts()' 
-			Agenda contact = new Agenda();
+			Phonebook contact = new Phonebook();
 			
 			// Used to receive the result from the method 'mostrarContatosCadastrados'
 			// Useless argument on this method. Check methods from AgendaController and AgendaDAO

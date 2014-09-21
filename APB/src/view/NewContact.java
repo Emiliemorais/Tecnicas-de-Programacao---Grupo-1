@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 
 import control.AgendaController;
 import exception.BarberException;
-import model.Agenda;
+import model.Phonebook;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
@@ -77,11 +77,11 @@ public class NewContact extends JFrame
 			{
 				try 
 				{
-					Agenda phonebookData = new Agenda ();
+					Phonebook phonebookData = new Phonebook ();
 					// phonebookData - Gets the name, phone and description
-					phonebookData.setNome ( nameTextField.getText () );
-					phonebookData.setTelefone ( phoneTextField.getText () );
-					phonebookData.setDescricao ( descriptionTextField.getText () );
+					phonebookData.setPhonebookName ( nameTextField.getText () );
+					phonebookData.setPhonebook ( phoneTextField.getText () );
+					phonebookData.setPhonebookDs ( descriptionTextField.getText () );
 
 					AgendaController phonebookController = AgendaController.getInstance ();
 					// phonebookController - Instance of "PhonebookController" class

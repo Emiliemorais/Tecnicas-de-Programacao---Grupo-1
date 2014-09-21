@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import dao.PhonebookDAO;
-import model.Agenda;
+import model.Phonebook;
 
 
 public class AgendaController 
@@ -18,7 +18,7 @@ public class AgendaController
 	}
 	
     // Método que recebe como parâmetro o objeto agenda e inclui no banco de dados
-	public boolean incluir (Agenda agenda) throws SQLException 
+	public boolean incluir (Phonebook agenda) throws SQLException 
 	{
 		if(agenda == null)
 		{
@@ -33,7 +33,7 @@ public class AgendaController
 	}
 	
     // Método que recebe como parâmetro o nome do contato a ser altera e o objeto agenda e altera no banco de dados
-	public boolean alterar (String nome, Agenda agenda) throws SQLException 
+	public boolean alterar (String nome, Phonebook agenda) throws SQLException 
 	{
 		if(agenda == null)
 		{
@@ -42,14 +42,14 @@ public class AgendaController
 		
 		// Se o objeto agenda não for nulo o método altera no banco de dados
 		else{
-			Agenda agenda_alterado = agenda;
+			Phonebook agenda_alterado = agenda;
 			PhonebookDAO.getInstance().editPhonebookData(nome, agenda_alterado, agenda);
 			return true;		
 		}
 	}
         
         // Método que recebe como parâmetro o objeto agenda e exclui do banco de dados
-	public  boolean excluir (Agenda contato) throws SQLException 
+	public  boolean excluir (Phonebook contato) throws SQLException 
 	{
 		if(contato == null)
 		{
@@ -81,19 +81,19 @@ public class AgendaController
 	}
 	
         // Interface que provê acesso aos contatos cadastrados e mostra todos os contatos
-	public ResultSet mostrarContatosCadastrados(Agenda contato) throws SQLException 
+	public ResultSet mostrarContatosCadastrados(Phonebook contato) throws SQLException 
 	{
 		return PhonebookDAO.getInstance().showRegisteredContacts(contato);
 	}
 	
         // Interface que provê acesso aos contatos cadastrados e permite que sejam pesquisados pelo nome
-	public ResultSet pesquisarPorNome(Agenda contato) throws SQLException 
+	public ResultSet pesquisarPorNome(Phonebook contato) throws SQLException 
 	{
 		return PhonebookDAO.getInstance().searchByName(contato);
 	}
 	
         // Interface que provê acesso aos contatos cadastrados e permite que sejam pesquisados pelo telefone
-	public ResultSet pesquisarPorTelefone(Agenda contato) throws SQLException 
+	public ResultSet pesquisarPorTelefone(Phonebook contato) throws SQLException 
 	{
 		return PhonebookDAO.getInstance().searchByPhone(contato);
 	}

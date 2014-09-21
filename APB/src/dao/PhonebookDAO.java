@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import model.Agenda;
+import model.Phonebook;
 import dao.FactoryConnection;
 
 public class PhonebookDAO 
@@ -40,7 +40,7 @@ public class PhonebookDAO
 	 *  Method used to include data in the phonebook
 	 *  @param phonebook - Is going to receive the data
 	 */
-	public boolean includeDataToPhonebook ( Agenda phonebook ) throws SQLException 
+	public boolean includeDataToPhonebook ( Phonebook phonebook ) throws SQLException 
 	{
 		if ( phonebook == null )
 		{
@@ -54,8 +54,8 @@ public class PhonebookDAO
 		
 		this.updateQuery("INSERT INTO "
 				+ "agenda (nome, telefone, descricao) VALUES (" + "\""
-				+ phonebook.getNome() + "\", " + "\"" + phonebook.getTelefone()
-				+ "\", " + "\"" + phonebook.getDescricao() + "\"); ");
+				+ phonebook.getPhonebookName() + "\", " + "\"" + phonebook.getPhonebook()
+				+ "\", " + "\"" + phonebook.getPhonebookDs() + "\"); ");
 		
 		return true;
 	}
@@ -66,7 +66,7 @@ public class PhonebookDAO
 	 *  @param phonebookEdited - Receives the editions
 	 *  @param phonebook - Contains the phonebook data
 	 */
-	public boolean editPhonebookData ( String name, Agenda phonebookEdited, Agenda phonebook) throws SQLException 
+	public boolean editPhonebookData ( String name, Phonebook phonebookEdited, Phonebook phonebook) throws SQLException 
 	{	
 		if ( phonebook == null || phonebookEdited == null )
 		{
@@ -79,9 +79,9 @@ public class PhonebookDAO
 		}
 		
 		this.updateQuery("UPDATE agenda SET " +
-				"nome = \"" + phonebookEdited.getNome() + "\", " +
-				"telefone = \"" + phonebookEdited.getTelefone() + "\", "+
-				"descricao = \"" + phonebookEdited.getDescricao() + "\""+
+				"nome = \"" + phonebookEdited.getPhonebookName() + "\", " +
+				"telefone = \"" + phonebookEdited.getPhonebook() + "\", "+
+				"descricao = \"" + phonebookEdited.getPhonebookDs() + "\""+
 				" WHERE " +
 				" agenda.nome = \"" + name + "\";");
 			
@@ -92,7 +92,7 @@ public class PhonebookDAO
 	 *  Method used to delete data from the phonebook
 	 *  @param contact - Receives the contact for delete
 	 */
-	public boolean deletePhonebookData ( Agenda contact ) throws SQLException 
+	public boolean deletePhonebookData ( Phonebook contact ) throws SQLException 
 	{
 		if ( contact ==  null )
 		{
@@ -105,7 +105,7 @@ public class PhonebookDAO
 		}
 		
 		this.updateQuery ( "DELETE FROM agenda WHERE " + "agenda.telefone = \""
-				+ contact.getTelefone () + "\";");
+				+ contact.getPhonebook () + "\";");
 		
 		return true;
 	}
@@ -129,7 +129,7 @@ public class PhonebookDAO
 	 *  Method that gives access to the registered contacts
 	 *  @param contact - Contains the contact to be displayed
 	 */
-	public ResultSet showRegisteredContacts ( Agenda contact ) throws SQLException 
+	public ResultSet showRegisteredContacts ( Phonebook contact ) throws SQLException 
 	{
 		Connection connection = FactoryConnection.getInstance ().getConnection ();
 		// connection - Receives values accordingly to the database
@@ -143,12 +143,12 @@ public class PhonebookDAO
 	 *  Method that gives access to the search by name
 	 *  @param contact - Contains the contact to be displayed
 	 */
-	public ResultSet searchByName ( Agenda contact ) throws SQLException 
+	public ResultSet searchByName ( Phonebook contact ) throws SQLException 
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		// connection - Receives values accordingly to the database
 		java.sql.PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM agenda WHERE "
-				+ "nome = '" + contact.getNome()+ "';");
+				+ "nome = '" + contact.getPhonebookName()+ "';");
 		// preparedStatement - Instance of java.sql
 		ResultSet resultInstance = preparedStatement.executeQuery();
 		// resultInstance - ResultSetInstance
@@ -160,12 +160,12 @@ public class PhonebookDAO
 	 *  Method that gives access to the search by phone number
 	 *  @param contact - Contains the contact to be displayed
 	 */
-	public ResultSet searchByPhone ( Agenda contact ) throws SQLException 
+	public ResultSet searchByPhone ( Phonebook contact ) throws SQLException 
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		// connection - Receives values accordingly to the database
 		java.sql.PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM agenda WHERE "
-				+ "telefone = '" + contact.getTelefone()+ "';");
+				+ "telefone = '" + contact.getPhonebook()+ "';");
 		// preparedStatement - Instance of java.sql
 		ResultSet resultInstance = preparedStatement.executeQuery();
 		// resultInstance - ResultSetInstance

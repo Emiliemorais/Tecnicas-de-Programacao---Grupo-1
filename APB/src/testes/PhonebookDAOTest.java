@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import model.Agenda;
+import model.Phonebook;
 
 import org.junit.Test;
 
@@ -14,8 +14,8 @@ import dao.PhonebookDAO;
 public class PhonebookDAOTest 
 {
 
-	Agenda contact1 = new Agenda (); // contact1 - Instance for a contact from "Phonebook" class
-	Agenda contact2 = new Agenda (); // contact2 - Second instance, for another contact from "Phonebook" class
+	Phonebook contact1 = new Phonebook (); // contact1 - Instance for a contact from "Phonebook" class
+	Phonebook contact2 = new Phonebook (); // contact2 - Second instance, for another contact from "Phonebook" class
 	PhonebookDAO phonebookDAO = PhonebookDAO.getInstance (); // phonebookDAO - Gets the instance from "PhonebookDAO" class
 
 	@Test
@@ -59,7 +59,7 @@ public class PhonebookDAOTest
 	{
 		try 
 		{
-			assertTrue ( phonebookDAO.editPhonebookData ( contact1.getNome(), contact1, contact2) );
+			assertTrue ( phonebookDAO.editPhonebookData ( contact1.getPhonebookName(), contact1, contact2) );
 		} 
 		catch ( SQLException e )
 		{
@@ -101,7 +101,7 @@ public class PhonebookDAOTest
 	{
 		try 
 		{
-			assertFalse( phonebookDAO.editPhonebookData ( contact1.getNome (), contact1, null ) );
+			assertFalse( phonebookDAO.editPhonebookData ( contact1.getPhonebookName (), contact1, null ) );
 		} 
 		catch ( SQLException e ) 
 		{
@@ -115,7 +115,7 @@ public class PhonebookDAOTest
 	{
 		try 
 		{
-			assertFalse ( phonebookDAO.editPhonebookData ( contact1.getNome (), null, contact1 ) );
+			assertFalse ( phonebookDAO.editPhonebookData ( contact1.getPhonebookName (), null, contact1 ) );
 		} 
 		catch ( SQLException e ) 
 		{

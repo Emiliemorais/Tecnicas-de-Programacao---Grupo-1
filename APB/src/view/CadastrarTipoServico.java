@@ -34,7 +34,7 @@ public class CadastrarTipoServico extends JFrame
 		EventQueue.invokeLater(new Runnable() 
 		{
 			
-			// Método que inicializa a janela de cadastro de tipo de serviço
+			// Method that initializes the window registration service type
 			public void run ()
 			{
 				try
@@ -76,13 +76,13 @@ public class CadastrarTipoServico extends JFrame
 		{
 			ServiceTypeController servicoController = ServiceTypeController.getInstance();
 			ServiceType servico= new ServiceType();
-			ResultSet rs = servicoController.showRegistredServiceTypes(servico);
-			while (rs.next())
+			ResultSet instanceStatement = servicoController.showRegistredServiceTypes(servico);
+			while (instanceStatement.next())
 			{
-				String[] dados = new String[5];
-				dados[0] = rs.getString("nome");
-				dados[1] = rs.getString("preco");
-				modelo.addRow(dados);
+				String[] data = new String[5];
+				data[0] = instanceStatement.getString("nome");
+				data[1] = instanceStatement.getString("preco");
+				modelo.addRow(data);
 			}
 		}
 		catch (SQLException e)
@@ -96,7 +96,7 @@ public class CadastrarTipoServico extends JFrame
 		btnNovo.addMouseListener(new MouseAdapter() 
 		{
 			
-			// Método da VIEW que chama a janela de NovoTipoServico para realizar um cadastro
+			// VIEW method that calls the window NovoTipoServico to perform a registry
 			@Override
 			public void mouseClicked (MouseEvent arg0)
 			{
@@ -115,7 +115,7 @@ public class CadastrarTipoServico extends JFrame
 		btnAlterar.addMouseListener(new MouseAdapter() 
 		{
 			
-			// Método da VIEW que chama a janela de AlterarTipoServico para realizar uma alteração
+			// Método da VIEW que chama a janela de changeTypeService para realizar uma alteração
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
@@ -144,26 +144,26 @@ public class CadastrarTipoServico extends JFrame
 		btnRemover.addMouseListener(new MouseAdapter() 
 		{
 			
-			// Método da VIEW que realiza uma exclusão de um Tipo de Serviço
+			// VIEW method that performs a delete of a Type of Service
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				String nome = (String) table.getValueAt(table.getSelectedRow(),	0);
+				String nameTypeService = (String) table.getValueAt(table.getSelectedRow(),	0);
 				ServiceType tipoServico = new ServiceType();
 				
 				try 
 				{	
-					tipoServico.setServiceTypeName(nome);
+					tipoServico.setServiceTypeName(nameTypeService);
 				} 
 				catch (ServiceException e1) 
 				{
 					e1.printStackTrace();
 				}
 
-				int confirmacao = JOptionPane.showConfirmDialog(null,
-																"Remover " + nome + " da lista?");
+				int confirmation = JOptionPane.showConfirmDialog(null,
+																"Remover " + nameTypeService + " da lista?");
 
-				if(confirmacao == JOptionPane.YES_OPTION) 
+				if(confirmation == JOptionPane.YES_OPTION) 
 				{
 					ServiceTypeController tipoServicoController = ServiceTypeController.getInstance();
 					try 
@@ -193,7 +193,7 @@ public class CadastrarTipoServico extends JFrame
 		btnVoltar.setBounds(380, 228, 94, 23);
 		btnVoltar.addActionListener(new ActionListener() 
 		{
-			// Método da VIEW que volta para a janela administrativa
+			// VIEW method of returning to the administrative window
 			public void actionPerformed (ActionEvent arg0)
 			{
 				dispose();
@@ -205,13 +205,13 @@ public class CadastrarTipoServico extends JFrame
 		contentPane.add(btnVoltar);
 	}
 	
-	// Método de acesso para recebimento de um nome temporario
+	// Access method for receiving a temporary name
 	public static String getNomeTemp() 
 	{
 		return nomeTemp;
 	}
 	
-	// Método que mostra uma mensagem de erro, utilizado no tratamento das exceções da classe
+	// Method that shows an error message, used in the treatment of exceptions class
 	private void mostrarMensagemDeErro(String informacao) 
 	{
 		JOptionPane.showMessageDialog(null, informacao, "AtenÃ§Ã£o",

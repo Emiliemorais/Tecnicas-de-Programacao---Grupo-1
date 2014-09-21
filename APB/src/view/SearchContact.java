@@ -15,7 +15,7 @@ import javax.swing.JButton;
 
 import control.AgendaController;
 import exception.BarberException;
-import model.Agenda;
+import model.Phonebook;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -107,10 +107,10 @@ public class SearchContact extends JFrame
 						defaultTableModel.removeRow ( i );
 					}
 
-					Agenda contact = new Agenda (); // contact - // Instance of "Agenda"
+					Phonebook contact = new Phonebook (); // contact - // Instance of "Agenda"
 					AgendaController agendaController = AgendaController
 							.getInstance();
-					contact.setNome ( textField.getText () );
+					contact.setPhonebookName ( textField.getText () );
 					ResultSet resultInstance = agendaController.pesquisarPorNome ( contact );
 					// resultInstance - ResultSetInstance
 
@@ -154,10 +154,10 @@ public class SearchContact extends JFrame
 						defaultTableModel.removeRow ( i );
 					}
 
-					Agenda contact = new Agenda (); // contact - Instance of "AgendaController"
+					Phonebook contact = new Phonebook (); // contact - Instance of "AgendaController"
 					AgendaController agendaController = AgendaController
 							.getInstance();
-					contact.setTelefone ( textField.getText () );
+					contact.setPhonebook ( textField.getText () );
 					ResultSet resultInstance = agendaController
 							.pesquisarPorTelefone ( contact );
 					// resultInstance - ResultSetInstance
@@ -199,7 +199,7 @@ public class SearchContact extends JFrame
 				try 
 				{
 					
-					Agenda.setTempNome ( defaultTableModel.getValueAt (
+					Phonebook.setTempNome ( defaultTableModel.getValueAt (
 							table.getSelectedRow (), 0).toString () );
 					dispose ();
 					ModifyContact frame = new ModifyContact();
@@ -235,11 +235,11 @@ public class SearchContact extends JFrame
 							table.getSelectedRow( ), 1);
 					// contactPhone - Variable that receives the phone
 					
-					Agenda phonebook = new Agenda ();
+					Phonebook phonebook = new Phonebook ();
 					// phonebook - Instance of Agenda class
 					
-					phonebook.setNome ( contactName );
-					phonebook.setTelefone ( contactPhone );
+					phonebook.setPhonebookName ( contactName );
+					phonebook.setPhonebook ( contactPhone );
 
 					int confirmation = JOptionPane.showConfirmDialog (null,
 							"Remover " + contactName + " da lista?");

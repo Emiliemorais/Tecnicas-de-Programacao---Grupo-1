@@ -18,7 +18,7 @@ import javax.swing.JLabel;
 
 import control.AgendaController;
 import exception.BarberException;
-import model.Agenda;
+import model.Phonebook;
 
 @SuppressWarnings("serial")
 
@@ -104,12 +104,12 @@ public class ModifyContact extends JFrame
 		try
 		{
 			// Used to receive the contact name that will be modified, and then search on DB for it
-			Agenda contactToBeChanged = new Agenda();
+			Phonebook contactToBeChanged = new Phonebook();
 			
 			// Instantiated to get access to the method 'searchByName()'
 			AgendaController phonebookController = AgendaController.getInstance();
 			
-			contactToBeChanged.setNome(Agenda.getTempNome() );
+			contactToBeChanged.setPhonebookName(Phonebook.getTempNome() );
 			
 			// Used to receive the result from a search by 'contactToBeChanged.name' on DB
 			ResultSet queryForNameResult = phonebookController.pesquisarPorNome(contactToBeChanged);
@@ -141,11 +141,11 @@ public class ModifyContact extends JFrame
 				try
 				{
 					// Used to store data from the modified contact (new contact)
-					Agenda modifiedContact = new Agenda();
+					Phonebook modifiedContact = new Phonebook();
 					
-					modifiedContact.setNome(newContactNameTextField.getText() );
-					modifiedContact.setTelefone(newContactPhoneTextField.getText() );
-					modifiedContact.setDescricao(newContactDescriptionTextField.getText() );
+					modifiedContact.setPhonebookName(newContactNameTextField.getText() );
+					modifiedContact.setPhonebook(newContactPhoneTextField.getText() );
+					modifiedContact.setPhonebookDs(newContactDescriptionTextField.getText() );
 
 					// Instantiated to get access to the method 'alterar' 
 					AgendaController phonebookController = control.AgendaController.getInstance();

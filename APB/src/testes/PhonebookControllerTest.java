@@ -9,13 +9,13 @@ import org.junit.Test;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import model.Agenda;
+import model.Phonebook;
 import control.AgendaController;
 import exception.BarberException;
 
 public class PhonebookControllerTest
 {
-	Agenda contact = new Agenda();
+	Phonebook contact = new Phonebook();
 
 	@Before
 	// Initialize the attributes of 'contact'
@@ -23,9 +23,9 @@ public class PhonebookControllerTest
 	{
 		try
 		{
-			contact.setNome("Corte");
-			contact.setTelefone("3895-5698");
-			contact.setDescricao("AAA");
+			contact.setPhonebookName("Corte");
+			contact.setPhonebook("3895-5698");
+			contact.setPhonebookDs("AAA");
 		}
 		catch (BarberException e)
 		{
@@ -86,7 +86,7 @@ public class PhonebookControllerTest
 	{
 		try
 		{
-			assertTrue(contactController.alterar(contact.getNome(),contact));
+			assertTrue(contactController.alterar(contact.getPhonebookName(),contact));
 		}
 		catch (SQLException e)
 		{

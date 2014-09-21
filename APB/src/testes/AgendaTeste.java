@@ -9,12 +9,12 @@ import org.junit.Test;
 
 import exception.BarberException;
 import exception.ServiceException;
-import model.Agenda;
+import model.Phonebook;
 
 public class AgendaTeste 
 {
 	
-	Agenda contato = new Agenda();
+	Phonebook contato = new Phonebook();
 	
 	/* 
 	 * M�todo utilizado para receber os atributos de forma correta,
@@ -25,14 +25,14 @@ public class AgendaTeste
 	{
 		try 
 		{
-			contato.setNome("Alessandro");
-			contato.setTelefone("4568-9856");
+			contato.setPhonebookName("Alessandro");
+			contato.setPhonebook("4568-9856");
 		} 
 		catch (BarberException e1) 
 		{
 			e1.printStackTrace();
 		}
-		contato.setDescricao("ASDAS");
+		contato.setPhonebookDs("ASDAS");
 	}
 	
 	 
@@ -40,31 +40,31 @@ public class AgendaTeste
 	@Test
 	public void contrutorDeAgendaDeveFuncionar() 
 	{
-		Agenda contato = new Agenda("Alessandro", "6589-5689", "aaaa");
-		assertEquals("Alessandro", contato.getNome());
-		assertEquals("6589-5689", contato.getTelefone());
-		assertEquals("aaaa", contato.getDescricao());
+		Phonebook contato = new Phonebook("Alessandro", "6589-5689", "aaaa");
+		assertEquals("Alessandro", contato.getPhonebookName());
+		assertEquals("6589-5689", contato.getPhonebook());
+		assertEquals("aaaa", contato.getPhonebookDs());
 	}
 	
 	// M�todo que testa o recebimento de um nome de um contato pelo m�todo de acesso get 
 	@Test
 	public void getterDeNomeDeveFuncionar ()
 	{
-		assertEquals("Alessandro", contato.getNome());
+		assertEquals("Alessandro", contato.getPhonebookName());
 	}
 	
 	// M�todo que testa o recebimento de um telefone de um contato pelo m�todo de acesso get 
 	@Test
 	public void getterDeTelefoneDeveFuncionar ()
 	{
-		assertEquals("4568-9856", contato.getTelefone());
+		assertEquals("4568-9856", contato.getPhonebook());
 	}
 	
 	// M�todo que testa o recebimento de uma descri��o de um contato pelo m�todo de acesso get 
 	@Test
 	public void getterDeDescricaoDeveFuncionar ()
 	{
-		assertEquals("ASDAS", contato.getDescricao());
+		assertEquals("ASDAS", contato.getPhonebookDs());
 	}
 	
 	/* 
@@ -74,7 +74,7 @@ public class AgendaTeste
 	@Test(expected = BarberException.class)
 	public void nomeDoBarbeiroNaoPodePassarQuandoEmBranco () throws BarberException
 	{
-		contato.setNome("");
+		contato.setPhonebookName("");
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
@@ -85,7 +85,7 @@ public class AgendaTeste
 	@Test(expected = BarberException.class)
 	public void telefoneDoBarbeiroNaoPodePassarQuandoEmBranco () throws BarberException
 	{
-		contato.setTelefone("");
+		contato.setPhonebook("");
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
@@ -96,7 +96,7 @@ public class AgendaTeste
 	@Test(expected = BarberException.class)
 	public void nomeDoBarbeiroNaoPodePassarQuandoForaDeFormato () throws BarberException
 	{
-		contato.setNome("ASDAS!!");
+		contato.setPhonebookName("ASDAS!!");
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
@@ -107,7 +107,7 @@ public class AgendaTeste
 	@Test(expected = BarberException.class)
 	public void telefoneDoBarbeiroNaoPodePassarQuandoForaDeFormato () throws BarberException
 	{
-		contato.setTelefone("45645aa-a54654");
+		contato.setPhonebook("45645aa-a54654");
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
@@ -115,7 +115,7 @@ public class AgendaTeste
 	@Test (expected = AssertionError.class)
 	public void getterDeTempNomeDeveRetornarValorPassado () throws ServiceException 
 	{
-		assertEquals("Barba", Agenda.getTempNome());
+		assertEquals("Barba", Phonebook.getTempNome());
 	}
 	
 	
@@ -123,7 +123,7 @@ public class AgendaTeste
 	@Test (expected = AssertionFailedError.class)
 	public void setterDeTempNomeNaoPodeSerNulo () throws ServiceException 
 	{
-		Agenda.setTempNome(null);
+		Phonebook.setTempNome(null);
 		Assert.fail("Deve lançar exceção");
 	}
 	
@@ -131,7 +131,7 @@ public class AgendaTeste
 	@Test (expected = AssertionFailedError.class)
 	public void setterDeTempNomeNaoPodeSerEmBranco () 
 	{
-		Agenda.setTempNome("");
+		Phonebook.setTempNome("");
 		Assert.fail("Deve lançar exceção");
 	}
 	
@@ -139,8 +139,8 @@ public class AgendaTeste
 	@Test
 	public void tempNomeValido () throws BarberException 
 	{
-		Agenda.setTempNome("Paulo");
-		assertEquals("Paulo", Agenda.getTempNome());
+		Phonebook.setTempNome("Paulo");
+		assertEquals("Paulo", Phonebook.getTempNome());
 	}
 
 }
