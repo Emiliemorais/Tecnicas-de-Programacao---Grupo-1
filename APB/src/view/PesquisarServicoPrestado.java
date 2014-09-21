@@ -25,7 +25,7 @@ import control.ProvidedServiceController;
 import dao.FactoryConnection;
 import exception.ServiceException;
 
-import model.ServicoPrestado;
+import model.GivenService;
 
 @SuppressWarnings("serial")
 public class PesquisarServicoPrestado extends JFrame
@@ -100,14 +100,14 @@ public class PesquisarServicoPrestado extends JFrame
 			{
 				try 
 				{
-					ServicoPrestado servico = new ServicoPrestado();
-					servico.setNomeServico(textField.getText());
+					GivenService servico = new GivenService();
+					servico.setServiceName(textField.getText());
 
 					connection = FactoryConnection.getInstance().getConnection();
 					ResultSet rs = connection.createStatement().executeQuery(
 																			"SELECT nome, preco, barbeiro,"
 																			+ " data FROM servicoprestado WHERE nome = '"
-																			+ servico.getNomeServico() + "' ORDER BY data;");
+																			+ servico.getServiceName() + "' ORDER BY data;");
 
 					while(rs.next()) 
 					{
@@ -115,7 +115,7 @@ public class PesquisarServicoPrestado extends JFrame
 						dados[0] = rs.getString("nome");
 						dados[1] = rs.getString("barbeiro");
 						dados[2] = rs.getString("preco");
-						dados[3] = servico.ConverterDataParaABNT(rs.getString("data"));
+						dados[3] = servico.convertServiceDateToABNT(rs.getString("data"));
 						modelo.addRow(dados);
 					}
 				} 
@@ -146,14 +146,14 @@ public class PesquisarServicoPrestado extends JFrame
 			{
 				try
 				{
-					ServicoPrestado servico = new ServicoPrestado();
-					servico.setNomeBarbeiro(textField.getText());
+					GivenService servico = new GivenService();
+					servico.setBarberName(textField.getText());
 
 					connection = FactoryConnection.getInstance().getConnection();
 					ResultSet rs = connection.createStatement().executeQuery(
 																			"SELECT nome, preco, barbeiro,"
 																			+ " data FROM servicoprestado WHERE barbeiro = '"
-																			+ servico.getNomeBarbeiro() + "' ORDER BY data;");
+																			+ servico.getBarberName() + "' ORDER BY data;");
 
 					while (rs.next())
 					{
@@ -161,7 +161,7 @@ public class PesquisarServicoPrestado extends JFrame
 						dados[0] = rs.getString("nome");
 						dados[1] = rs.getString("barbeiro");
 						dados[2] = rs.getString("preco");
-						dados[3] = servico.ConverterDataParaABNT(rs.getString("data"));
+						dados[3] = servico.convertServiceDateToABNT(rs.getString("data"));
 						modelo.addRow(dados);
 					}
 				}
@@ -197,11 +197,11 @@ public class PesquisarServicoPrestado extends JFrame
 					String barbeiro = (String) table.getValueAt(table.getSelectedRow(), 1);
 					String valor = (String) table.getValueAt(table.getSelectedRow(), 2);
 					String data = (String) table.getValueAt(table.getSelectedRow(), 3);
-					ServicoPrestado servico = new ServicoPrestado();
-					servico.setNomeServico(nome);
-					servico.setNomeBarbeiro(barbeiro);
-					servico.setPreco(valor);
-					servico.setData(data);
+					GivenService servico = new GivenService();
+					servico.setServiceName(nome);
+					servico.setBarberName(barbeiro);
+					servico.setPrice(valor);
+					servico.setDate(data);
 
 					int confirmacao = JOptionPane.showConfirmDialog(null,
 							"Remover " + nome + " da lista?");
@@ -269,14 +269,14 @@ public class PesquisarServicoPrestado extends JFrame
 			{
 				try
 				{
-					ServicoPrestado servico = new ServicoPrestado();
-					servico.setData(textField.getText());
+					GivenService servico = new GivenService();
+					servico.setDate(textField.getText());
 
 					connection = FactoryConnection.getInstance().getConnection();
 					ResultSet rs = connection.createStatement().executeQuery(
 																			"Select nome, preco, barbeiro,"
 																			+ " data from servicoprestado where data = '"
-																			+ servico.getData() + "' order by data;");
+																			+ servico.getDate() + "' order by data;");
 
 					while (rs.next()) 
 					{
@@ -284,7 +284,7 @@ public class PesquisarServicoPrestado extends JFrame
 						dados[0] = rs.getString("nome");
 						dados[1] = rs.getString("barbeiro");
 						dados[2] = rs.getString("preco");
-						dados[3] = servico.ConverterDataParaABNT(rs.getString("data"));
+						dados[3] = servico.convertServiceDateToABNT(rs.getString("data"));
 						modelo.addRow(dados);
 					}
 				}

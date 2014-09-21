@@ -78,7 +78,7 @@ public class Administrative extends JFrame
 				dispose();
 				
 				// Frame used to register a barber
-				CadastrarBarbeiro registerBarberFrame = new CadastrarBarbeiro();
+				RegisterBarber registerBarberFrame = new RegisterBarber();
 				registerBarberFrame.setVisible(true);
 				registerBarberFrame.setLocationRelativeTo(null);
 			}

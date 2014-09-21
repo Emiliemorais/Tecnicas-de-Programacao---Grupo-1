@@ -22,7 +22,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import control.ProvidedServiceController;
-import model.ServicoPrestado;
+import model.GivenService;
 import exception.ServiceException;
 
 @SuppressWarnings("serial")
@@ -91,7 +91,7 @@ public class RegisterDoneService extends JFrame
 			 * Useless argument on this method.
 			 * Check methods from ServicoPrestadoController and ServicoPrestadoDAO.
 			 */
-			ServicoPrestado service = new ServicoPrestado();
+			GivenService service = new GivenService();
 			
 			// Used to receive the result from the method 'mostrarServicosPrestadosCadastrados'
 			ResultSet queryForDoneServicesResult = serviceController
@@ -108,7 +108,7 @@ public class RegisterDoneService extends JFrame
 				dataFromQuery[0] = queryForDoneServicesResult.getString("nome");
 				dataFromQuery[1] = queryForDoneServicesResult.getString("barbeiro");
 				dataFromQuery[2] = queryForDoneServicesResult.getString("preco");
-				dataFromQuery[3] = service.ConverterDataParaABNT(queryForDoneServicesResult.getString("data") );
+				dataFromQuery[3] = service.convertServiceDateToABNT(queryForDoneServicesResult.getString("data") );
 				tableModel.addRow(dataFromQuery);
 			}
 		}
@@ -205,13 +205,13 @@ public class RegisterDoneService extends JFrame
 											  .getValueAt(table.getSelectedRow(), 3);
 					
 					//  Receives the data that will be deleted from DB
-					ServicoPrestado serviceToBeDeleted = new ServicoPrestado();
+					GivenService serviceToBeDeleted = new GivenService();
 					
 					// Passing the data to be deleted
-					serviceToBeDeleted.setNomeServico(doneServiceToRemove);
-					serviceToBeDeleted.setNomeBarbeiro(barberNameToRemove);
-					serviceToBeDeleted.setPreco(doneServiceValueToRemove);
-					serviceToBeDeleted.setData(doneServiceDateToRemove);
+					serviceToBeDeleted.setServiceName(doneServiceToRemove);
+					serviceToBeDeleted.setBarberName(barberNameToRemove);
+					serviceToBeDeleted.setPrice(doneServiceValueToRemove);
+					serviceToBeDeleted.setDate(doneServiceDateToRemove);
 					
 					// Receive the confirmation from user to delete the selected row
 					int deleteConfirmation = JOptionPane

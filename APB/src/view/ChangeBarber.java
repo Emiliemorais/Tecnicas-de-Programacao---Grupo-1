@@ -190,7 +190,7 @@ public class ChangeBarber extends JFrame
 					dispose();
 					
 					// Used to show the frame of a register barber
-					CadastrarBarbeiro registerBarberframe = new CadastrarBarbeiro();
+					RegisterBarber registerBarberframe = new RegisterBarber();
 					
 					registerBarberframe.setVisible(true);
 					registerBarberframe.setLocationRelativeTo(null);
@@ -233,7 +233,7 @@ public class ChangeBarber extends JFrame
 			public void actionPerformed(ActionEvent e)
 			{
 				dispose();
-				CadastrarBarbeiro registerBarberFrame = new CadastrarBarbeiro();
+				RegisterBarber registerBarberFrame = new RegisterBarber();
 				registerBarberFrame.setVisible(true);
 				registerBarberFrame.setLocationRelativeTo(null);
 			}

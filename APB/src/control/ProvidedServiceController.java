@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import dao.DoneServiceDAO;
-import model.ServicoPrestado;
+import model.GivenService;
 
 public class ProvidedServiceController
 {
@@ -38,7 +38,7 @@ public class ProvidedServiceController
      *  Method used to insert a service
      *  @param providedService - Contains the provided service
      */
-	public boolean insertProvidedService(ServicoPrestado providedService) throws SQLException
+	public boolean insertProvidedService(GivenService providedService) throws SQLException
 	{
 		if (providedService != null)
         {
@@ -57,7 +57,7 @@ public class ProvidedServiceController
      *  Method used to delete a service
      *  @param providedService - Contains the provided service
      */
-	public boolean deleteProvidedService(ServicoPrestado providedService) throws SQLException
+	public boolean deleteProvidedService(GivenService providedService) throws SQLException
 	{
 		if (providedService !=  null)
         {
@@ -76,7 +76,7 @@ public class ProvidedServiceController
      *  Method that gives access to the registered services
      *  @param providedService - Contains the provided service
      */
-	public ResultSet displayRegisteredProvidedServices(ServicoPrestado providedService) throws SQLException
+	public ResultSet displayRegisteredProvidedServices(GivenService providedService) throws SQLException
 	{
 		
 		return DoneServiceDAO.getInstance().showRegistredDoneServices(providedService);

@@ -10,14 +10,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-import model.ServicoPrestado;
+import model.GivenService;
 import control.ProvidedServiceController;
 import exception.ServiceException;
 
 public class DoneServiceControllerTest
 {
 	
-	ServicoPrestado doneService = new ServicoPrestado();
+	GivenService doneService = new GivenService();
 	
 	// Used in the test to get access to the methods of class 'ServicoPrestadoController.java'
 	ProvidedServiceController doneServiceController = ProvidedServiceController.getInstance();
@@ -27,10 +27,10 @@ public class DoneServiceControllerTest
 	// Initialize the attributes of 'doneService'
 	public void setUp() throws ServiceException, ParseException
 	{
-		doneService.setNomeServico("Corte");
-		doneService.setNomeBarbeiro("Joao");
-		doneService.setPreco("125,23");
-		doneService.setData("20/12/2013");
+		doneService.setServiceName("Corte");
+		doneService.setBarberName("Joao");
+		doneService.setPrice("125,23");
+		doneService.setDate("20/12/2013");
 	}
 
 

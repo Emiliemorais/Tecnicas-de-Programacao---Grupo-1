@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import model.ServicoPrestado;
+import model.GivenService;
 
 
 public class DoneServiceDAO
@@ -37,16 +37,16 @@ public class DoneServiceDAO
 	 * Include a new service type to DB
 	 * Parameter: serviceToInclude - Service type that will be included on DB
 	 */
-	public boolean includeServiceType(ServicoPrestado serviceToInclude) throws SQLException
+	public boolean includeServiceType(GivenService serviceToInclude) throws SQLException
 	{
 		if( serviceToInclude != null )
         {
 			this.updateQuery("INSERT INTO "
 							 + "servicoprestado (nome, preco, barbeiro, data) VALUES ("
-							 + "\"" + serviceToInclude.getNomeServico() + "\", " + "\""
-							 + serviceToInclude.getPreco() + "\", " + "\""
-							 + serviceToInclude.getNomeBarbeiro() + "\", " + "\""
-							 + serviceToInclude.getData() + "\"); ");
+							 + "\"" + serviceToInclude.getServiceName() + "\", " + "\""
+							 + serviceToInclude.getPrice() + "\", " + "\""
+							 + serviceToInclude.getBarberName() + "\", " + "\""
+							 + serviceToInclude.getDate() + "\"); ");
 			return true;
         }
         else
@@ -62,7 +62,7 @@ public class DoneServiceDAO
 	 * Delete a service type on DB
 	 * Parameter: serviceToDelete - Service type that will be deleted from DB
 	 */
-	public boolean deleteServiceType(ServicoPrestado serviceToDelete) throws SQLException
+	public boolean deleteServiceType(GivenService serviceToDelete) throws SQLException
 	{
 		if( serviceToDelete != null )
         {
@@ -83,7 +83,7 @@ public class DoneServiceDAO
 	 * Search a service type in DB
 	 * Parameter: serviceToSearchFor - Service type that will be searched in DB
 	 */
-	private String searchServiceType(ServicoPrestado serviceToSearchFor) throws SQLException
+	private String searchServiceType(GivenService serviceToSearchFor) throws SQLException
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		
@@ -91,13 +91,13 @@ public class DoneServiceDAO
 		
 		preparedStatement = connection.prepareStatement("SELECT * FROM servicoprestado WHERE "
 											  			+ "servicoprestado.nome = \""
-											  			+ serviceToSearchFor.getNomeServico()
+											  			+ serviceToSearchFor.getServiceName()
 											  			+ "\" AND servicoprestado.preco = \""
-											  			+ serviceToSearchFor.getPreco()
+											  			+ serviceToSearchFor.getPrice()
 											  			+ "\" AND servicoprestado.barbeiro = \""
-											  			+ serviceToSearchFor.getNomeBarbeiro()
+											  			+ serviceToSearchFor.getBarberName()
 											  			+ "\" AND servicoprestado.data = \""
-											  			+ serviceToSearchFor.getData() + "\";");
+											  			+ serviceToSearchFor.getDate() + "\";");
 		
 		// Used to receive the result from a search on DB
 		ResultSet queryResult = preparedStatement.executeQuery();
@@ -123,7 +123,7 @@ public class DoneServiceDAO
 	 *  Parameter: service - Never used. Should be deleted
 	 *  Check the need of this parameter
 	 */
-	public ResultSet showRegistredDoneServices(ServicoPrestado service) throws SQLException
+	public ResultSet showRegistredDoneServices(GivenService service) throws SQLException
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		

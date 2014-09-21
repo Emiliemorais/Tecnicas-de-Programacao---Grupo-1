@@ -145,7 +145,7 @@ public class NovoBarbeiro extends JFrame
 							+ " foi cadastrado com sucesso" );
 
 					dispose();
-					CadastrarBarbeiro frame = new CadastrarBarbeiro ();
+					RegisterBarber frame = new RegisterBarber ();
 					frame.setVisible ( true );
 					frame.setLocationRelativeTo ( null );
 				} catch ( BarberException e )
@@ -189,7 +189,7 @@ public class NovoBarbeiro extends JFrame
 			public void mouseClicked ( MouseEvent e ) 
 			{
 				dispose();
-				CadastrarBarbeiro frame = new CadastrarBarbeiro ();
+				RegisterBarber frame = new RegisterBarber ();
 				frame.setVisible ( true );
 				frame.setLocationRelativeTo ( null );
 			}// Fim do metodo

@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-import model.ServicoPrestado;
+import model.GivenService;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,8 +17,8 @@ public class DoneServiceDAOTest
 {
 
 	// Given Service class's instance to access the class
-	ServicoPrestado doneService = new ServicoPrestado();
-	ServicoPrestado doneService2 = new ServicoPrestado();
+	GivenService doneService = new GivenService();
+	GivenService doneService2 = new GivenService();
 	
 	/* 
 	 * Método utilizado para receber os atributos de um Serviço Prestado de forma correta,
@@ -29,14 +29,14 @@ public class DoneServiceDAOTest
 	{
 		try
 		{
-			doneService.setNomeServico("Corte");
-			doneService.setNomeBarbeiro("Alessandro");
-			doneService.setData("10/10/2010");
-			doneService.setPreco("10,00");
-			doneService2.setNomeServico("Barba");
-			doneService2.setNomeBarbeiro("Luciano");
-			doneService2.setData("01/01/2010");
-			doneService2.setPreco("9,90");
+			doneService.setServiceName("Corte");
+			doneService.setBarberName("Alessandro");
+			doneService.setDate("10/10/2010");
+			doneService.setPrice("10,00");
+			doneService2.setServiceName("Barba");
+			doneService2.setBarberName("Luciano");
+			doneService2.setDate("01/01/2010");
+			doneService2.setPrice("9,90");
 		} 
 		catch (NullPointerException e)
 		{
