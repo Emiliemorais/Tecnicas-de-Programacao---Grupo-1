@@ -152,7 +152,7 @@ public class ABCBookStore
                     else
                     {
                         buyingCode = buyingCode;
-                        Compra.Verificar_endereco();
+                        Purchase.checkAddress();
                     }
                     //// Passar esse codigo para classe compra. Se cod_compra = -1 ta errado. VALIDAR!!!
                     
