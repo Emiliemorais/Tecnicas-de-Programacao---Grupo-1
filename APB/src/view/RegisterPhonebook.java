@@ -123,11 +123,11 @@ public class RegisterPhonebook extends JFrame
 				dispose();
 				
 				// Frame used to open a window to add a new contact 
-				NovoContato newContactFrame;
+				NewContact newContactFrame;
 				
 				try
 				{
-					newContactFrame = new NovoContato();
+					newContactFrame = new NewContact();
 					newContactFrame.setVisible(true);
 					newContactFrame.setLocationRelativeTo(null);
 				}
@@ -149,7 +149,7 @@ public class RegisterPhonebook extends JFrame
 			public void mouseClicked(MouseEvent e)
             {
 				dispose();
-				PesquisarContato searchContactFrame = new PesquisarContato();
+				SearchContact searchContactFrame = new SearchContact();
 				searchContactFrame.setVisible(true);
 				searchContactFrame.setLocationRelativeTo(null);
 			}
