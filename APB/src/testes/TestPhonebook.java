@@ -11,32 +11,32 @@ import exception.BarberException;
 import exception.ServiceException;
 import model.Phonebook;
 
-public class AgendaTeste 
+public class TestPhonebook 
 {
 	
-	Phonebook contato = new Phonebook();
+	Phonebook contactOfPhonebook = new Phonebook();
 	
 	/* 
-	 * Método utilizado para receber os atributos de forma correta,
-	 * de uma Agenda para realização do teste
+	 *Method used to get the attributes correctly, an Agenda for the test
+
 	*/
 	@Before
 	public void setUp ()
 	{
 		try 
 		{
-			contato.setPhonebookName("Alessandro");
-			contato.setPhonebook("4568-9856");
+			contactOfPhonebook.setPhonebookName("Alessandro");
+			contactOfPhonebook.setPhonebook("4568-9856");
 		} 
 		catch (BarberException e1) 
 		{
 			e1.printStackTrace();
 		}
-		contato.setPhonebookDs("ASDAS");
+		contactOfPhonebook.setPhonebookDs("ASDAS");
 	}
 	
 	 
-	// Método utilizado para testar o funcionamento do construtor de uma Agenda
+	//Method used to test the operation of the builder of an Agenda
 	@Test
 	public void contrutorDeAgendaDeveFuncionar() 
 	{
@@ -46,72 +46,75 @@ public class AgendaTeste
 		assertEquals("aaaa", contato.getPhonebookDs());
 	}
 	
-	// Método que testa o recebimento de um nome de um contato pelo método de acesso get 
+	// Method that tests the receipt of a name of a contact by the access method get
 	@Test
 	public void getterDeNomeDeveFuncionar ()
 	{
-		assertEquals("Alessandro", contato.getPhonebookName());
+		assertEquals("Alessandro", contactOfPhonebook.getPhonebookName());
 	}
 	
-	// Método que testa o recebimento de um telefone de um contato pelo método de acesso get 
+	// Method that tests an incoming phone a contact by the access method get
+
 	@Test
 	public void getterDeTelefoneDeveFuncionar ()
 	{
-		assertEquals("4568-9856", contato.getPhonebook());
+		assertEquals("4568-9856", contactOfPhonebook.getPhonebook());
 	}
 	
-	// Método que testa o recebimento de uma descrição de um contato pelo método de acesso get 
+	// Method that tests receiving a description of a contact by the access method get
+
 	@Test
 	public void getterDeDescricaoDeveFuncionar ()
 	{
-		assertEquals("ASDAS", contato.getPhonebookDs());
+		assertEquals("ASDAS", contactOfPhonebook.getPhonebookDs());
 	}
 	
 	/* 
-	 * Método utilizado para receber um nome em branco para 
-	 * realização do teste do lançamento da exceção
+	 * Method used to receive a blank name for the test launch of the exception
+
 	*/ 
 	@Test(expected = BarberException.class)
 	public void nomeDoBarbeiroNaoPodePassarQuandoEmBranco () throws BarberException
 	{
-		contato.setPhonebookName("");
+		contactOfPhonebook.setPhonebookName("");
 		Assert.fail("Deve lanÃ§ar uma exceÃ§Ã£o");
 	}
 	
 	/* 
-	 * Método utilizado para receber um telefone em branco para 
-	 * realização do teste do lançamento da exceção
+	 * Method used to receive a phone blank for the test launch of the exception
+
 	*/ 
 	@Test(expected = BarberException.class)
 	public void telefoneDoBarbeiroNaoPodePassarQuandoEmBranco () throws BarberException
 	{
-		contato.setPhonebook("");
+		contactOfPhonebook.setPhonebook("");
 		Assert.fail("Deve lanÃ§ar uma exceÃ§Ã£o");
 	}
 	
 	/* 
-	 * Método utilizado para receber um nome fora do formato estabelecido (caracteres especiais)
-	 * para realização do teste do lançamento da exceção
+	 * Method used to get a name out of the established format (special characters) for the test launch of the exception
+
 	*/ 
 	@Test(expected = BarberException.class)
 	public void nomeDoBarbeiroNaoPodePassarQuandoForaDeFormato () throws BarberException
 	{
-		contato.setPhonebookName("ASDAS!!");
+		contactOfPhonebook.setPhonebookName("ASDAS!!");
 		Assert.fail("Deve lanÃ§ar uma exceÃ§Ã£o");
 	}
 	
 	/* 
-	 * Método utilizado para receber um telefone fora do formato estabelecido
-	 * (caracteres especiais, letras)para realização do teste do lançamento da exceção
+	 * Method used to receive a telephone outside the established format (special characters, letters) for the test launch of the exception
+
 	*/
 	@Test(expected = BarberException.class)
 	public void telefoneDoBarbeiroNaoPodePassarQuandoForaDeFormato () throws BarberException
 	{
-		contato.setPhonebook("45645aa-a54654");
+		contactOfPhonebook.setPhonebook("45645aa-a54654");
 		Assert.fail("Deve lanÃ§ar uma exceÃ§Ã£o");
 	}
 	
-	// Método que testa o recebimento do nome temporario pelo método de acesso get
+	// Method that tests receiving the temporary name for the access method get
+
 	@Test (expected = AssertionError.class)
 	public void getterDeTempNomeDeveRetornarValorPassado () throws ServiceException 
 	{
@@ -119,7 +122,8 @@ public class AgendaTeste
 	}
 	
 	
-	// Método que testa a passagem de um nome temporario nulo pelo método de acesso set	 
+	// Method that tests passing a null temporary name for access method in September
+ 
 	@Test (expected = AssertionFailedError.class)
 	public void setterDeTempNomeNaoPodeSerNulo () throws ServiceException 
 	{
@@ -127,7 +131,8 @@ public class AgendaTeste
 		Assert.fail("Deve lanÃ§ar exceÃ§Ã£o");
 	}
 	
-	// Método que testa a passagem de um nome temporario em branco pelo método de acesso set
+	// Method that tests the passage of a temporary blank name for access method in September
+
 	@Test (expected = AssertionFailedError.class)
 	public void setterDeTempNomeNaoPodeSerEmBranco () 
 	{

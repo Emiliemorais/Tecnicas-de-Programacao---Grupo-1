@@ -14,14 +14,13 @@ import org.junit.Test;
 import control.ReportController;
 import exception.ReportException;
 
-public class RelatorioControllerTeste 
+public class ReportControllerTest 
 {
 
 	Report relatorio = new Report();
 	
 	/* 
-	 * Método utilizado para receber os atributos de um Relatorio de forma correta,
-	 * para realização do teste, lançando exceçoes de atributos nulos e problemas de conversão
+	 * Method used to get the attributes of a report correctly to the test, throwing exceptions null attributes and conversion issues
 	*/
 	@Before
 	public void setUp () throws ReportException, ParseException 
@@ -41,7 +40,7 @@ public class RelatorioControllerTeste
 	}
 	
 	/* 
-	 * Método utilizado para testar o getInstance da classe RelatorioDAO
+	 * Method used to test the getInstance class RelatorioDAO
 	*/
 
 	@Test
@@ -52,8 +51,7 @@ public class RelatorioControllerTeste
 	}
 	
 	/* 
-	 * Método utilizado para testar a pesquisa de um relatorio através de um serviço
-	 * vendo se existe a amostra do relatorio
+	 * Method used to test the research a report through a service seeing if the sample of the report there
 	*/
 	@Test
 	public void procurarPorServicoDeRelatorioControllerDeveMostrarUmRelatorio () throws SQLException
@@ -65,8 +63,7 @@ public class RelatorioControllerTeste
 	}
 	
 	/* 
-	 * Método utilizado para testar a pesquisa de um relatorio através de uma data
-	 * vendo se existe a amostra do relatorio
+	 * The method used to test the search for a report through the sample viewing date of the report exists
 	*/
 	@Test
 	public void procurarPorDataDeRelatorioControllerDeveMostrarUmRelatorio () throws SQLException
@@ -78,8 +75,8 @@ public class RelatorioControllerTeste
 	}
 	
 	/* 
-	 * Método utilizado para testar a pesquisa de um relatorio através de um barbeiro
-	 * e de um serviço vendo se existe a amostra do relatorio
+	 * Method used to test the research of a report by a barber and a service seeing if the sample of the report there
+
 	*/
 	@Test
 	public void procurarPorBarbeiroEServicoDeRelatorioControllerDeveMostrarUmRelatorio () throws SQLException 
@@ -91,8 +88,8 @@ public class RelatorioControllerTeste
 	}
 	
 	/* 
-	 * Método utilizado para testar a pesquisa de um relatorio através de um barbeiro
-	 * e de uma data e um serviço vendo se existe a amostra do relatorio
+	 * Method used to test the research of a report by a barber and a date and see if the service sample of the report there
+
 	*/
 	@Test
 	public void procurarPorDataBarbeiroEServicoDeRelatorioControllerDeveMostrarUmRelatorio () throws SQLException
@@ -104,8 +101,7 @@ public class RelatorioControllerTeste
 	}
 	
 	/* 
-	 * Método utilizado para testar a pesquisa de um relatorio através de um barbeiro
-	 * e de uma data vendo se existe a amostra do relatorio
+	 *Method used to test the research of a report by a barber and a date seeing if there is a sample of the report
 	*/
 	@Test
 	public void procurarPorDataEBarbeiroDeRelatorioControllerDeveMostrarUmRelatorio () throws SQLException 
@@ -117,8 +113,7 @@ public class RelatorioControllerTeste
 	}
 	
 	/* 
-	 * Método utilizado para testar a pesquisa de um relatorio através de uma data
-	 * e de um serviço vendo se existe a amostra do relatorio
+	 * Method used to test the research of a report by a date and a service seeing if the sample of the report there
 	*/
 	@Test
 	public void procurarPorDataEServicoDeRelatorioControllerDeveMostrarUmRelatorio () throws SQLException
@@ -130,8 +125,8 @@ public class RelatorioControllerTeste
 	}
 	
 	/* 
-	 * Método utilizado para testar a pesquisa de um relatorio através de um barbeiro
-	 * vendo se existe a amostra do relatorio
+	 * Method used to test the research of a report by a barber seeing if there is a sample of the report
+
 	*/
 	@Test
 	public void procurarPorBarbeiroDeRelatorioControllerDeveMostrarUmRelatorio () throws SQLException
