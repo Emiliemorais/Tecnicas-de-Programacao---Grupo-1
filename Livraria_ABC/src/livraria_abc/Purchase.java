@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static livraria_abc.ABCBookStore.deliveryAddress;
-import static livraria_abc.ABCBookStore.paymentType;
 import static livraria_abc.ABCBookStore.buyingCode;
 import static livraria_abc.ABCBookStore.showMenu;
 import static livraria_abc.ABCBookStore.currentClient;
@@ -56,8 +54,8 @@ import static livraria_abc.ABCBookStore.currentClient;
             Purchase purchaseInstance = new Purchase();
             // purchaseInstance - Instance of class "Purchase"
             
-            purchaseInstance.deliveryAddress = ABCBookStore.this.deliveryAddress;
-            purchaseInstance.paymentType = ABCBookStore.this.paymentType;
+            purchaseInstance.deliveryAddress = ABCBookStore.deliveryAddress;
+            purchaseInstance.paymentType = ABCBookStore.paymentType;
             purchaseInstance.purchaseValue = Cart.calculateCartValue();
             purchaseInstance.purchaseCode = buyingCode;
            
@@ -72,10 +70,10 @@ import static livraria_abc.ABCBookStore.currentClient;
             System.out.println("\nDeseja mesmo cancelar a compra? 1-SIM  2-NÃO");
             cancelOption = readString.nextLine();
             
-            if(cancelOption.equals("1") )
+            if( cancelOption.equals("1") )
             {
-                ABCBookStore.this.deliveryAddress="blank";
-                ABCBookStore.this.paymentType="blank";
+                ABCBookStore.deliveryAddress = "blank";
+                ABCBookStore.paymentType = "blank";
                 buyingCode = -1;
                 
                 showMenu();
@@ -89,17 +87,22 @@ import static livraria_abc.ABCBookStore.currentClient;
         // Method that checks the received address
         public static void checkAddress()
         {
-            int indexOfCPF; // Position of the CPF (Brazilian document) from the actual client in the list
-            String changeAddressOption; // Gives a option, whether to change the address or not
+            // Position of the CPF (Brazilian document) from the actual client in the list
+            int indexOfCPF;
+            
+            // Gives a option, whether to change the address or not
+            String changeAddressOption; 
             
             indexOfCPF = Client.cpf.indexOf(currentClient);
                         
-            System.out.println("\nO endereço de entrega será: '"+Client.addressArray.get(indexOfCPF)+"'?\n1-SIM  0- ALTERAR ENDEREÇO");
+            System.out.println("\nO endereço de entrega será: '"
+                               + Client.addressArray.get(indexOfCPF)
+                               + "'?\n1-SIM  0- ALTERAR ENDEREÇO");
             changeAddressOption = readString.nextLine();
             
             if(changeAddressOption.equals("1") )
             {
-                ABCBookStore.this.deliveryAddress = Client.addressArray.get(indexOfCPF);
+                ABCBookStore.deliveryAddress = Client.addressArray.get(indexOfCPF);
                 
                 checkPayment();
             }
@@ -110,7 +113,7 @@ import static livraria_abc.ABCBookStore.currentClient;
                 System.out.println("\nInforme o novo endereço de entrega: ");
                 newDeliveryAddress = readString.nextLine();
                 
-                ABCBookStore.this.deliveryAddress = newDeliveryAddress;
+                ABCBookStore.deliveryAddress = newDeliveryAddress;
                 
                 checkPayment();
             }
@@ -119,28 +122,32 @@ import static livraria_abc.ABCBookStore.currentClient;
         // Checks the final value and which will be the payment type
         public static void checkPayment()
         {
-            float totalValue; // Total value of the purchase
-            String paymentType; // Type of payment
+            // Total value of the purchase
+            float totalValue;
+            
+            // Type of payment
+            String paymentType;
             
             totalValue = Cart.calculateCartValue();
             
-            System.out.printf("\nO valor total a ser pago é R$%.2f.\n",totalValue);
+            System.out.printf("\nO valor total a ser pago é R$%.2f.\n", totalValue);
             
             boolean ok = false;
             
             do
             {
-                System.out.println("\nQual será a forma de pagamento?\n1-Boleto  |  2-Cartão de crédito");
+                System.out.println("\nQual será a forma de pagamento?"
+                                   + "\n1-Boleto  |  2-Cartão de crédito");
                 paymentType = readString.nextLine();
             
-                if(paymentType.equals("1") )
+                if( paymentType.equals("1") )
                 {
-                    ABCBookStore.this.paymentType = PaymentType.listTypes.get(0).paymentType;
+                    ABCBookStore.paymentType = PaymentType.listTypes.get(0).paymentType;
                     ok = true;
                 }
-                else if(paymentType.equals("2") )
+                else if( paymentType.equals("2") )
                 {
-                    ABCBookStore.this.paymentType = PaymentType.listTypes.get(1).paymentType;
+                    ABCBookStore.paymentType = PaymentType.listTypes.get(1).paymentType;
                     ok = true;
                 }
                 else
@@ -148,7 +155,7 @@ import static livraria_abc.ABCBookStore.currentClient;
                     System.out.println("\nOpção Inválida\n");
                     ok = false;
                 }   
-            }while(ok==false);
+            }while(ok == false);
             
             endPurchase();
         }
@@ -156,19 +163,20 @@ import static livraria_abc.ABCBookStore.currentClient;
         // Finaliza uma compra e esvazia a cesta aberta se confirmado
         public static void endPurchase()
         {
-            String cancelPurchaseOption; // Gives a option, whether to cancel the purchase or not
+            // Gives a option, whether to cancel the purchase or not
+            String cancelPurchaseOption; 
             
             System.out.println("\nSeu pedido é: ");
             
             Cart.Listar_itens_cesta_();
             
-            System.out.println("\nEndereço de entrega: "+ABCBookStore.this.deliveryAddress);
-            System.out.println("\nTipo de pagamento: "+ABCBookStore.this.paymentType);
+            System.out.println("\nEndereço de entrega: " + ABCBookStore.deliveryAddress);
+            System.out.println("\nTipo de pagamento: " + ABCBookStore.paymentType);
             
             System.out.println("\nDeseja finalizar a compra?\n 1-SIM  |  0-CANCELAR COMPRA");
             cancelPurchaseOption = readString.nextLine();
             
-            if(cancelPurchaseOption.equals("1"))
+            if( cancelPurchaseOption.equals("1") )
             {
                 System.out.println("\nCompra realizada com sucesso!\n");
                 
