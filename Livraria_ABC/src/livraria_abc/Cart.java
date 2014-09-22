@@ -158,7 +158,7 @@ import static livraria_abc.ABCBookStore.currentClient;
               String clientCpfToAddItens;
               
               // Instantiated to get access to the method 'login'
-              Cliente client = new Cliente();
+              Client client = new Client();
               
               clientCpfToAddItens = client.efetuarLogin();
               
@@ -209,13 +209,13 @@ import static livraria_abc.ABCBookStore.currentClient;
                  */
                 int loggedClientIndex = 0;
                 
-                loggedClientIndex = Cliente.cpf.indexOf(currentClient);
+                loggedClientIndex = Client.cpf.indexOf(currentClient);
                 
-                System.out.println("\nOlá " + Cliente.nome.get(loggedClientIndex) + "!\n");
+                System.out.println("\nOlá " + Client.nameArray.get(loggedClientIndex) + "!\n");
                 
                 if( itemsAndQuantity.isEmpty() )
                 {
-                    System.out.println("\n" + Cliente.nome.get(loggedClientIndex)
+                    System.out.println("\n" + Client.nameArray.get(loggedClientIndex)
                                        + ", sua cesta está vazia!");
                 }
                 else
@@ -267,12 +267,12 @@ import static livraria_abc.ABCBookStore.currentClient;
         {
                 int indice_Clogado;
                 
-                indice_Clogado = Cliente.cpf.indexOf(currentClient);
+                indice_Clogado = Client.cpf.indexOf(currentClient);
                 
                            
                 if(itemsAndQuantity.isEmpty())
                 {
-                    System.out.println("\n"+Cliente.nome.get(indice_Clogado)+", sua cesta está vazia!");
+                    System.out.println("\n"+Client.nameArray.get(indice_Clogado)+", sua cesta está vazia!");
                 }
                 else
                 {
@@ -447,14 +447,14 @@ import static livraria_abc.ABCBookStore.currentClient;
             // Receive the result of the method 'verifyCoupon' (refers to 'TCoupon' class)
             boolean verifyCoupon = false;
             
-            verifyCoupon = TCupom.Verifica_cupom(couponCode);
+            verifyCoupon = Coupon.Verifica_cupom(couponCode);
             
             if( verifyCoupon )
             {
                 // Receive the discount value of the coupon informed by user
                 float couponDiscountValue = 0;
                 
-                couponDiscountValue = TCupom.Verifica_valor_desconto(couponCode);
+                couponDiscountValue = Coupon.Verifica_valor_desconto(couponCode);
                 
                 System.out.println("\nParabéns! Você ganhou "
                                    + couponDiscountValue 

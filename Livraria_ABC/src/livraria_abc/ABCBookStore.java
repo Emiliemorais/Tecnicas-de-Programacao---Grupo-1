@@ -66,7 +66,7 @@ public class ABCBookStore
             Book book = new Book();
             
             // Client class's instance to access the class
-            Cliente client = new Cliente();
+            Client client = new Client();
             
             switch(option)
             {
@@ -198,7 +198,7 @@ public class ABCBookStore
             Book book = new Book();
             
             // Client class's instance to access the class
-            Cliente client = new Cliente();
+            Client client = new Client();
             
             switch(option)
             {
@@ -285,11 +285,11 @@ public class ABCBookStore
             Book.listEdition.add(2,"4ª");
             
             // Coupoun class's instance to access the class
-            TCupom coupoun = new TCupom();
+            Coupon coupoun = new Coupon();
             
-            coupoun.cupom = "0X2R";
-            coupoun.valor_desconto = 20;
-            TCupom.cupom_valor.add(coupoun);
+            coupoun.coupon = "0X2R";
+            coupoun.discountedValue = 20;
+            Coupon.cupom_valor.add(coupoun);
             
             // PaymentType class's instance to access the class
             PaymentType paymentType1 = new PaymentType("Boleto","");

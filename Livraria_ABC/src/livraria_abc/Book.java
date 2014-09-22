@@ -131,16 +131,16 @@ public class Book
                 int bookQuantity = -1;
 
                 // Client class's instance to access the class
-                Cliente client = new Cliente();
+                Client client = new Client();
                     
                 loginClient = client.efetuarLogin();
                     
                 if( currentAccess )
                 {
                     // Receives the index of the client
-                    int indexOfTheClient = Cliente.cpf.indexOf(currentClient);
+                    int indexOfTheClient = Client.cpf.indexOf(currentClient);
                         
-                    System.out.println("\nOlá " + Cliente.nome.get(indexOfTheClient)
+                    System.out.println("\nOlá " + Client.nameArray.get(indexOfTheClient)
                                        + ".\nInforme a quantidade de '" 
                                        + listTitle.get(i) + "' desejada: ");
                     bookQuantity = input.nextInt();

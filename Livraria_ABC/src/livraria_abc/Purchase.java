@@ -92,14 +92,14 @@ import static livraria_abc.ABCBookStore.currentClient;
             int indexOfCPF; // Position of the CPF (Brazilian document) from the actual client in the list
             String changeAddressOption; // Gives a option, whether to change the address or not
             
-            indexOfCPF = Cliente.cpf.indexOf(currentClient);
+            indexOfCPF = Client.cpf.indexOf(currentClient);
                         
-            System.out.println("\nO endereço de entrega será: '"+Cliente.endereco.get(indexOfCPF)+"'?\n1-SIM  0- ALTERAR ENDEREÇO");
+            System.out.println("\nO endereço de entrega será: '"+Client.addressArray.get(indexOfCPF)+"'?\n1-SIM  0- ALTERAR ENDEREÇO");
             changeAddressOption = readString.nextLine();
             
             if(changeAddressOption.equals("1") )
             {
-                ABCBookStore.this.deliveryAddress = Cliente.endereco.get(indexOfCPF);
+                ABCBookStore.this.deliveryAddress = Client.addressArray.get(indexOfCPF);
                 
                 checkPayment();
             }
