@@ -8,6 +8,35 @@ import static livraria_abc.ABCBookStore.currentClientName;
 
 public class Cliente 
 {
+	/*public class Client 
+{
+    static ArrayList<String> cpf = new ArrayList<>();
+    static ArrayList<String> rg = new ArrayList<>();
+   
+    //Variable of name for ArrayList
+    static ArrayList<String> nameArray = new ArrayList<>();
+    
+    //Variable of gender for ArrayList
+    static ArrayList<String> genderArray = new ArrayList<>();
+    
+    //Variable of address for ArrayLiST
+    static ArrayList<String> addressArray = new ArrayList<>();
+    
+    //Variable of cep for ArrayList
+    static ArrayList<String> cepArray = new ArrayList<>();
+    
+    //Variable of data of birth for ArrayLis
+    static ArrayList<String> dtBirthArray = new ArrayList<>();
+    
+    //Variable of phones for ArrayList
+    static ArrayList<String> phoneArray = new ArrayList<>();
+    
+    //Variable of login  for ArrayList
+    private static ArrayList<String> loginArray = new ArrayList<>();
+    
+    //Variable of password for ArrayList
+    private static ArrayList<String> passwordArrray = new ArrayList<>();
+    */
     static ArrayList<String> cpf = new ArrayList<>();
     static ArrayList<String> rg = new ArrayList<>();
     static ArrayList<String> nome = new ArrayList<>();
