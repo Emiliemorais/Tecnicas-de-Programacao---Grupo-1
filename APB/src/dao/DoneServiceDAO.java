@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import model.GivenService;
+import model.DoneService;
 
 
 public class DoneServiceDAO
@@ -37,7 +37,7 @@ public class DoneServiceDAO
 	 * Include a new service type to DB
 	 * Parameter: serviceToInclude - Service type that will be included on DB
 	 */
-	public boolean includeServiceType(GivenService serviceToInclude) throws SQLException
+	public boolean includeServiceType(DoneService serviceToInclude) throws SQLException
 	{
 		if( serviceToInclude != null )
         {
@@ -62,7 +62,7 @@ public class DoneServiceDAO
 	 * Delete a service type on DB
 	 * Parameter: serviceToDelete - Service type that will be deleted from DB
 	 */
-	public boolean deleteServiceType(GivenService serviceToDelete) throws SQLException
+	public boolean deleteServiceType(DoneService serviceToDelete) throws SQLException
 	{
 		if( serviceToDelete != null )
         {
@@ -83,7 +83,7 @@ public class DoneServiceDAO
 	 * Search a service type in DB
 	 * Parameter: serviceToSearchFor - Service type that will be searched in DB
 	 */
-	private String searchServiceType(GivenService serviceToSearchFor) throws SQLException
+	private String searchServiceType(DoneService serviceToSearchFor) throws SQLException
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		
@@ -123,7 +123,7 @@ public class DoneServiceDAO
 	 *  Parameter: service - Never used. Should be deleted
 	 *  Check the need of this parameter
 	 */
-	public ResultSet showRegistredDoneServices(GivenService service) throws SQLException
+	public ResultSet showRegistredDoneServices(DoneService service) throws SQLException
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		

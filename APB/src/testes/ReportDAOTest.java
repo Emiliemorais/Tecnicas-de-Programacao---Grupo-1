@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import model.Report;
-import dao.ResultBarber;
+import dao.ReportDAO;
 import exception.ReportException;
 
 public class ReportDAOTest
@@ -45,8 +45,8 @@ public class ReportDAOTest
 	public void getInstanceTest()
 	{
 		// DAO Report class's instance to access the class
-		ResultBarber reportDAO = ResultBarber.getInstance();
-		assertEquals( ResultBarber.getInstance(), reportDAO );
+		ReportDAO reportDAO = ReportDAO.getInstance();
+		assertEquals( ReportDAO.getInstance(), reportDAO );
 	}
 
 	// Método utilizado para testar a vizualização de um relatorio, quando procurado por data
@@ -55,7 +55,7 @@ public class ReportDAOTest
 	{
 		try 
 		{
-			ResultBarber reportDAO = ResultBarber.getInstance();
+			ReportDAO reportDAO = ReportDAO.getInstance();
 			
 			// ResultSet interface instance to query a report
 			ResultSet queryForReport = reportDAO.searchByDate(report);
@@ -83,7 +83,7 @@ public class ReportDAOTest
 	{
 		try 
 		{
-			ResultBarber reportDAO = ResultBarber.getInstance();
+			ReportDAO reportDAO = ReportDAO.getInstance();
 			ResultSet queryForReport = reportDAO.searchByDateAndService(report);
 			
 			while ( queryForReport.next() )
@@ -106,7 +106,7 @@ public class ReportDAOTest
 	{
 		try
 		{
-			ResultBarber reportDAO = ResultBarber.getInstance();
+			ReportDAO reportDAO = ReportDAO.getInstance();
 			ResultSet queryForReport = reportDAO.searchByBarber(report);
 			
 			while( queryForReport.next() ) 
@@ -132,7 +132,7 @@ public class ReportDAOTest
 	{
 		try
 		{
-			ResultBarber reportDAO = ResultBarber.getInstance();
+			ReportDAO reportDAO = ReportDAO.getInstance();
 			ResultSet queryForReport = reportDAO.searchByBarberAndService(report);
 			
 			while( queryForReport.next() ) 
@@ -155,7 +155,7 @@ public class ReportDAOTest
 	{
 		try
 		{
-			ResultBarber reportDAO = ResultBarber.getInstance();
+			ReportDAO reportDAO = ReportDAO.getInstance();
 			ResultSet queryForReport = reportDAO.searchByService(report);
 			
 			while ( queryForReport.next() )
@@ -181,7 +181,7 @@ public class ReportDAOTest
 	{
 		try
 		{
-			ResultBarber reportDAO = ResultBarber.getInstance();
+			ReportDAO reportDAO = ReportDAO.getInstance();
 			ResultSet queryForReport = reportDAO.searchByDateAndBarber(report);
 			
 			while ( queryForReport.next() ) 
@@ -207,7 +207,7 @@ public class ReportDAOTest
 	{
 		try 
 		{
-			ResultBarber reportDAO = ResultBarber.getInstance();
+			ReportDAO reportDAO = ReportDAO.getInstance();
 			ResultSet queryForReport = reportDAO.searchByDateBarberAndService(report);
 			
 			while ( queryForReport.next() ) 

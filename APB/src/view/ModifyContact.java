@@ -16,7 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
-import control.ControllerPhonebook;
+import control.PhonebookController;
 import exception.BarberException;
 import model.Phonebook;
 
@@ -107,7 +107,7 @@ public class ModifyContact extends JFrame
 			Phonebook contactToBeChanged = new Phonebook();
 			
 			// Instantiated to get access to the method 'searchByName()'
-			ControllerPhonebook phonebookController = ControllerPhonebook.getInstance();
+			PhonebookController phonebookController = PhonebookController.getInstance();
 			
 			contactToBeChanged.setPhonebookName(Phonebook.getTempNome() );
 			
@@ -148,7 +148,7 @@ public class ModifyContact extends JFrame
 					modifiedContact.setPhonebookDs(newContactDescriptionTextField.getText() );
 
 					// Instantiated to get access to the method 'alterar' 
-					ControllerPhonebook phonebookController = control.ControllerPhonebook.getInstance();
+					PhonebookController phonebookController = control.PhonebookController.getInstance();
 					
 					phonebookController.alterar(contactNameToChange, modifiedContact);
 

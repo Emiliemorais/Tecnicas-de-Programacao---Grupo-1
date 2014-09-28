@@ -147,9 +147,9 @@ public class BarberDAOTest
 	{
 		try
 		{
-			assertTrue( barberDAO.changeBarber( barber.getBarberName(), barber, secondBarber ) );
+			assertTrue( barberDAO.modifyBarber( barber.getBarberName(), barber, secondBarber ) );
 			
-			barberDAO.changeBarber( barber.getBarberCpf(),secondBarber, barber );
+			barberDAO.modifyBarber( barber.getBarberCpf(),secondBarber, barber );
 			Connection connection = FactoryConnection.getInstance().getConnection();
 			
 			// java.sql.PreparedStatement instance to query in the database
@@ -216,7 +216,7 @@ public class BarberDAOTest
 	{
 		try
 		{
-			assertFalse( barberDAO.changeBarber( barber.getBarberName(), null, null ) );
+			assertFalse( barberDAO.modifyBarber( barber.getBarberName(), null, null ) );
 		} 
 		catch (SQLException e)
 		{
@@ -233,7 +233,7 @@ public class BarberDAOTest
 	{
 		try
 		{
-			assertFalse( barberDAO.changeBarber( barber.getBarberName(), null, barber ) );
+			assertFalse( barberDAO.modifyBarber( barber.getBarberName(), null, barber ) );
 		} 
 		catch (SQLException e)
 		{

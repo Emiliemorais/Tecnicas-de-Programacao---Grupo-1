@@ -33,7 +33,7 @@ public class BarberDAO
 	}
 	
 	
-	/*
+	/**
 	 * Método que armazena no banco de dados um dado barbeiro.
 	 * Checa se o argumento passado é nulo, retornando 'false' se sim.
 	 * @param barber  - Barber class instance to access the class
@@ -60,14 +60,13 @@ public class BarberDAO
 	}
 	
 	
-	/*
+	/**
 	 * Método que altera os dados de um barbeiro cadastrado no banco de dados.
-	 * Checa se os argumentos passados não são nulos.
-	 * @params barber Barber class instance of a changed barber to access the 
- 	 *		   barberName Receives the barber name
- 	 *		   changedBarber Barber class instance of a changed barber to access the class
+	 * @param barberName Receives the barber name
+	 * @param changedBarber Barber class instance of a changed barber to access the class
+ 	 * @param barber Barber class instance of a changed barber to access the 
 	 */
-	public boolean changeBarber (String barberName, Barber changedBarber, Barber barber) throws SQLException
+	public boolean modifyBarber (String barberName, Barber changedBarber, Barber barber) throws SQLException
 	{
 		if (changedBarber == null || barber == null)
 		{
@@ -90,7 +89,7 @@ public class BarberDAO
 	}
 	
 	
-	/*
+	/**
 	 * Método que exclui um dado barbeiro do banco de dados.
 	 * Checa se o argumento passado é nulo, retornando 'false' se sim.
 	 * @param barber Barber class instance of a changed barber to access the 
@@ -112,9 +111,8 @@ public class BarberDAO
 		return true;
 	}
 	
-	/* 
-	 * Realiza uma pesquisa no banco de dados.
-	 */
+
+	// Realiza uma pesquisa no banco de dados.
 	public ResultSet searchBarber() throws SQLException
 	{
 		// Connection interface's instance to connect with the database
@@ -129,7 +127,7 @@ public class BarberDAO
 		return queryForBarber;
 	}
 	
-	/* 
+	/** 
 	 * Realiza uma atualização do banco de dados.
 	 * @param message receives a messagem to the update
 	 */
@@ -142,9 +140,7 @@ public class BarberDAO
 		connection.close();
 	}
 	
-	/* 
-	 * Método que mostra os barbeiros cadastrados no banco de dados.
-	 */
+	// Método que mostra os barbeiros cadastrados no banco de dados.
 	public ResultSet showRegisteredBarber(Barber barber) throws SQLException
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
@@ -158,7 +154,6 @@ public class BarberDAO
 	
 	/* 
 	 * Método que pesquisa por um dado barbeiro no banco de dados.
-	 * Dispara exceções SQl caso ocorram.
 	 */
 	public ResultSet searchByName(Barber barber) throws SQLException
 	{

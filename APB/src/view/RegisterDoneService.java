@@ -21,8 +21,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import control.ProvidedServiceController;
-import model.GivenService;
+import control.DoneServiceController;
+import model.DoneService;
 import exception.ServiceException;
 
 @SuppressWarnings("serial")
@@ -84,14 +84,14 @@ public class RegisterDoneService extends JFrame
 			 * Intantiated to get access to the methods 
 			 *   'mostrarServicosPrestadosCadastrados' e 'ConverterDataParaABNT' 
 			 */
-			ProvidedServiceController serviceController = ProvidedServiceController.getInstance();
+			DoneServiceController serviceController = DoneServiceController.getInstance();
 			
 			/* 
 			 * Used to pass as argument to the method 'mostarServicosPrestadosCadastrados' 
 			 * Useless argument on this method.
 			 * Check methods from ServicoPrestadoController and ServicoPrestadoDAO.
 			 */
-			GivenService service = new GivenService();
+			DoneService service = new DoneService();
 			
 			// Used to receive the result from the method 'mostrarServicosPrestadosCadastrados'
 			ResultSet queryForDoneServicesResult = serviceController
@@ -150,7 +150,7 @@ public class RegisterDoneService extends JFrame
 			public void mouseClicked(MouseEvent e)
             {
 				// Frame used to open a window to search for a done service
-				SearchServiceProvided searchForDoneServiceFrame = new SearchServiceProvided();
+				SearchDoneService searchForDoneServiceFrame = new SearchDoneService();
 				searchForDoneServiceFrame.setVisible(true);
 				searchForDoneServiceFrame.setLocationRelativeTo(null);
 				
@@ -205,7 +205,7 @@ public class RegisterDoneService extends JFrame
 											  .getValueAt(table.getSelectedRow(), 3);
 					
 					//  Receives the data that will be deleted from DB
-					GivenService serviceToBeDeleted = new GivenService();
+					DoneService serviceToBeDeleted = new DoneService();
 					
 					// Passing the data to be deleted
 					serviceToBeDeleted.setServiceName(doneServiceToRemove);
@@ -223,9 +223,9 @@ public class RegisterDoneService extends JFrame
 					if( deleteConfirmation == JOptionPane.YES_OPTION )
                     {
 						// Instantiated to get access to the method 'excluir' 
-						ProvidedServiceController serviceController;
+						DoneServiceController serviceController;
 						
-						serviceController = ProvidedServiceController.getInstance();
+						serviceController = DoneServiceController.getInstance();
 						serviceController.deleteProvidedService(serviceToBeDeleted);
 
 						dispose();

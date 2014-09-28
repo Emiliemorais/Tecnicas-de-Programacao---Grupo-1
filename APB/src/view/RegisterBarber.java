@@ -132,7 +132,7 @@ public class RegisterBarber extends JFrame
 				try
 				{
 					Barber.setTemporaryName( defaultTableModel.getValueAt ( table.getSelectedRow (), 0).toString () );
-					ChangeBarber frame = new ChangeBarber ();
+					ModifyBarber frame = new ModifyBarber ();
 					frame.setVisible ( true );
 					frame.setLocationRelativeTo ( null );
 					dispose();

@@ -11,8 +11,9 @@ public class ServiceTypeController
 	// Stores the current instance of the class
 	private static ServiceTypeController instance;
 
-	/* Method that includes a new service type
-	 * Parameter: serviceTypeToInclude - Service type to be included
+	/** 
+	 * Method that includes a new service type
+	 * @param serviceTypeToInclude - Service type to be included
 	 */
 	public boolean includeServiceType (ServiceType serviceTypeToInclude) throws SQLException
 	{
@@ -28,14 +29,15 @@ public class ServiceTypeController
 	}
 
 
-	/* Method that modify a service type on the system
-	 * Parameter: serviceTypeToNoChangeName - Contains the name of the service type to change
-	 * Parameter: newServiceType - New service type that will replace the old one on DB
+	/**
+	 * Method that modify a service type on the system
+	 * @param serviceTypeToNoChangeName - Contains the name of the service type to change
+	 * @param newServiceType - New service type that will replace the old one on DB
 	 */
 	public boolean modifyServiceType ( String serviceTypeToChangeName,
 									   ServiceType newServiceType ) throws SQLException
 	{
-		if ( newServiceType == null )
+		if( newServiceType == null )
         {
 			return false;
 		}
@@ -51,12 +53,13 @@ public class ServiceTypeController
 	}
 	
 
-	/* Method that delete a service type on the system
-	 * Parameter: serviceTypeToDelete - Contains the service type to be deleted
+	/**
+	 * Method that delete a service type on the system
+	 * @param serviceTypeToDelete - Contains the service type to be deleted
 	 */
 	public boolean deleteServiceType (ServiceType serviceTypeToDelete) throws SQLException
 	{
-		if ( serviceTypeToDelete == null )
+		if( serviceTypeToDelete == null )
         {
 			return false;
 		}
@@ -75,7 +78,7 @@ public class ServiceTypeController
 	// Return the current instance or instantiate a new one if 'instance' is null
 	public static ServiceTypeController getInstance ()
 	{
-		if ( instance == null )
+		if( instance == null )
         {
             instance = new ServiceTypeController();
         }
@@ -87,8 +90,9 @@ public class ServiceTypeController
 	}
 
 
-	/* Return a ResultSet interface object with the service types registered on the system
-	 * Parameter: service - Never usede ahead, Check need.
+	/**
+	 * Return a ResultSet interface object with the service types registered on the system
+	 * @param service - Never usede ahead, Check need.
 	 */
 	public ResultSet showRegistredServiceTypes (ServiceType service) throws SQLException
 	{
@@ -96,8 +100,9 @@ public class ServiceTypeController
 	}
 
 
-	/* Search for an specific service type name
-	 * Parameter: serviceTypeToSearch - Service type to search for
+	/**
+	 * Search for an specific service type name
+	 * @param serviceTypeToSearch - Service type to search for
 	 */
 	public ResultSet searchServiceTypeByName (ServiceType serviceTypeToSearch) throws SQLException
 	{

@@ -83,7 +83,7 @@ public class BarberControllerTest
 	{
 		try 
 		{
-			assertTrue ( barberController.alterar(barberInstance.getBarberName (), barberInstance ) );
+			assertTrue ( barberController.modifyBarber(barberInstance.getBarberName (), barberInstance ) );
 		} 
 		catch ( SQLException e ) 
 		{
@@ -125,7 +125,7 @@ public class BarberControllerTest
 	{
 		try 
 		{
-			assertFalse( barberController.alterar( null, null ) ) ;
+			assertFalse( barberController.modifyBarber( null, null ) ) ;
 		} 
 		catch ( SQLException e ) 
 		{

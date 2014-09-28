@@ -116,7 +116,7 @@ public class NewServiceType extends JFrame
 					dispose();
 					
 					// Frame used to go back on service types options (called after save changes)
-					IncludeTypeService registerServiceTypeFrame = new IncludeTypeService();
+					RegisterServiceType registerServiceTypeFrame = new RegisterServiceType();
 					registerServiceTypeFrame.setLocationRelativeTo(null);
 					registerServiceTypeFrame.setVisible(true);
 
@@ -146,7 +146,7 @@ public class NewServiceType extends JFrame
 			public void actionPerformed(ActionEvent e)
             {
 				// Frame used to "go back" to the service types menu
-				IncludeTypeService registerServiceTypeFrame = new IncludeTypeService();
+				RegisterServiceType registerServiceTypeFrame = new RegisterServiceType();
 				registerServiceTypeFrame.setVisible(true);
 				registerServiceTypeFrame.setLocationRelativeTo(null);
 				

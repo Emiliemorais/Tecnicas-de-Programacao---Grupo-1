@@ -22,8 +22,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import model.GivenService;
-import control.ProvidedServiceController;
+import model.DoneService;
+import control.DoneServiceController;
 import dao.FactoryConnection;
 import exception.ServiceException;
 
@@ -231,7 +231,7 @@ public class NewDoneService extends JFrame
 											.toString().split(" - ");
 
 						// DoneService class's instance to access the class
-						GivenService doneService = new GivenService();
+						DoneService doneService = new DoneService();
 
 						doneService.setBarberName(barberName[1]);
 						doneService.setServiceName(serviceType[1]);
@@ -239,7 +239,7 @@ public class NewDoneService extends JFrame
 						doneService.setDate(serviceDate);
 						
 						// Service Controller class's instance to control the data received
-						ProvidedServiceController serviceController = ProvidedServiceController
+						DoneServiceController serviceController = DoneServiceController
 																	  .getInstance();
 						serviceController.insertProvidedService(doneService);
 

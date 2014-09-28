@@ -10,17 +10,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-import model.GivenService;
-import control.ProvidedServiceController;
+import model.DoneService;
+import control.DoneServiceController;
 import exception.ServiceException;
 
 public class DoneServiceControllerTest
 {
 	
-	GivenService doneService = new GivenService();
+	DoneService doneService = new DoneService();
 	
 	// Used in the test to get access to the methods of class 'ServicoPrestadoController.java'
-	ProvidedServiceController doneServiceController = ProvidedServiceController.getInstance();
+	DoneServiceController doneServiceController = DoneServiceController.getInstance();
 
 
 	@Before
@@ -38,7 +38,7 @@ public class DoneServiceControllerTest
 	// Test if a instance previous declared is the current one
 	public void getInstanceMethodTest()
 	{
-		assertEquals(ProvidedServiceController.getInstance(), doneServiceController);
+		assertEquals(DoneServiceController.getInstance(), doneServiceController);
 	}
 
 	@Test

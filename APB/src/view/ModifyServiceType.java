@@ -152,7 +152,7 @@ public class ModifyServiceType extends JFrame
 					dispose();
 					
 					// Frame used to go back on service types options (called after save changes)
-					IncludeTypeService registerServiceTypeFrame = new IncludeTypeService();
+					RegisterServiceType registerServiceTypeFrame = new RegisterServiceType();
 					registerServiceTypeFrame.setVisible(true);
 					registerServiceTypeFrame.setLocationRelativeTo(null);
 				}
@@ -193,7 +193,7 @@ public class ModifyServiceType extends JFrame
 				dispose();
 				
 				// Frame used to go back on service types options
-				IncludeTypeService registerServiceTypeFrame = new IncludeTypeService();
+				RegisterServiceType registerServiceTypeFrame = new RegisterServiceType();
 				registerServiceTypeFrame.setVisible(true);
 				registerServiceTypeFrame.setLocationRelativeTo(null);
 			}

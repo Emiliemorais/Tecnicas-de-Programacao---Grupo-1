@@ -10,20 +10,20 @@ import junit.framework.AssertionFailedError;
 
 import java.text.ParseException;
 
-import model.GivenService;
+import model.DoneService;
 
 import exception.ServiceException;
 
 public class DoneServiceTest
 {
-	GivenService service = new GivenService();
+	DoneService service = new DoneService();
 	
 	@Test
 	// Test the class constructor
 	public void constructorTest()
 	{
 		// Used to test the constructor
-		GivenService service1 = new GivenService("Corte", "15,00","Claudio");
+		DoneService service1 = new DoneService("Corte", "15,00","Claudio");
 		
 		assertEquals("Corte", service1.getServiceName());
 		assertEquals("15,00", service1.getPrice());

@@ -20,7 +20,7 @@ public class BarberController
 	// Return the current instance or instantiate a new one if 'instance' is null
 	public static BarberController getInstance()
 	{
-		if (instance == null)
+		if(instance == null)
         {
             instance = new BarberController();
         }
@@ -31,12 +31,13 @@ public class BarberController
 		return instance;
 	}
 
-	/* Method that includes a new barber on DB
-	 * Parameter: barberToInclude -  Barber to be included on DB
+	/**
+	 * Method that includes a new barber on DB
+	 * @param barberToInclude -  Barber to be included on DB
 	 */
 	public boolean includeBarber(Barber barberToInclude) throws SQLException
 	{
-		if (barberToInclude == null)
+		if(barberToInclude == null)
         {
             return false;
         }
@@ -50,13 +51,14 @@ public class BarberController
 	}
 
 
-	/* Method that modify a barber registered on DB
-	 * Parameter: barberToChangeName - String that contains the barber name that will be replaced
-	 * Parameter: newBarber - Barber that will replace the old one (where 'barberToChangeName' on DB)
+	/** 
+	 * Method that modify a barber registered on DB
+	 * @param barberToChangeName - String that contains the barber name that will be replaced
+	 * @param newBarber - Barber that will replace the old one (where 'barberToChangeName' on DB)
 	 */
-	public boolean alterar(String barberToChangeName, Barber newBarber) throws SQLException
+	public boolean modifyBarber(String barberToChangeName, Barber newBarber) throws SQLException
 	{
-		if (newBarber == null)
+		if(newBarber == null)
         {
             return false;
         }
@@ -68,17 +70,18 @@ public class BarberController
 		// Check use - Probably can be deleted
 		Barber changedBarber = newBarber;
 		
-		BarberDAO.getInstance().changeBarber(barberToChangeName, changedBarber, newBarber);
+		BarberDAO.getInstance().modifyBarber(barberToChangeName, changedBarber, newBarber);
 		return true;
 	}
 
 
-	/* Method that delete a barber registered on DB
-	 * Parameter: barberToDelete - Barber to be deleted
+	/**
+	 * Method that delete a barber registered on DB
+	 * @param barberToDelete - Barber to be deleted
 	 */
 	public boolean deleteBarber(Barber barberToDelete) throws SQLException
 	{
-		if (barberToDelete == null)
+		if(barberToDelete == null)
         {
             return false;
         }
@@ -92,15 +95,16 @@ public class BarberController
 	}
 
 
-	// Method that return all barber table(on BarberDAO) - Check the need of this method
+	// Method that return all barber table (on BarberDAO) - Check the need of this method
 	public ResultSet searchBarbers() throws SQLException
 	{
 		return BarberDAO.getInstance().searchBarber();
 	}
 
 
-	/* Method that return all registered barbers on DB
-	 * Parameter: barber - Check the need of this parameter. Never used, should be deleted.
+	/** 
+	 * Method that return all registered barbers on DB
+	 * @param barber - Check the need of this parameter. Never used, should be deleted.
 	 */
 	public ResultSet showRegisteredBarbers(Barber barber) throws SQLException
 	{
@@ -108,8 +112,9 @@ public class BarberController
 	}
 	
 	
-	/* Method that search for a specific barber on DB
-	 * Parameter: barberToSearchFor - Barber to search for on DB
+	/** 
+	 * Method that search for a specific barber on DB
+	 * @param barberToSearchFor - Barber to search for on DB
 	 */
 	public ResultSet searchBarberByName(Barber barberToSearchFor) throws SQLException
 	{

@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-import model.GivenService;
+import model.DoneService;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,8 +17,8 @@ public class DoneServiceDAOTest
 {
 
 	// Given Service class's instance to access the class
-	GivenService doneService = new GivenService();
-	GivenService doneService2 = new GivenService();
+	DoneService doneService = new DoneService();
+	DoneService doneService2 = new DoneService();
 	
 	/* 
 	 * Método utilizado para receber os atributos de um Serviço Prestado de forma correta,

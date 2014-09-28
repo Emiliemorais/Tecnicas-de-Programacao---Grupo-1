@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import model.Phonebook;
-import control.ControllerPhonebook;
+import control.PhonebookController;
 import exception.BarberException;
 
 public class PhonebookControllerTest
@@ -34,13 +34,13 @@ public class PhonebookControllerTest
 	}
 	
 	// Instantiated to get access to the methods of class 'PhonebookController'
-	ControllerPhonebook contactController = ControllerPhonebook.getInstance();
+	PhonebookController contactController = PhonebookController.getInstance();
 
 	@Test
 	//  Test if a instance previous declared is the current one
 	public void getInstanceMethodTest()
 	{
-		assertEquals(ControllerPhonebook.getInstance(), contactController);
+		assertEquals(PhonebookController.getInstance(), contactController);
 	}
 
 	@Test

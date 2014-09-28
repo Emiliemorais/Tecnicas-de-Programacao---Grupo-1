@@ -18,7 +18,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import model.Phonebook;
-import control.ControllerPhonebook;
+import control.PhonebookController;
 
 @SuppressWarnings("serial")
 public class RegisterPhonebook extends JFrame
@@ -84,7 +84,7 @@ public class RegisterPhonebook extends JFrame
 		try
 		{	
 			// Instantiated to get access to the method 'showRegisteredContacts()'
-			ControllerPhonebook phonebookController = ControllerPhonebook.getInstance();
+			PhonebookController phonebookController = PhonebookController.getInstance();
 			
 			// Used to pass as argument to the method 'showRegisteredContacts()' 
 			Phonebook contact = new Phonebook();

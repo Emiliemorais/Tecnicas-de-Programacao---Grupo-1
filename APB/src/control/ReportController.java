@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 // Importando classes da DAO e da MODEL
-import dao.ResultBarber;
+import dao.ReportDAO;
 import model.Report;
 
 public class ReportController 
@@ -23,7 +23,7 @@ private static ReportController instance;
 	 */
 	public ResultSet searchByDate ( Report report ) throws SQLException 
 	{
-		return ResultBarber.getInstance().searchByDate ( report );
+		return ReportDAO.getInstance().searchByDate ( report );
 	}
 	
 	/*
@@ -32,7 +32,7 @@ private static ReportController instance;
 	 */
 	public ResultSet searchByDateAndBarber ( Report report ) throws SQLException 
 	{	
-		return ResultBarber.getInstance().searchByDateAndBarber ( report );
+		return ReportDAO.getInstance().searchByDateAndBarber ( report );
 	}
 	
 	/*
@@ -41,7 +41,7 @@ private static ReportController instance;
 	 */
 	public ResultSet searchByDateAndService(Report report) throws SQLException 
 	{	
-		return ResultBarber.getInstance().searchByDateAndService ( report );
+		return ReportDAO.getInstance().searchByDateAndService ( report );
 	}
 	
 	/*
@@ -50,7 +50,7 @@ private static ReportController instance;
 	 */
 	public ResultSet searchByBarber ( Report report ) throws SQLException 
 	{	
-		return ResultBarber.getInstance().searchByBarber ( report );
+		return ReportDAO.getInstance().searchByBarber ( report );
 	}
 	
 	/*
@@ -59,7 +59,7 @@ private static ReportController instance;
 	 */
 	public ResultSet searchByBarberAndService(Report report) throws SQLException 
 	{	
-		return ResultBarber.getInstance().searchByBarberAndService(report);
+		return ReportDAO.getInstance().searchByBarberAndService(report);
 	}
 	
 	/*
@@ -68,7 +68,7 @@ private static ReportController instance;
 	 */
 	public ResultSet searchByService ( Report report ) throws SQLException 
 	{	
-		return ResultBarber.getInstance().searchByService ( report );
+		return ReportDAO.getInstance().searchByService ( report );
 	}
 	
 	/*
@@ -77,7 +77,7 @@ private static ReportController instance;
 	 */
 	public ResultSet searchByDateBarberAndService ( Report report ) throws SQLException 
 	{		
-		return ResultBarber.getInstance().searchByDateBarberAndService ( report );
+		return ReportDAO.getInstance().searchByDateBarberAndService ( report );
 	}
 	
 	/* 
