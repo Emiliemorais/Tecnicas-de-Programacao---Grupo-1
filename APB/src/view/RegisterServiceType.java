@@ -87,7 +87,7 @@ public class RegisterServiceType extends JFrame
 		}
 		catch (SQLException e)
 		{
-			mostrarMensagemDeErro(e.getMessage());
+			showErrorMessage(e.getMessage());
 		}
 
 		scrollPane.setViewportView(table);
@@ -127,19 +127,19 @@ public class RegisterServiceType extends JFrame
 				} 
 				catch (ServiceException e1) 
 				{
-					mostrarMensagemDeErro(e1.getMessage());
+					showErrorMessage(e1.getMessage());
 				} 
 				catch (ArrayIndexOutOfBoundsException e1)
 				{
-					mostrarMensagemDeErro("Selecione um Tipo de Serviço");
+					showErrorMessage("Selecione um Tipo de Serviço");
 				}
 			}
 		});
 		btnAlterar.setBounds(380, 58, 94, 23);
 		contentPane.add(btnAlterar);
 
-		JButton btnRemover = new JButton("Remover");
-		btnRemover.addMouseListener(new MouseAdapter() 
+		JButton btnRemove = new JButton("Remover");
+		btnRemove.addMouseListener(new MouseAdapter() 
 		{
 			
 			// VIEW method that performs a delete of a Type of Service
@@ -147,11 +147,11 @@ public class RegisterServiceType extends JFrame
 			public void mouseClicked(MouseEvent e) 
 			{
 				String nameTypeService = (String) table.getValueAt(table.getSelectedRow(),	0);
-				ServiceType tipoServico = new ServiceType();
+				ServiceType serviceType = new ServiceType();
 				
 				try 
 				{	
-					tipoServico.setServiceTypeName(nameTypeService);
+					serviceType.setServiceTypeName(nameTypeService);
 				} 
 				catch (ServiceException e1) 
 				{
@@ -166,7 +166,7 @@ public class RegisterServiceType extends JFrame
 					ServiceTypeController tipoServicoController = ServiceTypeController.getInstance();
 					try 
 					{
-						tipoServicoController.deleteServiceType(tipoServico);
+						tipoServicoController.deleteServiceType(serviceType);
 					}
 					catch (SQLException e1) 
 					{
@@ -184,12 +184,12 @@ public class RegisterServiceType extends JFrame
 				}
 			}
 		});
-		btnRemover.setBounds(380, 92, 94, 23);
-		contentPane.add(btnRemover);
+		btnRemove.setBounds(380, 92, 94, 23);
+		contentPane.add(btnRemove);
 
-		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.setBounds(380, 228, 94, 23);
-		btnVoltar.addActionListener(new ActionListener() 
+		JButton btnBack = new JButton("Voltar");
+		btnBack.setBounds(380, 228, 94, 23);
+		btnBack.addActionListener(new ActionListener() 
 		{
 			// VIEW method of returning to the administrative window
 			public void actionPerformed (ActionEvent arg0)
@@ -200,19 +200,19 @@ public class RegisterServiceType extends JFrame
 				frame.setLocationRelativeTo(null);
 			}
 		});
-		contentPane.add(btnVoltar);
+		contentPane.add(btnBack);
 	}
 	
 	// Access method for receiving a temporary name
-	public static String getNomeTemp() 
+	public static String getNameTemporary() 
 	{
 		return nomeTemp;
 	}
 	
 	// Method that shows an error message, used in the treatment of exceptions class
-	private void mostrarMensagemDeErro(String informacao) 
+	private void showErrorMessage(String information) 
 	{
-		JOptionPane.showMessageDialog(null, informacao, "Atenção",
+		JOptionPane.showMessageDialog(null, information, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 }

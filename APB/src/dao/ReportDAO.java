@@ -26,7 +26,7 @@ public class ReportDAO
 		}
 		else
 		{
-			
+			//Noting to do
 		}
 		return instance;
 	}
@@ -51,9 +51,9 @@ public class ReportDAO
 															+relatorio.getInitialDate()+"' AND '"
 															+relatorio.getFinalDate()+"' AND barbeiro = '"
 															+relatorio.getBarberName()+"';");
-		ResultSet rs = pst.executeQuery();
+		ResultSet instanceStatement = pst.executeQuery();
 		
-		return rs;
+		return instanceStatement;
 	}
         
     // Interface that provides access to registered reports and allows them to be searched by date and service
@@ -112,9 +112,9 @@ public class ReportDAO
 															+relatorio.getFinalDate()+"' AND barbeiro = '"
 															+relatorio.getBarberName()+"' AND nome = '"
 															+relatorio.getServiceType()+"';");
-		ResultSet rs = pst.executeQuery();
+		ResultSet instanceStatement = pst.executeQuery();
 		
-		return rs;
+		return instanceStatement;
 	}
 
 }

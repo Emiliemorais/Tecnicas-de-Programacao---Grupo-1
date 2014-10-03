@@ -199,7 +199,7 @@ public class SearchContact extends JFrame
 				try 
 				{
 					
-					Phonebook.setTempNome ( defaultTableModel.getValueAt (
+					Phonebook.setNameTemporary ( defaultTableModel.getValueAt (
 							table.getSelectedRow (), 0).toString () );
 					dispose ();
 					ModifyContact frame = new ModifyContact();
@@ -250,7 +250,7 @@ public class SearchContact extends JFrame
 						PhonebookController phonebookController = PhonebookController
 								.getInstance ();
 						// phonebookController - Instance of "AgendaController"
-						phonebookController.excluir ( phonebook );
+						phonebookController.remove ( phonebook );
 
 						dispose ();
 						SearchContact frame = new SearchContact ();

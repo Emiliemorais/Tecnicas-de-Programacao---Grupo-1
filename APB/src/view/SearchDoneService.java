@@ -1,4 +1,4 @@
-package view;
+	package view;
 
 import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
@@ -60,11 +60,11 @@ public class SearchDoneService extends JFrame
 	// Builder components of the search window service
 	public SearchDoneService() 
 	{
-		inicializarComponentes();
+		startComponents();
 	}
 
 	// Builder components of the search window service
-	public void inicializarComponentes ()
+	public void startComponents ()
 	{
 		setTitle("Pesquisar Servi\u00E7o");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -78,9 +78,9 @@ public class SearchDoneService extends JFrame
 		scrollPane.setBounds(10, 11, 464, 115);
 		contentPane.add(scrollPane);
 
-		final DefaultTableModel modelo = new DefaultTableModel(null,
+		final DefaultTableModel model = new DefaultTableModel(null,
 																new String[] { "Serviço", "Realizado por", "Valor", "Data" });
-		final JTable table = new JTable(modelo);
+		final JTable table = new JTable(model);
 		scrollPane.setViewportView(table);
 
 		textField = new JTextField();
@@ -92,8 +92,8 @@ public class SearchDoneService extends JFrame
 		lblPesquisar.setBounds(20, 137, 66, 14);
 		contentPane.add(lblPesquisar);
 
-		JButton btnPesquisarServico = new JButton("Pesquisar Serviço");
-		btnPesquisarServico.addActionListener(new ActionListener() {
+		JButton btnSearchService = new JButton("Pesquisar Serviço");
+		btnSearchService.addActionListener(new ActionListener() {
 			
 			// VIEW method that is used to search a Service Provided
 			public void actionPerformed (ActionEvent arg0) 
@@ -116,29 +116,29 @@ public class SearchDoneService extends JFrame
 						data[1] = instanceStatement.getString("barbeiro");
 						data[2] = instanceStatement.getString("preco");
 						data[3] = servico.convertServiceDateToABNT(instanceStatement.getString("data"));
-						modelo.addRow(data);
+						model.addRow(data);
 					}
 				} 
 				catch (ServiceException e) 
 				{
-					mostrarMensagemDeErro(e.getMessage());
+					showMessageError(e.getMessage());
 				} 
 				catch (SQLException e) 
 				{
-					mostrarMensagemDeErro(e.getMessage());
+					showMessageError(e.getMessage());
 				} 
 				catch (ParseException e)
 				{
-					mostrarMensagemDeErro(e.getMessage());
+					showMessageError(e.getMessage());
 				}
 
 			}
 		});
-		btnPesquisarServico.setBounds(10, 168, 148, 23);
-		contentPane.add(btnPesquisarServico);
+		btnSearchService.setBounds(10, 168, 148, 23);
+		contentPane.add(btnSearchService);
 
-		JButton btnPesquisarBarbeiro = new JButton("Pesquisar Barbeiro");
-		btnPesquisarBarbeiro.addMouseListener(new MouseAdapter() {
+		JButton btnSearchBarber = new JButton("Pesquisar Barbeiro");
+		btnSearchBarber.addMouseListener(new MouseAdapter() {
 			
 			// VIEW method that is used to search a Barber
 			@Override
@@ -150,41 +150,41 @@ public class SearchDoneService extends JFrame
 					servico.setBarberName(textField.getText());
 
 					connection = FactoryConnection.getInstance().getConnection();
-					ResultSet rs = connection.createStatement().executeQuery(
+					ResultSet instanceStatement = connection.createStatement().executeQuery(
 																			"SELECT nome, preco, barbeiro,"
 																			+ " data FROM servicoprestado WHERE barbeiro = '"
 																			+ servico.getBarberName() + "' ORDER BY data;");
 
-					while (rs.next())
+					while (instanceStatement.next())
 					{
-						String[] dados = new String[4];
-						dados[0] = rs.getString("nome");
-						dados[1] = rs.getString("barbeiro");
-						dados[2] = rs.getString("preco");
-						dados[3] = servico.convertServiceDateToABNT(rs.getString("data"));
-						modelo.addRow(dados);
+						String[] data = new String[4];
+						data[0] = instanceStatement.getString("nome");
+						data[1] = instanceStatement.getString("barbeiro");
+						data[2] = instanceStatement.getString("preco");
+						data[3] = servico.convertServiceDateToABNT(instanceStatement.getString("data"));
+						model.addRow(data);
 					}
 				}
 				catch (ServiceException e) 
 				{
-					mostrarMensagemDeErro(e.getMessage());
+					showMessageError(e.getMessage());
 				}
 				catch (SQLException e) 
 				{
-					mostrarMensagemDeErro(e.getMessage());
+					showMessageError(e.getMessage());
 				} 
 				catch (ParseException e)
 				{
-					mostrarMensagemDeErro(e.getMessage());
+					showMessageError(e.getMessage());
 				}
 
 			}
 		});
-		btnPesquisarBarbeiro.setBounds(168, 168, 148, 23);
-		contentPane.add(btnPesquisarBarbeiro);
+		btnSearchBarber.setBounds(168, 168, 148, 23);
+		contentPane.add(btnSearchBarber);
 
-		JButton btnRemover = new JButton("Remover");
-		btnRemover.addMouseListener(new MouseAdapter() 
+		JButton btnRemove = new JButton("Remover");
+		btnRemove.addMouseListener(new MouseAdapter() 
 		{
 			
 			// VIEW method that is used to remove a service provided
@@ -193,23 +193,23 @@ public class SearchDoneService extends JFrame
 			{
 				try 
 				{
-					String nome = (String) table.getValueAt(table.getSelectedRow(), 0);
-					String barbeiro = (String) table.getValueAt(table.getSelectedRow(), 1);
-					String valor = (String) table.getValueAt(table.getSelectedRow(), 2);
+					String name = (String) table.getValueAt(table.getSelectedRow(), 0);
+					String barber = (String) table.getValueAt(table.getSelectedRow(), 1);
+					String value = (String) table.getValueAt(table.getSelectedRow(), 2);
 					String data = (String) table.getValueAt(table.getSelectedRow(), 3);
-					DoneService servico = new DoneService();
-					servico.setServiceName(nome);
-					servico.setBarberName(barbeiro);
-					servico.setPrice(valor);
-					servico.setDate(data);
+					DoneService service = new DoneService();
+					service.setServiceName(name);
+					service.setBarberName(barber);
+					service.setPrice(value);
+					service.setDate(data);
 
-					int confirmacao = JOptionPane.showConfirmDialog(null,
-							"Remover " + nome + " da lista?");
+					int confirmation = JOptionPane.showConfirmDialog(null,
+							"Remover " + name + " da lista?");
 
-					if(confirmacao == JOptionPane.YES_OPTION)
+					if(confirmation == JOptionPane.YES_OPTION)
 					{
 						DoneServiceController servicoController = DoneServiceController.getInstance();
-						servicoController.deleteProvidedService(servico);
+						servicoController.deleteProvidedService(service);
 
 						dispose();
 						RegisterDoneService frame = new RegisterDoneService();
@@ -222,28 +222,28 @@ public class SearchDoneService extends JFrame
 				} 
 				catch (ArrayIndexOutOfBoundsException e) 
 				{
-					mostrarMensagemDeErro("Selecione um Serviço para remover");
+					showMessageError("Selecione um Serviço para remover");
 				} 
 				catch (ServiceException e) 
 				{
-					mostrarMensagemDeErro(e.getMessage());
+					showMessageError(e.getMessage());
 				}
 				catch (SQLException e) 
 				{
-					mostrarMensagemDeErro(e.getMessage());
+					showMessageError(e.getMessage());
 				} 
 				catch (ParseException e) 
 				{
-					mostrarMensagemDeErro(e.getMessage());
+					showMessageError(e.getMessage());
 				}
 
 			}
 		});
-		btnRemover.setBounds(123, 228, 89, 23);
-		contentPane.add(btnRemover);
+		btnRemove.setBounds(123, 228, 89, 23);
+		contentPane.add(btnRemove);
 
-		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.addMouseListener(new MouseAdapter() 
+		JButton btnBack = new JButton("Voltar");
+		btnBack.addMouseListener(new MouseAdapter() 
 		{
 			
 			// VIEW method that is used to return the window to Sign Servico
@@ -256,11 +256,11 @@ public class SearchDoneService extends JFrame
 				frame.setLocationRelativeTo(null);
 			}
 		});
-		btnVoltar.setBounds(279, 228, 89, 23);
-		contentPane.add(btnVoltar);
+		btnBack.setBounds(279, 228, 89, 23);
+		contentPane.add(btnBack);
 
-		JButton btnPesquisarData = new JButton("Pesquisar Data");
-		btnPesquisarData.addMouseListener(new MouseAdapter() 
+		JButton btnSearchForDate = new JButton("Pesquisar Data");
+		btnSearchForDate.addMouseListener(new MouseAdapter() 
 		{
 			
 			// VIEW method that is used to search for services rendered by date
@@ -269,53 +269,53 @@ public class SearchDoneService extends JFrame
 			{
 				try
 				{
-					DoneService servico = new DoneService();
-					servico.setDate(textField.getText());
+					DoneService service = new DoneService();
+					service.setDate(textField.getText());
 
 					connection = FactoryConnection.getInstance().getConnection();
-					ResultSet rs = connection.createStatement().executeQuery(
+					ResultSet instanceStatement = connection.createStatement().executeQuery(
 																			"Select nome, preco, barbeiro,"
 																			+ " data from servicoprestado where data = '"
-																			+ servico.getDate() + "' order by data;");
+																			+ service.getDate() + "' order by data;");
 
-					while (rs.next()) 
+					while (instanceStatement.next()) 
 					{
-						String[] dados = new String[4];
-						dados[0] = rs.getString("nome");
-						dados[1] = rs.getString("barbeiro");
-						dados[2] = rs.getString("preco");
-						dados[3] = servico.convertServiceDateToABNT(rs.getString("data"));
-						modelo.addRow(dados);
+						String[] data = new String[4];
+						data[0] = instanceStatement.getString("nome");
+						data[1] = instanceStatement.getString("barbeiro");
+						data[2] = instanceStatement.getString("preco");
+						data[3] = service.convertServiceDateToABNT(instanceStatement.getString("data"));
+						model.addRow(data);
 					}
 				}
 				catch (SQLException e) 
 				{
-					mostrarMensagemDeErro(e.getMessage());
+					showMessageError(e.getMessage());
 				} 
 				catch (ParseException e)
 				{
-					mostrarMensagemDeErro(e.getMessage());
+					showMessageError(e.getMessage());
 				} 
 				catch (ServiceException e) 
 				{
-					mostrarMensagemDeErro(e.getMessage());
+					showMessageError(e.getMessage());
 				}
 
 			}
 		});
-		btnPesquisarData.setBounds(326, 168, 148, 23);
-		contentPane.add(btnPesquisarData);
+		btnSearchForDate.setBounds(326, 168, 148, 23);
+		contentPane.add(btnSearchForDate);
 	}
 
 	// Method that shows an error message, used in the treatment of exceptions class
-	private void mostrarMensagemDeErro (String informacao) 
+	private void showMessageError (String informacao) 
 	{
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 	// Method of accessing the value of the temporary variable name
-	public static String getTempNome () 
+	public static String getNameTemporary () 
 	{
 		return tempNome;
 	}

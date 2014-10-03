@@ -64,7 +64,7 @@ public class BarberTest
 	 *Method used to receive a null CPF a Barber for the test launch of the exception
 	*/
 	@Test (expected = NullPointerException.class)
-	public void barbeiroNaoPodePossuirCPFNuloPassandoPeloSetter () 
+	public void testCPFNull () 
 	{
 		try 
 		{
@@ -81,7 +81,7 @@ public class BarberTest
 	 * Method used to receive a null RG a Barber for the test launch of the exception
 	*/
 	@Test (expected = NullPointerException.class)
-	public void barbeiroNaoPodePossuirRGNuloPassandoPeloSetter ()
+	public void testRGNull ()
 	{
 		try
 		{
@@ -115,7 +115,7 @@ public class BarberTest
 	 * Method used to receive a null chair of a Barber for the test launch of the exception
 	*/	
 	@Test (expected = NullPointerException.class)
-	public void barbeiroNaoPodePossuirCadeiraNuloPassandoPeloSetter ()
+	public void testChairNull ()
 	{
 		try 
 		{
@@ -132,7 +132,7 @@ public class BarberTest
 	 * Method used to receive a null name in the constructor of a Barber for the test launch of the exception
 	*/
 	@Test (expected = IllegalArgumentException.class)
-	public void contrutorDeBarbeiroNaoPodePassarComNomeNulo () 
+	public void builderWithNullName () 
 	{
 		try 
 		{
@@ -148,7 +148,7 @@ public class BarberTest
 	 * Method used to receive a null in the constructor of a CPF Barber for the test launch of the exception
 	*/	
 	@Test (expected = IllegalArgumentException.class)
-	public void contrutorDeBarbeiroNaoPodePassarComCpfNulo ()
+	public void builderWithNullCpf ()
 	{
 		try 
 		{
@@ -165,7 +165,7 @@ public class BarberTest
 	 *Method used to receive a null in the constructor of a RG Barber for the test launch of the exception
 	*/
 	@Test (expected = IllegalArgumentException.class)
-	public void contrutorDeBarbeiroNaoPodePassarComRgNulo () 
+	public void builderWithNullRG () 
 	{
 		try
 		{
@@ -182,7 +182,7 @@ public class BarberTest
 	 * Method used to receive a null phone in the constructor of a Barber for the test launch of the exception
 	*/	
 	@Test(expected = IllegalArgumentException.class)
-	public void contrutorDeBarbeiroNaoPodePassarComTelefoneNulo() 
+	public void builderWithNullFhone() 
 	{
 		try 
 		{
@@ -198,7 +198,7 @@ public class BarberTest
 	 * Method used to receive a null in the constructor of a chair barber for the test launch of the exception
 	*/
 	@Test (expected = IllegalArgumentException.class)
-	public void contrutorDeBarbeiroNaoPodePassarComCadeiraNulo () 
+	public void builderWithNullChair () 
 	{
 		try 
 		{
@@ -214,7 +214,7 @@ public class BarberTest
 	 * Method used to receive a CPF invalid a Barber for the test launch of the exception
 	*/
 	@Test (expected = AssertionError.class)
-	public void cpfNaoPodePassarQuandoInvalido () 
+	public void testInvalidCPF () 
 	{
 		try 
 		{
@@ -231,7 +231,7 @@ public class BarberTest
 	 * Method used to receive an RG containing letters for the test launch of the exception
 	*/
 	@Test (expected = AssertionError.class)
-	public void rgNaoPodeConterLetras () 
+	public void testLettersCPF () 
 	{
 		try 
 		{
@@ -247,7 +247,7 @@ public class BarberTest
 	 * Method used to receive a chair that contains letters for the test launch of the exception
 	*/
 	@Test (expected = AssertionError.class)
-	public void numeroDaCadeiraNaoPodeSerUmaLetra ()
+	public void numberChairNotNull ()
 	{
 		try 
 		{
@@ -263,7 +263,7 @@ public class BarberTest
 	 *Method used to receive a phone containing letters for the test launch of the exception
 	*/
 	@Test (expected = AssertionError.class)
-	public void numeroDoTelefoneNaoPodeConterLetras () 
+	public void phoneNotConterLetter () 
 	{
 		try
 		{
@@ -278,14 +278,14 @@ public class BarberTest
 	
 	// Method that tests receiving a name Barber get the access method
 	@Test
-	public void testeParaGetterDeNomeDeBarbeiro () 
+	public void testGetterNameBarber () 
 	{
 		assertEquals("Alessandro", barber.getBarberName());
 	}
 	
 	// Method that tests receiving a CPF Barber get the access method
 	@Test
-	public void testeParaGetterDeCPFDeBarbeiro ()
+	public void testGetterCPFBarber ()
 	{
 		assertEquals("02919594150", barber.getBarberCpf());
 	}
@@ -293,7 +293,7 @@ public class BarberTest
 	// Method that tests an incoming RG Barber get the access method
 
 	@Test
-	public void testeParaGetterDeRGDeBarbeiro () 
+	public void testGetterRGBarber () 
 	{
 		assertEquals("418757896", barber.getBarberRg());
 	}
@@ -301,28 +301,28 @@ public class BarberTest
 	// Method that tests an incoming phone Barber get the access method
  
 	@Test
-	public void testeParaGetterDeTelefoneDeBarbeiro () 
+	public void testGetterPhoneBarber () 
 	{
 		assertEquals("3389-9085", barber.getBarberTelephone());
 	}
 	
 	// Method that tests the receipt of a chair by Barber access method get
 	@Test
-	public void testeParaGetterDeCadeiraDeBarbeiro ()
+	public void testGetterChairBarber ()
 	{
 		assertEquals("10", barber.getBarberChair());
 	}
 	
 	// M�todo que testa o recebimento de um nome temporario do Barbeiro pelo m�todo de acesso get 
 	@Test
-	public void testeParaGetterDeTempNomeDeBarbeiro ()
+	public void testForGetterTheTemporaryNameTheBarber ()
 	{
 		assertEquals(null, Barber.getTemporaryName());
 	}
 	
 	// Method testing the passage of a name of the access method Barber September
 	@Test
-	public void setDeBarbeiroDeveFuncionar ()
+	public void setBarberFunction ()
 	{
 		try 
 		{
@@ -341,7 +341,7 @@ public class BarberTest
 	
 	// Method that tests the passage of a name with the number of the access method Barber September
 	@Test (expected = BarberException.class)
-	public void nomeComNumero () throws BarberException 
+	public void testNameWithNumbers () throws BarberException 
 	{
 		barber.setBarberName("J040");
 		Assert.fail("Deve lançar uma exceção");
@@ -349,7 +349,7 @@ public class BarberTest
 	
 	// Method that tests the passage of a CPF blank Barber set by the access method
 	@Test (expected =  BarberException.class)
-	public void cpfPassadoEmBranco () throws BarberException
+	public void blankCPF () throws BarberException
 	{
 		barber.setBarberCpf("");
 		Assert.fail("Deve lançar uma exceção");
@@ -357,7 +357,7 @@ public class BarberTest
 	
 	// Method that tests the passage of a CPF Barber invalid by the access method in September
 	@Test (expected =  BarberException.class)
-	public void cpfInvalido () throws BarberException 
+	public void invalidCPF () throws BarberException 
 	{
 		barber.setBarberCpf("123.654.456-75");
 		Assert.fail("Deve lançar uma exceção");
@@ -365,7 +365,7 @@ public class BarberTest
 	
 	// Method that tests the passage of a rg with letters Barber by the access method in September
 	@Test (expected =  AssertionError.class)
-	public void rgPassadoComLetras () throws BarberException 
+	public void rgWithLetters () throws BarberException 
 	{
 		barber.setBarberRg("asasa");
 		Assert.fail("Deve lançar uma exceção");
@@ -373,7 +373,7 @@ public class BarberTest
 	
 	// Method that tests the passage of a rg blank Barber by the access method in September
 	@Test (expected =  BarberException.class)
-	public void rgPassadoEmBrancro () throws BarberException
+	public void rgBlank () throws BarberException
 	{
 		barber.setBarberRg("");
 		Assert.fail("Deve lançar uma exceção");
@@ -382,7 +382,7 @@ public class BarberTest
 	// Method that tests the passage of a blank name Barber by the access method in September
 
 	@Test (expected =  BarberException.class)
-	public void nomePassadoEmBrancro () throws BarberException
+	public void nameBlank () throws BarberException
 	{
 		barber.setBarberName("");
 		Assert.fail("Deve lançar uma exceção");
@@ -391,7 +391,7 @@ public class BarberTest
 	// Method that tests the passing of a phone blank Barber by the access method in September
 
 	@Test (expected =  BarberException.class)
-	public void telefonePassadoEmBrancro () throws BarberException
+	public void phoneBlank () throws BarberException
 	{
 		barber.setBarberTelephone("");
 		Assert.fail("Deve lançar uma exceção");
@@ -400,7 +400,7 @@ public class BarberTest
 	// Method that tests the passage of a chair on white Barber by the access method in September
 
 	@Test (expected =  BarberException.class)
-	public void cadeiraPassadoEmBrancro () throws BarberException 
+	public void chairBlank () throws BarberException 
 	{
 		barber.setBarberChair("");
 		Assert.fail("Deve lançar uma exceção");
@@ -411,7 +411,7 @@ public class BarberTest
 
 	 */
 	@Test (expected =  AssertionError.class)
-	public void cadeiraPassadoComoZero () throws BarberException 
+	public void chairWithZero () throws BarberException 
 	{
 		barber.setBarberChair("0");
 		Assert.fail("Deve lançar uma exceção");
@@ -421,7 +421,7 @@ public class BarberTest
 	 * Method that tests the passage of a chair with more than two digits of the access method Barber September
 	 */
 	@Test (expected = BarberException.class)
-	public void cadeiraPassadoComMaisDeDoisDigitos () throws BarberException
+	public void chairPassTwoDigits () throws BarberException
 	{
 		barber.setBarberChair("1000");
 		Assert.fail("Deve lançar uma exceção");
@@ -430,7 +430,7 @@ public class BarberTest
 	// Method that tests receiving the temporary name for the access method get
 
 	@Test (expected = AssertionError.class)
-	public void getterDeTempNomeDeveRetornarValorPassado () throws ServiceException
+	public void testeReturnName () throws ServiceException
 	{
 		Assert.fail("Deve lançar uma exceção");
 	}
@@ -438,7 +438,7 @@ public class BarberTest
 	 // Method that tests passing a null temporary name
 
 	@Test (expected = AssertionFailedError.class)
-	public void setterDeTempNomeNaoPodeSerNulo () throws ServiceException 
+	public void setterNomeTemporaryNotNull () throws ServiceException 
 	{
 		Barber.setTemporaryName(null);
 		Assert.fail("Deve lançar uma exceção");
@@ -447,7 +447,7 @@ public class BarberTest
 	
 	// Method that tests the passage of a temporary blank name for access method in September	
 	@Test (expected = AssertionFailedError.class)
-	public void setterDeTempNomeNaoPodeSerEmBranco () 
+	public void setterNomeTemporaryNotBlank () 
 	{
 		Barber.setTemporaryName("");
 		Assert.fail("Deve lançar uma exceção");
@@ -456,9 +456,9 @@ public class BarberTest
 	// Method that tests the passage of a temporary name by Barber access method in September
 
 	@Test (expected = AssertionError.class)
-	public void tempNomeValido () throws BarberException
+	public void invalidNameTemporary () throws BarberException
 	{
 		Barber.setTemporaryName("João");
-		assertEquals("João", Phonebook.getTempNome());
+		assertEquals("João", Phonebook.getNameTemporary());
 	}
 }

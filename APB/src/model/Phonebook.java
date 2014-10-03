@@ -99,13 +99,13 @@ public class Phonebook
 	}
 
 	// Method of temporary access name for verification
-	public static String getTempNome () 
+	public static String getNameTemporary () 
 	{
 		return tempNome;
 	}
 
 	// Method of temporary access name for verification
-	public static void setTempNome (String tempNome)
+	public static void setNameTemporary (String tempNome)
 	{
 		Phonebook.tempNome = tempNome;
 	}

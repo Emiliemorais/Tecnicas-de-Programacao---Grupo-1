@@ -38,7 +38,7 @@ public class PhonebookTest
 	 
 	//Method used to test the operation of the builder of an Agenda
 	@Test
-	public void contrutorDeAgendaDeveFuncionar() 
+	public void testeBuilderFunction() 
 	{
 		Phonebook contato = new Phonebook("Alessandro", "6589-5689", "aaaa");
 		assertEquals("Alessandro", contato.getPhonebookName());
@@ -48,7 +48,7 @@ public class PhonebookTest
 	
 	// Method that tests the receipt of a name of a contact by the access method get
 	@Test
-	public void getterDeNomeDeveFuncionar ()
+	public void getterNameFunction ()
 	{
 		assertEquals("Alessandro", contactOfPhonebook.getPhonebookName());
 	}
@@ -56,7 +56,7 @@ public class PhonebookTest
 	// Method that tests an incoming phone a contact by the access method get
 
 	@Test
-	public void getterDeTelefoneDeveFuncionar ()
+	public void getterPhoneFunction ()
 	{
 		assertEquals("4568-9856", contactOfPhonebook.getPhonebook());
 	}
@@ -64,7 +64,7 @@ public class PhonebookTest
 	// Method that tests receiving a description of a contact by the access method get
 
 	@Test
-	public void getterDeDescricaoDeveFuncionar ()
+	public void getterDescriptionFunction ()
 	{
 		assertEquals("ASDAS", contactOfPhonebook.getPhonebookDs());
 	}
@@ -74,7 +74,7 @@ public class PhonebookTest
 
 	*/ 
 	@Test(expected = BarberException.class)
-	public void nomeDoBarbeiroNaoPodePassarQuandoEmBranco () throws BarberException
+	public void nameBarberNotBlank () throws BarberException
 	{
 		contactOfPhonebook.setPhonebookName("");
 		Assert.fail("Deve lançar uma exceção");
@@ -85,7 +85,7 @@ public class PhonebookTest
 
 	*/ 
 	@Test(expected = BarberException.class)
-	public void telefoneDoBarbeiroNaoPodePassarQuandoEmBranco () throws BarberException
+	public void phoneOfBarberNotNull () throws BarberException
 	{
 		contactOfPhonebook.setPhonebook("");
 		Assert.fail("Deve lançar uma exceção");
@@ -96,7 +96,7 @@ public class PhonebookTest
 
 	*/ 
 	@Test(expected = BarberException.class)
-	public void nomeDoBarbeiroNaoPodePassarQuandoForaDeFormato () throws BarberException
+	public void nameOfBarberNotPassOutFormat () throws BarberException
 	{
 		contactOfPhonebook.setPhonebookName("ASDAS!!");
 		Assert.fail("Deve lançar uma exceção");
@@ -107,7 +107,7 @@ public class PhonebookTest
 
 	*/
 	@Test(expected = BarberException.class)
-	public void telefoneDoBarbeiroNaoPodePassarQuandoForaDeFormato () throws BarberException
+	public void phoneOfBarberNotPassOutFormat () throws BarberException
 	{
 		contactOfPhonebook.setPhonebook("45645aa-a54654");
 		Assert.fail("Deve lançar uma exceção");
@@ -116,36 +116,36 @@ public class PhonebookTest
 	// Method that tests receiving the temporary name for the access method get
 
 	@Test (expected = AssertionError.class)
-	public void getterDeTempNomeDeveRetornarValorPassado () throws ServiceException 
+	public void getterReturnValueForNameTemporary () throws ServiceException 
 	{
-		assertEquals("Barba", Phonebook.getTempNome());
+		assertEquals("Barba", Phonebook.getNameTemporary());
 	}
 	
 	
 	// Method that tests passing a null temporary name for access method in September
  
 	@Test (expected = AssertionFailedError.class)
-	public void setterDeTempNomeNaoPodeSerNulo () throws ServiceException 
+	public void setterTemporatyNameNotNull () throws ServiceException 
 	{
-		Phonebook.setTempNome(null);
+		Phonebook.setNameTemporary(null);
 		Assert.fail("Deve lançar exceção");
 	}
 	
 	// Method that tests the passage of a temporary blank name for access method in September
 
 	@Test (expected = AssertionFailedError.class)
-	public void setterDeTempNomeNaoPodeSerEmBranco () 
+	public void setterTemporaryNameNotNull () 
 	{
-		Phonebook.setTempNome("");
+		Phonebook.setNameTemporary("");
 		Assert.fail("Deve lançar exceção");
 	}
 	
 	// M�todo que testa a passagem de um nome tempor�rio pelo m�todo de acesso set
 	@Test
-	public void tempNomeValido () throws BarberException 
+	public void invalidNameTemporary () throws BarberException 
 	{
-		Phonebook.setTempNome("Paulo");
-		assertEquals("Paulo", Phonebook.getTempNome());
+		Phonebook.setNameTemporary("Paulo");
+		assertEquals("Paulo", Phonebook.getNameTemporary());
 	}
 
 }

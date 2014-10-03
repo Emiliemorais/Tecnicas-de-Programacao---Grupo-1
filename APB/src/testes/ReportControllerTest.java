@@ -17,7 +17,7 @@ import exception.ReportException;
 public class ReportControllerTest 
 {
 
-	Report relatorio = new Report();
+	Report report = new Report();
 	
 	/* 
 	 * Method used to get the attributes of a report correctly to the test, throwing exceptions null attributes and conversion issues
@@ -27,10 +27,10 @@ public class ReportControllerTest
 	{
 		try 
 		{
-			relatorio.setBarberName("Luciano");
-			relatorio.setFinalDate("09/09/2013");
-			relatorio.setInitialDate("01/01/2013");
-			relatorio.setServiceType("corte");
+			report.setBarberName("Luciano");
+			report.setFinalDate("09/09/2013");
+			report.setInitialDate("01/01/2013");
+			report.setServiceType("corte");
 		}
 		catch (NullPointerException e) 
 		{
@@ -44,7 +44,7 @@ public class ReportControllerTest
 	*/
 
 	@Test
-	public void getInstanceDeRelatorioDAODeveRetonarInstanciaCorrente ()
+	public void getInstanceReportDAORetornInstanceCurrent ()
 	{
 		ReportController relatorioController = ReportController.getInstance();
 		assertEquals(ReportController.getInstance(), relatorioController);
@@ -54,10 +54,10 @@ public class ReportControllerTest
 	 * Method used to test the research a report through a service seeing if the sample of the report there
 	*/
 	@Test
-	public void procurarPorServicoDeRelatorioControllerDeveMostrarUmRelatorio () throws SQLException
+	public void returnOfSearchReportController () throws SQLException
 	{
 		ReportController relatorioController = new ReportController();
-		ResultSet rs = relatorioController.searchByService(relatorio);
+		ResultSet rs = relatorioController.searchByService(report);
 		
 		while(rs.next());
 	}
@@ -66,10 +66,10 @@ public class ReportControllerTest
 	 * The method used to test the search for a report through the sample viewing date of the report exists
 	*/
 	@Test
-	public void procurarPorDataDeRelatorioControllerDeveMostrarUmRelatorio () throws SQLException
+	public void returnOfSearchForDateReportController () throws SQLException
 	{
 		ReportController relatorioController = new ReportController();
-		ResultSet rs = relatorioController.searchByDate(relatorio);
+		ResultSet rs = relatorioController.searchByDate(report);
 		
 		while(rs.next());
 	}
@@ -79,10 +79,10 @@ public class ReportControllerTest
 
 	*/
 	@Test
-	public void procurarPorBarbeiroEServicoDeRelatorioControllerDeveMostrarUmRelatorio () throws SQLException 
+	public void retornSearchForBarberAndServiceReportController () throws SQLException 
 	{
 		ReportController relatorioController = new ReportController();
-		ResultSet rs = relatorioController.searchByBarberAndService(relatorio);
+		ResultSet rs = relatorioController.searchByBarberAndService(report);
 		
 		while(rs.next());
 	}
@@ -92,10 +92,10 @@ public class ReportControllerTest
 
 	*/
 	@Test
-	public void procurarPorDataBarbeiroEServicoDeRelatorioControllerDeveMostrarUmRelatorio () throws SQLException
+	public void retornSearchForDateBarberAndServiceReportController () throws SQLException
 	{
 		ReportController relatorioController = new ReportController();
-		ResultSet rs = relatorioController.searchByDateBarberAndService(relatorio);
+		ResultSet rs = relatorioController.searchByDateBarberAndService(report);
 		
 		while(rs.next());
 	}
@@ -104,10 +104,10 @@ public class ReportControllerTest
 	 *Method used to test the research of a report by a barber and a date seeing if there is a sample of the report
 	*/
 	@Test
-	public void procurarPorDataEBarbeiroDeRelatorioControllerDeveMostrarUmRelatorio () throws SQLException 
+	public void retornSearchForBarberAndDateReportController () throws SQLException 
 	{
 		ReportController relatorioController = new ReportController();
-		ResultSet rs = relatorioController.searchByDateAndBarber(relatorio);
+		ResultSet rs = relatorioController.searchByDateAndBarber(report);
 		
 		while(rs.next());
 	}
@@ -116,10 +116,10 @@ public class ReportControllerTest
 	 * Method used to test the research of a report by a date and a service seeing if the sample of the report there
 	*/
 	@Test
-	public void procurarPorDataEServicoDeRelatorioControllerDeveMostrarUmRelatorio () throws SQLException
+	public void retornSearchForDateAndServiceReportController () throws SQLException
 	{
 		ReportController relatorioController = new ReportController();
-		ResultSet rs = relatorioController.searchByDateAndService(relatorio);
+		ResultSet rs = relatorioController.searchByDateAndService(report);
 		
 		while(rs.next());
 	}
@@ -129,10 +129,10 @@ public class ReportControllerTest
 
 	*/
 	@Test
-	public void procurarPorBarbeiroDeRelatorioControllerDeveMostrarUmRelatorio () throws SQLException
+	public void retornSearchForBarberReportController () throws SQLException
 	{
 		ReportController relatorioController = new ReportController();
-		ResultSet rs = relatorioController.searchByBarber(relatorio);
+		ResultSet rs = relatorioController.searchByBarber(report);
 		
 		while(rs.next());
 	}

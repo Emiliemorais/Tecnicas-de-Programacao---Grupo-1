@@ -87,7 +87,7 @@ public class ViewReports extends JFrame
 		scrollPane.setBounds(10, 10, 660, 486);
 		contentPane.add(scrollPane);
 
-		final DefaultTableModel modelo = new DefaultTableModel(null,
+		final DefaultTableModel model = new DefaultTableModel(null,
 				new String[] { "Nome do Servi√ßo", "Quantidade", "Valor total",
 							   "Valor recebido" }) 
 		{
@@ -101,24 +101,24 @@ public class ViewReports extends JFrame
 			}
 		};
 
-		final JTable table = new JTable(modelo);
+		final JTable table = new JTable(model);
 		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(1).setResizable(false);
 		table.getColumnModel().getColumn(2).setResizable(false);
 		table.getColumnModel().getColumn(3).setResizable(false);
 		scrollPane.setViewportView(table);
 
-		ReportController relatorioController = ReportController
+		ReportController reportController = ReportController
 				.getInstance();
 
-		Report relatorio = new Report();
+		Report report = new Report();
 
 		if(SearchReport.searchType == 1) 
 		{
 
-			relatorio.setBarberName(SearchReport.barber);
+			report.setBarberName(SearchReport.barber);
 
-			ResultSet instanceStatement = relatorioController.searchByBarber(relatorio);
+			ResultSet instanceStatement = reportController.searchByBarber(report);
 
 			while (instanceStatement.next()) {
 
@@ -126,6 +126,10 @@ public class ViewReports extends JFrame
 				{
 					typeService.add(instanceStatement.getString("nome"));
 					counterService++;
+				}
+				else
+				{
+					// Nothing to do
 				}
 			}
 
@@ -148,41 +152,44 @@ public class ViewReports extends JFrame
 					}
 				}
 
-				String[] dados = new String[4];
-				dados[0] = typeService.get(i);
-				dados[1] = Integer.toString(numberTotalService);
-				dados[2] = Double.toString(valueTotalService)
+				String[] data = new String[4];
+				data[0] = typeService.get(i);
+				data[1] = Integer.toString(numberTotalService);
+				data[2] = Double.toString(valueTotalService)
 						.replace(".", ",")
 						.valueOf(decimal.format(valueTotalService));
 				valueTotalPay = valueTotalService / 2;
-				dados[3] = Double.toString(valueTotalPay)
+				data[3] = Double.toString(valueTotalPay)
 						.replace(".", ",")
 						.valueOf(decimal.format(valueTotalPay));
 				
 				valueTotalBuy = valueTotalBuy + valueTotalService;
 				valueTotalBuyPay = valueTotalBuyPay + valueTotalPay;
-				modelo.addRow(dados);
+				model.addRow(data);
 
 				numberTotalService = 0;
 				valueTotalPay = 0;
 				valueTotalService = 0;
 			}
+		}
+		else{
+			//Noting to do
 		}
 		if( SearchReport.searchType == 2 )
 		{
 
-			relatorio.setBarberName(SearchReport.barber);
-			relatorio.setServiceType(SearchReport.service);
+			report.setBarberName(SearchReport.barber);
+			report.setServiceType(SearchReport.service);
 
-			ResultSet rs = relatorioController
-						   .searchByBarberAndService(relatorio);
+			ResultSet instanceStatement = reportController
+						   .searchByBarberAndService(report);
 
-			while ( rs.next() )
+			while ( instanceStatement.next() )
 			{
 
-				if( typeService.contains( rs.getString("nome") ) == false )
+				if( typeService.contains( instanceStatement.getString("nome") ) == false )
 				{
-					typeService.add( rs.getString("nome") );
+					typeService.add( instanceStatement.getString("nome") );
 					counterService++;
 				}
 				else
@@ -193,12 +200,12 @@ public class ViewReports extends JFrame
 
 			for(int i = 0; i < counterService; i++) 
 			{
-				rs.beforeFirst();
-				while ( rs.next() )
+				instanceStatement.beforeFirst();
+				while ( instanceStatement.next() )
 				{
-					if( typeService.get(i).equals( rs.getString("nome") ) ) 
+					if( typeService.get(i).equals( instanceStatement.getString("nome") ) ) 
 					{
-						numberCliente = rs.getString("preco").replace(",", ".");
+						numberCliente = instanceStatement.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numberCliente);
 						valueTotalService = valueTotalService + valor;
 
@@ -210,18 +217,18 @@ public class ViewReports extends JFrame
 					}
 				}
 
-				String[] dados = new String[4];
-				dados[0] = typeService.get(i);
-				dados[1] = Integer.toString(numberTotalService);
-				dados[2] = Double.toString(valueTotalService)
+				String[] data = new String[4];
+				data[0] = typeService.get(i);
+				data[1] = Integer.toString(numberTotalService);
+				data[2] = Double.toString(valueTotalService)
 						   .replace(".", ",")
 						   .valueOf(decimal.format(valueTotalService));
 				valueTotalPay = valueTotalService / 2;
-				dados[3] = Double.toString(valueTotalPay)
+				data[3] = Double.toString(valueTotalPay)
 						   .replace(".", ",")
 						   .valueOf(decimal.format(valueTotalPay));
 
-				modelo.addRow(dados);
+				model.addRow(data);
 				
 				valueTotalBuy = valueTotalBuy + valueTotalService;
 				valueTotalBuyPay = valueTotalBuyPay + valueTotalPay;
@@ -230,23 +237,27 @@ public class ViewReports extends JFrame
 				valueTotalPay = 0;
 				valueTotalService = 0;
 			}
+		}
+		else
+		{
+			// Nothing to do
 		}
 		if( SearchReport.searchType == 3 ) 
 		{
 
-			relatorio.setBarberName(SearchReport.barber);
-			relatorio.setFinalDate(SearchReport.finalDate);
-			relatorio.setInitialDate(SearchReport.initialDate);
+			report.setBarberName(SearchReport.barber);
+			report.setFinalDate(SearchReport.finalDate);
+			report.setInitialDate(SearchReport.initialDate);
 
-			ResultSet rs = relatorioController
-						   .searchByDateAndBarber(relatorio);
+			ResultSet instanceStatement = reportController
+						   .searchByDateAndBarber(report);
 
-			while ( rs.next() )
+			while ( instanceStatement.next() )
 			{
 
-				if( typeService.contains( rs.getString("nome") ) == false ) 
+				if( typeService.contains( instanceStatement.getString("nome") ) == false ) 
 				{
-					typeService.add( rs.getString("nome") );
+					typeService.add( instanceStatement.getString("nome") );
 					counterService++;
 				}
 				else
@@ -257,12 +268,12 @@ public class ViewReports extends JFrame
 
 			for(int i = 0; i < counterService; i++) 
 			{
-				rs.beforeFirst();
-				while ( rs.next() ) 
+				instanceStatement.beforeFirst();
+				while ( instanceStatement.next() ) 
 				{
-					if( typeService.get(i).equals( rs.getString("nome") ) ) 
+					if( typeService.get(i).equals( instanceStatement.getString("nome") ) ) 
 					{
-						numberCliente = rs.getString("preco").replace(",", ".");
+						numberCliente = instanceStatement.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numberCliente);
 						valueTotalService = valueTotalService + valor;
 
@@ -274,18 +285,18 @@ public class ViewReports extends JFrame
 					}
 				}
 
-				String[] dados = new String[4];
-				dados[0] = typeService.get(i);
-				dados[1] = Integer.toString(numberTotalService);
-				dados[2] = Double.toString(valueTotalService)
+				String[] data = new String[4];
+				data[0] = typeService.get(i);
+				data[1] = Integer.toString(numberTotalService);
+				data[2] = Double.toString(valueTotalService)
 						   .replace(".", ",")
 						   .valueOf(decimal.format(valueTotalService));
 				valueTotalPay = valueTotalService / 2;
-				dados[3] = Double.toString(valueTotalPay)
+				data[3] = Double.toString(valueTotalPay)
 						   .replace(".", ",")
 						   .valueOf(decimal.format(valueTotalPay));
 
-				modelo.addRow(dados);
+				model.addRow(data);
 				
 				valueTotalBuy = valueTotalBuy + valueTotalService;
 				valueTotalBuyPay = valueTotalBuyPay + valueTotalPay;
@@ -295,23 +306,27 @@ public class ViewReports extends JFrame
 				valueTotalService = 0;
 			}
 		}
+		else
+		{
+			// Nothing to do
+		}
 		if( SearchReport.searchType == 4 ) 
 		{
 
-			relatorio.setBarberName(SearchReport.barber);
-			relatorio.setServiceType(SearchReport.service);
-			relatorio.setFinalDate(SearchReport.finalDate);
-			relatorio.setInitialDate(SearchReport.initialDate);
+			report.setBarberName(SearchReport.barber);
+			report.setServiceType(SearchReport.service);
+			report.setFinalDate(SearchReport.finalDate);
+			report.setInitialDate(SearchReport.initialDate);
 
-			ResultSet rs = relatorioController
-						   .searchByDateBarberAndService(relatorio);
+			ResultSet instanceStatement = reportController
+						   .searchByDateBarberAndService(report);
 
-			while ( rs.next() ) 
+			while ( instanceStatement.next() ) 
 			{
 
-				if( typeService.contains( rs.getString("nome") ) == false ) 
+				if( typeService.contains( instanceStatement.getString("nome") ) == false ) 
 				{
-					typeService.add( rs.getString("nome") );
+					typeService.add( instanceStatement.getString("nome") );
 					counterService++;
 				}
 				else
@@ -322,31 +337,35 @@ public class ViewReports extends JFrame
 
 			for(int i = 0; i < counterService; i++) 
 			{
-				rs.beforeFirst();
-				while ( rs.next() ) 
+				instanceStatement.beforeFirst();
+				while ( instanceStatement.next() ) 
 				{
-					if( typeService.get(i).equals( rs.getString("nome") ) ) 
+					if( typeService.get(i).equals( instanceStatement.getString("nome") ) ) 
 					{
-						numberCliente = rs.getString("preco").replace(",", ".");
+						numberCliente = instanceStatement.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numberCliente);
 						valueTotalService = valueTotalService + valor;
 						
 						numberTotalService++;
 					}
+					else
+					{
+						// Nothing to do
+					}
 				}
 
-				String[] dados = new String[4];
-				dados[0] = typeService.get(i);
-				dados[1] = Integer.toString(numberTotalService);
-				dados[2] = Double.toString(valueTotalService)
+				String[] data = new String[4];
+				data[0] = typeService.get(i);
+				data[1] = Integer.toString(numberTotalService);
+				data[2] = Double.toString(valueTotalService)
 						   .replace(".", ",")
 						   .valueOf(decimal.format(valueTotalService));
 				valueTotalPay = valueTotalService / 2;
-				dados[3] = Double.toString(valueTotalPay)
+				data[3] = Double.toString(valueTotalPay)
 						  .replace(".", ",")
 						  .valueOf(decimal.format(valueTotalPay));
 
-				modelo.addRow(dados);
+				model.addRow(data);
 
 				valueTotalBuy = valueTotalBuy + valueTotalService;
 				valueTotalBuyPay = valueTotalBuyPay + valueTotalPay;
@@ -357,19 +376,23 @@ public class ViewReports extends JFrame
 
 			}
 		}
+		else
+		{
+			// Nothing to do
+		}
 		if( SearchReport.searchType == 5 )
 		{
 
-			relatorio.setServiceType(SearchReport.service);
+			report.setServiceType(SearchReport.service);
 
-			ResultSet rs = relatorioController.searchByService(relatorio);
+			ResultSet instanceStatement = reportController.searchByService(report);
 
-			while ( rs.next() )
+			while ( instanceStatement.next() )
 			{
 
-				if( typeService.contains( rs.getString("nome") ) == false )
+				if( typeService.contains( instanceStatement.getString("nome") ) == false )
 				{
-					typeService.add( rs.getString("nome") );
+					typeService.add( instanceStatement.getString("nome") );
 					counterService++;
 				}
 				else
@@ -380,31 +403,35 @@ public class ViewReports extends JFrame
 
 			for(int i = 0; i < counterService; i++)
 			{
-				rs.beforeFirst();
-				while ( rs.next() ) 
+				instanceStatement.beforeFirst();
+				while ( instanceStatement.next() ) 
 				{
-					if( typeService.get(i).equals( rs.getString("nome") ) )
+					if( typeService.get(i).equals( instanceStatement.getString("nome") ) )
 					{
-						numberCliente = rs.getString("preco").replace(",", ".");
+						numberCliente = instanceStatement.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numberCliente);
 						valueTotalService = valueTotalService + valor;
 
 						numberTotalService++;
 					}
+					else
+					{
+						// Nothing to do
+					}
 				}
 
-				String[] dados = new String[4];
-				dados[0] = typeService.get(i);
-				dados[1] = Integer.toString(numberTotalService);
-				dados[2] = Double.toString(valueTotalService)
+				String[] data = new String[4];
+				data[0] = typeService.get(i);
+				data[1] = Integer.toString(numberTotalService);
+				data[2] = Double.toString(valueTotalService)
 						   .replace(".", ",")
 						   .valueOf(decimal.format(valueTotalService));
 				valueTotalPay = valueTotalService / 2;
-				dados[3] = Double.toString(valueTotalPay)
+				data[3] = Double.toString(valueTotalPay)
 						   .replace(".", ",")
 						   .valueOf(decimal.format(valueTotalPay));
 
-				modelo.addRow(dados);
+				model.addRow(data);
 
 				valueTotalBuy = valueTotalBuy + valueTotalService;
 				valueTotalBuyPay = valueTotalBuyPay + valueTotalPay;
@@ -417,77 +444,19 @@ public class ViewReports extends JFrame
 		if( SearchReport.searchType == 6 )
 		{
 
-			relatorio.setServiceType(SearchReport.service);
-			relatorio.setFinalDate(SearchReport.finalDate);
-			relatorio.setInitialDate(SearchReport.initialDate);
+			report.setServiceType(SearchReport.service);
+			report.setFinalDate(SearchReport.finalDate);
+			report.setInitialDate(SearchReport.initialDate);
 
-			ResultSet rs = relatorioController
-						   .searchByDateAndService(relatorio);
+			ResultSet instanceStatement = reportController
+						   .searchByDateAndService(report);
 
-			while ( rs.next() )
+			while ( instanceStatement.next() )
 			{
 
-				if( typeService.contains( rs.getString("nome") ) == false )
+				if( typeService.contains( instanceStatement.getString("nome") ) == false )
 				{
-					typeService.add( rs.getString("nome") );
-					counterService++;
-				}
-			}
-
-			for(int i = 0; i < counterService; i++)
-			{
-				rs.beforeFirst();
-				while ( rs.next() )
-				{
-					if( typeService.get(i).equals( rs.getString("nome") ) ) 
-					{
-						numberCliente = rs.getString("preco").replace(",", ".");
-						double valor = Double.parseDouble(numberCliente);
-						valueTotalService = valueTotalService + valor;
-
-						numberTotalService++;
-					}
-					else
-					{
-						// Nothing to do
-					}
-				}
-
-				String[] dados = new String[4];
-				dados[0] = typeService.get(i);
-				dados[1] = Integer.toString(numberTotalService);
-				dados[2] = Double.toString(valueTotalService)
-						   .replace(".", ",")
-						   .valueOf(decimal.format(valueTotalService));
-				valueTotalPay = valueTotalService / 2;
-				dados[3] = Double.toString(valueTotalPay)
-						   .replace(".", ",")
-						   .valueOf(decimal.format(valueTotalPay));
-
-				modelo.addRow(dados);
-
-				valueTotalBuy = valueTotalBuy + valueTotalService;
-				valueTotalBuyPay = valueTotalBuyPay + valueTotalPay;
-				
-				numberTotalService = 0;
-				valueTotalPay = 0;
-				valueTotalService = 0;
-			}
-		}
-		if( SearchReport.searchType == 7 ) 
-		{
-
-			relatorio.setFinalDate(SearchReport.finalDate);
-			relatorio.setInitialDate(SearchReport.initialDate);
-
-			ResultSet rs = relatorioController.searchByDate(relatorio);
-
-			while ( rs.next() )
-			{
-
-				if( typeService.contains( rs.getString("nome") ) == false )
-				{
-					typeService.add( rs.getString("nome") );
+					typeService.add( instanceStatement.getString("nome") );
 					counterService++;
 				}
 				else
@@ -498,12 +467,12 @@ public class ViewReports extends JFrame
 
 			for(int i = 0; i < counterService; i++)
 			{
-				rs.beforeFirst();
-				while ( rs.next() )
+				instanceStatement.beforeFirst();
+				while ( instanceStatement.next() )
 				{
-					if( typeService.get(i).equals( rs.getString("nome") ) )
+					if( typeService.get(i).equals( instanceStatement.getString("nome") ) ) 
 					{
-						numberCliente = rs.getString("preco").replace(",", ".");
+						numberCliente = instanceStatement.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numberCliente);
 						valueTotalService = valueTotalService + valor;
 
@@ -515,18 +484,18 @@ public class ViewReports extends JFrame
 					}
 				}
 
-				String[] dados = new String[4];
-				dados[0] = typeService.get(i);
-				dados[1] = Integer.toString(numberTotalService);
-				dados[2] = Double.toString(valueTotalService)
+				String[] data = new String[4];
+				data[0] = typeService.get(i);
+				data[1] = Integer.toString(numberTotalService);
+				data[2] = Double.toString(valueTotalService)
 						   .replace(".", ",")
 						   .valueOf(decimal.format(valueTotalService));
 				valueTotalPay = valueTotalService / 2;
-				dados[3] = Double.toString(valueTotalPay)
-						  .replace(".", ",")
-						  .valueOf(decimal.format(valueTotalPay));
+				data[3] = Double.toString(valueTotalPay)
+						   .replace(".", ",")
+						   .valueOf(decimal.format(valueTotalPay));
 
-				modelo.addRow(dados);
+				model.addRow(data);
 
 				valueTotalBuy = valueTotalBuy + valueTotalService;
 				valueTotalBuyPay = valueTotalBuyPay + valueTotalPay;
@@ -535,6 +504,76 @@ public class ViewReports extends JFrame
 				valueTotalPay = 0;
 				valueTotalService = 0;
 			}
+		}
+		else
+		{
+			// Nothing to do
+		}
+		if( SearchReport.searchType == 7 ) 
+		{
+
+			report.setFinalDate(SearchReport.finalDate);
+			report.setInitialDate(SearchReport.initialDate);
+
+			ResultSet instanceStatement = reportController.searchByDate(report);
+
+			while ( instanceStatement.next() )
+			{
+
+				if( typeService.contains( instanceStatement.getString("nome") ) == false )
+				{
+					typeService.add( instanceStatement.getString("nome") );
+					counterService++;
+				}
+				else
+				{
+					// Nothing to do
+				}
+			}
+
+			for(int i = 0; i < counterService; i++)
+			{
+				instanceStatement.beforeFirst();
+				while ( instanceStatement.next() )
+				{
+					if( typeService.get(i).equals( instanceStatement.getString("nome") ) )
+					{
+						numberCliente = instanceStatement.getString("preco").replace(",", ".");
+						double value = Double.parseDouble(numberCliente);
+						valueTotalService = valueTotalService + value;
+
+						numberTotalService++;
+					}
+					else
+					{
+						// Nothing to do
+					}
+				}
+
+				String[] data = new String[4];
+				data[0] = typeService.get(i);
+				data[1] = Integer.toString(numberTotalService);
+				data[2] = Double.toString(valueTotalService)
+						   .replace(".", ",")
+						   .valueOf(decimal.format(valueTotalService));
+				valueTotalPay = valueTotalService / 2;
+				data[3] = Double.toString(valueTotalPay)
+						  .replace(".", ",")
+						  .valueOf(decimal.format(valueTotalPay));
+
+				model.addRow(data);
+
+				valueTotalBuy = valueTotalBuy + valueTotalService;
+				valueTotalBuyPay = valueTotalBuyPay + valueTotalPay;
+				
+				numberTotalService = 0;
+				valueTotalPay = 0;
+				valueTotalService = 0;
+			}
+		}
+		else
+		{
+			// Nothing to do
 		}
 		JButton btnPesquisar = new JButton("Pesquisar");
 		
@@ -584,16 +623,16 @@ public class ViewReports extends JFrame
 		contentPane.add(panel);
 		panel.setLayout(null);
 
-		JLabel lblLucroTotal = new JLabel("Valor total pesquisado:");
-		lblLucroTotal.setBounds(6, 4, 174, 14);
-		panel.add(lblLucroTotal);
+		JLabel lblprofitTotal = new JLabel("Valor total pesquisado:");
+		lblprofitTotal.setBounds(6, 4, 174, 14);
+		panel.add(lblprofitTotal);
 
-		JLabel lblValor = new JLabel("R$ "
+		JLabel lblValue = new JLabel("R$ "
 				+ String.valueOf(decimal.format(valueTotalBuy)));
-		lblValor.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblValor.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblValor.setBounds(476, 4, 174, 14);
-		panel.add(lblValor);
+		lblValue.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblValue.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblValue.setBounds(476, 4, 174, 14);
+		panel.add(lblValue);
 
 		final JPanel painelGrafico = new JPanel();
 		painelGrafico.setBounds(10, 10, 660, 486);
@@ -606,13 +645,13 @@ public class ViewReports extends JFrame
 			{
 				CategoryDataset createDataSet;
 				createDataSet = createDatasetRelatorio();
-				String titulo = "Total Por Dia";
+				String title = "Total Por Dia";
 				String eixoy = "Valores";
 				String txt_legenda = "Ledenda:";
 				boolean legenda = true;
 				boolean tooltips = true;
 				boolean urls = true;
-				JFreeChart graf = ChartFactory.createBarChart(titulo,
+				JFreeChart graf = ChartFactory.createBarChart(title,
 						txt_legenda, eixoy, createDataSet, PlotOrientation.VERTICAL,
 						legenda, tooltips, urls);
 				ChartPanel myChartPanel = new ChartPanel(graf, true);
@@ -635,9 +674,13 @@ public class ViewReports extends JFrame
 			}
 
 		}
+		else
+		{
+			// Nothing to do
+		}
 
-		JButton btnGrafico = new JButton("Gr\u00E1fico");
-		btnGrafico.addMouseListener(new MouseAdapter() 
+		JButton btnGraphic = new JButton("Gr\u00E1fico");
+		btnGraphic.addMouseListener(new MouseAdapter() 
 		{
 			
 			// MÈtodo que permite a vizualizaÁ„o de um painel gr·fico dos relatorios
@@ -657,11 +700,11 @@ public class ViewReports extends JFrame
 				}
 			}
 		});
-		btnGrafico.setBounds(680, 159, 94, 62);
-		contentPane.add(btnGrafico);
+		btnGraphic.setBounds(680, 159, 94, 62);
+		contentPane.add(btnGraphic);
 
-		JButton btnTabela = new JButton("Tabela");
-		btnTabela.addMouseListener(new MouseAdapter() 
+		JButton btnTable = new JButton("Tabela");
+		btnTable.addMouseListener(new MouseAdapter() 
 		{
 			
 			// MÈtodo que permite a vizualizaÁ„o da tabela de relatÛrios
@@ -672,24 +715,24 @@ public class ViewReports extends JFrame
 				scrollPane.setVisible(true);
 			}
 		});
-		btnTabela.setBounds(680, 86, 94, 62);
-		contentPane.add(btnTabela);
+		btnTable.setBounds(680, 86, 94, 62);
+		contentPane.add(btnTable);
 		
-		JPanel painelTotalPago = new JPanel();
-		painelTotalPago.setBounds(10, 509, 660, 22);
-		contentPane.add(painelTotalPago);
-		painelTotalPago.setLayout(null);
+		JPanel panelTotalPay = new JPanel();
+		panelTotalPay.setBounds(10, 509, 660, 22);
+		contentPane.add(panelTotalPay);
+		panelTotalPay.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Valor total a ser pago para o barbeiro:");
 		lblNewLabel.setBounds(6, 4, 235, 14);
-		painelTotalPago.add(lblNewLabel);
+		panelTotalPay.add(lblNewLabel);
 		
-		JLabel lblvalorTotalDoBarbeiro = new JLabel("R$ "
+		JLabel lblvalueTotalOfBarber = new JLabel("R$ "
 				+ String.valueOf(decimal.format(valueTotalBuyPay)));
-		lblvalorTotalDoBarbeiro.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblvalorTotalDoBarbeiro.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblvalorTotalDoBarbeiro.setBounds(476, 4, 174, 14);
-		painelTotalPago.add(lblvalorTotalDoBarbeiro);
+		lblvalueTotalOfBarber.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblvalueTotalOfBarber.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblvalueTotalOfBarber.setBounds(476, 4, 174, 14);
+		panelTotalPay.add(lblvalueTotalOfBarber);
 	}
 
 	// Interface utilizada para implementar os dados a serem exibidos no gr·fico
@@ -697,16 +740,16 @@ public class ViewReports extends JFrame
 			ReportException, NullPointerException, ParseException
 			{
 
-		Report relatorio = new Report();
+		Report instanceStatement = new Report();
 		ResultSet rs = null;
 
 		if( SearchReport.searchType != 0 ) 
 		{
 			if( SearchReport.searchType == 1 ) 
 			{
-				relatorio.setBarberName(SearchReport.barber);
+				instanceStatement.setBarberName(SearchReport.barber);
 
-				rs = ReportController.getInstance().searchByBarber(relatorio);
+				rs = ReportController.getInstance().searchByBarber(instanceStatement);
 			}
 			else
 			{
@@ -715,11 +758,11 @@ public class ViewReports extends JFrame
 			
 			if( SearchReport.searchType == 2 )
 			{
-				relatorio.setBarberName(SearchReport.barber);
-				relatorio.setServiceType(SearchReport.service);
+				instanceStatement.setBarberName(SearchReport.barber);
+				instanceStatement.setServiceType(SearchReport.service);
 
 				rs = ReportController.getInstance()
-									 .searchByBarberAndService(relatorio);
+									 .searchByBarberAndService(instanceStatement);
 			}
 			else
 			{
@@ -728,12 +771,12 @@ public class ViewReports extends JFrame
 			
 			if( SearchReport.searchType == 3 )
 			{
-				relatorio.setBarberName(SearchReport.barber);
-				relatorio.setFinalDate(SearchReport.finalDate);
-				relatorio.setInitialDate(SearchReport.initialDate);
+				instanceStatement.setBarberName(SearchReport.barber);
+				instanceStatement.setFinalDate(SearchReport.finalDate);
+				instanceStatement.setInitialDate(SearchReport.initialDate);
 
 				rs = ReportController.getInstance()
-									 .searchByDateAndBarber(relatorio);
+									 .searchByDateAndBarber(instanceStatement);
 			}
 			else
 			{
@@ -742,13 +785,13 @@ public class ViewReports extends JFrame
 			
 			if( SearchReport.searchType == 4 ) 
 			{
-				relatorio.setBarberName(SearchReport.barber);
-				relatorio.setServiceType(SearchReport.service);
-				relatorio.setFinalDate(SearchReport.finalDate);
-				relatorio.setInitialDate(SearchReport.initialDate);
+				instanceStatement.setBarberName(SearchReport.barber);
+				instanceStatement.setServiceType(SearchReport.service);
+				instanceStatement.setFinalDate(SearchReport.finalDate);
+				instanceStatement.setInitialDate(SearchReport.initialDate);
 
 				rs = ReportController.getInstance()
-									 .searchByDateBarberAndService(relatorio);
+									 .searchByDateBarberAndService(instanceStatement);
 			}
 			else
 			{
@@ -757,9 +800,9 @@ public class ViewReports extends JFrame
 			
 			if( SearchReport.searchType == 5 ) 
 			{
-				relatorio.setServiceType(SearchReport.service);
+				instanceStatement.setServiceType(SearchReport.service);
 
-				rs = ReportController.getInstance().searchByService(relatorio);
+				rs = ReportController.getInstance().searchByService(instanceStatement);
 			}
 			else
 			{
@@ -768,12 +811,12 @@ public class ViewReports extends JFrame
 			
 			if( SearchReport.searchType == 6 ) 
 			{
-				relatorio.setServiceType(SearchReport.service);
-				relatorio.setFinalDate(SearchReport.finalDate);
-				relatorio.setInitialDate(SearchReport.initialDate);
+				instanceStatement.setServiceType(SearchReport.service);
+				instanceStatement.setFinalDate(SearchReport.finalDate);
+				instanceStatement.setInitialDate(SearchReport.initialDate);
 
 				rs = ReportController.getInstance()
-									 .searchByDateAndService(relatorio);
+									 .searchByDateAndService(instanceStatement);
 			}
 			else
 			{
@@ -782,10 +825,10 @@ public class ViewReports extends JFrame
 			
 			if( SearchReport.searchType == 7 )
 			{
-				relatorio.setFinalDate(SearchReport.finalDate);
-				relatorio.setInitialDate(SearchReport.initialDate);
+				instanceStatement.setFinalDate(SearchReport.finalDate);
+				instanceStatement.setInitialDate(SearchReport.initialDate);
 
-				rs = ReportController.getInstance().searchByDate(relatorio);
+				rs = ReportController.getInstance().searchByDate(instanceStatement);
 			}
 			else
 			{
@@ -798,13 +841,13 @@ public class ViewReports extends JFrame
 			// Nothing to do
 		}
 
-		List<String> dias = new ArrayList<String>();
+		List<String> days = new ArrayList<String>();
 
 		while ( rs.next() )
 		{
-			if( dias.contains( rs.getString("data") ) == false )
+			if( days.contains( rs.getString("data") ) == false )
 			{
-				dias.add( rs.getString("data") );
+				days.add( rs.getString("data") );
 			}
 			else
 			{
@@ -812,18 +855,18 @@ public class ViewReports extends JFrame
 			}
 		}
 
-		double totalPorDia = 0;
+		double totalForDay = 0;
 
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-		for (int i = 0; i < dias.size(); i++)
+		for (int i = 0; i < days.size(); i++)
 		{
 			rs.beforeFirst();
 			while ( rs.next() )
 			{
-				if ( rs.getString("data").equals( dias.get(i) ) )
+				if ( rs.getString("data").equals( days.get(i) ) )
 				{
-					totalPorDia += Double.parseDouble(rs.getString("preco")
+					totalForDay += Double.parseDouble(rs.getString("preco")
 													  .replace(",", "."));
 				}
 				else
@@ -833,10 +876,10 @@ public class ViewReports extends JFrame
 			}
 							
 			
-			dataset.addValue(totalPorDia, dias.get(i),
-							 dias.get(0) + " - " 
-							 + dias.get( dias.size() - 1) );
-			totalPorDia = 0;
+			dataset.addValue(totalForDay, days.get(i),
+							 days.get(0) + " - " 
+							 + days.get( days.size() - 1) );
+			totalForDay = 0;
 		}
 
 		return dataset;

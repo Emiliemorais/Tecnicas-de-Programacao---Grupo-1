@@ -33,23 +33,23 @@ public class PhonebookController
 	}
 	
     // Method that takes as a parameter the name of the contact you want to change and the schedule object and changes in the database
-	public boolean alterar (String phonebookName, Phonebook agenda) throws SQLException 
+	public boolean alterar (String phonebookName, Phonebook phonebook) throws SQLException 
 	{
-		if(agenda == null)
+		if(phonebook == null)
 		{
 			return false;
 		}
 		
 		// If the object is not null the calendar method changes in the database
 		else{
-			Phonebook agenda_alterado = agenda;
-			PhonebookDAO.getInstance().editPhonebookData(phonebookName, agenda_alterado, agenda);
+			Phonebook agenda_alterado = phonebook;
+			PhonebookDAO.getInstance().editPhonebookData(phonebookName, agenda_alterado, phonebook);
 			return true;		
 		}
 	}
         
         // Method that takes as a parameter the object schedule and deletes the database
-	public  boolean excluir (Phonebook phonebookContact) throws SQLException 
+	public  boolean remove (Phonebook phonebookContact) throws SQLException 
 	{
 		if(phonebookContact == null)
 		{
@@ -81,21 +81,21 @@ public class PhonebookController
 	}
 	
         // Interface that provides access to registered contacts and shows all contacts
-	public ResultSet mostrarContatosCadastrados(Phonebook contato) throws SQLException 
+	public ResultSet mostrarContatosCadastrados(Phonebook contact) throws SQLException 
 	{
-		return PhonebookDAO.getInstance().showRegisteredContacts(contato);
+		return PhonebookDAO.getInstance().showRegisteredContacts(contact);
 	}
 	
         // Interface that provides access to registered contacts and allows them to be searched by name
-	public ResultSet pesquisarPorNome(Phonebook contato) throws SQLException 
+	public ResultSet pesquisarPorNome(Phonebook contact) throws SQLException 
 	{
-		return PhonebookDAO.getInstance().searchByName(contato);
+		return PhonebookDAO.getInstance().searchByName(contact);
 	}
 	
         // Interface that provides access to registered contacts and allows them to be surveyed by phone
-	public ResultSet pesquisarPorTelefone(Phonebook contato) throws SQLException 
+	public ResultSet pesquisarPorTelefone(Phonebook contact) throws SQLException 
 	{
-		return PhonebookDAO.getInstance().searchByPhone(contato);
+		return PhonebookDAO.getInstance().searchByPhone(contact);
 	}
 
 }

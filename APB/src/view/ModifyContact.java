@@ -109,7 +109,7 @@ public class ModifyContact extends JFrame
 			// Instantiated to get access to the method 'searchByName()'
 			PhonebookController phonebookController = PhonebookController.getInstance();
 			
-			contactToBeChanged.setPhonebookName(Phonebook.getTempNome() );
+			contactToBeChanged.setPhonebookName(Phonebook.getNameTemporary() );
 			
 			// Used to receive the result from a search by 'contactToBeChanged.name' on DB
 			ResultSet queryForNameResult = phonebookController.pesquisarPorNome(contactToBeChanged);
