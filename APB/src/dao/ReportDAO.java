@@ -34,10 +34,12 @@ public class ReportDAO
     // Interface that provides access to registered reports and allows them to be searched by date
 	public ResultSet searchByDate (Report relatorio) throws SQLException
 	{
+		String prepareStatementToMethod = "SELECT * FROM servicoprestado WHERE data BETWEEN '"
+                						+relatorio.getInitialDate()+"' AND '"
+                						+relatorio.getFinalDate()+"';";
+		
 		Connection connection = FactoryConnection.getInstance().getConnection();
-		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE data BETWEEN '"
-				                                            +relatorio.getInitialDate()+"' AND '"
-				                                            +relatorio.getFinalDate()+"';");
+		PreparedStatement pst = connection.prepareStatement(prepareStatementToMethod);
 		ResultSet instanceStatement = pst.executeQuery();
 		
 		return instanceStatement;
@@ -47,10 +49,13 @@ public class ReportDAO
 	public ResultSet searchByDateAndBarber(Report relatorio) throws SQLException 
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
-		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE data BETWEEN '"
-															+relatorio.getInitialDate()+"' AND '"
-															+relatorio.getFinalDate()+"' AND barbeiro = '"
-															+relatorio.getBarberName()+"';");
+		
+		String prepareStatementMethod = "SELECT * FROM servicoprestado WHERE data BETWEEN '"
+												+relatorio.getInitialDate()+"' AND '"
+												+relatorio.getFinalDate()+"' AND barbeiro = '"
+												+relatorio.getBarberName()+"';";
+		
+		PreparedStatement pst = connection.prepareStatement(prepareStatementMethod);
 		ResultSet instanceStatement = pst.executeQuery();
 		
 		return instanceStatement;
@@ -60,10 +65,13 @@ public class ReportDAO
 	public ResultSet searchByDateAndService(Report relatorio) throws SQLException
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
-		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE data BETWEEN '"
-															+relatorio.getInitialDate()+"' AND '"
-															+relatorio.getFinalDate()+"' AND nome = '"
-															+relatorio.getServiceType()+"';");
+		
+		String prepareStatementMethod ="SELECT * FROM servicoprestado WHERE data BETWEEN '"
+										+relatorio.getInitialDate()+"' AND '"
+										+relatorio.getFinalDate()+"' AND nome = '"
+										+relatorio.getServiceType()+"';";
+		
+		PreparedStatement pst = connection.prepareStatement(prepareStatementMethod);
 		ResultSet rs = pst.executeQuery();
 		
 		return rs;
@@ -73,8 +81,11 @@ public class ReportDAO
 	public ResultSet searchByBarber(Report relatorio) throws SQLException
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
-		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE barbeiro = '"
-															+relatorio.getBarberName()+"';");
+		
+		String prepareStatementMethod ="SELECT * FROM servicoprestado WHERE barbeiro = '"
+										+relatorio.getBarberName()+"';";
+				
+		PreparedStatement pst = connection.prepareStatement(prepareStatementMethod);
 		ResultSet rs = pst.executeQuery();
 		
 		return rs;
@@ -84,9 +95,12 @@ public class ReportDAO
 	public ResultSet searchByBarberAndService(Report relatorio) throws SQLException 
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
-		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE barbeiro = '"
-															+relatorio.getBarberName()+"' AND nome = '"	
-															+relatorio.getServiceType()+"';");
+		
+		String prepareStatementMethod ="SELECT * FROM servicoprestado WHERE barbeiro = '"
+										+relatorio.getBarberName()+"' AND nome = '"	
+										+relatorio.getServiceType()+"';";
+				
+		PreparedStatement pst = connection.prepareStatement(prepareStatementMethod);
 		ResultSet rs = pst.executeQuery();
 		
 		return rs;
@@ -96,8 +110,11 @@ public class ReportDAO
 	public ResultSet searchByService(Report relatorio)throws SQLException 
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
-		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE nome = '"
-															+relatorio.getServiceType()+"';");
+		
+		String prepareStatementMethod ="SELECT * FROM servicoprestado WHERE nome = '"
+										+relatorio.getServiceType()+"';";
+				
+		PreparedStatement pst = connection.prepareStatement(prepareStatementMethod);
 		ResultSet rs = pst.executeQuery();
 		
 		return rs;
@@ -107,11 +124,15 @@ public class ReportDAO
 	public ResultSet searchByDateBarberAndService(Report relatorio)throws SQLException
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
-		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE data BETWEEN '"
-															+relatorio.getInitialDate()+"' AND '"
-															+relatorio.getFinalDate()+"' AND barbeiro = '"
-															+relatorio.getBarberName()+"' AND nome = '"
-															+relatorio.getServiceType()+"';");
+		
+		String prepareStatementMethod = "SELECT * FROM servicoprestado WHERE data BETWEEN '"
+										+relatorio.getInitialDate()+"' AND '"
+										+relatorio.getFinalDate()+"' AND barbeiro = '"
+										+relatorio.getBarberName()+"' AND nome = '"
+										+relatorio.getServiceType()+"';";
+		
+		PreparedStatement pst = connection.prepareStatement(prepareStatementMethod);
+		
 		ResultSet instanceStatement = pst.executeQuery();
 		
 		return instanceStatement;

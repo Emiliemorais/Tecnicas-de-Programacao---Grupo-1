@@ -605,6 +605,7 @@ public class ViewReports extends JFrame
 		btnVoltar.addMouseListener(new MouseAdapter() 
 		{
 			
+			
 			// Método que permite novamente a vizualização da janela de Menu principal
 			@Override
 			public void mouseClicked (MouseEvent e)
@@ -638,9 +639,13 @@ public class ViewReports extends JFrame
 		painelGrafico.setBounds(10, 10, 660, 486);
 		contentPane.add(painelGrafico);
 		painelGrafico.setVisible(true);
+		
+		
+		
 
 		if( SearchReport.searchType != 0 ) 
 		{
+			
 			try 
 			{
 				CategoryDataset createDataSet;
@@ -651,9 +656,12 @@ public class ViewReports extends JFrame
 				boolean legenda = true;
 				boolean tooltips = true;
 				boolean urls = true;
+				
+				
 				JFreeChart graf = ChartFactory.createBarChart(title,
 						txt_legenda, eixoy, createDataSet, PlotOrientation.VERTICAL,
 						legenda, tooltips, urls);
+				
 				ChartPanel myChartPanel = new ChartPanel(graf, true);
 				myChartPanel.setSize(painelGrafico.getWidth(),
 						painelGrafico.getHeight());
@@ -683,7 +691,7 @@ public class ViewReports extends JFrame
 		btnGraphic.addMouseListener(new MouseAdapter() 
 		{
 			
-			// Método que permite a vizualização de um painel gráfico dos relatorios
+			// Method that allows the display of the table reports
 			@Override
 			public void mouseClicked(MouseEvent arg0)
 			{
@@ -707,7 +715,7 @@ public class ViewReports extends JFrame
 		btnTable.addMouseListener(new MouseAdapter() 
 		{
 			
-			// Método que permite a vizualização da tabela de relatórios
+			// Method that allows the display of the table reports
 			@Override
 			public void mouseClicked (MouseEvent arg0)
 			{
@@ -735,7 +743,7 @@ public class ViewReports extends JFrame
 		panelTotalPay.add(lblvalueTotalOfBarber);
 	}
 
-	// Interface utilizada para implementar os dados a serem exibidos no gráfico
+	// Interface used to implement the data to be displayed in the graphic
 	private CategoryDataset createDatasetRelatorio () throws SQLException,
 			ReportException, NullPointerException, ParseException
 			{
