@@ -46,13 +46,13 @@ public class PhonebookControllerTest
 	@Test
 	/* 
 	 * Test if a inclusion of a contact was made right
-	 * Check the return of method 'inserir'
+	 * Check the return of method 'incluir'
 	 */
 	public void includeContactMethodTest()
 	{
 		try
 		{
-			assertTrue(contactController.incluir(contact));
+			assertTrue( contactController.incluir(contact) );
 		}
 		catch (SQLException e)
 		{
@@ -69,7 +69,7 @@ public class PhonebookControllerTest
 	{
 		try
 		{
-			assertTrue(contactController.remove(contact));
+			assertTrue( contactController.remove(contact) );
 		}
 		catch (SQLException e)
 		{
@@ -86,7 +86,7 @@ public class PhonebookControllerTest
 	{
 		try
 		{
-			assertTrue(contactController.alterar(contact.getPhonebookName(),contact));
+			assertTrue( contactController.alterar(contact.getPhonebookName(),contact) );
 		}
 		catch (SQLException e)
 		{
@@ -95,12 +95,12 @@ public class PhonebookControllerTest
 	}
 
 	@Test
-	// Test if the method 'inserir' don't accept null argument
+	// Test if the method 'incluir' don't accept null argument
 	public void includeContactMethodTestForNullArgument()
 	{
 		try
 		{
-			assertFalse(contactController.incluir(null));
+			assertFalse( contactController.incluir(null) );
 		}
 		catch (SQLException e)
 		{
@@ -109,12 +109,12 @@ public class PhonebookControllerTest
 	}
 
 	@Test
-	// Test if the method 'excluir' don't accept null argument
+	// Test if the method 'remove' don't accept null argument
 	public void deleteContactMethodTestForNullArgument()
 	{
 		try
 		{
-			assertFalse(contactController.remove(null));
+			assertFalse( contactController.remove(null) );
 		}
 		catch (SQLException e)
 		{
@@ -128,7 +128,7 @@ public class PhonebookControllerTest
 	{
 		try
 		{
-			assertFalse(contactController.alterar(null,null));
+			assertFalse( contactController.alterar(null,null) );
 		}
 		catch (SQLException e)
 		{

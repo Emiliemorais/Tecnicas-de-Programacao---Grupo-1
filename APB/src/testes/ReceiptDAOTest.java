@@ -45,7 +45,9 @@ public class ReceiptDAOTest
 		// Used to test the method getInstance on a 'ReceiptDAO' instance
 		ReceiptDAO receipt = ReceiptDAO.getInstance();
 		
-		assertEquals(ReceiptDAO.getInstance(), receipt);
+		ReceiptDAO receiptDAOInstance = ReceiptDAO.getInstance();
+		
+		assertEquals(receiptDAOInstance, receipt);
 	}
 
 	@Test

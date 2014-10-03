@@ -42,8 +42,10 @@ public class ReceiptControllerTest
 	{
 		// Used to test the method getInstance on a 'ReceiptController' instance
 		ReceiptController receiptControllerToTest = ReceiptController.getInstance();
+		;
+		ReceiptController receiptControllerInstance = ReceiptController.getInstance();
 		
-		assertEquals(ReceiptController.getInstance(), receiptControllerToTest);
+		assertEquals(receiptControllerInstance, receiptControllerToTest);
 	}
 
 	@Test
@@ -54,9 +56,9 @@ public class ReceiptControllerTest
 		ReceiptController receiptControllerToTest = new ReceiptController();
 		
 		ResultSet queryForReceiptResult = receiptControllerToTest
-										  .barberServicesSearch(report.getBarberName(),
-												  					   report.getInitialDate(),
-												  					   report.getFinalDate());
+										  .barberServicesSearch( report.getBarberName(),
+												  				 report.getInitialDate(),
+												  				 report.getFinalDate() );
 
 		while( queryForReceiptResult.next() );
 	}

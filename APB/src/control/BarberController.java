@@ -70,7 +70,7 @@ public class BarberController
 		// Check use - Probably can be deleted
 		Barber changedBarber = newBarber;
 		
-		BarberDAO.getInstance().modifyBarber(barberToChangeName, changedBarber, newBarber);
+		BarberDAO.getInstance().changeBarber(barberToChangeName, changedBarber, newBarber);
 		return true;
 	}
 
