@@ -20,7 +20,8 @@ public class DoneServiceController
 	 */
 	public static DoneServiceController getInstance()
 	{
-		if (instance == null) // "ProvidedServiceController" class instance
+		// "ProvidedServiceController" class instance
+		if (instance == null)
         {
             instance = new DoneServiceController();
         }
@@ -34,7 +35,7 @@ public class DoneServiceController
 
 	private static DoneServiceController instance;
 
-    /*
+    /**
      *  Method used to insert a service
      *  @param providedService - Contains the provided service
      */
@@ -43,6 +44,7 @@ public class DoneServiceController
 		if (providedService != null)
         {
 			DoneServiceDAO.getInstance().includeServiceType(providedService);
+			
 			return true;
 		}
 		else
@@ -53,7 +55,7 @@ public class DoneServiceController
 		return false;
 	}
 
-	/*
+	/**
      *  Method used to delete a service
      *  @param providedService - Contains the provided service
      */
@@ -62,6 +64,7 @@ public class DoneServiceController
 		if (providedService !=  null)
         {
 			DoneServiceDAO.getInstance().deleteServiceType(providedService);
+			
 			return true;
 		}
 		else
@@ -72,14 +75,16 @@ public class DoneServiceController
 		return false;
 	}
 
-	/*
+	/**
      *  Method that gives access to the registered services
      *  @param providedService - Contains the provided service
      */
 	public ResultSet displayRegisteredProvidedServices(DoneService providedService) throws SQLException
 	{
+		DoneServiceDAO doneServiceDAOInstance = DoneServiceDAO.getInstance();
+		ResultSet showRegistredDoneServicesResult = doneServiceDAOInstance.showRegistredDoneServices(providedService);
 		
-		return DoneServiceDAO.getInstance().showRegistredDoneServices(providedService);
+		return showRegistredDoneServicesResult;
 	}
 
 }

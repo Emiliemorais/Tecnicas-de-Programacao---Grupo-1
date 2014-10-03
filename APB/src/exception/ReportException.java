@@ -1,24 +1,24 @@
 package exception;
 
-@SuppressWarnings ( "serial" )
+@SuppressWarnings ("serial")
 public class ReportException extends Exception 
 {
 	
 	// Method that returns the exception
-	public ReportException () 
+	public ReportException() 
 	{
 		
-		super ();
+		super();
 	}
 
-	/*
+	/**
 	 *  Method that returns the exception message
 	 *  @param errorMessage - Contains the error message
 	 */
-	public ReportException ( String errorMessage ) 
+	public ReportException(String errorMessage) 
 	{
 		
-		super ( errorMessage );
+		super(errorMessage);
 	}
 
 }

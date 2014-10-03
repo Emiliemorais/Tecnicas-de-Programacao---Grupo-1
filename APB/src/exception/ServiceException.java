@@ -1,24 +1,24 @@
 package exception;
 
-@SuppressWarnings ( "serial" )
+@SuppressWarnings ("serial")
 public class ServiceException extends Exception
 {
 
 	// Method that returns the exception
-	public ServiceException () 
+	public ServiceException() 
 	{
 		
-		super ();
+		super();
 	}
 
-	/*
+	/**
 	 *  Method that returns the exception message
 	 *  @param errorMessage - Contains the error message
 	 */
-	public ServiceException ( String errorMessage ) 
+	public ServiceException(String errorMessage) 
 	{
 		
-		super ( errorMessage );
+		super(errorMessage);
 	}
 	
 }
