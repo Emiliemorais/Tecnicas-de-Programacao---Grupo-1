@@ -98,7 +98,7 @@ public class NewDoneService extends JFrame
 		// Creates the combo box with the barbers
 		final JComboBox comboBoxBarbers = new JComboBox();
 		comboBoxBarbers.setModel(new DefaultComboBoxModel(
-				new String[] { "Selecione um barbeiro" }));
+								 new String[] { "Selecione um barbeiro" }));
 		comboBoxBarbers.setBounds(129, 53, 289, 20);
 		contentPane.add(comboBoxBarbers);
 		
@@ -117,15 +117,16 @@ public class NewDoneService extends JFrame
 					try
 					{
 						// Receives the service type to search on the database
-						String[] serviceType = comboBoxService.getSelectedItem()
-								.toString().split(" - ");
-						connection = FactoryConnection.getInstance()
-								.getConnection();
+						String[] serviceType = comboBoxService.getSelectedItem().toString().split(" - ");
+						
+						FactoryConnection factoryConnectionInstance =  FactoryConnection.getInstance();
+						connection = factoryConnectionInstance.getConnection();
 						
 						// java.sql.PreparedStatement instance to query in the database
-						java.sql.PreparedStatement preparedStatement = connection
-								.prepareStatement("SELECT preco FROM tipoServico WHERE nome = \""
-												  + serviceType[1] + "\";");
+						java.sql.PreparedStatement preparedStatement;
+						String sqlCodeToQueryServiceType = "SELECT preco FROM tipoServico WHERE nome = \""
+								  						   + serviceType[1] + "\";";
+						preparedStatement = connection.prepareStatement(sqlCodeToQueryServiceType);
 						
 						// ResultSet interface instance to query a price
 						ResultSet queryForPrice = preparedStatement.executeQuery();
@@ -133,7 +134,7 @@ public class NewDoneService extends JFrame
 
 						textGlobal.setText( queryForPrice.getString("preco") );
 					} 
-					catch (SQLException e)
+					catch(SQLException e)
 					{
 						showErrorMessage( e.getMessage() );
 					}
@@ -146,7 +147,7 @@ public class NewDoneService extends JFrame
 
 		});
 		comboBoxService.setModel(new DefaultComboBoxModel(
-				new String[] { "Selecione um tipo de servi\u00E7o" }));
+							     new String[] { "Selecione um tipo de servi\u00E7o" }));
 		comboBoxService.setMaximumRowCount(4);
 		comboBoxService.setBounds(129, 22, 289, 20);
 		contentPane.add(comboBoxService);
@@ -155,12 +156,15 @@ public class NewDoneService extends JFrame
 		{
 			// Receives the quantity of  service type
 			int serviceTypeQuantity = 0;
-			Connection connection = FactoryConnection.getInstance()
-					.getConnection();
-			java.sql.PreparedStatement preparedStatement = connection
-					.prepareStatement("SELECT nome, cadeira FROM barbeiro ORDER BY cadeira;");
-			java.sql.PreparedStatement preparedStatement2 = connection
-					.prepareStatement("SELECT nome FROM tiposervico;");
+			
+			FactoryConnection factoryConnectionInstance =  FactoryConnection.getInstance();
+			Connection connection = factoryConnectionInstance.getConnection();
+			String sqlCodeToQueryBarberChair = "SELECT nome, cadeira FROM barbeiro ORDER BY cadeira;";
+			java.sql.PreparedStatement preparedStatement;
+			preparedStatement = connection.prepareStatement(sqlCodeToQueryBarberChair);
+			
+			java.sql.PreparedStatement preparedStatement2; 
+			preparedStatement2 = connection.prepareStatement("SELECT nome FROM tiposervico;");
 			ResultSet queryForChair = preparedStatement.executeQuery();
 			ResultSet queryForServiceType = preparedStatement2.executeQuery();
 			
@@ -223,12 +227,10 @@ public class NewDoneService extends JFrame
 						serviceDate = simpleFormat.format(date);
 
 						// Receives the service type
-						String[] serviceType = comboBoxService.getSelectedItem()
-										.toString().split(" - ");
+						String[] serviceType = comboBoxService.getSelectedItem().toString().split(" - ");
 						
 						// Receives the  barbers' name
-						String[] barberName = comboBoxBarbers.getSelectedItem()
-											.toString().split(" - ");
+						String[] barberName = comboBoxBarbers.getSelectedItem().toString().split(" - ");
 
 						// DoneService class's instance to access the class
 						DoneService doneService = new DoneService();
@@ -239,8 +241,7 @@ public class NewDoneService extends JFrame
 						doneService.setDate(serviceDate);
 						
 						// Service Controller class's instance to control the data received
-						DoneServiceController serviceController = DoneServiceController
-																	  .getInstance();
+						DoneServiceController serviceController = DoneServiceController.getInstance();
 						serviceController.insertProvidedService(doneService);
 
 						JOptionPane.showMessageDialog(null, "Serviço criado com sucesso");
@@ -306,7 +307,7 @@ public class NewDoneService extends JFrame
 	}
 
 	
-	/*
+	/**
 	 *  Method used to show an error message for exception treatment
 	 *	@param errorMessage - Receives an error message
 	 */

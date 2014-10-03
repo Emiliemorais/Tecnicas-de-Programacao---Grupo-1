@@ -57,7 +57,7 @@ public class GenerateReceipt extends JFrame
 	 * Launch the application.
 	 */
 
-	/*
+	/**
 	 *  Method used to convert the date to ABNT format
 	 *	@param date - Receives the date to convert
 	 */
@@ -78,7 +78,7 @@ public class GenerateReceipt extends JFrame
 		return brazilDate;
 	}
 
-	/*
+	/**
 	 *  Method used to convert the date to ABNT format without the slash
 	 *	@param date - Receives the date to convert
 	 */
@@ -93,7 +93,7 @@ public class GenerateReceipt extends JFrame
 		return brazilDate;
 	}
 
-	/*
+	/**
 	 *  Method used to convert the date to ISO
 	 *	@param date - Receives the date to convert
 	 */
@@ -150,20 +150,22 @@ public class GenerateReceipt extends JFrame
 
 		// Creates the combo box with the barbers
 		final JComboBox comboBoxBarbers = new JComboBox();
-		comboBoxBarbers.setModel(new DefaultComboBoxModel(
-				new String[] { "Selecione um barbeiro" }));
+				comboBoxBarbers.setModel(new DefaultComboBoxModel(
+								 		 new String[] { "Selecione um barbeiro" }));
 		comboBoxBarbers.setBounds(10, 32, 304, 26);
 		contentPane.add(comboBoxBarbers);
 
 		try
 		{
+			BarberController barberControllerInstance = BarberController.getInstance();
+			
 			// ResultSet interface instance to query a barber
-			ResultSet queryForBarber = BarberController.getInstance().searchBarbers();
+			ResultSet queryForBarber = barberControllerInstance.searchBarbers();
 			
 			while ( queryForBarber.next() ) 
 			{
 				comboBoxBarbers.addItem(queryForBarber.getString("cadeira") + " - "
-										  + queryForBarber.getString("nome"));
+										+ queryForBarber.getString("nome"));
 			}
 		}
 		catch (SQLException e)
@@ -207,7 +209,7 @@ public class GenerateReceipt extends JFrame
 				
 				try
 				{
-					if ( comboBoxBarbers.getSelectedIndex() != 0 ) 
+					if( comboBoxBarbers.getSelectedIndex() != 0 ) 
 					{
 						// CreateDocx class's instance to create the receipt in the format "docx"
 						CreateDocx docx = new CreateDocx("docx");
@@ -245,27 +247,27 @@ public class GenerateReceipt extends JFrame
 						paramsBarberSignature.put("jc", "center");
 						paramsBarberSignature.put("b", "single");
 
+						String initialDateToConverte = textFieldInitialDate.getText();
 						// Constant that writes on the receipt the Initial Date
-						final String isoInitialDate = convertDateForISO(textFieldInitialDate
-								.getText());
+						final String isoInitialDate = convertDateForISO(initialDateToConverte);
 						
+						String finalDateToConverte = textFieldFinalDate.getText();
 						// Constant that writes on the receipt the end Date
-						final String isoFinalDate = convertDateForISO(textFieldFinalDate
-								.getText());
+						final String isoFinalDate = convertDateForISO(finalDateToConverte);
 
 						// Gets its barber's name from the combo box 
-						String[] barberName = comboBoxBarbers.getSelectedItem()
-								.toString().split(" - ");
+						String[] barberName = comboBoxBarbers.getSelectedItem().toString().split(" - ");
 
-						// ResultSet interface instance to query a barber service
-						ResultSet queryForBarberService = reciboController.getInstance()
-								.barberServicesSearch(barberName[1],
-										isoInitialDate, isoFinalDate);
 						
-						while ( queryForBarberService.next() )
+						
+						// ResultSet interface instance to query a barber service
+						ResultSet queryForBarberService = reciboController.barberServicesSearch(barberName[1],isoInitialDate, isoFinalDate);
+						
+						while( queryForBarberService.next() )
 						{
-							price = queryForBarberService.getString("preco").replace(",", ".");
-							
+							String priceBrazilFormat =  queryForBarberService.getString("preco");
+							price = priceBrazilFormat.replace(",", ".");
+													
 							// Receives the price of the service
 							double value = Double.parseDouble(price);
 							totalAmount = totalAmount + (value / 2);
@@ -285,21 +287,22 @@ public class GenerateReceipt extends JFrame
 
 						// Receives the text of the receipt
 						String textReceipt = "                    Recebi do Sr. "
-								+ barberName[1] + " a importância supra de R$ "
-								+ (decimalFormat.format(totalAmount)) + ", "
-								+ "referente ao Aluguel do período de "
-								+ initialDate + " até " + finalDate
-								+ ", conforme CONTRATO de locação "
-								+ "de bens móveis, firmado entre as partes.";
-						String text2Receipt = "                    Por ser verdade assino o presente RECIBO para"
-								+ " os fins de direitos, de acordo com a lei.";
+											+ barberName[1] + " a importância supra de R$ "
+											+ (decimalFormat.format(totalAmount)) + ", "
+											+ "referente ao Aluguel do período de "
+											+ initialDate + " até " + finalDate
+											+ ", conforme CONTRATO de locação "
+											+ "de bens móveis, firmado entre as partes.";
+						
+						String textSignatureReceipt = "                    Por ser verdade assino o presente RECIBO para"
+											          + " os fins de direitos, de acordo com a lei.";
 
 						docx.addText(COMPANY_NAME, paramsHead);
 						docx.addText(RECEIPT_PAYMENT, paramsTitle);
 						docx.addText(value, paramsValue);
 						docx.addBreak("line");
 						docx.addText(textReceipt, paramsText);
-						docx.addText(text2Receipt, paramsText);
+						docx.addText(textSignatureReceipt, paramsText);
 						docx.addText(DATE_AND_LOCATION, paramsText);
 						docx.addBreak("line");
 						docx.addText(LINE, paramsSignatureLine);
@@ -309,9 +312,9 @@ public class GenerateReceipt extends JFrame
 						docx.addText(barberName[1], paramsBarberSignature);
 
 						docx.createDocx("Recibo " + barberName[1] + " "
-								+ convertDateForABNTWithoutSlash(isoInitialDate)
-								+ " - "
-								+ convertDateForABNTWithoutSlash(isoFinalDate));
+										+ convertDateForABNTWithoutSlash(isoInitialDate)
+										+ " - "
+										+ convertDateForABNTWithoutSlash(isoFinalDate));
 
 						GenerateReceipt receiptFrame = new GenerateReceipt();
 						receiptFrame.setVisible(true);
@@ -360,7 +363,7 @@ public class GenerateReceipt extends JFrame
 		contentPane.add(returnButton);
 	}
 
-	/*
+	/**
 	 *  Method used to show an error message for exception treatment
 	 *	@param errorMessage - Receives an error message
 	 */
