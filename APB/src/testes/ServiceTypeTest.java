@@ -16,9 +16,8 @@ public class ServiceTypeTest
 	ServiceType  serviceType =  new ServiceType();
 	
 	@Before
-	/*
-	 * Initialize a service type
-	 */
+	
+	// Initialize a service type
 	public void setUp()
 	{
 		try
@@ -37,7 +36,7 @@ public class ServiceTypeTest
 	 * Define an assertive that compares the value of the service type ('Corte') included
 	 *   with the service type registered 
 	 */
-	public void getterServiceTypeTest()
+	public void getterServiceTypeTest ()
 	{
 		assertEquals( "Corte", serviceType.getServiceTypeName() );
 	}
@@ -47,7 +46,7 @@ public class ServiceTypeTest
 	 * Define an assertive that compares the value of the price ('14,50') included
 	 *   with the service type registered 
 	 */
-	public void getterPriceServiceTypeTest()
+	public void getterPriceServiceTypeTest ()
 	{
 		assertEquals( "14,50", serviceType.getServiceTypePrice() );
 	}
@@ -58,7 +57,7 @@ public class ServiceTypeTest
 	/* 
 	 * Define an assertive that throws a exception if the price of the service type is null
 	 */
-	public void setterPriceNullTest() throws ServiceException
+	public void setterPriceNullTest () throws ServiceException
 	{
 		serviceType.setServiceTypePrice(null);
 		Assert.fail("Deve lançar exceção");
@@ -70,7 +69,7 @@ public class ServiceTypeTest
 	/* 
 	 *	Define an assertive that throws a exception if the service type name is null
 	 */
-	public void setterServiceTypeNameTest() throws ServiceException 
+	public void setterServiceTypeNameTestv() throws ServiceException 
 	{
 		serviceType.setServiceTypeName(null);
 		Assert.fail("Deve lançar exceção");

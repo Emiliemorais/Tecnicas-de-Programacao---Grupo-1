@@ -20,8 +20,8 @@ public class ReportDAOTest
 	Report report = new Report();
 
 	/* 
-	 * Método utilizado para receber os atributos de um relatorio de forma correta,
-	 * para realização do teste, lançando exceçoes de atributos nulos e problemas de conversão
+	 * This method is used to receives the attributes of a Report DAO in the correct form
+	 * to realize the test, throws exceptions of null attributes 
 	 */
 	@Before
 	public void setUp() throws ReportException, ParseException
@@ -40,18 +40,18 @@ public class ReportDAOTest
 
 	}
  
-	// Método utilizado para testar o getInstance da classe RelatorioDAO
+	// This method is used to test the method getInstance
 	@Test
-	public void getInstanceTest()
+	public void getInstanceTest ()
 	{
 		// DAO Report class's instance to access the class
 		ReportDAO reportDAO = ReportDAO.getInstance();
 		assertEquals( ReportDAO.getInstance(), reportDAO );
 	}
 
-	// Método utilizado para testar a vizualização de um relatorio, quando procurado por data
+	// This method is used to test the method that search a registered report by date
 	@Test
-	public void searchByDateTest()
+	public void searchByDateTest ()
 	{
 		try 
 		{
@@ -74,12 +74,9 @@ public class ReportDAOTest
 
 	}
 
-	/* 
-	 * Método utilizado para testar a vizualização de um relatorio, quando procurado
-	 *  por data e serviço	
-	 */
+	// This method is used to test the method that search a registered report by date and service
 	@Test
-	public void searchByDateAndServiceTest()
+	public void searchByDateAndServiceTest ()
 	{
 		try 
 		{
@@ -100,9 +97,9 @@ public class ReportDAOTest
 
 	}
 
-	// Método utilizado para testar a vizualização de um relatorio, quando procurado por barbeiro	
+	// This method is used to test the method that search a registered report by barber	
 	@Test
-	public void searchBarberTest()
+	public void searchBarberTest ()
 	{
 		try
 		{
@@ -123,10 +120,7 @@ public class ReportDAOTest
 
 	}
 
-	/*
-	 * Método utilizado para testar a vizualização de um relatorio, quando procurado
-	 *  por data e serviço	
-	 */
+	//This method is used to test the method that search a registered report by barber and date
 	@Test
 	public void searchByBarberAndServiceTest()
 	{
@@ -149,7 +143,7 @@ public class ReportDAOTest
 
 	}
 
-	// Método utilizado para testar a vizualização de um relatorio, quanto procurado serviço	
+	// This method is used to test the method that search a registered report by service
 	@Test
 	public void searchByServiceTest()
 	{
@@ -172,10 +166,7 @@ public class ReportDAOTest
 
 	}
 
-	/*
-	 * Método utilizado para testar a vizualização de um relatorio, quando procurado 
-	 * por data e barbeiro	
-	 */
+	// This method is used to test the method that search a registered report by date and barber
 	@Test
 	public void searchByDateAndBarberTest()
 	{
@@ -198,10 +189,7 @@ public class ReportDAOTest
 
 	}
 	
-	/*
-	 * Método utilizado para testar a vizualização de um relatorio, quando procurado 
-	 * por data, serviço e barbeiro	
-	 */
+	// This method is used to test the method that search a registered report by date, barber and service
 	@Test
 	public void searchByDateAndBarberAndServiceTest()
 	{

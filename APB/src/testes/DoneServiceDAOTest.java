@@ -21,8 +21,8 @@ public class DoneServiceDAOTest
 	DoneService doneService2 = new DoneService();
 	
 	/* 
-	 * Método utilizado para receber os atributos de um Serviço Prestado de forma correta,
-	 * para realização do teste, lançando exceçoes de atributos nulos e problemas de conversão
+	 * This method is used to receives the attributes of a Done Service in the correct form
+	 * to realize the test, throws exceptions of null attributes e conversions problems
 	*/
 	@Before
 	public void setUp () 
@@ -38,15 +38,15 @@ public class DoneServiceDAOTest
 			doneService2.setDate("01/01/2010");
 			doneService2.setPrice("9,90");
 		} 
-		catch (NullPointerException e)
+		catch(NullPointerException e)
 		{
 			e.printStackTrace();
 		} 
-		catch (ServiceException e)
+		catch(ServiceException e)
 		{
 			e.printStackTrace();
 		}
-		catch (ParseException e) 
+		catch(ParseException e) 
 		{
 			e.printStackTrace();
 		}
@@ -54,18 +54,16 @@ public class DoneServiceDAOTest
 
 	DoneServiceDAO doneServiceDAO = DoneServiceDAO.getInstance();
 	
-	/* 
-	 * Método utilizado para testar o getInstance da classe ServicoPrestadoDAO
-	*/
+	
+	// This method is used to test the method getInstance 
 	@Test
 	public void getInstanceTest ()
 	{
 		assertEquals(DoneServiceDAO.getInstance(), doneServiceDAO);
 	}
 
-	/* 
-	 * Método utilizado para testar a inserçao correta de um Servico Prestado
-	*/
+	 
+	// This method tests the register of a Done Service
 	@Test
 	public void includeDoneServiceTest ()
 	{
@@ -80,9 +78,8 @@ public class DoneServiceDAOTest
 
 	}
 	
-	/* 
-	 * Método utilizado para testar a exclusão correta de um Servico Prestado
-	*/
+	
+	// This method tests the delete of a Done Service	
 	@Test
 	public void deleteDoneServiceTest () 
 	{
@@ -96,9 +93,8 @@ public class DoneServiceDAOTest
 		}
 	}
 	
-	/* 
-	 * Método utilizado para testar a inserçao de um Servico nulo na classe Serviço Prestado
-	*/
+	 
+	// This method tests the register of a Done Service	with a null done service
 	@Test
 	public void includeDoneServiceNullTest () 
 	{
@@ -112,9 +108,8 @@ public class DoneServiceDAOTest
 		}
 	}
 	
-	/* 
-	 * Método utilizado para testar a exclusão de um Servico nulo na classe Serviço Prestado
-	*/
+	 
+	// This method tests the delete of a Done Service	with a null done service
 	@Test
 	public void deleteDoneServiceNullTest () 
 	{
