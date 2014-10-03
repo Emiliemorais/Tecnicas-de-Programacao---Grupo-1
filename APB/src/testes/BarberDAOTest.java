@@ -27,10 +27,10 @@ public class BarberDAOTest
 	
 	@Before
 	/*
-	 * Inicializa dois barbeiros como nomes diferentes e dados iguais.
-	 * Captura exceções da inclusão dos dados.
+	 * This method initializes two barbers with different names and same data 
+	 * if the data is null the method throws a exception
 	 */
-	public void setUp()
+	public void setUp ()
 	{
 		try
 		{
@@ -45,19 +45,19 @@ public class BarberDAOTest
 			secondBarber.setBarberCpf("02919594150");
 			secondBarber.setBarberChair("5");
 			
-			// BarberDAO class's instanceto access the class
+			// BarberDAO class's instance to access the class
 			BarberDAO barberDao = BarberDAO.getInstance();
 			barberDao.includeBarber(barber);
 		}
-		catch (NullPointerException e)
+		catch( NullPointerException e )
 		{
 			e.printStackTrace();
 		}
-		catch (BarberException e)
+		catch( BarberException e ) 
 		{
 			e.printStackTrace();
 		}
-		catch (SQLException e)
+		catch( SQLException e )
 		{
 			e.printStackTrace();
 		}	
@@ -67,23 +67,20 @@ public class BarberDAOTest
 	
 	@Test
 	/* 
-	 * Define uma assertiva que é disparada se o retorno do método 'getInstance()' 
-	 * não for igual à instância declarada logo acima (barbeiroDAO).
+	 * This method is used to test the method getInstance 
 	 */
-	public void getInstanceMethodTest()
+	public void getInstanceMethodTest ()
 	{	
 		assertEquals( BarberDAO.getInstance(), barberDAO );
 	}
 
 	@Test
 	/*
-	 * Define uma assertiva que é disparada se a inclusão não foi feita
-	 *   com sucesso (retorno do método 'incluir()').
-	 * Define outra assertiva que checa se o nome que foi cadastrado no banco de dados é compatível
-	 *	 com o que foi realmente pedido para se cadastrar.
-	 * Captura exceções SQL que possam ocorrer.
+	 * This method tests the register of a barber, if the register fail an assert is ignited 
+	 * the other assert checks if the name that was registered in the database is equal
+	 * to the name that was required to register.
 	 */
-	public void includeBarberMethodTest()
+	public void includeBarberMethodTest ()
 	{
 		try
 		{
@@ -92,44 +89,46 @@ public class BarberDAOTest
 			// Connection interface's instance to connect with the database
 			Connection connection = FactoryConnection.getInstance().getConnection();
 			
+			String sqlCodeToQueryBarber = "SELECT nome FROM barbeiro WHERE "
+			   							  + " nome = \"" + barber.getBarberName() + "\";" ;
 			// ResultSet interface instance to query a barber's name
-			ResultSet queryForBarberName = connection.createStatement()
-						   .executeQuery("SELECT nome FROM barbeiro WHERE "
-								   		+ " nome = \"" + barber.getBarberName() + "\";");
+			ResultSet queryForBarberName = connection.createStatement().executeQuery(sqlCodeToQueryBarber);
 			queryForBarberName.next();
+					
 			assertEquals( "Alessandro", queryForBarberName.getString("nome") );
 			queryForBarberName.close();
 		} 
-		catch (SQLException e)
+		catch(SQLException e)
 		{
 			e.printStackTrace();
 		}
 		
 	}
 	
-	// Define um erro que é esperado
+	// Define an error type that is expected
 	@Test (expected = AssertionError.class)
 	/*
-	 * Define uma assertiva que é disparada se a exclusão de um barbeiro não foi feita
-	 * 	 com sucesso (retorno do método 'excluir()').
-	 * Testa se o método 'fail()' funcionou (erro esperado).
-	 * Captura exceções SQL que possam ocorrer.
+	 * This method is used to test the method deleteBarber
 	 */
-	public void deleteBarberMethodTeste()
+	public void deleteBarberMethodTeste ()
 	{
 		try 
 		{
 			assertTrue( barberDAO.deleteBarber(barber) );
 			
-			Connection connection = FactoryConnection.getInstance().getConnection();
-			ResultSet queryForBarberName = connection.createStatement()
-						   .executeQuery("SELECT nome FROM barbeiro WHERE "
-								   		 + " nome = \"" + barber.getBarberName() + "\";");
+			FactoryConnection factoryConnectionInstance = FactoryConnection.getInstance();
+			
+			Connection connection = factoryConnectionInstance.getConnection();
+			
+			String sqlCodeToQueryBarber = "SELECT nome FROM barbeiro WHERE "
+										  + " nome = \"" + barber.getBarberName() + "\";" ;
+			
+			ResultSet queryForBarberName = connection.createStatement().executeQuery(sqlCodeToQueryBarber);
 			queryForBarberName.next();
 			fail();
 			queryForBarberName.close();
 		}
-		catch (SQLException e)
+		catch(SQLException e)
 		{
 			e.printStackTrace();
 		}
@@ -137,26 +136,26 @@ public class BarberDAOTest
 	
 	@Test
 	/*
-	 * Define uma assertiva que é disparada se a alteração não foi feita
-	 *   com sucesso (retorno do método 'alterar()').
-	 * Define outra assertiva que testa se o nome foi realmente alterado, varrendo todas as linhas
-	 * 	 da coluna 'nome' procurando pelo nome 'Alessandro'.
-	 * Captura exceções SQL que possam ocorrer.
+	 * This method is used to test the method changeBarber
 	 */
-	public void changeBarberMethodTest()
+	public void changeBarberMethodTest ()
 	{
 		try
 		{
-			assertTrue( barberDAO.modifyBarber( barber.getBarberName(), barber, secondBarber ) );
+			assertTrue( barberDAO.changeBarber( barber.getBarberName(), barber, secondBarber ) );
 			
-			barberDAO.modifyBarber( barber.getBarberCpf(),secondBarber, barber );
-			Connection connection = FactoryConnection.getInstance().getConnection();
+			barberDAO.changeBarber( barber.getBarberCpf(),secondBarber, barber );
+			
+			FactoryConnection factoryConnectionInstance = FactoryConnection.getInstance();
+			Connection connection = factoryConnectionInstance.getConnection();
 			
 			// java.sql.PreparedStatement instance to query in the database
 			java.sql.PreparedStatement preparedStatement;
-
-			preparedStatement = connection.prepareStatement("SELECT nome FROM barbeiro WHERE "
-												+ " nome = \"" + barber.getBarberName() + "\";");
+			
+			String sqlCodeToQueryBarber = "SELECT nome FROM barbeiro WHERE "
+										  + " nome = \"" + barber.getBarberName() + "\";";
+			
+			preparedStatement = connection.prepareStatement(sqlCodeToQueryBarber);
 			
 			ResultSet queryForBarberName = preparedStatement.executeQuery();
 						
@@ -167,7 +166,7 @@ public class BarberDAOTest
 			
 			queryForBarberName.close();
 		} 
-		catch (SQLException e)
+		catch(SQLException e)
 		{
 			e.printStackTrace();
 		}
@@ -175,16 +174,15 @@ public class BarberDAOTest
 	
 	@Test
 	/*
-	 * Testa se ocorre a inclusão de um barbeiro com passagem de argumento nulo.
-	 * Captura exceções SQL que possam ocorrer.
+	 * This method tests the method includeBarber with a null barber
 	 */
-	public void includeBarberNullMethodTest() 
+	public void includeBarberNullMethodTest () 
 	{
 		try
 		{
 			assertFalse( barberDAO.includeBarber(null) );
 		} 
-		catch (SQLException e)
+		catch(SQLException e)
 		{
 			e.printStackTrace();
 		}
@@ -192,8 +190,7 @@ public class BarberDAOTest
 	
 	@Test
 	/*
-	 * Testa se ocorre a exclusão de um barbeiro com passagem de argumento nulo.
-	 * Captura exceções SQL que possam ocorrer.
+	 * This method tests the method deleteBarber with a null barber 
 	 */
 	public void deleteBarberNullMethodTest()
 	{
@@ -209,16 +206,15 @@ public class BarberDAOTest
 	
 	@Test
 	/*
-	 * Testa se ocorre a alteração de um barbeiro com passagem de argumentos nulos.
-	 * Captura exceções SQL que possam ocorrer.
+	 * This method tests the method changeBarber with a null barber 
 	 */
 	public void changeBarberNullMethodTest()
 	{
 		try
 		{
-			assertFalse( barberDAO.modifyBarber( barber.getBarberName(), null, null ) );
+			assertFalse( barberDAO.changeBarber( barber.getBarberName(), null, null ) );
 		} 
-		catch (SQLException e)
+		catch(SQLException e)
 		{
 			e.printStackTrace();
 		}
@@ -226,14 +222,13 @@ public class BarberDAOTest
 	
 	@Test
 	/*
-	 * Testa se ocorre a inclusão de um barbeiro com passagem do argumento 'barbeiro_alterado' nulo.
-	 * Captura exceções SQL que possam ocorrer.
+	 * This method tests the method changeBarber with a null changedBarber 
 	 */
 	public void changeChangedBarberNullMethodTest() 
 	{
 		try
 		{
-			assertFalse( barberDAO.modifyBarber( barber.getBarberName(), null, barber ) );
+			assertFalse( barberDAO.changeBarber( barber.getBarberName(), null, barber ) );
 		} 
 		catch (SQLException e)
 		{
@@ -243,8 +238,7 @@ public class BarberDAOTest
 	
 	@Test
 	/*
-	 * Define uma assertiva que é disparada se há algum nome nulo no banco de dados. 
-	 * Captura exceções SQL que possam ocorrer.
+	 * This method tests the method searchBarberTest, an assert is ignited if the name is not null
 	 */
 	public void searchBarberTest() 
 	{
@@ -267,8 +261,7 @@ public class BarberDAOTest
 	
 	@Test
 	/*
-	 * Define uma assertiva que é disparada se há algum nome nulo no banco de dados. 
-	 * Captura exceções SQL que possam ocorrer.
+	 * This method tests the method showRegisteredBarber, an assert is ignited if some name is null
 	 */
 	public void showRegisteredBarberMethodTest() 
 	{
@@ -291,8 +284,7 @@ public class BarberDAOTest
 	
 	@Test
 	/*
-	 * Define uma assertiva que é disparada se o nome do barbeiro cadastrado no banco de dados for nulo. 
-	 * Captura exceções SQL que possam ocorrer.
+	 *  This method tests the method  searchByName, an assert is ignited if the name is not null
 	 */
 	public void searchByNameMethodTest() 
 	{
