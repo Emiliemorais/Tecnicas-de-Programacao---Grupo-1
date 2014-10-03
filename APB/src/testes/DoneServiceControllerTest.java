@@ -44,13 +44,13 @@ public class DoneServiceControllerTest
 	@Test
 	/* 
 	 * Test if a inclusion of a contact was made right
-	 * Check the return of method 'inserir'
+	 * Check the return of method 'insertProvidedService'
 	 */
 	public void includeDoneServiceMethodTest()
 	{
 		try
 		{
-			assertTrue(doneServiceController.insertProvidedService(doneService));
+			assertTrue( doneServiceController.insertProvidedService(doneService) );
 		}
 		catch (SQLException e)
 		{
@@ -61,13 +61,13 @@ public class DoneServiceControllerTest
 	@Test
 	/* 
 	 * Test if a exclusion of a contact was made right
-	 * Check the return of method 'excluir'
+	 * Check the return of method 'deleteProvidedService'
 	 */
 	public void deleteDoneServiceMethodTest()
 	{
 		try
 		{
-			assertTrue(doneServiceController.deleteProvidedService(doneService));
+			assertTrue( doneServiceController.deleteProvidedService(doneService) );
 		}
 		catch (SQLException e)
 		{
@@ -76,12 +76,12 @@ public class DoneServiceControllerTest
 	}
 
 	@Test
-	// Test if the method 'inserir' don't accept null argument
+	// Test if the method 'insertProvidedService' don't accept null argument
 	public void includeDoneServiceTestForNullArgument()
 	{
 		try
 		{
-			assertFalse(doneServiceController.insertProvidedService(null));
+			assertFalse( doneServiceController.insertProvidedService(null) );
 		}
 		catch (SQLException e)
 		{
@@ -90,12 +90,12 @@ public class DoneServiceControllerTest
 	}
 
 	@Test
-	// Test if the method 'excluir' don't accept null argument
+	// Test if the method 'deleteProvidedService' don't accept null argument
 	public void deleteDoneServiceTestForNullArgument()
 	{
 		try
 		{
-			assertFalse(doneServiceController.deleteProvidedService(null));
+			assertFalse( doneServiceController.deleteProvidedService(null) );
 		}
 		catch (SQLException e)
 		{
@@ -104,7 +104,7 @@ public class DoneServiceControllerTest
 	}
 
 	@Test
-	// Test the method 'mostrarServicosPrestadosCadastrados' is working
+	// Test the method 'displayRegisteredProvidedServices' is working
 	public void showRegisteredDoneServicesMethodTest() throws SQLException
 	{
 		// Used to receive the result from the search for done services on DB

@@ -62,8 +62,8 @@ public class Administrative extends JFrame
 		// Panel that contains the content of Administrative panel
 		JPanel administrativePanel = new JPanel();
 		administrativePanel.setBorder(new TitledBorder(UIManager
-				.getBorder("TitledBorder.border"), "Administrativo",
-				TitledBorder.CENTER, TitledBorder.TOP, null, null) );
+									 .getBorder("TitledBorder.border"), "Administrativo",
+									 TitledBorder.CENTER, TitledBorder.TOP, null, null) );
 		administrativePanel.setBounds(10, 11, 379, 183);
 		contentPane.add(administrativePanel);
 		administrativePanel.setLayout(null);
@@ -172,6 +172,7 @@ public class Administrative extends JFrame
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				
 				generateReceiptFrame.setVisible(true);
 				generateReceiptFrame.setLocationRelativeTo(null);
 			}

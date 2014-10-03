@@ -56,13 +56,13 @@ public class APB extends JFrame
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 583, 357);
 		contentPane = new JPanel();
-		contentPane.setForeground(new Color(255, 255, 255) );
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5) );
+		contentPane.setForeground( new Color(255, 255, 255) );
+		contentPane.setBorder( new EmptyBorder(5, 5, 5, 5) );
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblWelcome = new JLabel("Bem Vindo");
-		lblWelcome.setFont(new Font("Tahoma", Font.PLAIN, 17) );
+		lblWelcome.setFont( new Font("Tahoma", Font.PLAIN, 17) );
 		lblWelcome.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWelcome.setBounds(195, 13, 160, 38);
 		contentPane.add(lblWelcome);
@@ -86,8 +86,8 @@ public class APB extends JFrame
 				mainMenuFrame.setLocationRelativeTo(null);
 			}
 		});
-		btnStart.setIcon(new ImageIcon(APB.class
-				.getResource("/resources/ButtonAccept.png") ) );
+		btnStart.setIcon(new ImageIcon
+						(APB.class.getResource("/resources/ButtonAccept.png") ) );
 		btnStart.setBounds(82, 242, 137, 65);
 		contentPane.add(btnStart);
 		
@@ -101,14 +101,15 @@ public class APB extends JFrame
 			}
 		}
 		);
-		btnClose.setIcon(new ImageIcon(APB.class
-				.getResource("/resources/cancel-button-icone-7221-48.png") ) );
+		btnClose.setIcon(new ImageIcon
+						(APB.class.getResource("/resources/cancel-button-icone-7221-48.png") ) );
 		btnClose.setBounds(338, 242, 145, 65);
 		contentPane.add(btnClose);
 		
 		// Object that refers to the icon of 'Barbearia Peixoto' logo.
 		JLabel lblIcon = new JLabel("");
-		lblIcon.setIcon(new ImageIcon(APB.class.getResource("/resources/19fb55_f0fe0bafb3f2bec53376838a10e0825a.jpg_srz_401_146_75_22_0.50_1.20_0.00_jpg_srz.jpg") ) );
+		lblIcon.setIcon(new ImageIcon
+					   (APB.class.getResource("/resources/19fb55_f0fe0bafb3f2bec53376838a10e0825a.jpg_srz_401_146_75_22_0.50_1.20_0.00_jpg_srz.jpg") ) );
 		lblIcon.setBounds(82, 62, 401, 119);
 		contentPane.add(lblIcon);
 	}
