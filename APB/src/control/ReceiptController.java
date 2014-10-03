@@ -22,7 +22,8 @@ public class ReceiptController
 	 */
 	public static ReceiptController getInstance () 
 	{
-		if (instance == null) // "ReceiptController" Class Instance
+		// "ReceiptController" Class Instance
+		if (instance == null) 
 		{
 			instance = new ReceiptController ();
 		}
@@ -34,16 +35,18 @@ public class ReceiptController
 		return instance;
 	}
 	
-	/*
+	/**
      * Method that gives access to the barber services search
 	 * @param barberName - Contains the barber name  
 	 * @param initialDate - Contains the initial date
 	 * @param finalDate - Contains the final date
 	 */
-	public ResultSet barberServicesSearch ( String barberName , String initialDate, String finalDate ) throws SQLException 
+	public ResultSet barberServicesSearch(String barberName , String initialDate, String finalDate) throws SQLException 
 	{
+		ReceiptDAO receiptDAOInstance = ReceiptDAO.getInstance();
+		ResultSet barberServicesSearchResult = receiptDAOInstance.barberServicesSearch(barberName , initialDate, finalDate);
 		
-		return ReceiptDAO.getInstance().barberServicesSearch ( barberName , initialDate, finalDate );
+		return barberServicesSearchResult;
 	}
 	
 }

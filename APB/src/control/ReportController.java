@@ -3,7 +3,6 @@ package control;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-// Importando classes da DAO e da MODEL
 import dao.ReportDAO;
 import model.Report;
 
@@ -12,83 +11,105 @@ public class ReportController
 
 private static ReportController instance;
 
-	public ReportController () 
+	public ReportController() 
 	{
 		
 	}
 	
-	/*
+	/**
 	 *  Method that gives access to the registered reports and also gives the option to search it by date
 	 *  @param report - Contains the report object
 	 */
-	public ResultSet searchByDate ( Report report ) throws SQLException 
+	public ResultSet searchByDate(Report report) throws SQLException 
 	{
-		return ReportDAO.getInstance().searchByDate ( report );
+		ReportDAO reportDAOInstance = ReportDAO.getInstance();
+		ResultSet searchByDateResult = reportDAOInstance.searchByDate(report);
+		
+		return searchByDateResult;
 	}
 	
-	/*
+	/**
 	 *  Method that gives access to the registered reports and also gives the option to search it by date and barber
 	 *  @param report - Contains the report object
 	 */
-	public ResultSet searchByDateAndBarber ( Report report ) throws SQLException 
+	public ResultSet searchByDateAndBarber(Report report) throws SQLException 
 	{	
-		return ReportDAO.getInstance().searchByDateAndBarber ( report );
+		ReportDAO reportDAOInstance = ReportDAO.getInstance();
+		ResultSet searchByDateAndBarberResult = reportDAOInstance.searchByDateAndBarber(report);
+		
+		return searchByDateAndBarberResult;
 	}
 	
-	/*
+	/**
 	 *  Method that gives access to the registered reports and also gives the option to search it by date and service
 	 *  @param report - Contains the report object
 	 */
 	public ResultSet searchByDateAndService(Report report) throws SQLException 
 	{	
-		return ReportDAO.getInstance().searchByDateAndService ( report );
+		ReportDAO reportDAOInstance = ReportDAO.getInstance();
+		ResultSet searchByDateAndServiceResult = reportDAOInstance.searchByDateAndService(report);
+		
+		return searchByDateAndServiceResult;
 	}
 	
-	/*
+	/**
 	 *  Method that gives access to the registered reports and also gives the option to search it by barber
 	 *  @param report - Contains the report object
 	 */
-	public ResultSet searchByBarber ( Report report ) throws SQLException 
+	public ResultSet searchByBarber(Report report) throws SQLException 
 	{	
-		return ReportDAO.getInstance().searchByBarber ( report );
+		ReportDAO reportDAOInstance = ReportDAO.getInstance();
+		ResultSet searchByBarberResult = reportDAOInstance.searchByBarber(report);
+		
+		return searchByBarberResult;
 	}
 	
-	/*
+	/**
 	 *  Method that gives access to the registered reports and also gives the option to search it by barber and service
 	 *  @param report - Contains the report object
 	 */
 	public ResultSet searchByBarberAndService(Report report) throws SQLException 
 	{	
-		return ReportDAO.getInstance().searchByBarberAndService(report);
+		ReportDAO reportDAOInstance = ReportDAO.getInstance();
+		ResultSet searchByBarberAndServiceResult = reportDAOInstance.searchByBarberAndService(report);
+		
+		return searchByBarberAndServiceResult;
 	}
 	
-	/*
+	/**
 	 *  Method that gives access to the registered reports and also gives the option to search it by service
 	 *  @param report - Contains the report object
 	 */
-	public ResultSet searchByService ( Report report ) throws SQLException 
+	public ResultSet searchByService(Report report) throws SQLException 
 	{	
-		return ReportDAO.getInstance().searchByService ( report );
+		ReportDAO reportDAOInstance = ReportDAO.getInstance();
+		ResultSet searchByServiceResult = reportDAOInstance.searchByService(report);
+		
+		return searchByServiceResult;
 	}
 	
-	/*
+	/**
 	 *  Method that gives access to the registered reports and also gives the option to search it by date, barber and service
 	 *  @param report - Contains the report object
 	 */
-	public ResultSet searchByDateBarberAndService ( Report report ) throws SQLException 
+	public ResultSet searchByDateBarberAndService(Report report) throws SQLException 
 	{		
-		return ReportDAO.getInstance().searchByDateBarberAndService ( report );
+		ReportDAO reportDAOInstance = ReportDAO.getInstance();
+		ResultSet searchByDateBarberAndServiceResult = reportDAOInstance.searchByDateBarberAndService(report);
+		
+		return searchByDateBarberAndServiceResult;
 	}
 	
 	/* 
 	 * Method used to instance the variable 
 	 * Used only in the case of being NULL
 	 */
-	public static ReportController getInstance () 
+	public static ReportController getInstance() 
 	{
-		if(instance == null) // "ReportController" class instance
+		// "ReportController" class instance
+		if(instance == null) 
 		{
-			instance = new ReportController ();
+			instance = new ReportController();
 		}
 		else
 		{
