@@ -13,10 +13,9 @@ public class DoneServiceDAO
 {
 	private static DoneServiceDAO instance;
 	
-	// General constructor
+	// General class constructor
 	private DoneServiceDAO()
 	{
-        // Blank
 	}
 
 	// Return the current instance or instantiate a new one if 'instance' is null
@@ -33,20 +32,26 @@ public class DoneServiceDAO
 		return instance;
 	}
 
-	/* 
+	/** 
 	 * Include a new service type to DB
-	 * Parameter: serviceToInclude - Service type that will be included on DB
+	 * @param serviceToInclude - Service type that will be included on DB
 	 */
 	public boolean includeServiceType(DoneService serviceToInclude) throws SQLException
 	{
 		if( serviceToInclude != null )
         {
-			this.updateQuery("INSERT INTO "
-							 + "servicoprestado (nome, preco, barbeiro, data) VALUES ("
-							 + "\"" + serviceToInclude.getServiceName() + "\", " + "\""
-							 + serviceToInclude.getPrice() + "\", " + "\""
-							 + serviceToInclude.getBarberName() + "\", " + "\""
-							 + serviceToInclude.getDate() + "\"); ");
+			
+			String sqlCodeToInsertDoneService = "";
+			
+			sqlCodeToInsertDoneService = "INSERT INTO "
+							 			 + "servicoprestado (nome, preco, barbeiro, data) VALUES ("
+							 			 + "\"" + serviceToInclude.getServiceName() + "\", " + "\""
+							 			 + serviceToInclude.getPrice() + "\", " + "\""
+							 			 + serviceToInclude.getBarberName() + "\", " + "\""
+							 			 + serviceToInclude.getDate() + "\"); ";
+					
+			this.updateQuery(sqlCodeToInsertDoneService);
+			
 			return true;
         }
         else
@@ -58,17 +63,20 @@ public class DoneServiceDAO
 	}
 
 	
-	/* 
+	/** 
 	 * Delete a service type on DB
-	 * Parameter: serviceToDelete - Service type that will be deleted from DB
+	 * @param serviceToDelete - Service type that will be deleted from DB
 	 */
 	public boolean deleteServiceType(DoneService serviceToDelete) throws SQLException
 	{
 		if( serviceToDelete != null )
         {
-			this.updateQuery("DELETE FROM servicoprestado WHERE "
-							 + "servicoprestado.idservicoprestado = \"" 
-							 + searchServiceType(serviceToDelete)+ "\";");
+			String sqlCodeToDeleteDoneService = "DELETE FROM servicoprestado WHERE "
+					 					 		+ "servicoprestado.idservicoprestado = \"" 
+					 					 		+ searchServiceType(serviceToDelete)+ "\";";
+			
+			this.updateQuery(sqlCodeToDeleteDoneService);
+			
 			return true;
         }
         else
@@ -79,38 +87,49 @@ public class DoneServiceDAO
 	}
 
 
-	/* 
-	 * Search a service type in DB
-	 * Parameter: serviceToSearchFor - Service type that will be searched in DB
+	/** 
+	 * Search a done service in DB
+	 * @param serviceToSearchFor - Service type that will be searched in DB
 	 */
 	private String searchServiceType(DoneService serviceToSearchFor) throws SQLException
 	{
-		Connection connection = FactoryConnection.getInstance().getConnection();
+		FactoryConnection factoryConnectionInstance = FactoryConnection.getInstance();
+		
+		Connection connection = factoryConnectionInstance.getConnection();
 		
 		PreparedStatement preparedStatement;
 		
-		preparedStatement = connection.prepareStatement("SELECT * FROM servicoprestado WHERE "
-											  			+ "servicoprestado.nome = \""
-											  			+ serviceToSearchFor.getServiceName()
-											  			+ "\" AND servicoprestado.preco = \""
-											  			+ serviceToSearchFor.getPrice()
-											  			+ "\" AND servicoprestado.barbeiro = \""
-											  			+ serviceToSearchFor.getBarberName()
-											  			+ "\" AND servicoprestado.data = \""
-											  			+ serviceToSearchFor.getDate() + "\";");
+		String sqlCodeToSearchForServiceType = "SELECT * FROM servicoprestado WHERE "
+	  										   + "servicoprestado.nome = \""
+	  										   + serviceToSearchFor.getServiceName()
+	  										   + "\" AND servicoprestado.preco = \""
+	  										   + serviceToSearchFor.getPrice()
+	  										   + "\" AND servicoprestado.barbeiro = \""
+	  										   + serviceToSearchFor.getBarberName()
+	  										   + "\" AND servicoprestado.data = \""
+	  										   + serviceToSearchFor.getDate() + "\";";
+		
+		preparedStatement = connection.prepareStatement(sqlCodeToSearchForServiceType);
 		
 		// Used to receive the result from a search on DB
 		ResultSet queryResult = preparedStatement.executeQuery();
 		queryResult.next();
 		
-		return queryResult.getString("idservicoprestado");
+		String idDoneService = queryResult.getString("idservicoprestado");
+		
+		return idDoneService;
 	}
 
 
-	// Update the data included on DB
+	/** 
+	 * Execute an action on DB
+	 * @param message - SQL message to do some action on DB
+	 */
 	private void updateQuery(String message) throws SQLException
 	{
-		Connection connection = FactoryConnection.getInstance().getConnection();
+		FactoryConnection factoryConnectionInstance = FactoryConnection.getInstance();
+		
+		Connection connection = factoryConnectionInstance.getConnection();
 		PreparedStatement preparedStatement = connection.prepareStatement(message);
 		preparedStatement.executeUpdate();
 		preparedStatement.close();
@@ -118,23 +137,27 @@ public class DoneServiceDAO
 	}
 
 
-	/*
+	/**
 	 *  Show registered done services
-	 *  Parameter: service - Never used. Should be deleted
+	 *  @param service - Never used. Should be deleted
 	 *  Check the need of this parameter
 	 */
 	public ResultSet showRegistredDoneServices(DoneService service) throws SQLException
 	{
-		Connection connection = FactoryConnection.getInstance().getConnection();
+		FactoryConnection factoryConnectionInstance = FactoryConnection.getInstance();
+		
+		Connection connection = factoryConnectionInstance.getConnection();
+		
+		String sqlCodeToShowRegisteredDoneServices = "SELECT nome,"
+				  									 + " preco,"
+				  									 + " barbeiro,"
+				  									 + " data FROM servicoprestado"
+				  									 + " ORDER BY data;";
 		
 		// Used to receive the result from a search for registered done services on DB
 		ResultSet queryForRegisteredDoneServicesResult = connection
 														.createStatement()
-														.executeQuery("SELECT nome,"
-																	  + " preco,"
-																	  + " barbeiro,"
-																	  + " data FROM servicoprestado"
-																	  + " ORDER BY data;");
+														.executeQuery(sqlCodeToShowRegisteredDoneServices);
 		return queryForRegisteredDoneServicesResult;
 	}
 

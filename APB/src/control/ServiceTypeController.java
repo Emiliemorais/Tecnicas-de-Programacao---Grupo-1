@@ -10,7 +10,12 @@ public class ServiceTypeController
 {
 	// Stores the current instance of the class
 	private static ServiceTypeController instance;
-
+	
+	// General class constructor
+	private ServiceTypeController() 
+	{
+	}
+	
 	/** 
 	 * Method that includes a new service type
 	 * @param serviceTypeToInclude - Service type to be included
@@ -23,7 +28,9 @@ public class ServiceTypeController
 		}
 		else
         {
-			ServiceTypeDAO.getInstance ().includeServiceType(serviceTypeToInclude);
+			ServiceTypeDAO serviceTypeDAOInstance =  ServiceTypeDAO.getInstance();
+
+			serviceTypeDAOInstance.includeServiceType(serviceTypeToInclude);
 			return true;
 		}
 	}
@@ -46,8 +53,11 @@ public class ServiceTypeController
 			// Auxiliar variable used to change the service type
 			ServiceType changedServiceType = newServiceType;
 			
-			ServiceTypeDAO.getInstance().editServiceType (serviceTypeToChangeName, changedServiceType,
-												  newServiceType);
+			ServiceTypeDAO serviceTypeDAOInstance = ServiceTypeDAO.getInstance();
+			
+			serviceTypeDAOInstance.editServiceType(serviceTypeToChangeName,
+												   changedServiceType,
+												   newServiceType);
 			return true;
 		}
 	}
@@ -65,14 +75,11 @@ public class ServiceTypeController
 		}
 		else
         {
-			ServiceTypeDAO.getInstance().deleteServiceType(serviceTypeToDelete);
+			ServiceTypeDAO serviceTypeDAOInstance =  ServiceTypeDAO.getInstance();
+			
+			serviceTypeDAOInstance.deleteServiceType(serviceTypeToDelete);
 			return true;
 		}
-	}
-
-	// Class constructor
-	private ServiceTypeController () 
-	{
 	}
 
 	// Return the current instance or instantiate a new one if 'instance' is null
@@ -86,6 +93,7 @@ public class ServiceTypeController
         {
             // Nothing to do
         }
+		
 		return instance;
 	}
 
@@ -96,7 +104,12 @@ public class ServiceTypeController
 	 */
 	public ResultSet showRegistredServiceTypes (ServiceType service) throws SQLException
 	{
-		return ServiceTypeDAO.getInstance().displayRegisteredTypesOfService(service);
+		ServiceTypeDAO serviceTypeDAOInstance = ServiceTypeDAO.getInstance();
+		
+		ResultSet displayRegisteredTypesOfServiceResult = serviceTypeDAOInstance
+														  .displayRegisteredTypesOfService(service);
+		
+		return displayRegisteredTypesOfServiceResult;
 	}
 
 
@@ -106,7 +119,12 @@ public class ServiceTypeController
 	 */
 	public ResultSet searchServiceTypeByName (ServiceType serviceTypeToSearch) throws SQLException
 	{
-		return ServiceTypeDAO.getInstance().searchByName(serviceTypeToSearch);
+		ServiceTypeDAO serviceTypeDAOInstance = ServiceTypeDAO.getInstance();
+		
+		ResultSet searchByNameResult = serviceTypeDAOInstance
+									   .searchByName(serviceTypeToSearch);
+		
+		return searchByNameResult;
 	}
 
 }
