@@ -75,10 +75,9 @@ public class Report
         }
     }
 	
-	// General constructor
+	// General class constructor
 	public Report()
 	{
-	    // Blank
 	}
 
 	// Getter of 'initialDate'
@@ -125,8 +124,9 @@ public class Report
 
 	
 	// Setter of 'finalDate'
- 	public void setFinalDate(String finalDate) throws ReportException, NullPointerException,
-			ParseException
+ 	public void setFinalDate(String finalDate) throws ReportException,
+ 													  NullPointerException,
+													  ParseException
     {
 		if( finalDate == null )
         {
@@ -201,7 +201,10 @@ public class Report
 	}
 
 
-	// Convert a date to ABNT format
+	/**
+	 * Convert a date to ABNT format
+	 * @param dateToConvert - Date to be converted to ABNT format
+	 */
 	public String convertDateToAbntFormat(String dateToConvert) throws ParseException
 	{
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");

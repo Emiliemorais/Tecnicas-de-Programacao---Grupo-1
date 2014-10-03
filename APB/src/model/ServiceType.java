@@ -15,14 +15,13 @@ public class ServiceType
 	private static String temporaryName;
 	
 	// Constants that keeps an error message
-	private final static String BLANK_SERVICE_TYPE_NAME = "Nome do Serviço em Branco";
-	private final String INVALID_SERVICE_TYPE_PRICE = "Preço Inválido";
-	private final String BLANK_SERVICE_TYPE_PRICE = "Preço em Branco";
+	private final static String BLANK_SERVICE_TYPE_NAME = "Nome do Serviï¿½o em Branco";
+	private final String INVALID_SERVICE_TYPE_PRICE = "Preï¿½o Invï¿½lido";
+	private final String BLANK_SERVICE_TYPE_PRICE = "Preï¿½o em Branco";
 	
 	// General constructor
 	public ServiceType()
 	{
-	    // Blank
 	}
 	
 
@@ -81,7 +80,7 @@ public class ServiceType
         }
 		else
         {
-            throw new IllegalArgumentException("Preço deve ser no formato: **,** ");
+            throw new IllegalArgumentException("Preï¿½o deve ser no formato: **,** ");
         }
 	}
 

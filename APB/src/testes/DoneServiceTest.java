@@ -25,9 +25,9 @@ public class DoneServiceTest
 		// Used to test the constructor
 		DoneService service1 = new DoneService("Corte", "15,00","Claudio");
 		
-		assertEquals("Corte", service1.getServiceName());
-		assertEquals("15,00", service1.getPrice());
-		assertEquals("Claudio", service1.getBarberName());
+		assertEquals( "Corte", service1.getServiceName() );
+		assertEquals( "15,00", service1.getPrice() );
+		assertEquals( "Claudio", service1.getBarberName() );
 	}
 
 	@Test (expected = NullPointerException.class)
@@ -67,7 +67,8 @@ public class DoneServiceTest
 			e.printStackTrace();
 			Assert.fail("N�o deve lan�ar exce��o");
 		}
-		assertEquals("Corte", service.getServiceName());
+		
+		assertEquals( "Corte", service.getServiceName() );
 	}
 
 	@Test (expected = ServiceException.class)
@@ -106,7 +107,8 @@ public class DoneServiceTest
 		{
 			Assert.fail("N�o deve lan�ar exce��o");
 		}
-		assertEquals("123,45", service.getPrice());
+		
+		assertEquals( "123,45", service.getPrice() );
 	}
 
 	@Test (expected = NullPointerException.class)
@@ -145,7 +147,8 @@ public class DoneServiceTest
 		{
 			Assert.fail("Não deve lançar uma exceção");
 		}
-		assertEquals("Jo�o", service.getBarberName());
+		
+		assertEquals( "Jo�o", service.getBarberName() );
 	}
 
 	@Test (expected = NullPointerException.class)
@@ -164,6 +167,7 @@ public class DoneServiceTest
 		{
 			e.printStackTrace();
 		}
+		
 		Assert.fail("Deve lan�ar uma exce��o");
 	}
 
@@ -202,6 +206,7 @@ public class DoneServiceTest
 		{
 			e.printStackTrace();
 		}
+		
 		Assert.fail("Deve lan�ar uma exce��o");
 	}
 
@@ -241,7 +246,7 @@ public class DoneServiceTest
 	// Test if the getter of 'doneServiceDate' returns the true inserted date
 	public void getterDoneServiceDateTest()
 	{
-		assertEquals("10/10/2012", service.getDate());
+		assertEquals( "10/10/2012", service.getDate() );
 	}
 
 }
