@@ -51,7 +51,7 @@ public class NewDoneService extends JFrame
 						NewDoneService doneServiceFrame = new NewDoneService();
 						doneServiceFrame.setVisible(true);
 					} 
-					catch (Exception e)
+					catch( Exception e )
 					{
 						e.printStackTrace();
 					}
@@ -134,7 +134,7 @@ public class NewDoneService extends JFrame
 
 						textGlobal.setText( queryForPrice.getString("preco") );
 					} 
-					catch(SQLException e)
+					catch( SQLException e )
 					{
 						showErrorMessage( e.getMessage() );
 					}

@@ -145,7 +145,7 @@ public class ModifyBarber extends JFrame
 			// ResultSet interface`s instance used to consult the barbers in the database
 			ResultSet queryForBarber = barberController.searchBarberByName(barber);
 			
-			while ( queryForBarber.next() ) 
+			while( queryForBarber.next() ) 
 			{
 				textFieldBarberName.setText( queryForBarber.getString("nome") );
 				textFieldBarberCpf.setText( queryForBarber.getString("cpf") );
@@ -155,11 +155,11 @@ public class ModifyBarber extends JFrame
 			}
 			textGlobalBarber = textFieldBarberCpf.getText();
 		} 
-		catch (SQLException e)
+		catch( SQLException e )
 		{
 			showErrorMessage( e.getMessage() );
 		} 
-		catch (BarberException e)
+		catch( BarberException e )
 		{
 			showErrorMessage( e.getMessage() );
 		}
@@ -169,7 +169,7 @@ public class ModifyBarber extends JFrame
 		saveButton.addActionListener(new ActionListener() 
 		{
 			
-			public void actionPerformed(ActionEvent e)
+			public void actionPerformed (ActionEvent e)
 			{
 				try 
 				{
@@ -182,10 +182,12 @@ public class ModifyBarber extends JFrame
 
 					BarberController barberController = BarberController.getInstance();
 					barberController.modifyBarber(textGlobalBarber, barber);
-
-					JOptionPane.showMessageDialog(null, "Barbeiro "
-												  		 + textFieldBarberName.getText()
-												  		 + " foi alterado com sucesso");
+					
+					String textToShowSucessModify = "Barbeiro "
+													+ textFieldBarberName.getText()
+													+ " foi alterado com sucesso";
+					
+					JOptionPane.showMessageDialog(null, textToShowSucessModify);
 
 					dispose();
 					
@@ -196,11 +198,11 @@ public class ModifyBarber extends JFrame
 					registerBarberframe.setLocationRelativeTo(null);
 
 				}
-				catch (BarberException e1)
+				catch( BarberException e1 )
 				{
 					showErrorMessage( e1.getMessage() );
 				} 
-				catch (SQLException k) 
+				catch( SQLException k ) 
 				{
 					showErrorMessage( k.getMessage() );
 				}
@@ -214,7 +216,7 @@ public class ModifyBarber extends JFrame
 		clearFieldButton.addActionListener(new ActionListener()
 		{
 			
-			public void actionPerformed(ActionEvent e)
+			public void actionPerformed (ActionEvent e)
 			{
 				textFieldBarberName.setText("");
 				textFieldBarberRg.setText("");
@@ -243,7 +245,7 @@ public class ModifyBarber extends JFrame
 				
 	}
 	
-	/*
+	/**
 	 *  Method used to show an error message for exception treatment
 	 *	@param errorMessage - Receives an error message
 	 */
