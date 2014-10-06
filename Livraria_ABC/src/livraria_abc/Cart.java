@@ -38,7 +38,7 @@ import static livraria_abc.ABCBookStore.currentClient;
         static Scanner inputString = new Scanner(System.in);
         
         // Start Getters and Setters
-        public String getItens_add() 
+        public String getItemsToAddOnCart() 
         {
             return itemsToAddOnCart;
         }
@@ -127,7 +127,7 @@ import static livraria_abc.ABCBookStore.currentClient;
              * (refers to 'Book' class)
              */
             int bookIndex = 0;
-            
+                                  
             bookIndex = Book.listISBN.indexOf(bookToAddIsbn);
             
             // Contains the items and quantity to include on cart
@@ -233,16 +233,15 @@ import static livraria_abc.ABCBookStore.currentClient;
                     // 'p' is used to walk through cart items list
                     for( int p = 0; p < itemsAndQuantity.size(); p++ )
                     {
-                        bookIndex = Book.listISBN.indexOf(itemsAndQuantity.get(p).getItens_add());
+                        Cart item = itemsAndQuantity.get(p);
+                        
+                        bookIndex = Book.listISBN.indexOf(item.getItemsToAddOnCart());
                     
                         bookTitle = Book.listTitle.get(bookIndex);
                         
                         System.out.println("Item " + (p+1) + ": '" + bookTitle + "'");
-                        System.out.println("Quantidade: "  + itemsAndQuantity
-                                                             .get(p)
-                                                             .getQuantityOfItens());
-                        System.out.println("Preço(un.): R$" 
-                                           + Book.listPrice.get(bookIndex) + "\n");
+                        System.out.println("Quantidade: "  + item.getQuantityOfItens());
+                        System.out.println("Preço(un.): R$"+ Book.listPrice.get(bookIndex) + "\n");
                         
                     }
                     
@@ -265,14 +264,15 @@ import static livraria_abc.ABCBookStore.currentClient;
         // Listar alternativo - Descobrir porquê..
         public static void Listar_itens_cesta_ ()
         {
-                int indice_Clogado;
+                int currentClientIndex;
                 
-                indice_Clogado = Client.cpf.indexOf(currentClient);
+                currentClientIndex = Client.cpf.indexOf(currentClient);
                 
                            
-                if(itemsAndQuantity.isEmpty())
+                if( itemsAndQuantity.isEmpty() )
                 {
-                    System.out.println("\n"+Client.nameArray.get(indice_Clogado)+", sua cesta está vazia!");
+                    System.out.println("\n" + Client.nameArray.get(currentClientIndex)
+                                       + ", sua cesta está vazia!");
                 }
                 else
                 {
@@ -283,7 +283,7 @@ import static livraria_abc.ABCBookStore.currentClient;
                     System.out.println("Código da cesta: "+cartCode);
                     for(p=0; p<itemsAndQuantity.size(); p++)
                     {
-                        indice_Livro = Book.listISBN.indexOf(itemsAndQuantity.get(p).getItens_add());
+                        indice_Livro = Book.listISBN.indexOf(itemsAndQuantity.get(p).getItemsToAddOnCart());
                     
                         livro = Book.listTitle.get(indice_Livro);
                         
@@ -330,15 +330,20 @@ import static livraria_abc.ABCBookStore.currentClient;
                 String bookNameOnCart = "";
                 
                 System.out.println("Código da cesta: "+cartCode);
+                                
+                int listSize = itemsAndQuantity.size();
+                
                 // 'p' is used to walk through cart items list
-                for(int p = 0; p < itemsAndQuantity.size(); p++)
+                for(int p = 0; p < listSize; p++)
                 {
-                    bookIndex = Book.listISBN.indexOf(itemsAndQuantity.get(p).getItens_add());
+                    Cart item = itemsAndQuantity.get(p);
+                    
+                    bookIndex = Book.listISBN.indexOf(item.getItemsToAddOnCart());
                     
                     bookNameOnCart = Book.listTitle.get(bookIndex);
                         
                     System.out.println("Item " + (p+1) + ": '" + bookNameOnCart + "'");
-                    System.out.println("Quantidade: "  + itemsAndQuantity.get(p).getQuantityOfItens());
+                    System.out.println("Quantidade: "  + item.getQuantityOfItens());
                 }
                 
                 // Receive the parse of 'livro_retirar' to an Integer
@@ -353,8 +358,8 @@ import static livraria_abc.ABCBookStore.currentClient;
                     bookToRemove = inputString.nextLine();
                 
                     itemToRemove = Integer.parseInt(bookToRemove);
-                
-                    if( itemToRemove > 0 && itemToRemove < itemsAndQuantity.size() )
+                                                           
+                    if( itemToRemove > 0 && itemToRemove < listSize )
                     {
                         okItem = true;
                     }
@@ -364,7 +369,7 @@ import static livraria_abc.ABCBookStore.currentClient;
                     }
                     
                 }while( okItem == false );
-                
+
                 // Receive the name of the book that was removed from cart
                 Cart removedBookName = itemsAndQuantity.remove(itemToRemove-1);
                 
@@ -374,9 +379,13 @@ import static livraria_abc.ABCBookStore.currentClient;
                  */
                 int indexOfRemovedBook = 0;
                 
-                indexOfRemovedBook = Book.listISBN.indexOf(removedBookName.itemsToAddOnCart);
+                String itemRemoved = removedBookName.itemsToAddOnCart;
+                int quantityOfItemRemoved = removedBookName.quantityOfItens;
                 
-                System.out.println("\n'"+Book.listTitle.get(indexOfRemovedBook)+"'/"+removedBookName.quantityOfItens+" foi removido da cesta.\n");
+                indexOfRemovedBook = Book.listISBN.indexOf(itemRemoved);
+                
+                System.out.println("\n'" + Book.listTitle.get(indexOfRemovedBook)
+                                   + "'/" + quantityOfItemRemoved + " foi removido da cesta.\n");
                 
                 showMenu();
             }
@@ -395,7 +404,7 @@ import static livraria_abc.ABCBookStore.currentClient;
                 String bookIsbnOnCart = "";
                 
                 // Receive the price of the book on the position 'p' on the cart items list
-                String bookPriceString;
+                String bookPriceString = "";
                 
                 /* 
                  * Receive the position of 'bookIsbnOnCart' on the list of books
@@ -412,10 +421,14 @@ import static livraria_abc.ABCBookStore.currentClient;
                 // Receive the parse result of 'bookPriceString' to float
                 float bookPriceFloat = 0;
                 
+                int listSize = itemsAndQuantity.size();
+                
                 // 'p' is used to walk through cart items list
-                for( int p = 0; p < itemsAndQuantity.size(); p++ )
+                for( int p = 0; p < listSize; p++ )
                 {
-                    bookIsbnOnCart = itemsAndQuantity.get(p).itemsToAddOnCart;
+                    Cart item = itemsAndQuantity.get(p);
+                    
+                    bookIsbnOnCart = item.itemsToAddOnCart;
                     
                     bookIndex = Book.listISBN.indexOf(bookIsbnOnCart);
                     
@@ -423,7 +436,7 @@ import static livraria_abc.ABCBookStore.currentClient;
                     
                     bookPriceFloat = Float.parseFloat(bookPriceString);
                     
-                    subtotal = bookPriceFloat*itemsAndQuantity.get(p).quantityOfItens;
+                    subtotal = bookPriceFloat*item.quantityOfItens;
                     
                     totalValueOfCart +=subtotal;                                        
                 }

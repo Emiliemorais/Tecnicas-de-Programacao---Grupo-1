@@ -17,14 +17,16 @@ public class ServiceTypeDAOTest
 	ServiceType serviceType = new ServiceType();
 	ServiceType serviceType2 = new ServiceType();
 	
-	// Used in test to get access to 'TipoServico'DAO Methods
+	// Used in test to get access to 'TipoServico'DAO methods
 	ServiceTypeDAO serviceTypeDAO = ServiceTypeDAO.getInstance();
 	
 	// Test if a instance previous declared is the current one
 	@Test
 	public void getInstanceMethodTest() 
 	{
-		assertEquals( ServiceTypeDAO.getInstance(), serviceTypeDAO );
+		ServiceTypeDAO serviceTypeDAOInstance =  ServiceTypeDAO.getInstance();
+		
+		assertEquals( serviceTypeDAOInstance, serviceTypeDAO );
 	}
 	
 	// Test if a inclusion of a service type was made right
@@ -61,8 +63,9 @@ public class ServiceTypeDAOTest
 	{
 		try 
 		{
-			assertTrue( serviceTypeDAO.editServiceType(serviceType.getServiceTypeName(),
-										   serviceType, serviceType2) );
+			String serviceTypeName = serviceType.getServiceTypeName();
+			
+			assertTrue( serviceTypeDAO.editServiceType( serviceTypeName, serviceType, serviceType2) );
 		}
 		catch(SQLException e) 
 		{
@@ -70,7 +73,7 @@ public class ServiceTypeDAOTest
 		}
 	}
 	
-	// Test if the method 'inserir' don't accept null argument
+	// Test if the method 'includeServiceType' don't accept null argument
 	@Test
 	public void includeServiceTypeMethodTestForNullArgument() 
 	{
@@ -98,14 +101,15 @@ public class ServiceTypeDAOTest
 		}
 	}
 	
-	// Test if the method 'alterar'don't accept null argument
+	// Test if the method 'editServiceType' don't accept null argument
 	@Test
 	public void modifyServiceTypeMethodTestForNullArgument() 
 	{
 		try 
 		{
-			assertFalse( serviceTypeDAO.editServiceType(serviceType.getServiceTypeName(),
-											serviceType, null));
+			String serviceTypeName = serviceType.getServiceTypeName();
+			
+			assertFalse( serviceTypeDAO.editServiceType( serviceTypeName, serviceType, null) );
 		}
 		catch(SQLException e) 
 		{
@@ -113,14 +117,15 @@ public class ServiceTypeDAOTest
 		}
 	}
 	
-	// Test if the method 'alterar' don't accept as null argument 'tipoServico'
+	// Test if the method 'editServiceType' don't accept as null argument 'tipoServico'
 	@Test
 	public void modifyServiceTypeMethodTestForNullArgumentChangedService() 
 	{
 		try 
 		{
-			assertFalse( serviceTypeDAO.editServiceType(serviceType.getServiceTypeName(),
-											null, serviceType));
+			String serviceTypeName = serviceType.getServiceTypeName();
+			
+			assertFalse( serviceTypeDAO.editServiceType( serviceTypeName, null, serviceType) );
 		} 
 		catch(SQLException e) 
 		{
@@ -129,7 +134,7 @@ public class ServiceTypeDAOTest
 	}
 	
 	 /* 
-	  * Test the method 'mostrarTipoServicoCadastrados' 
+	  * Test the method 'displayRegisteredTypesOfService' 
 	  * (Test if the query result, on field name, is not null)
 	  */ 
 	@Test
@@ -155,7 +160,7 @@ public class ServiceTypeDAOTest
 	}
 	
 	/* 
-	 * Test the method 'pesquisarPorNome'
+	 * Test the method 'searchByName'
 	 * (Test if the query result, on field name, is not null) 
 	 */
 	@Test
