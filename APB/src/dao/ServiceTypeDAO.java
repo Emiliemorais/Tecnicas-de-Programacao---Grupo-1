@@ -35,13 +35,13 @@ public class ServiceTypeDAO
 		return instance;
 	}
 	
-	/* 
+	/**
 	 * Method used to include a service type
 	 * @param addServiceType - Includes the type of the service
 	 */
-	public boolean includeServiceType ( ServiceType addServiceType ) throws SQLException 
+	public boolean includeServiceType(ServiceType addServiceType) throws SQLException 
 	{
-		if ( addServiceType == null )
+		if (addServiceType == null)
 		{
 			
 			return false;
@@ -51,23 +51,25 @@ public class ServiceTypeDAO
 			// Nothing to do
 		}
 		
-		this.updateQuery("INSERT INTO "
-				+ "tiposervico (nome, preco) VALUES ("
-				+ "\"" + addServiceType.getServiceTypeName() + "\", " + "\""
-				+ addServiceType.getServiceTypePrice() + "\"); ");
+		String sqlCodeToInsertServiceType = "INSERT INTO "
+											+ "tiposervico (nome, preco) VALUES ("
+											+ "\"" + addServiceType.getServiceTypeName() + "\", " + "\""
+											+ addServiceType.getServiceTypePrice() + "\"); ";
+		
+		this.updateQuery(sqlCodeToInsertServiceType);
 
 		return true;
 	}
 
-	/*
+	/**
 	 *  Method used to edit a service type
 	 *  @param serviceTypeName -  Receives the name of the type of service
 	 *  @param editedServiceType - Gets the edited service type
 	 *  @param editServiceType - Edits the service type
 	 */	
-	public boolean editServiceType ( String serviceTypeName, ServiceType editedServiceType, ServiceType editServiceType ) throws SQLException 
+	public boolean editServiceType(String serviceTypeName, ServiceType editedServiceType, ServiceType editServiceType) throws SQLException 
 	{
-		if ( editedServiceType == null || editServiceType == null ) 
+		if (editedServiceType == null || editServiceType == null) 
 		{
 			
 			return false;
@@ -77,21 +79,23 @@ public class ServiceTypeDAO
 			// Nothing to do
 		}
 					
-		this.updateQuery ("UPDATE tiposervico SET nome = '"
+		String sqlCodeToUpdateServiceType = "UPDATE tiposervico SET nome = '"
 				+ editedServiceType.getServiceTypeName () + "', " + "preco = '"
 				+ editedServiceType.getServiceTypePrice ()  + "' WHERE"
-				+ " nome = '" + serviceTypeName + "';");
+				+ " nome = '" + serviceTypeName + "';";
+		
+		this.updateQuery(sqlCodeToUpdateServiceType);
 
 		return true;
 	}
 
-	/* 
+	/**
 	 * Method used to delete a service type
 	 * @param deleteServiceType - Deletes the service type
 	 */
-	public boolean deleteServiceType ( ServiceType deleteServiceType ) throws SQLException 
+	public boolean deleteServiceType(ServiceType deleteServiceType) throws SQLException 
 	{
-		if ( deleteServiceType == null )
+		if (deleteServiceType == null)
 		{
 			
 			return false;
@@ -101,55 +105,60 @@ public class ServiceTypeDAO
 			// Nothing to do
 		}
 		
-		this.updateQuery ( "DELETE FROM tiposervico WHERE "
-				+ "tipoServico.nome = \"" + deleteServiceType.getServiceTypeName() + "\";");
+		String sqlCodeToDeleteServiceType = "DELETE FROM tiposervico WHERE "
+											+ "tipoServico.nome = \"" + deleteServiceType.getServiceTypeName() + "\";";
+		
+		this.updateQuery (sqlCodeToDeleteServiceType);
 		
 		return true;
 	}
 
-	/*
+	/**
 	 *  Method used to modify existing records
 	 *  @param message - String about the exception
 	 */
 	public void updateQuery ( String message ) throws SQLException 
 	{
-		Connection connection = FactoryConnection.getInstance().getConnection();
 		// connection - Receives values accordingly to the database
-		PreparedStatement preparedStatement = connection.prepareStatement(message);
+		Connection connection = FactoryConnection.getInstance().getConnection();
+		
 		// preparedStatement - Variable that receives the prepared statements
+		PreparedStatement preparedStatement = connection.prepareStatement(message);
 		preparedStatement.executeUpdate();
 		preparedStatement.close();
 		connection.close();
 	}
 	
-	/*
+	/**
 	 *  Method used to display the registered service types
 	 *  @param service -  Contains the services
 	 */
-	public ResultSet displayRegisteredTypesOfService ( ServiceType service ) throws SQLException 
+	public ResultSet displayRegisteredTypesOfService(ServiceType service) throws SQLException 
 	{
-		Connection connection = FactoryConnection.getInstance().getConnection();
 		// connection - Receives values accordingly to the database
-		ResultSet resultInstance = connection.createStatement().executeQuery ( 
-				"SELECT * FROM tiposervico;" );
-		// resultInstance - ResultSet instance
+		Connection connection = FactoryConnection.getInstance().getConnection();
 		
+		// resultInstance - ResultSet instance
+		ResultSet resultInstance = connection.createStatement().executeQuery("SELECT * FROM tiposervico;");
+				
 		return resultInstance;
 	}
 	
-	/*
+	/**
 	 *  Method used to search by name
 	 *  @param service - Contains the services 
 	 */	
-	public ResultSet searchByName ( ServiceType service ) throws SQLException 
+	public ResultSet searchByName(ServiceType service) throws SQLException 
 	{
-		Connection connection = FactoryConnection.getInstance().getConnection();
 		// connection - Receives values accordingly to the database
-		java.sql.PreparedStatement preparedStatement = connection.prepareStatement ( "SELECT * FROM tiposervico WHERE "
-				+ "nome = '" + service.getServiceTypeName() + "';" );
+		Connection connection = FactoryConnection.getInstance().getConnection();
+		
 		// preparedStatement - Receives the prepared statements
-		ResultSet resultInstance = preparedStatement.executeQuery();
+		java.sql.PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM tiposervico WHERE "
+																					+ "nome = '" + service.getServiceTypeName() + "';");
+		
 		// resultInstance - ResultSet instance
+		ResultSet resultInstance = preparedStatement.executeQuery();
 		
 		return resultInstance;
 	}
