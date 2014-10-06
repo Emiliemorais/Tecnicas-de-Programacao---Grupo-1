@@ -16,12 +16,14 @@ import exception.ServiceException;
 public class ServiceTypeControllerTest 
 {
 
-	ServiceType serviceInstance = new ServiceType(); // serviceInstance - Instance of "ServiceType" class
-	ServiceTypeController serviceControllerInstance = ServiceTypeController // serviceControllerInstance - Instance of  "ServiceTypeController" class
-			.getInstance();
+	// serviceInstance - Instance of "ServiceType" class
+	ServiceType serviceInstance = new ServiceType(); 
+	
+	// serviceControllerInstance - Instance of  "ServiceTypeController" class
+	ServiceTypeController serviceControllerInstance = ServiceTypeController.getInstance();
 
-	@Before
 	// Method used to set up the parameters for the test
+	@Before
 	public void setUp() 
 	{
 		try 
@@ -35,15 +37,15 @@ public class ServiceTypeControllerTest
 		}
 	}
 
-	@Test
 	// Method used to check if the current instance is being returned
+	@Test
 	public void getInstanceFromServiceTypeController()
 	{
 		assertEquals(ServiceTypeController.getInstance(), serviceControllerInstance);
 	}
 
-	@Test
 	// Method used to test if a service type is being added
+	@Test
 	public void addServiceTypeController()
 	{
 		try 
@@ -56,8 +58,8 @@ public class ServiceTypeControllerTest
 		}
 	}
 	
-	@Test
 	// Method used to test if a service type is being deleted
+	@Test
 	public void deleteServiceTypeController() 
 	{
 		try 
@@ -70,8 +72,8 @@ public class ServiceTypeControllerTest
 		}
 	}
 
-	@Test
 	// Method used to test if a service type is being edited
+	@Test
 	public void editServiceTypeController()
 	{
 		try 
@@ -84,8 +86,8 @@ public class ServiceTypeControllerTest
 		}
 	}
 
-	@Test
 	// Method that tests if the service type is null when adding
+	@Test
 	public void addNotNullServiceType()
 	{
 		try 
@@ -98,8 +100,8 @@ public class ServiceTypeControllerTest
 		}
 	}
 
-	@Test
 	// Method that tests if the service type is null when deleting
+	@Test
 	public void deleteNotNullServiceType() 
 	{
 		try 
@@ -112,8 +114,8 @@ public class ServiceTypeControllerTest
 		}
 	}
 
-	@Test
 	// Method that tests if the service type is null when editing
+	@Test
 	public void editNotNullServiceType() 
 	{
 		try 
@@ -126,26 +128,30 @@ public class ServiceTypeControllerTest
 		}
 	}
 	
-	@Test
 	// Methot that test if a barber is being displayed
+	@Test
 	public void displayBarberFromController()
 		throws SQLException 
 	{
-		ResultSet resultInstance = serviceControllerInstance.showRegistredServiceTypes(serviceInstance);
+		
 		// resultInstance = ResultSet Instance
+		ResultSet resultInstance = serviceControllerInstance.showRegistredServiceTypes(serviceInstance);
+		
 		while (resultInstance.next())
 		{
 			;
 		}
 	}
 
-	@Test
 	// Method that test if a service is being displayed when searched by its name
+	@Test
 	public void searchByServiceTypeNameController()
 		throws SQLException 
 	{
-		ResultSet resultInstance = serviceControllerInstance.searchServiceTypeByName(serviceInstance);
+		
 		// resultInstance = ResultSet Instance
+		ResultSet resultInstance = serviceControllerInstance.searchServiceTypeByName(serviceInstance);
+	
 		while (resultInstance.next())
 		{
 			;

@@ -27,62 +27,74 @@ public class RegisterBarber extends JFrame
 	// Creating a panel
 	private JPanel contentPane;
 
-	public static void main ( String[] args ) 
+	public static void main(String[] args) 
 	{
-		EventQueue.invokeLater ( new Runnable () 
+		EventQueue.invokeLater(new Runnable() 
 		{
-			public void run () 
+			public void run() 
 			{
 				try 
 				{
-					RegisterBarber frame = new RegisterBarber (); // frame - Instance of "CadastrarBarbeiro" class
-					frame.setVisible ( true );
-					frame.setLocationRelativeTo ( null );
+					// frame - Instance of "CadastrarBarbeiro" class
+					RegisterBarber frame = new RegisterBarber(); 
+					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
 				}
-				catch ( Exception e ) 
+				catch (Exception e) 
 				{
-					e.printStackTrace ();
+					e.printStackTrace();
 				}
 			}
 		});
 	}
 
-	// Method used to initialize componentes
-	public RegisterBarber () 
+	// Method used to initialize components
+	public RegisterBarber() 
 	{
-		initializeComponents ();
+		initializeComponents();
 	}
 	
 	// Method that sets initial values to the screen components
-	public void initializeComponents () 
+	public void initializeComponents() 
 	{
-		setTitle ( "Barbeiro" );
-		setDefaultCloseOperation ( JFrame.EXIT_ON_CLOSE );
+		setTitle("Barbeiro");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 678, 490);
-		contentPane = new JPanel(); // contentPane - Receives the components values
-		contentPane.setBorder ( new EmptyBorder(5, 5, 5, 5));
-		setContentPane ( contentPane );
-		contentPane.setLayout ( null ); 
+		
+		// contentPane - Receives the components values
+		contentPane = new JPanel(); 
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null); 
 
-		JScrollPane scrollPane = new JScrollPane(); // scrollPane - Creates the scrollbars
-		scrollPane.setBounds ( 10, 11, 474, 429);
-		contentPane.add ( scrollPane );
+		// scrollPane - Creates the scrollbars
+		JScrollPane scrollPane = new JScrollPane(); 
+		scrollPane.setBounds(10, 11, 474, 429);
+		contentPane.add(scrollPane);
 
+		// defaultTableModel - Default Table Model Instance
 		final DefaultTableModel defaultTableModel = new DefaultTableModel(null,
 				new String[] { "Nome", "CPF", "RG", "Telefone", "Cadeira" });
-		// defaultTableModel - Default Table Model Instance
-		final JTable table = new JTable ( defaultTableModel ); // table - A instance from Jtable
+		
+		// table - A instance from Jtable
+		final JTable table = new JTable ( defaultTableModel ); 
 
 		try 
 		{
-			BarberController barberController = BarberController.getInstance(); 
 			// barberController - Instance of "BarberController" class
-			Barber barber = new Barber(); // barber - Instance of "Barber" class
-			ResultSet resultInstance = barberController.showRegisteredBarbers(barber); // resultInstance - ResultSetInstance
+			BarberController barberController = BarberController.getInstance(); 
+			
+			// barber - Instance of "Barber" class
+			Barber barber = new Barber(); 
+			
+			// resultInstance - ResultSetInstance
+			ResultSet resultInstance = barberController.showRegisteredBarbers(barber); 
+			
 			while ( resultInstance.next () )
 			{
-				String[] data = new String[5];
 				// data - Gets name, cpf, rg, phone number and chair
+				String[] data = new String[5];
+				
 				data[0] = resultInstance.getString("nome");
 				data[1] = resultInstance.getString("cpf");
 				data[2] = resultInstance.getString("rg");
@@ -98,7 +110,8 @@ public class RegisterBarber extends JFrame
 
 		scrollPane.setViewportView ( table );
 
-		JButton newButton = new JButton ( "Novo" ); // newButton - Creates a button that says "new"
+		// newButton - Creates a button that says "new"
+		JButton newButton = new JButton ( "Novo" ); 
 		newButton.addMouseListener ( new MouseAdapter () 
 		{
 			@Override
@@ -123,7 +136,8 @@ public class RegisterBarber extends JFrame
 		newButton.setBounds ( 494, 11, 158, 28 );
 		contentPane.add ( newButton );
 
-		JButton editButton = new JButton ( "Alterar" ); // editButton - Creates a button that says "edit"
+		// editButton - Creates a button that says "edit"
+		JButton editButton = new JButton ( "Alterar" ); 
 		editButton.addMouseListener ( new MouseAdapter () 
 		{
 			@Override
@@ -146,7 +160,8 @@ public class RegisterBarber extends JFrame
 		editButton.setBounds(494, 50, 158, 28);
 		contentPane.add(editButton);
 
-		JButton deleteButton = new JButton ( "Remover" ); // deleteButton - Creates a button that says "delete"
+		// deleteButton - Creates a button that says "delete"
+		JButton deleteButton = new JButton ( "Remover" ); 
 		deleteButton.addMouseListener ( new MouseAdapter () 
 		{
 			@Override
@@ -158,10 +173,10 @@ public class RegisterBarber extends JFrame
 					Barber barber = new Barber ();
 					barber.setBarberName ( nome );
 					
+					// confirmation - Show confirm dialog
 					int confirmation = JOptionPane.showConfirmDialog ( null,
 							"Remover " + nome + " da lista?" );
-					// confirmation - Show confirm dialog
-
+					
 					if ( confirmation == JOptionPane.YES_OPTION ) 
 					{
 						BarberController barbeiroController = BarberController.getInstance();
@@ -190,7 +205,8 @@ public class RegisterBarber extends JFrame
 		deleteButton.setBounds ( 494, 89, 158, 28);
 		contentPane.add ( deleteButton );
 		
-		JButton returnButton = new JButton("Voltar"); // returnButton - Creates a button that says "return"
+		// returnButton - Creates a button that says "return"
+		JButton returnButton = new JButton("Voltar"); 
 		returnButton.addMouseListener( new MouseAdapter() 
 		{
 			@Override
@@ -207,7 +223,7 @@ public class RegisterBarber extends JFrame
 		
 	}
 	
-	/*
+	/**
 	 * Method that shows a error message
 	 * @param errorInformation - Shows a error message to the user
 	 */
