@@ -157,9 +157,10 @@ public class RegisterServiceType extends JFrame
 				{
 					e1.printStackTrace();
 				}
+				
+				String paramOfShowConfirmDialog = "Remover " + nameTypeService + " da lista?";
 
-				int confirmation = JOptionPane.showConfirmDialog(null,
-																"Remover " + nameTypeService + " da lista?");
+				int confirmation = JOptionPane.showConfirmDialog(null,paramOfShowConfirmDialog);
 
 				if(confirmation == JOptionPane.YES_OPTION) 
 				{

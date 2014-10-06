@@ -80,6 +80,7 @@ public class SearchDoneService extends JFrame
 
 		final DefaultTableModel model = new DefaultTableModel(null,
 																new String[] { "Serviço", "Realizado por", "Valor", "Data" });
+																// Lembrar de pedir pro italo ajudar com esse metodo////
 		final JTable table = new JTable(model);
 		scrollPane.setViewportView(table);
 
@@ -102,12 +103,13 @@ public class SearchDoneService extends JFrame
 				{
 					DoneService servico = new DoneService();
 					servico.setServiceName(textField.getText());
+					
+					String paramCreateStatement = "SELECT nome, preco, barbeiro,"
+												+ " data FROM servicoprestado WHERE nome = '"
+												+ servico.getServiceName() + "' ORDER BY data;";
 
 					connection = FactoryConnection.getInstance().getConnection();
-					ResultSet instanceStatement = connection.createStatement().executeQuery(
-																			"SELECT nome, preco, barbeiro,"
-																			+ " data FROM servicoprestado WHERE nome = '"
-																			+ servico.getServiceName() + "' ORDER BY data;");
+					ResultSet instanceStatement = connection.createStatement().executeQuery(paramCreateStatement);
 
 					while(instanceStatement.next()) 
 					{
@@ -150,10 +152,12 @@ public class SearchDoneService extends JFrame
 					servico.setBarberName(textField.getText());
 
 					connection = FactoryConnection.getInstance().getConnection();
-					ResultSet instanceStatement = connection.createStatement().executeQuery(
-																			"SELECT nome, preco, barbeiro,"
-																			+ " data FROM servicoprestado WHERE barbeiro = '"
-																			+ servico.getBarberName() + "' ORDER BY data;");
+					
+					String paramCreateStatement = "SELECT nome, preco, barbeiro,"
+												+ " data FROM servicoprestado WHERE barbeiro = '"
+												+ servico.getBarberName() + "' ORDER BY data;";
+							
+					ResultSet instanceStatement = connection.createStatement().executeQuery(paramCreateStatement);
 
 					while (instanceStatement.next())
 					{
@@ -273,10 +277,12 @@ public class SearchDoneService extends JFrame
 					service.setDate(textField.getText());
 
 					connection = FactoryConnection.getInstance().getConnection();
-					ResultSet instanceStatement = connection.createStatement().executeQuery(
-																			"Select nome, preco, barbeiro,"
-																			+ " data from servicoprestado where data = '"
-																			+ service.getDate() + "' order by data;");
+					
+					String paramCreateStatement = "Select nome, preco, barbeiro,"
+												+ " data from servicoprestado where data = '"
+												+ service.getDate() + "' order by data;";
+					
+					ResultSet instanceStatement = connection.createStatement().executeQuery(paramCreateStatement);
 
 					while (instanceStatement.next()) 
 					{
