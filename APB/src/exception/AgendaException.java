@@ -3,15 +3,15 @@ package exception;
 @SuppressWarnings("serial")
 public class AgendaException extends Exception
 {
-	// Construtor da exceção da agenda que utiliza o construtor da superclasse Exception
+	// Constructor for the exception of agenda that uses the superclass constructor Exception
 	public AgendaException() 
 	{
 		super();
 	}
 
 	/*
-	 * Construtor da exceção da agenda que utiliza o construtor da superclasse Exception 
-	 * passando como parametro uma mensagem específica
+	 * Constructor for the exception of agenda that uses the superclass constructor 
+	 * Exception passing as parameter a specific message
 	 */
 	public AgendaException(String message)
 	{

@@ -55,7 +55,7 @@ public class ViewReports extends JFrame
 		EventQueue.invokeLater(new Runnable()
 		{
 			
-			// Método que mostra a janela de Vizualização dos relatórios
+			// Method shows the pane of view reports
 			public void run () 
 			{
 				try 
@@ -71,7 +71,7 @@ public class ViewReports extends JFrame
 		});
 	}
 
-	// Construtor dos componentes da janela VIzualizar Relatorios
+	// Builder of components of pane view reposts
 	public ViewReports() throws SQLException, ReportException,
 			NullPointerException, ParseException 
 	{
@@ -288,12 +288,13 @@ public class ViewReports extends JFrame
 				String[] data = new String[4];
 				data[0] = typeService.get(i);
 				data[1] = Integer.toString(numberTotalService);
-				data[2] = Double.toString(valueTotalService)
-						   .replace(".", ",")
+				
+				data[2] = Double.toString(valueTotalService).replace(".", ",")
 						   .valueOf(decimal.format(valueTotalService));
+				
 				valueTotalPay = valueTotalService / 2;
-				data[3] = Double.toString(valueTotalPay)
-						   .replace(".", ",")
+				
+				data[3] = Double.toString(valueTotalPay).replace(".", ",")
 						   .valueOf(decimal.format(valueTotalPay));
 
 				model.addRow(data);
@@ -357,12 +358,12 @@ public class ViewReports extends JFrame
 				String[] data = new String[4];
 				data[0] = typeService.get(i);
 				data[1] = Integer.toString(numberTotalService);
-				data[2] = Double.toString(valueTotalService)
-						   .replace(".", ",")
+				data[2] = Double.toString(valueTotalService).replace(".", ",")
 						   .valueOf(decimal.format(valueTotalService));
+				
 				valueTotalPay = valueTotalService / 2;
-				data[3] = Double.toString(valueTotalPay)
-						  .replace(".", ",")
+				
+				data[3] = Double.toString(valueTotalPay).replace(".", ",")
 						  .valueOf(decimal.format(valueTotalPay));
 
 				model.addRow(data);
@@ -423,13 +424,13 @@ public class ViewReports extends JFrame
 				String[] data = new String[4];
 				data[0] = typeService.get(i);
 				data[1] = Integer.toString(numberTotalService);
-				data[2] = Double.toString(valueTotalService)
-						   .replace(".", ",")
+				data[2] = Double.toString(valueTotalService).replace(".", ",")
 						   .valueOf(decimal.format(valueTotalService));
+				
 				valueTotalPay = valueTotalService / 2;
-				data[3] = Double.toString(valueTotalPay)
-						   .replace(".", ",")
+				data[3] = Double.toString(valueTotalPay).replace(".", ",")
 						   .valueOf(decimal.format(valueTotalPay));
+				
 
 				model.addRow(data);
 
@@ -487,12 +488,11 @@ public class ViewReports extends JFrame
 				String[] data = new String[4];
 				data[0] = typeService.get(i);
 				data[1] = Integer.toString(numberTotalService);
-				data[2] = Double.toString(valueTotalService)
-						   .replace(".", ",")
+				data[2] = Double.toString(valueTotalService).replace(".", ",")
 						   .valueOf(decimal.format(valueTotalService));
+				
 				valueTotalPay = valueTotalService / 2;
-				data[3] = Double.toString(valueTotalPay)
-						   .replace(".", ",")
+				data[3] = Double.toString(valueTotalPay).replace(".", ",")
 						   .valueOf(decimal.format(valueTotalPay));
 
 				model.addRow(data);
@@ -553,12 +553,11 @@ public class ViewReports extends JFrame
 				String[] data = new String[4];
 				data[0] = typeService.get(i);
 				data[1] = Integer.toString(numberTotalService);
-				data[2] = Double.toString(valueTotalService)
-						   .replace(".", ",")
+				data[2] = Double.toString(valueTotalService).replace(".", ",")
 						   .valueOf(decimal.format(valueTotalService));
+				
 				valueTotalPay = valueTotalService / 2;
-				data[3] = Double.toString(valueTotalPay)
-						  .replace(".", ",")
+				data[3] = Double.toString(valueTotalPay).replace(".", ",")
 						  .valueOf(decimal.format(valueTotalPay));
 
 				model.addRow(data);
@@ -580,7 +579,7 @@ public class ViewReports extends JFrame
 		btnPesquisar.addMouseListener(new MouseAdapter() 
 		{
 			
-			// Método que permite a vizualização da janela que permite a pesquisa de um relatório
+			//method permit show pane of search report
 			@Override
 			public void mouseClicked (MouseEvent e) 
 			{
@@ -606,7 +605,7 @@ public class ViewReports extends JFrame
 		{
 			
 			
-			// Método que permite novamente a vizualização da janela de Menu principal
+			// method permit show pane menu  again
 			@Override
 			public void mouseClicked (MouseEvent e)
 			{
@@ -695,6 +694,7 @@ public class ViewReports extends JFrame
 			@Override
 			public void mouseClicked(MouseEvent arg0)
 			{
+				String paramOfShowMessageDialog = "VocÃª deve fazer uma busca para visualizar o grÃ¡fico.";
 				if( SearchReport.searchType != 0 ) 
 				{
 					painelGrafico.setVisible(true);
@@ -702,9 +702,7 @@ public class ViewReports extends JFrame
 				} 
 				else
 				{
-					JOptionPane
-							.showMessageDialog(null,
-									"VocÃª deve fazer uma busca para visualizar o grÃ¡fico.");
+					JOptionPane.showMessageDialog(null,paramOfShowMessageDialog);
 				}
 			}
 		});
@@ -769,8 +767,9 @@ public class ViewReports extends JFrame
 				instanceStatement.setBarberName(SearchReport.barber);
 				instanceStatement.setServiceType(SearchReport.service);
 
-				rs = ReportController.getInstance()
-									 .searchByBarberAndService(instanceStatement);
+				ReportController searchByBarberAndServiceInstance = ReportController.getInstance();
+				
+				rs = searchByBarberAndServiceInstance.searchByBarberAndService(instanceStatement);
 			}
 			else
 			{
@@ -783,8 +782,8 @@ public class ViewReports extends JFrame
 				instanceStatement.setFinalDate(SearchReport.finalDate);
 				instanceStatement.setInitialDate(SearchReport.initialDate);
 
-				rs = ReportController.getInstance()
-									 .searchByDateAndBarber(instanceStatement);
+				ReportController searchByDateAndBarberInstace = ReportController.getInstance();
+				rs = searchByDateAndBarberInstace.searchByDateAndBarber(instanceStatement);
 			}
 			else
 			{
@@ -798,8 +797,8 @@ public class ViewReports extends JFrame
 				instanceStatement.setFinalDate(SearchReport.finalDate);
 				instanceStatement.setInitialDate(SearchReport.initialDate);
 
-				rs = ReportController.getInstance()
-									 .searchByDateBarberAndService(instanceStatement);
+				ReportController searchByDateBarberAndServiceInstance = ReportController.getInstance();
+				rs = searchByDateBarberAndServiceInstance.searchByDateBarberAndService(instanceStatement);
 			}
 			else
 			{
@@ -810,7 +809,8 @@ public class ViewReports extends JFrame
 			{
 				instanceStatement.setServiceType(SearchReport.service);
 
-				rs = ReportController.getInstance().searchByService(instanceStatement);
+				ReportController searchByServiceInstance = ReportController.getInstance();
+				rs = searchByServiceInstance.searchByService(instanceStatement);
 			}
 			else
 			{
@@ -823,8 +823,9 @@ public class ViewReports extends JFrame
 				instanceStatement.setFinalDate(SearchReport.finalDate);
 				instanceStatement.setInitialDate(SearchReport.initialDate);
 
-				rs = ReportController.getInstance()
-									 .searchByDateAndService(instanceStatement);
+				ReportController searchByDateAndServiceInstace = ReportController.getInstance();
+						 
+				rs = searchByDateAndServiceInstace.searchByDateAndService(instanceStatement);
 			}
 			else
 			{
@@ -836,7 +837,8 @@ public class ViewReports extends JFrame
 				instanceStatement.setFinalDate(SearchReport.finalDate);
 				instanceStatement.setInitialDate(SearchReport.initialDate);
 
-				rs = ReportController.getInstance().searchByDate(instanceStatement);
+				ReportController searchByDate = ReportController.getInstance();
+				rs = searchByDate.searchByDate(instanceStatement);
 			}
 			else
 			{
@@ -893,7 +895,7 @@ public class ViewReports extends JFrame
 		return dataset;
 	}
 
-	// Método que mostra uma mensagem de erro quando há uma exceção na classe
+	// Method that displays an error message when there is an exception in class
 	private static void showErrorMessage (String exceptionInformation) 
 	{
 		JOptionPane.showMessageDialog(null, exceptionInformation, "AtenÃ§Ã£o",
