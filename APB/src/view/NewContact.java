@@ -24,11 +24,18 @@ import java.text.ParseException;
 @SuppressWarnings ( "serial" )
 public class NewContact extends JFrame 
 {
-
-	private JPanel contentPane; // Instance of "Jpanel"
-	private JTextField nameTextField; // Will receive the contact name
-	private JTextField phoneTextField; // Will receive the contact phone
-	private JTextField descriptionTextField; // Will receive the contact description
+	// Instance of "Jpanel"
+	private JPanel contentPane; 
+	
+	// Will receive the contact name
+	private JTextField nameTextField; 
+	
+	// Will receive the contact phone
+	private JTextField phoneTextField; 
+	
+	// Will receive the contact description
+	private JTextField descriptionTextField; 
+	
 
 	public static void main ( String[] args ) 
 	{
@@ -38,7 +45,8 @@ public class NewContact extends JFrame
 			{
 				try 
 				{
-					NewContact frame = new NewContact (); // frame - Instance of "NewContact" class
+					// frame - Instance of "NewContact" class
+					NewContact frame = new NewContact (); 
 					frame.setVisible ( true );
 				} 
 				catch ( Exception e ) 
@@ -65,26 +73,29 @@ public class NewContact extends JFrame
 		contentPane.setBorder(new EmptyBorder ( 5, 5, 5, 5 ) );
 		setContentPane ( contentPane );
 		contentPane.setLayout ( null );
-		MaskFormatter maskFormatterPhone = new MaskFormatter("(##)####-####");
+		
 		// maskFormatterPhone - Receives and formats the phone number
-
-		JButton saveButton = new JButton( "Salvar" ); // saveButton - Button that gives the saving option to the user
+		MaskFormatter maskFormatterPhone = new MaskFormatter("(##)####-####");
+		
+		
+		// saveButton - Button that gives the saving option to the user
+		JButton saveButton = new JButton( "Salvar" ); 
 		saveButton.addMouseListener(new MouseAdapter () 
 		{
-			@Override
 			// Method that allows the use of the mouse for navigation
+			@Override
 			public void mouseClicked ( MouseEvent e ) 
 			{
 				try 
 				{
-					Phonebook phonebookData = new Phonebook ();
 					// phonebookData - Gets the name, phone and description
+					Phonebook phonebookData = new Phonebook ();
 					phonebookData.setPhonebookName ( nameTextField.getText () );
 					phonebookData.setPhonebook ( phoneTextField.getText () );
 					phonebookData.setPhonebookDs ( descriptionTextField.getText () );
-
-					PhonebookController phonebookController = PhonebookController.getInstance ();
+					
 					// phonebookController - Instance of "PhonebookController" class
+					PhonebookController phonebookController = PhonebookController.getInstance ();
 					phonebookController.incluir ( phonebookData );
 
 					JOptionPane.showMessageDialog(null, "Contato "
@@ -116,7 +127,9 @@ public class NewContact extends JFrame
 		saveButton.setBounds ( 26, 218, 109, 33 );
 		contentPane.add(saveButton);
 
-		JButton returnButton = new JButton ( "Voltar" ); // returnButton - Button that offers the return option to the user
+		
+		// returnButton - Button that offers the return option to the user
+		JButton returnButton = new JButton ( "Voltar" ); 
 		returnButton.addMouseListener ( new MouseAdapter () 
 		{
 			@Override
@@ -132,8 +145,8 @@ public class NewContact extends JFrame
 		returnButton.setBounds(166, 218, 100, 33);
 		contentPane.add(returnButton);
 
-		JButton clearFieldsButton = new JButton( "Limpar Campos" ); 
 		// clearFieldsButton - Button that offers the option to clear the fields to the user
+		JButton clearFieldsButton = new JButton( "Limpar Campos" ); 
 		clearFieldsButton.addMouseListener( new MouseAdapter () 
 		{
 			@Override
@@ -163,21 +176,24 @@ public class NewContact extends JFrame
 		contentPane.add ( descriptionTextField );
 		descriptionTextField.setColumns(10);
 
-		JLabel nameLabel = new JLabel ( "Nome:" ); // Label that says "Name"
+		// Label that says "Name"
+		JLabel nameLabel = new JLabel ( "Nome:" ); 
 		nameLabel.setBounds ( 22, 26, 46, 14 );
 		contentPane.add ( nameLabel );
 
-		JLabel phoneLabel = new JLabel ( "Telefone:" ); // Label that says "Phone"
+		// Label that says "Phone"
+		JLabel phoneLabel = new JLabel ( "Telefone:" ); 
 		phoneLabel.setBounds ( 22, 70, 64, 14 );
 		contentPane.add ( phoneLabel );
 
-		JLabel descriptionLabel = new JLabel ( "Descri\u00E7\u00E3o:" ); // Label that says "Description"
+		// Label that says "Description"
+		JLabel descriptionLabel = new JLabel ( "Descri\u00E7\u00E3o:" ); 
 		descriptionLabel.setBounds ( 22, 117, 64, 14 );
 		contentPane.add ( descriptionLabel );
 		
 	}
 
-	/*
+	/**
 	 * Method that shows a error message
 	 * @param errorInformation - Shows a error message to the user
 	 */

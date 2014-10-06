@@ -23,8 +23,11 @@ import java.text.ParseException;
 public class MainMenu extends JFrame 
 {
 
-	// Creating a panel
-	private JPanel contentPane; // contentPane - Variable with the contents of the panel
+	/*
+	 * Creating a panel
+	 * contentPane - Variable with the contents of the panel
+	 */
+	private JPanel contentPane; 
 
 	/**
 	 * Launch the application.
@@ -37,7 +40,8 @@ public class MainMenu extends JFrame
 			{
 				try 
 				{
-					MainMenu frame = new MainMenu (); // frame - Instance of "MainMenu" class
+					// frame - Instance of "MainMenu" class
+					MainMenu frame = new MainMenu (); 
 					frame.setVisible ( true );
 				} 
 				catch ( Exception e ) 
@@ -56,13 +60,17 @@ public class MainMenu extends JFrame
 		setTitle( "APB" );
 		setDefaultCloseOperation ( JFrame.EXIT_ON_CLOSE );
 		setBounds ( 100, 100, 540, 200);
-		contentPane = new JPanel (); // contentPane - Variable with the contents of the panel
+		
+		// contentPane - Variable with the contents of the panel
+		contentPane = new JPanel (); 
 		contentPane.setToolTipText ( "Menu Principal" );
 		contentPane.setBorder( new EmptyBorder ( 5, 5, 5, 5) );
 		setContentPane ( contentPane);
 		contentPane.setLayout ( null );
 
-		JPanel panel = new JPanel (); // panel - Instance of "Jpanel" class
+		
+		// panel - Instance of "Jpanel" class
+		JPanel panel = new JPanel (); 
 		panel.setBorder ( new TitledBorder(UIManager
 				.getBorder ( "TitledBorder.border" ), "Menu Principal",
 				TitledBorder.CENTER, TitledBorder.TOP, null, null ) );
@@ -70,7 +78,9 @@ public class MainMenu extends JFrame
 		contentPane.add ( panel );
 		panel.setLayout ( null );
 
-		JButton adminButton = new JButton ( "Administrativo" ); // adminButton - Button that says "Administrative"
+		
+		// adminButton - Button that says "Administrative"
+		JButton adminButton = new JButton ( "Administrativo" ); 
 		adminButton.addActionListener ( new ActionListener () 
 		{
 			public void actionPerformed ( ActionEvent e ) 
@@ -84,8 +94,9 @@ public class MainMenu extends JFrame
 		adminButton.setBounds ( 10, 60, 157, 37 );
 		panel.add ( adminButton );
 
-		JButton givenServicesButton = new JButton ( "Servi\u00E7os Prestados" ); 
+		
 		// givenServicesButton - Button that says "Given Services"
+		JButton givenServicesButton = new JButton ( "Servi\u00E7os Prestados" ); 
 		givenServicesButton.addActionListener ( new ActionListener () 
 		{
 			public void actionPerformed ( ActionEvent e ) 
@@ -99,7 +110,9 @@ public class MainMenu extends JFrame
 		givenServicesButton.setBounds ( 179, 60, 157, 37 );
 		panel.add( givenServicesButton );
 
-		JButton reportsButton = new JButton ( "Relat\u00F3rios" ); // reportsButton - Button that says "Reports"
+		
+		// reportsButton - Button that says "Reports"
+		JButton reportsButton = new JButton ( "Relat\u00F3rios" ); 
 		reportsButton.addMouseListener ( new MouseAdapter ()
 		{
 			@Override
@@ -135,7 +148,7 @@ public class MainMenu extends JFrame
 		panel.add ( reportsButton );
 	}
 	
-	/*
+	/**
 	 * Method that shows a error message
 	 * @param errorInformation - Shows a error message to the user
 	 */
