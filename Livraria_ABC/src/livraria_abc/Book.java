@@ -136,7 +136,7 @@ public class Book
                 // Client class's instance to access the class
                 Client client = new Client();
                     
-                loginClient = client.efetuarLogin();
+                loginClient = client.getLogin();
                     
                 if( currentAccess )
                 {

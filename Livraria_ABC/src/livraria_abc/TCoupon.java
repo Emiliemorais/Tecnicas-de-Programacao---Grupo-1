@@ -5,47 +5,47 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Tipo Cupom de desconto
-public class TCupom
+public class TCoupon
 {
-    static List <TCupom>  cupom_valor = new ArrayList<>();
+    static List <TCoupon>  cupom_valor = new ArrayList<> ();
     String cupom;
     float valor_desconto;
         
-    public TCupom(){}
+    public TCoupon(){}
        
     // Verifica se um dado cupom está cadastrado no sistema
-    public static boolean Verifica_cupom(String cupom_cpr)
+    public static boolean ChecksCoupon (String coupon_cpr)
     {
-        int i, s=0;
-            
+        int i, checkCouponSearchedThereDataBase=0;
+           
         for(i=0; i<cupom_valor.size(); i++)
         {
-            if(cupom_valor.get(i).getCupom().equals(cupom_cpr))
+            if(cupom_valor.get(i).getCoupon().equals(coupon_cpr))
             {
-                s++;
+                checkCouponSearchedThereDataBase++;
                   
                 break;
             }
         }
             
-        if(s==0)
+        if(checkCouponSearchedThereDataBase==0)
             return false;
         else
             return true;
     }
         
     // Verifica o valor do desconto oferecido por um dado cupom
-    public static float Verifica_valor_desconto(String cupom_cpr)
+    public static float CheksValueDiscount(String cprCoupon)
     {
         float valor_desconto = 0;
             
         int i;
             
-        for(i=0; i<cupom_valor.size(); i++)
+        for(i=0; i<cupom_valor.size (); i++)
         {
-            if(cupom_valor.get(i).getCupom().equals(cupom_cpr))
+            if(cupom_valor.get(i).getCoupon().equals(cprCoupon))
             {
-                valor_desconto = cupom_valor.get(i).getValor_desconto();
+                valor_desconto = cupom_valor.get(i).getValueDiscount ();
                    
                 break;
             }
@@ -55,18 +55,18 @@ public class TCupom
     }
     
     // Construtor
-    public TCupom(String cod_cupom, float valor)
+    public TCoupon (String codCoupon, float valueOfCoupon)
     {
-        this.cupom = cod_cupom;
-        this.valor_desconto = valor;
+        this.cupom = codCoupon;
+        this.valor_desconto = valueOfCoupon;
     }
     
     // Getters
-    public String getCupom() {
+    public String getCoupon () {
         return cupom;
     }
 
-    public float getValor_desconto() {
+    public float getValueDiscount () {
         return valor_desconto;
     }
                 

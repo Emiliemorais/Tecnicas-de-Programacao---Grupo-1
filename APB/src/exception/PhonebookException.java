@@ -1,10 +1,10 @@
 package exception;
 
 @SuppressWarnings("serial")
-public class AgendaException extends Exception
+public class PhonebookException extends Exception
 {
 	// Constructor for the exception of agenda that uses the superclass constructor Exception
-	public AgendaException() 
+	public PhonebookException() 
 	{
 		super();
 	}
@@ -13,7 +13,7 @@ public class AgendaException extends Exception
 	 * Constructor for the exception of agenda that uses the superclass constructor 
 	 * Exception passing as parameter a specific message
 	 */
-	public AgendaException(String message)
+	public PhonebookException(String message)
 	{
 		super(message);
 	}

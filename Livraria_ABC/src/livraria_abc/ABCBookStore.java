@@ -127,7 +127,7 @@ public class ABCBookStore
                 }
                 case "5":
                 {
-                    client.efetuarLogout();
+                    client.getLogout();
                     break;
                 }
                 case "6":
@@ -162,7 +162,7 @@ public class ABCBookStore
                 }
                 case "9":
                 {
-                    client.menuCliente();
+                    client.menuClient();
                     break;
                 }
                 case "0":
@@ -218,14 +218,14 @@ public class ABCBookStore
                 {
                     System.out.println("\nÉ necessário fazer login primeiro.");
                     
-                    client.efetuarLogin();
+                    client.getLogin();
                     
                     showMenu();
                     break;
                 }
                 case "4":
                 {
-                    client.efetuarLogin();
+                    client.getLogin();
                     break;
                 }
                 case "0":

@@ -160,7 +160,7 @@ import static livraria_abc.ABCBookStore.currentClient;
               // Instantiated to get access to the method 'login'
               Client client = new Client();
               
-              clientCpfToAddItens = client.efetuarLogin();
+              clientCpfToAddItens = client.getLogin();
               
               if( !"blank".equals(clientCpfToAddItens) )
               {

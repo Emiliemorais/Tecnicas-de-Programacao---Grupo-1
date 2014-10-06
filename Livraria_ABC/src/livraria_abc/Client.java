@@ -36,15 +36,15 @@ public class Client
     private static ArrayList<String> passwordArrray = new ArrayList<>();
     
         
-    Scanner input = new Scanner(System.in);
-    Scanner lerString = new Scanner(System.in);
+    Scanner input = new Scanner (System.in);
+    Scanner lerString = new Scanner (System.in);
     
-    ABCBookStore livraria = new ABCBookStore();
+    ABCBookStore livraria = new ABCBookStore ();
         
         // showMenu específico para o cliente
-        public void menuCliente()
+        public void menuClient ()
         {
-            int opcaoCliente = 0;
+            int optionCRUDClient = 0;
             
             do 
             {
@@ -55,10 +55,10 @@ public class Client
                 System.out.println("4- Voltar para o menu principal\n");
 
                 System.out.println("Digite a opcao: ");
-                opcaoCliente = input.nextInt();
+                optionCRUDClient = input.nextInt();
 			
                
-                switch (opcaoCliente) 
+                switch (optionCRUDClient) 
                 {
                     case 1:
                     {
@@ -67,13 +67,13 @@ public class Client
                     }
                     case 2:
                     {
-                        consultarDadosCliente();
+                        viewClient();
 
                         break;
                     }
                     case 3:
                     {
-                        excluirConta();
+                        removeClient();
 
                         break;
                     }
@@ -89,7 +89,7 @@ public class Client
                     }
                 }
                        
-            } while (opcaoCliente != 4);
+            } while (optionCRUDClient != 4);
                 
         }
         
@@ -100,42 +100,42 @@ public class Client
             
             i = cpf.indexOf(currentClient);
             
-            System.out.println("\nDigite o nome do cliente: ");
-            String novoNome = lerString.nextLine();
+            System.out.println ("\nDigite o nome do cliente: ");
+            String temporaryName = lerString.nextLine();
 				
             System.out.println("\nDigite o sexo do cliente: ");
-            String novoSexo = lerString.nextLine();
+            String temporaryGener = lerString.nextLine();
 			
             System.out.println("\nDigite CPF civil do cliente: ");
-            String novoCpf = lerString.nextLine();
+            String temporaryCPF = lerString.nextLine();
 			
             System.out.println("\nDigite o RG do cliente: ");
-            String novoRg = lerString.nextLine();
+            String temporaryRG = lerString.nextLine();
 				
             System.out.println("\nDigite o endereco do cliente: ");
-            String novoEndereco = lerString.nextLine();
+            String temporaryAdreess = lerString.nextLine();
 				
             System.out.println("\nDigite o telefone do cliente: ");
-            String novoTelefone = lerString.nextLine();
+            String temporaryPhone = lerString.nextLine();
 				
             System.out.println("\nDigite o CEP do cliente: ");
-            String novoCep = lerString.nextLine();
+            String temporaryCEP = lerString.nextLine();
 				
             System.out.println("\nDigite a data de nascimento do cliente: ");
-            String novaDataNascimento = lerString.nextLine();
+            String temporaryDateBirthday = lerString.nextLine();
             
             
-            cpf.set(i,novoCpf);
-            rg.set(i, novoRg);
-            nameArray.set(i,novoNome);
-            genderArray.set(i,novoSexo);
-            addressArray.set(i,novoEndereco);
-            cepArray.set(i,novoCep);
-            dtBirthArray.set(i,novaDataNascimento);
-            phoneArray.set(i,novoTelefone);
+            cpf.set(i,temporaryCPF);
+            rg.set(i, temporaryRG);
+            nameArray.set(i,temporaryName);
+            genderArray.set(i,temporaryGener);
+            addressArray.set(i,temporaryAdreess);
+            cepArray.set(i,temporaryCEP);
+            dtBirthArray.set(i,temporaryDateBirthday);
+            phoneArray.set(i,temporaryPhone);
             
-            currentClient = novoCpf;
-            currentClientName = novoNome;
+            currentClient = temporaryCPF;
+            currentClientName = temporaryName;
             
             System.out.println("\nDados atualizados com sucesso!\n");
             
@@ -156,18 +156,18 @@ public class Client
                 
                 System.out.println("\nDados atualizados com sucesso!\n");
                 
-                menuCliente();
+                menuClient();
                 
             }
             else
             {
-                menuCliente();
+                menuClient();
             }
             
         }
         
         // Método que imprime os dados cadastrados do cliente que está logado
-        public void consultarDadosCliente()
+        public void viewClient()
         {
             int i = 0;
             
@@ -184,16 +184,18 @@ public class Client
             System.out.println("Conta: " + loginArray.get(i) );
             System.out.println("Senha: **********\n");
                 
-            menuCliente();
+            menuClient();
                 
         }
         
         // Método que exclui uma conta cadastrada
-        public  void excluirConta()
+        public  void removeClient()
         {
             String opcao = "";
-            System.out.println("\nDeseja mesmo exluir sua conta " 
-                               + currentClientName + "?\n 1-SIM  |  0-NÃO\n");
+            String inputForHeadMenu = "\nDeseja mesmo exluir sua conta " 
+                               + currentClientName + "?\n 1-SIM  |  0-NÃO\n";
+            
+            System.out.println(inputForHeadMenu);
             
             opcao =  lerString.nextLine();
             
@@ -225,20 +227,23 @@ public class Client
             }
             else
             {
-                menuCliente();
+                menuClient();
             }
         }
         
         // Método que cadastra um novo cliente
-        public  void cadastrarCliente() 
+        public  void includeClient() 
         {
-                System.out.println("\nOlá Vistante! Bem vindo à livraria ABC!\nPercebemos que você ainda não possui cadastro em nosso site.\nPara se cadastrar, complete os campos abaixo: ");
+                String inputForHeadMenu = "\nOlá Vistante! Bem vindo à livraria ABC!\nPercebemos que você ainda não possui cadastro "
+                                        + "em nosso site.\nPara se cadastrar, complete os campos abaixo: ";
+                
+                System.out.println(inputForHeadMenu);
 		
                 System.out.println("\nSeu nome: ");
-		String nome = lerString.nextLine();
+		String name = lerString.nextLine();
 		
 		System.out.println("\nSeu sexo: ");
-		String sexo = lerString.nextLine();
+		String gener = lerString.nextLine();
 		
 		System.out.println("\nSeu CPF: ");
 		String cpf = lerString.nextLine();
@@ -247,44 +252,44 @@ public class Client
 		String rg = lerString.nextLine();
 		
 		System.out.println("\nSeu endereço: ");
-		String endereco = lerString.nextLine();
+		String adreess = lerString.nextLine();
 		
 		System.out.println("\nSeu telefone: ");
-		String telefone =lerString.nextLine();
+		String phone =lerString.nextLine();
 		
 		System.out.println("\nSeu CEP: ");
 		String cep = lerString.nextLine();
 		
 		System.out.println("\nSua data de nascimento: ");
-		String dataNasc = lerString.nextLine();
+		String dateBirthiday = lerString.nextLine();
 		
 		System.out.println("\nInforme agora uma conta que será usada para fazer login: ");
 		String login = lerString.nextLine();
 		
 		System.out.println("\nInforme uma senha para sua conta: ");
-		String senha = lerString.nextLine();
+		String password = lerString.nextLine();
                 
                 Client.cpf.add(cpf);
                 Client.rg.add(rg);
-                Client.nameArray.add(nome);
-                Client.genderArray.add(sexo);
-                Client.addressArray.add(endereco);
+                Client.nameArray.add(name);
+                Client.genderArray.add(gener);
+                Client.addressArray.add(adreess);
                 Client.cepArray.add(cep);
-                Client.dtBirthArray.add(dataNasc);
-                Client.phoneArray.add(telefone);
+                Client.dtBirthArray.add(dateBirthiday);
+                Client.phoneArray.add(phone);
                 Client.loginArray.add(login);
-                Client.passwordArrray.add(senha);
+                Client.passwordArrray.add(password);
                 
                 currentAccess = true;
                 currentClient = cpf;
-                currentClientName = nome;
+                currentClientName = name;
                 
                 System.out.println("\nCliente cadastrado com sucesso!\n");
-                menuCliente();
+                menuClient();
         }
         
         //Retorna o cpf o cliente logado se o login for bem sucedido ou "blank" caso contrário.
-        public String efetuarLogin()
+        public String getLogin()
         {
             String verifyCadastro = "1";
             if( !currentAccess && !Client.loginArray.isEmpty() )  
@@ -306,24 +311,24 @@ public class Client
                     if( !Client.loginArray.isEmpty() )
                     {
                         int tries = 0;
-                        String conta; 
+                        String account; 
                         String psw;
-                        String cliente_logado = "blank";
+                        String clientLoging = "blank";
                         boolean verify_psw = false;
             
                         do
                         {
                             System.out.println("\nInforme sua conta: ");
-                            conta = lerString.nextLine();
+                            account = lerString.nextLine();
             
                             System.out.println("\nInforme sua senha: ");
                             psw = lerString.nextLine();
             
-                            if( Client.loginArray.contains(conta) )
+                            if( Client.loginArray.contains(account) )
                             {
                                 int indice;
                                 
-                                indice = Client.loginArray.indexOf(conta);
+                                indice = Client.loginArray.indexOf(account);
                 
                                 if( passwordArrray.get(indice).equals(psw) )
                                 {
@@ -332,7 +337,7 @@ public class Client
                                     currentClient = cpf.get(indice);
                                     currentClientName = nameArray.get(indice);
                                 
-                                    cliente_logado = cpf.get(indice);
+                                    clientLoging = cpf.get(indice);
                                     tries = 0;
                                 }
                                 else
@@ -344,14 +349,14 @@ public class Client
                             }
                             else
                             {
-                                System.out.println("\nA conta '" + conta 
+                                System.out.println("\nA conta '" + account 
                                                    + "' não existe em nossos cadastros."
                                                    + " Informe uma conta existente.\n");
                                 tries++;
                             }
                 
                         }while( (verify_psw == false && tries <= 3) 
-                                    || ( Client.loginArray.contains(conta) 
+                                    || ( Client.loginArray.contains(account) 
                                             == false && tries <= 3 ) );
             
                         if(tries > 3)
@@ -366,11 +371,11 @@ public class Client
                         }
             
                         livraria.showMenu();
-                        return cliente_logado;
+                        return clientLoging;
                     }
                     else
                     {
-                        cadastrarCliente();
+                        includeClient();
                 
                         return "blank";
                     }
@@ -383,18 +388,18 @@ public class Client
             }
             else
             {
-                cadastrarCliente();
+                includeClient();
                 return "blank";
             }
            
         }
         
         // Verifica se possui itens na cesta do cliente logado e então efetua o logout
-        public void efetuarLogout()
+        public void getLogout()
         {
             if(currentAccess)
             {
-                String nome;
+                String name;
                 String option;
                 
                 if( !Cart.itemsAndQuantity.isEmpty() )
@@ -406,7 +411,7 @@ public class Client
                     
                     if( "1".equals(option) )
                     {
-                        nome = currentClientName;
+                        name = currentClientName;
                 
                         currentAccess = false;
                         currentClient = "blank";
@@ -418,7 +423,7 @@ public class Client
                         
                         if(ok)
                         {
-                            System.out.println("\n" + nome + ", sua conta foi"
+                            System.out.println("\n" + name + ", sua conta foi"
                                                + " encerrada com sucesso!\n");
                         }
                         else
@@ -433,13 +438,13 @@ public class Client
                 }
                 else
                 {
-                    nome = currentClientName;
+                    name = currentClientName;
                 
                     currentAccess = false;
                     currentClient = "blank";
                     currentClientName = "blank";
                 
-                    System.out.println("\n" + nome + ", sua conta"
+                    System.out.println("\n" + name + ", sua conta"
                                        + " foi encerrada com sucesso!\n");
                 }
                 
@@ -458,7 +463,7 @@ public class Client
         {
             if(currentAccess)
             {
-                String nome;
+                String name;
                 String option;
                 
                 if( !Cart.itemsAndQuantity.isEmpty() )
@@ -470,7 +475,7 @@ public class Client
                     
                     if( "1".equals(option) )
                     {
-                        nome = currentClientName;
+                        name = currentClientName;
                 
                         currentAccess = false;
                         currentClient = "blank";
@@ -482,7 +487,7 @@ public class Client
                         
                         if(ok)
                         {
-                            System.out.println("\n" + nome + ", sua conta foi"
+                            System.out.println("\n" + name + ", sua conta foi"
                                                + " encerrada com sucesso!\n");
                         }
                         else
@@ -498,13 +503,13 @@ public class Client
                 }
                 else
                 {
-                    nome = currentClientName;
+                    name = currentClientName;
                 
                     currentAccess = false;
                     currentClient = "blank";
                     currentClientName = "blank";
                 
-                    System.out.println("\n" + nome + ", sua conta"
+                    System.out.println("\n" + name + ", sua conta"
                                        + " foi encerrada com sucesso!\n");
                 }
                 
