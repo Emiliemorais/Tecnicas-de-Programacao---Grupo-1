@@ -81,8 +81,8 @@ public class RegisterDoneService extends JFrame
 		try
 		{
 			/* 
-			 * Intantiated to get access to the methods 
-			 *   'mostrarServicosPrestadosCadastrados' e 'ConverterDataParaABNT' 
+			 * Instantiated to get access to the methods 
+			 *   'displayRegisteredProvidedServices' e 'ConverterDataParaABNT' 
 			 */
 			DoneServiceController serviceController = DoneServiceController.getInstance();
 			
@@ -108,17 +108,20 @@ public class RegisterDoneService extends JFrame
 				dataFromQuery[0] = queryForDoneServicesResult.getString("nome");
 				dataFromQuery[1] = queryForDoneServicesResult.getString("barbeiro");
 				dataFromQuery[2] = queryForDoneServicesResult.getString("preco");
-				dataFromQuery[3] = service.convertServiceDateToABNT(queryForDoneServicesResult.getString("data") );
+				
+				String dateFromQuery = queryForDoneServicesResult.getString("data");
+				
+				dataFromQuery[3] = service.convertServiceDateToABNT(dateFromQuery);
 				tableModel.addRow(dataFromQuery);
 			}
 		}
 		catch (SQLException e)
 		{
-			showErrorMessage(e.getMessage() );
+			showErrorMessage(e.getMessage());
 		}
 		catch (ParseException e)
 		{
-			showErrorMessage(e.getMessage() );
+			showErrorMessage(e.getMessage());
 		}
 
 		scrollPane.setViewportView(table);
@@ -175,16 +178,19 @@ public class RegisterDoneService extends JFrame
 					 */
 					String doneServiceToRemove = "";
 					
-					doneServiceToRemove = (String) table.getValueAt(table.getSelectedRow(), 0);
+					int selectedRowToColumn0 = table.getSelectedRow();
+					
+					doneServiceToRemove = (String) table.getValueAt(selectedRowToColumn0, 0);
 					
 					/* 
 					 * String that receive the value from the second column ('barbeiro')
 					 *  of a selected row
-					 * 
 					 */
 					String barberNameToRemove = "";
 					
-					barberNameToRemove = (String) table.getValueAt(table.getSelectedRow(), 1);
+					int selectedRowToColumn1 = table.getSelectedRow();
+					
+					barberNameToRemove = (String) table.getValueAt(selectedRowToColumn1, 1);
 					
 					/*
 					 * String that receive the value from the third column ('valor')
@@ -192,8 +198,10 @@ public class RegisterDoneService extends JFrame
 					 */
 					String doneServiceValueToRemove = "";
 					
+					int selectedRowToColumn2 = table.getSelectedRow();
+					
 					doneServiceValueToRemove = (String) table
-											   .getValueAt(table.getSelectedRow(), 2);
+											   .getValueAt(selectedRowToColumn2, 2);
 					
 					/*
 					 * String that receive the value from the fourth column ('data') 
@@ -201,8 +209,10 @@ public class RegisterDoneService extends JFrame
 					 */
 					String doneServiceDateToRemove = "";
 					
+					int selectedRowToColumn3 = table.getSelectedRow();
+					
 					doneServiceDateToRemove = (String) table
-											  .getValueAt(table.getSelectedRow(), 3);
+											  .getValueAt(selectedRowToColumn3, 3);
 					
 					//  Receives the data that will be deleted from DB
 					DoneService serviceToBeDeleted = new DoneService();
@@ -222,7 +232,7 @@ public class RegisterDoneService extends JFrame
 
 					if( deleteConfirmation == JOptionPane.YES_OPTION )
                     {
-						// Instantiated to get access to the method 'excluir' 
+						// Instantiated to get access to the method 'deleteProvidedService' 
 						DoneServiceController serviceController;
 						
 						serviceController = DoneServiceController.getInstance();
@@ -246,15 +256,15 @@ public class RegisterDoneService extends JFrame
 				}
 				catch (ServiceException e)
 				{
-					showErrorMessage(e.getMessage() );
+					showErrorMessage(e.getMessage());
 				}
 				catch (SQLException e)
 				{
-					showErrorMessage(e.getMessage() );
+					showErrorMessage(e.getMessage());
 				}
 				catch (ParseException e)
 				{
-					showErrorMessage(e.getMessage() );
+					showErrorMessage(e.getMessage());
 				}
 			}
 		}
@@ -281,9 +291,9 @@ public class RegisterDoneService extends JFrame
 		contentPane.add(btnBack);
 	}
 
-	/* 
+	/** 
 	 * Method that shows the error message when a exception is triggered
-	 * Parameter: exceptionInformation - String that contains the message from the exception 
+	 * @param exceptionInformation - String that contains the message from the exception 
 	 */
 	private void showErrorMessage(String exceptionInformation)
 	{

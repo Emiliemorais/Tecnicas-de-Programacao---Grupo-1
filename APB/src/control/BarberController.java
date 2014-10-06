@@ -46,7 +46,10 @@ public class BarberController
             // Nothing to do
         }
 		
-		BarberDAO.getInstance().includeBarber(barberToInclude);
+		BarberDAO barberDAOInstance = BarberDAO.getInstance();
+		
+		barberDAOInstance.includeBarber(barberToInclude);
+		
 		return true;
 	}
 
@@ -70,7 +73,10 @@ public class BarberController
 		// Check use - Probably can be deleted
 		Barber changedBarber = newBarber;
 		
-		BarberDAO.getInstance().changeBarber(barberToChangeName, changedBarber, newBarber);
+		BarberDAO barberDAOInstance = BarberDAO.getInstance();
+		
+		barberDAOInstance.changeBarber(barberToChangeName, changedBarber, newBarber);
+		
 		return true;
 	}
 
@@ -90,7 +96,10 @@ public class BarberController
             // Nothing to do
         }
 		
-		BarberDAO.getInstance().deleteBarber(barberToDelete);
+		BarberDAO barberDAOInstance = BarberDAO.getInstance();
+		
+		barberDAOInstance.deleteBarber(barberToDelete);
+		
 		return true;
 	}
 
@@ -98,7 +107,11 @@ public class BarberController
 	// Method that return all barber table (on BarberDAO) - Check the need of this method
 	public ResultSet searchBarbers() throws SQLException
 	{
-		return BarberDAO.getInstance().searchBarber();
+		BarberDAO barberDAOInstance = BarberDAO.getInstance();
+		
+		ResultSet searchBarberResult = barberDAOInstance.searchBarber();
+		
+		return searchBarberResult;
 	}
 
 
@@ -108,7 +121,12 @@ public class BarberController
 	 */
 	public ResultSet showRegisteredBarbers(Barber barber) throws SQLException
 	{
-		return BarberDAO.getInstance().showRegisteredBarber(barber);
+		
+		BarberDAO barberDAOInstance = BarberDAO.getInstance();
+		
+		ResultSet showRegisteredBarberResult = barberDAOInstance.showRegisteredBarber(barber);	
+		
+		return showRegisteredBarberResult;
 	}
 	
 	
@@ -118,7 +136,12 @@ public class BarberController
 	 */
 	public ResultSet searchBarberByName(Barber barberToSearchFor) throws SQLException
 	{
-		return BarberDAO.getInstance().searchByName(barberToSearchFor);
+		
+		BarberDAO barberDAOInstance = BarberDAO.getInstance();
+		
+		ResultSet searchByNameResult = barberDAOInstance.searchByName(barberToSearchFor);	
+		
+		return searchByNameResult;
 	}
 
 }
