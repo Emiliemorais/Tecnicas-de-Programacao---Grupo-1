@@ -33,40 +33,43 @@ public class ReceiptDAO
 		return instance;
 	}
 
-	/*
+	/**
 	 *  Method used to search barber services
 	 *  @param barberName - Contains the barber name 
 	 *  @param initialDate - Receives the initial date
 	 *  @param finalDate - Receives the final date
 	 */	
-	public ResultSet barberServicesSearch ( String barberName, String initialDate, String finalDate ) throws SQLException 
+	public ResultSet barberServicesSearch(String barberName, String initialDate, String finalDate) throws SQLException 
 	{
-		Connection connection = FactoryConnection.getInstance().getConnection();
 		// connection - Receives values accordingly to the database
-		PreparedStatement preparedStatement = connection
-				.prepareStatement ( "SELECT * FROM servicoprestado WHERE data BETWEEN '"
-						+ initialDate
-						+ "' AND '"
-						+ finalDate
-						+ "' AND barbeiro = '" + barberName + "';" );
+		Connection connection = FactoryConnection.getInstance().getConnection();
+		
+		String sqlCodeToSelectFromGivenService = "SELECT * FROM servicoprestado WHERE data BETWEEN '"
+													+ initialDate
+													+ "' AND '"
+													+ finalDate
+													+ "' AND barbeiro = '" + barberName + "';";
+		
 		// preparedStatement - Instance of java.sql
-		ResultSet resultInstance = preparedStatement.executeQuery();
+		PreparedStatement preparedStatement = connection.prepareStatement(sqlCodeToSelectFromGivenService);
+		
 		// resultInstance - ResultSet instance
+		ResultSet resultInstance = preparedStatement.executeQuery();
 
 		return resultInstance;
 	}
 
-	/*
+	/**
 	 *  Method used to modify existing records
 	 *  @param message - String about the exception
 	 */
-	public void updateQuery ( String message ) throws SQLException 
+	public void updateQuery(String message) throws SQLException 
 	{
-		Connection connection = FactoryConnection.getInstance().getConnection();
 		// connection - Receives values accordingly to the database
-		PreparedStatement preparedStatement = connection
-				.prepareStatement(message);
+		Connection connection = FactoryConnection.getInstance().getConnection();
+		
 		// preparedStatement - Instance of java.sql
+		PreparedStatement preparedStatement = connection.prepareStatement(message);
 		preparedStatement.executeUpdate();
 		preparedStatement.close();
 		connection.close();
