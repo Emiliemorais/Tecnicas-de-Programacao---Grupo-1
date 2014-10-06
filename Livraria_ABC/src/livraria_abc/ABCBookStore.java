@@ -112,7 +112,9 @@ public class ABCBookStore
                     }
                     else
                     {
-                        System.out.println("\nNão encontramos '"+researchedBookByUser+"' em nosso sistema. Verifique a grafia e tente novamente.\n");
+                        String messageFailResearched = "\nNão encontramos '"+researchedBookByUser+"' em nosso sistema."
+                                                     + " Verifique a grafia e tente novamente.\n";
+                        System.out.println(messageFailResearched);
                         showMenu();
                     }
                     
