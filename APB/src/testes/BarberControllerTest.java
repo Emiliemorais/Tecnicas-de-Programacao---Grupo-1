@@ -15,89 +15,49 @@ import exception.BarberException;
 
 public class BarberControllerTest 
 {
-
-	Barber barberInstance = new Barber(); // barberInstance - Instance of the "Barber" class
-
-	@Before
-	// Method used to set up the parameters for the test
-	public void setUp () 
-	{
-		try 
-		{
-			barberInstance.setBarberName ( "Alessandro" );
-			barberInstance.setBarberRg ( "418757896" );
-			barberInstance.setBarberTelephone ( "3389-9085" );
-			barberInstance.setBarberCpf ( "02919594150" );
-			barberInstance.setBarberChair ( "5" );
-		} 
-		catch ( NullPointerException e )
-		{
-			e.printStackTrace ();
-		} 
-		catch ( BarberException e ) 
-		{
-			e.printStackTrace ();
-		}
-	}
-
-	BarberController barberController = BarberController.getInstance (); // barberController - Instance of the "BarberController" class
-
-	@Test
-	// Method used to check if the current instance is being returned
-	public void getInstanceOfBarberController () 
-	{
-		assertEquals( BarberController.getInstance (), barberController );
-	}
-
-	@Test
-	// Method used to test if a barber is being added
-	public void addFromBarberController () 
-	{
-		try 
-		{
-			assertTrue ( barberController.includeBarber ( barberInstance ) );
-		} 
-		catch ( SQLException e ) 
-		{
-			e.printStackTrace ();
-		}
-	}
-
-	@Test
-	// Method used to test if a barber is being deleted
-	public void deleteFromBarberController () 
-	{
-		try 
-		{
-			assertTrue ( barberController.deleteBarber ( barberInstance ) );
-		} 
-		catch ( SQLException e ) 
-		{
-			e.printStackTrace ();
-		}
-	}
 	
-	@Test
-	// Method used to test if a barber is being edited
-	public void editFromBarberController () 
+	// barberInstance - Instance of the "Barber" class
+	Barber barberInstance = new Barber(); 
+
+	// Method used to set up the parameters for the test
+	@Before
+	public void setUp() 
 	{
 		try 
 		{
-			assertTrue ( barberController.modifyBarber(barberInstance.getBarberName (), barberInstance ) );
+			barberInstance.setBarberName("Alessandro");
+			barberInstance.setBarberRg("418757896");
+			barberInstance.setBarberTelephone("3389-9085");
+			barberInstance.setBarberCpf("02919594150");
+			barberInstance.setBarberChair("5");
 		} 
-		catch ( SQLException e ) 
+		catch (NullPointerException e)
 		{
-			e.printStackTrace ();
+			e.printStackTrace();
+		} 
+		catch (BarberException e) 
+		{
+			e.printStackTrace();
 		}
 	}
 
+	// barberController - Instance of the "BarberController" class
+	BarberController barberController = BarberController.getInstance (); 
+	
+	// Method used to check if the current instance is being returned
 	@Test
-	// Method used to test if barber is null when adding
-	public void addNotNullBarber ()
+	public void getInstanceOfBarberController() 
+	{
+		assertEquals(BarberController.getInstance(), barberController);
+	}
+
+	// Method used to test if a barber is being added
+	@Test
+	public void addFromBarberController() 
 	{
 		try 
 		{
-			assertFalse( barberController.includeBarber ( null ) );
+			assertTrue(barberController.includeBarber(barberInstance));
 		} 
 		catch (SQLException e) 
 		{
@@ -105,17 +65,59 @@ public class BarberControllerTest
 		}
 	}
 
+	// Method used to test if a barber is being deleted
 	@Test
-	// Method used to test if barber is null when deleting
-	public void deleteNotNullBarber () 
+	public void deleteFromBarberController () 
 	{
 		try 
 		{
-			assertFalse ( barberController.deleteBarber ( null ) );
+			assertTrue(barberController.deleteBarber(barberInstance));
 		} 
-		catch ( SQLException e )
+		catch (SQLException e) 
 		{
-			e.printStackTrace () ;
+			e.printStackTrace();
+		}
+	}
+	
+	// Method used to test if a barber is being edited
+	@Test
+	public void editFromBarberController() 
+	{
+		try 
+		{
+			assertTrue(barberController.modifyBarber(barberInstance.getBarberName(), barberInstance));
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+	}
+
+	// Method used to test if barber is null when adding
+	@Test
+	public void addNotNullBarber()
+	{
+		try 
+		{
+			assertFalse(barberController.includeBarber(null));
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+	}
+
+	// Method used to test if barber is null when deleting
+	@Test
+	public void deleteNotNullBarber() 
+	{
+		try 
+		{
+			assertFalse(barberController.deleteBarber(null));
+		} 
+		catch (SQLException e)
+		{
+			e.printStackTrace() ;
 		}
 	}
 
@@ -125,48 +127,51 @@ public class BarberControllerTest
 	{
 		try 
 		{
-			assertFalse( barberController.modifyBarber( null, null ) ) ;
+			assertFalse(barberController.modifyBarber(null, null)) ;
 		} 
-		catch ( SQLException e ) 
+		catch (SQLException e) 
 		{
-			e.printStackTrace ();
+			e.printStackTrace();
 		}
 	}
 	
-	@Test
 	// Method that test if a barber is being displayed
-	public void searchByBarberController ()
+	@Test
+	public void searchByBarberController()
 		throws SQLException 
 	{
-		ResultSet resultInstance = barberController.searchBarbers ( );
 		// resultInstance = ResultSet Instance
-		while ( resultInstance.next () )
+		ResultSet resultInstance = barberController.searchBarbers();
+		
+		while (resultInstance.next())
+		{
+			;
+		}
+	}
+	
+	// Method that test if a barber is being displayed
+	@Test
+	public void displayBarberFromController()
+		throws SQLException 
+	{
+		// resultInstance = ResultSet Instance
+		ResultSet resultInstance = barberController.showRegisteredBarbers(barberInstance);
+		
+		while (resultInstance.next())
 		{
 			;
 		}
 	}
 
-	@Test
-	// Method that test if a barber is being displayed
-	public void displayBarberFromController ()
-		throws SQLException 
-	{
-		ResultSet resultInstance = barberController.showRegisteredBarbers ( barberInstance );
-		// resultInstance = ResultSet Instance
-		while ( resultInstance.next () )
-		{
-			;
-		}
-	}
-
-	@Test
 	// Method used to test if a barber is being displayed when searched by name
-	public void searchByBarberNameController ()
+	@Test
+	public void searchByBarberNameController()
 		throws SQLException 
 	{
-		ResultSet resultInstance = barberController.searchBarberByName ( barberInstance );
 		// resultInstance = ResultSet Instance
-		while ( resultInstance.next () )
+		ResultSet resultInstance = barberController.searchBarberByName(barberInstance);
+		
+		while (resultInstance.next())
 		{
 			;
 		}

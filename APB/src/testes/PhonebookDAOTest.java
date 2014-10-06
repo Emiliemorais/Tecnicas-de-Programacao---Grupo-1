@@ -13,179 +13,185 @@ import dao.PhonebookDAO;
 
 public class PhonebookDAOTest 
 {
+	// contact1 - Instance for a contact from "Phonebook" class
+	Phonebook contact1 = new Phonebook(); 
+	
+	// contact2 - Second instance, for another contact from "Phonebook" class
+	Phonebook contact2 = new Phonebook(); 
+	
+	// phonebookDAO - Gets the instance from "PhonebookDAO" class
+	PhonebookDAO phonebookDAO = PhonebookDAO.getInstance(); 
 
-	Phonebook contact1 = new Phonebook (); // contact1 - Instance for a contact from "Phonebook" class
-	Phonebook contact2 = new Phonebook (); // contact2 - Second instance, for another contact from "Phonebook" class
-	PhonebookDAO phonebookDAO = PhonebookDAO.getInstance (); // phonebookDAO - Gets the instance from "PhonebookDAO" class
-
-	@Test
+	
 	// Method that tests if is returning a instance
-	public void getInstanceOfPhonebookDAO ()
+	@Test
+	public void getInstanceOfPhonebookDAO()
 	{
-		assertEquals ( PhonebookDAO.getInstance ( ), phonebookDAO );
+		assertEquals(PhonebookDAO.getInstance(), phonebookDAO);
 	}
 
-	@Test
 	// Method that tests if adding a new contact
+	@Test
 	public void addFromPhonebookDAO () 
 	{
 		try 
 		{
-			assertTrue( phonebookDAO.includeDataToPhonebook ( contact1 ) );
+			assertTrue(phonebookDAO.includeDataToPhonebook(contact1));
 		} 
-		catch ( SQLException e ) 
+		catch (SQLException e) 
 		{
-			e.printStackTrace () ;
+			e.printStackTrace() ;
 		}
 	}
-
-	@Test
+	
 	// Method that tests if is sending a phonebook
-	public void deleteFromPhonebookDAO () 
+	@Test
+	public void deleteFromPhonebookDAO() 
 	{
 		try 
 		{
-			assertTrue ( phonebookDAO.deletePhonebookData ( contact1 ) );
+			assertTrue(phonebookDAO.deletePhonebookData(contact1));
 		} 
-		catch ( SQLException e )
+		catch (SQLException e)
 		{
-			e.printStackTrace ();
+			e.printStackTrace();
 		}
 	}
 
-	@Test
 	// Method that tests if is sending a contact
-	public void editFromPhonebookDAO () 
+	@Test
+	public void editFromPhonebookDAO() 
 	{
 		try 
 		{
-			assertTrue ( phonebookDAO.editPhonebookData ( contact1.getPhonebookName(), contact1, contact2) );
+			assertTrue(phonebookDAO.editPhonebookData(contact1.getPhonebookName(), contact1, contact2));
 		} 
-		catch ( SQLException e )
+		catch (SQLException e)
 		{
-			e.printStackTrace ();
+			e.printStackTrace();
 		}
 	}
-
-	@Test
+	
 	// Method that adds with a null contact
-	public void addFromPhonebookDAOWhenInvalidContact () 
+	@Test
+	public void addFromPhonebookDAOWhenInvalidContact() 
 	{
 		try 
 		{
-			assertFalse ( phonebookDAO.includeDataToPhonebook (null) );
+			assertFalse(phonebookDAO.includeDataToPhonebook (null));
 		} 
-		catch ( SQLException e ) 
+		catch (SQLException e) 
 		{
-			e.printStackTrace ();
+			e.printStackTrace();
 		}
 	}
 	
-	@Test
 	// Method that deletes with a null contact
-	public void deleteFromPhonebookDAOWhenInvalidContact () 
+	@Test
+	public void deleteFromPhonebookDAOWhenInvalidContact() 
 	{
 		try 
 		{
-			assertFalse(phonebookDAO.deletePhonebookData ( null ) );
+			assertFalse(phonebookDAO.deletePhonebookData (null));
 		} 
-		catch ( SQLException e ) 
+		catch (SQLException e) 
 		{
-			e.printStackTrace () ;
+			e.printStackTrace() ;
 		}
 	}
 	
-	@Test
 	// Method that edits with a null contact
+	@Test
 	public void editFromPhonebookDAOWhenInvalidContact() 
 	{
 		try 
 		{
-			assertFalse( phonebookDAO.editPhonebookData ( contact1.getPhonebookName (), contact1, null ) );
+			assertFalse(phonebookDAO.editPhonebookData(contact1.getPhonebookName(), contact1, null));
 		} 
-		catch ( SQLException e ) 
+		catch (SQLException e) 
 		{
-			e.printStackTrace ();
+			e.printStackTrace();
 		}
 	}
-
-	@Test
+	
 	// Method that edits passing a edited phonebook 
-	public void editFromPhonebookDAOWhenEditedNullPhonebook () 
+	@Test
+	public void editFromPhonebookDAOWhenEditedNullPhonebook() 
 	{
 		try 
 		{
-			assertFalse ( phonebookDAO.editPhonebookData ( contact1.getPhonebookName (), null, contact1 ) );
+			assertFalse(phonebookDAO.editPhonebookData(contact1.getPhonebookName (), null, contact1));
 		} 
-		catch ( SQLException e ) 
+		catch (SQLException e) 
 		{
-			e.printStackTrace ();
+			e.printStackTrace();
 		}
 	}
-
-	@Test
+	
 	// Method to test if the contacts are being displayed
-	public void showPhonebookContactsDAO ()
+	@Test
+	public void showPhonebookContactsDAO()
 	{
 		try 
-		{
-			ResultSet resultInstance = phonebookDAO.showRegisteredContacts ( contact1 );
+		{			
 			// resultInstance - ResultSet Instance
-
-			while ( resultInstance.next () ) 
-			{
-				String contactName = resultInstance.getString( "nome" );
-				// contactName - Contains the contact´s name
-				assertNotNull ( contactName );
-			}
-		} 
-		catch ( SQLException e ) 
-		{
-			e.printStackTrace  ();
-		}
-	}
-
-	@Test
-	// Method to test if the contacts are being displayed
-	public void searchByNameFromPhonebookDAO () 
-	{
-		try 
-		{
-			ResultSet resultInstance = phonebookDAO.searchByName ( contact1 );
-			// resultInstance - ResultSet Instance
+			ResultSet resultInstance = phonebookDAO.showRegisteredContacts(contact1);
 
 			while (resultInstance.next()) 
 			{
-				String contactName = resultInstance.getString ( "nome" );
-				// contactName - Receives the contact name to the search
-				assertNotNull ( contactName ) ;
+				// contactName - Contains the contact´s name
+				String contactName = resultInstance.getString("nome");
+				
+				assertNotNull(contactName);
 			}
 		} 
-		catch ( SQLException e ) 
+		catch (SQLException e) 
 		{
-			e.printStackTrace ();
+			e.printStackTrace();
 		}
 	}
-
+	
+	// Method to test if the contacts are being displayed
 	@Test
-	// Method to test if barbers are being displayed when searched by their phone numbers
-	public void searchByNumberFromBarberDAO () 
+	public void searchByNameFromPhonebookDAO() 
 	{
 		try 
 		{
-			ResultSet resultInstance = phonebookDAO.searchByPhone ( contact1 );
 			// resultInstance - ResultSet Instance
+			ResultSet resultInstance = phonebookDAO.searchByName(contact1);
 
-			while ( resultInstance.next() ) 
+			while (resultInstance.next()) 
 			{
-				String contactName = resultInstance.getString( "nome" );
 				// contactName - Receives the contact name to the search
-				assertNotNull( contactName );
+				String contactName = resultInstance.getString("nome");
+				assertNotNull(contactName) ;
 			}
 		} 
-		catch ( SQLException e ) 
+		catch (SQLException e) 
 		{
-			e.printStackTrace ();
+			e.printStackTrace();
+		}
+	}
+	
+	// Method to test if barbers are being displayed when searched by their phone numbers
+	@Test
+	public void searchByNumberFromBarberDAO() 
+	{
+		try 
+		{			
+			// resultInstance - ResultSet Instance
+			ResultSet resultInstance = phonebookDAO.searchByPhone(contact1);
+
+			while (resultInstance.next()) 
+			{
+				// contactName - Receives the contact name to the search
+				String contactName = resultInstance.getString("nome");
+				assertNotNull(contactName);
+			}
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
 		}
 	}
 
