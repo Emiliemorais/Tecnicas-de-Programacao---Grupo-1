@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.TableColumn;
 import javax.swing.table.DefaultTableModel;
 
 import model.Phonebook;
@@ -76,11 +77,16 @@ public class RegisterPhonebook extends JFrame
 		
 		// Add a table with 3 fields ('Nome, telefone e descricao') to the frame
 		final JTable table = new JTable(tableModel);
-		table.getColumnModel().getColumn(0).setResizable(false);
-		table.getColumnModel().getColumn(1).setResizable(false);
-		table.getColumnModel().getColumn(2).setResizable(false);
+		
+		TableColumn firstColumn = table.getColumnModel().getColumn(0);
+		TableColumn secondColumn = table.getColumnModel().getColumn(1);
+		TableColumn thirdColumn = table.getColumnModel().getColumn(2);
+		
+		firstColumn.setResizable(false);
+		secondColumn.setResizable(false);
+		thirdColumn.setResizable(false);
 		scrollPane.setViewportView(table);
-
+						
 		try
 		{	
 			// Instantiated to get access to the method 'showRegisteredContacts()'
@@ -179,14 +185,14 @@ public class RegisterPhonebook extends JFrame
 	}
 
 
-	/* 
+	/** 
 	 * Method that shows the error message when a exception is triggered
-	 * Parameter: excceptionInformation - String that contains the message from the exception 
+	 * @param excceptionInformation - String that contains the message from the exception 
 	 */
 	private void showErrorMessage(String exceptionInformation)
 	{
 		JOptionPane.showMessageDialog(null, exceptionInformation, "Atenção",
-				JOptionPane.INFORMATION_MESSAGE);
+									  JOptionPane.INFORMATION_MESSAGE);
 	}
 
 }

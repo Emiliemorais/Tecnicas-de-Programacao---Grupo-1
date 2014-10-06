@@ -143,12 +143,12 @@ public class ModifyContact extends JFrame
 					// Used to store data from the modified contact (new contact)
 					Phonebook modifiedContact = new Phonebook();
 					
-					modifiedContact.setPhonebookName(newContactNameTextField.getText() );
-					modifiedContact.setPhonebook(newContactPhoneTextField.getText() );
-					modifiedContact.setPhonebookDs(newContactDescriptionTextField.getText() );
+					modifiedContact.setPhonebookName( newContactNameTextField.getText() );
+					modifiedContact.setPhonebook( newContactPhoneTextField.getText() );
+					modifiedContact.setPhonebookDs( newContactDescriptionTextField.getText() );
 
 					// Instantiated to get access to the method 'alterar' 
-					PhonebookController phonebookController = control.PhonebookController.getInstance();
+					PhonebookController phonebookController = PhonebookController.getInstance();
 					
 					phonebookController.alterar(contactNameToChange, modifiedContact);
 
@@ -200,9 +200,9 @@ public class ModifyContact extends JFrame
 		contentPane.add(btnBack);
 	}
 
-	/* 
+	/** 
 	 * Method that shows the error message when a exception is triggered
-	 * Parameter: exceptionInformation - String that contains the message from the exception 
+	 * @param exceptionInformation - String that contains the message from the exception 
 	 */
 	private void showErrorMessage(String exceptionInformation)
 	{

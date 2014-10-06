@@ -98,7 +98,7 @@ public class ModifyServiceType extends JFrame
 			// Intantiated to get access to the method 'searchServiceTypeByName'
 			ServiceTypeController serviceTypeController = ServiceTypeController.getInstance();
 			
-			serviceType.setServiceTypeName(ServiceType.getTemporaryName() );
+			serviceType.setServiceTypeName( ServiceType.getTemporaryName() );
 			
 			// Used to receive the result from the method 'searchServiceTypeByName'
 			ResultSet queryForServicesTypeResult;
@@ -116,11 +116,11 @@ public class ModifyServiceType extends JFrame
 		}
 		catch (SQLException e)
 		{
-			showErrorMessage(e.getMessage() );
+			showErrorMessage(e.getMessage());
 		}
 		catch (ServiceException e)
 		{
-			showErrorMessage(e.getMessage() );
+			showErrorMessage(e.getMessage());
 		}
 		
 		// Button that save on DB all changes made
@@ -158,11 +158,11 @@ public class ModifyServiceType extends JFrame
 				}
 				catch (ServiceException e1)
 				{
-					showErrorMessage(e1.getMessage() );
+					showErrorMessage(e1.getMessage());
 				}
 				catch (SQLException k)
 				{
-					showErrorMessage(k.getMessage() );
+					showErrorMessage(k.getMessage());
 				}
 			}
 		}
@@ -203,9 +203,9 @@ public class ModifyServiceType extends JFrame
 		contentPane.add(btnVoltar);
 	}
 	
-	/* 
+	/** 
 	 * Method that shows the error message when a exception is triggered
-	 * Parameter: exceptionInformation - String that contains the message from the exception 
+	 * @param exceptionInformation - String that contains the message from the exception 
 	 */
 	private void showErrorMessage(String exceptionInformation)
 	{
