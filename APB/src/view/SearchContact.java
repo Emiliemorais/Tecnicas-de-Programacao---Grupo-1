@@ -27,9 +27,11 @@ import java.sql.SQLException;
 @SuppressWarnings ( "serial" )
 public class SearchContact extends JFrame 
 {
-
-	private JPanel contentPane; // Instance of Jpanel
-	private JTextField textField; // Instance of JTextField
+	// Instance of Jpanel
+	private JPanel contentPane; 
+	
+	// Instance of JTextField
+	private JTextField textField; 
 
 	public static void main ( String[] args ) 
 	{
@@ -40,7 +42,8 @@ public class SearchContact extends JFrame
 				
 				try 
 				{
-					SearchContact frame = new SearchContact(); // frame - Instance of "SearchContact"
+					// frame - Instance of "SearchContact"
+					SearchContact frame = new SearchContact(); 
 					frame.setVisible ( true );
 				} 
 				catch ( Exception e ) 
@@ -64,18 +67,22 @@ public class SearchContact extends JFrame
 		setTitle( "Pesquisar Contato" );
 		setDefaultCloseOperation ( JFrame.EXIT_ON_CLOSE );
 		setBounds ( 100, 100, 450, 300 );
-		contentPane = new JPanel (); // contentPane - Instance of Jpanel
+		
+		// contentPane - Instance of Jpanel
+		contentPane = new JPanel (); 
 		contentPane.setBorder(new EmptyBorder ( 5, 5, 5, 5) );
 		setContentPane ( contentPane );
 		contentPane.setLayout ( null );
 
-		JScrollPane scrollPane = new JScrollPane (); // scrollPane - Creates the scrollbars
+		// scrollPane - Creates the scrollbars
+		JScrollPane scrollPane = new JScrollPane (); 
 		scrollPane.setBounds ( 10, 11, 414, 115);
 		contentPane.add ( scrollPane );
 
+		// defaultTableModel - Default Table Model Instance
 		final DefaultTableModel defaultTableModel = new DefaultTableModel ( null,
 				new String[] { "Nome", "Telefone", "Descrição" });
-		// defaultTableModel - Default Table Model Instance
+		
 		final JTable table = new JTable ( defaultTableModel ); 
 
 		table.getColumnModel().getColumn(0).setResizable ( false );
@@ -83,21 +90,25 @@ public class SearchContact extends JFrame
 		table.getColumnModel().getColumn(2).setResizable ( false );
 		scrollPane.setViewportView ( table );
 
-		textField = new JTextField (); // textField - Instance of JTextField 
+		// textField - Instance of JTextField 
+		textField = new JTextField (); 
 		textField.setBounds ( 82, 137, 342, 20);
 		contentPane.add ( textField );
 		textField.setColumns ( 10 );
 
-		JLabel searchLabel = new JLabel ( "Pesquisar:" ); // searchLabel - Label that says "Search"
+		
+		// searchLabel - Label that says "Search"
+		JLabel searchLabel = new JLabel ( "Pesquisar:" ); 
 		searchLabel.setBounds ( 20, 137, 66, 14);
 		contentPane.add ( searchLabel);
 
-		JButton nameSearchButton = new JButton ( "Pesquisar Nome");
+		
 		// nameSearchButton - Button that offers the "Search name" option
+		JButton nameSearchButton = new JButton ( "Pesquisar Nome");
 		nameSearchButton.addMouseListener ( new MouseAdapter ()
 		{
-			@Override
 			// Method that allows the use of the mouse for navigation
+			@Override
 			public void mouseClicked ( MouseEvent arg0)
 			{
 				try 
@@ -107,17 +118,19 @@ public class SearchContact extends JFrame
 						defaultTableModel.removeRow ( i );
 					}
 
-					Phonebook contact = new Phonebook (); // contact - // Instance of "Agenda"
+					// contact - Instance of "Agenda"
+					Phonebook contact = new Phonebook (); 
 					PhonebookController agendaController = PhonebookController
 							.getInstance();
 					contact.setPhonebookName ( textField.getText () );
-					ResultSet resultInstance = agendaController.pesquisarPorNome ( contact );
+
 					// resultInstance - ResultSetInstance
+					ResultSet resultInstance = agendaController.pesquisarPorNome ( contact );
 
 					while ( resultInstance.next ( ) ) 
 					{
-						String[] resultSetData = new String[3];
 						// resultSetData - Receives the name, phone and description
+						String[] resultSetData = new String[3];
 						resultSetData[0] = resultInstance.getString ( "nome" );
 						resultSetData[1] = resultInstance.getString ( "telefone" );
 						resultSetData[2] = resultInstance.getString ( "descricao" );
@@ -138,8 +151,8 @@ public class SearchContact extends JFrame
 		nameSearchButton.setBounds( 82, 168, 160, 23 );
 		contentPane.add ( nameSearchButton );
 
-		JButton phoneSearchButton = new JButton ( "Pesquisar Telefone" );
 		// phoneSearchButton - Button that says "Phone Search"
+		JButton phoneSearchButton = new JButton ( "Pesquisar Telefone" );
 		phoneSearchButton.addMouseListener ( new MouseAdapter () 
 		{
 			
@@ -154,18 +167,20 @@ public class SearchContact extends JFrame
 						defaultTableModel.removeRow ( i );
 					}
 
-					Phonebook contact = new Phonebook (); // contact - Instance of "AgendaController"
+					// contact - Instance of "AgendaController"
+					Phonebook contact = new Phonebook (); 
 					PhonebookController agendaController = PhonebookController
 							.getInstance();
 					contact.setPhonebook ( textField.getText () );
+					
+					// resultInstance - ResultSetInstance
 					ResultSet resultInstance = agendaController
 							.pesquisarPorTelefone ( contact );
-					// resultInstance - ResultSetInstance
 
 					while ( resultInstance.next() ) 
 					{
-						String[] resultSetData = new String[3];
 						// resultSetDate - Receives the name, phone and description
+						String[] resultSetData = new String[3];
 						resultSetData[0] = resultInstance.getString ( "nome" );
 						resultSetData[1] = resultInstance.getString ( "telefone" );
 						resultSetData[2] = resultInstance.getString ( "descricao" );
@@ -189,7 +204,8 @@ public class SearchContact extends JFrame
 		phoneSearchButton.setBounds ( 264, 168, 160, 23);
 		contentPane.add ( phoneSearchButton );
 
-		JButton editButton = new JButton ( "Alterar" ); // editButton - Button that says "Edit"
+		// editButton - Button that says "Edit"
+		JButton editButton = new JButton ( "Alterar" ); 
 		editButton.addMouseListener ( new MouseAdapter () 
 		{
 	
@@ -217,7 +233,8 @@ public class SearchContact extends JFrame
 		editButton.setBounds ( 98, 228, 89, 23 );
 		contentPane.add ( editButton );
 
-		JButton removeButton = new JButton ( "Remover" ); // removeButton - Button that says "Remove"
+		// removeButton - Button that says "Remove"
+		JButton removeButton = new JButton ( "Remover" ); 
 		removeButton.addMouseListener ( new MouseAdapter ()
 		{
 			@Override
@@ -226,30 +243,29 @@ public class SearchContact extends JFrame
 
 				try 
 				{
-					
+					// contactName - Variable that receives the name
 					String contactName = ( String ) table.getValueAt (
 							table.getSelectedRow (), 0 );
-					// contactName - Variable that receives the name
 					
+					// contactPhone - Variable that receives the phone
 					String contactPhone = ( String ) table.getValueAt (
 							table.getSelectedRow( ), 1);
-					// contactPhone - Variable that receives the phone
 					
-					Phonebook phonebook = new Phonebook ();
 					// phonebook - Instance of Agenda class
+					Phonebook phonebook = new Phonebook ();
 					
 					phonebook.setPhonebookName ( contactName );
 					phonebook.setPhonebook ( contactPhone );
 
+					// confirmation - Shows the confirmation dialog
 					int confirmation = JOptionPane.showConfirmDialog (null,
 							"Remover " + contactName + " da lista?");
-					// confirmation - Shows the confirmation dialog
 
 					if ( confirmation == JOptionPane.YES_OPTION ) 
 					{
+						// phonebookController - Instance of "AgendaController"
 						PhonebookController phonebookController = PhonebookController
 								.getInstance ();
-						// phonebookController - Instance of "AgendaController"
 						phonebookController.remove ( phonebook );
 
 						dispose ();
@@ -277,8 +293,8 @@ public class SearchContact extends JFrame
 		removeButton.setBounds ( 216, 228, 89, 23);
 		contentPane.add ( removeButton );
 
-		JButton returnButton = new JButton ( "Voltar" );
 		// returnButton - Button that says "Return"
+		JButton returnButton = new JButton ( "Voltar" );
 		returnButton.addMouseListener ( new MouseAdapter ()
 		{
 			
@@ -296,7 +312,7 @@ public class SearchContact extends JFrame
 		contentPane.add ( returnButton );
 	}
 
-	/*
+	/**
 	 * Method that shows a error message
 	 * @param errorInformation - Shows a error message to the user
 	 */
