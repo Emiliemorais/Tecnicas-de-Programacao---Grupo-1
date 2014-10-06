@@ -9,7 +9,7 @@ public class Phonebook
 	 * @param Receives the name for phonebook
 	 * @param Receives the description for phonebook
 	 * @param Receives the number of phone for phonebook
-	 * @param Receives the variable for change the metod
+	 * @param Receives the variable for change the method
 	 */
 
 	private String phonebookName;
@@ -77,11 +77,13 @@ public class Phonebook
 	 */
 	public void setPhonebook (String telefone) throws BarberException 
 	{
+		String phoneMatchesParamMethod = ("(\\([\\d]{2,3}\\))?[ ]*[\\d]{4,4}[ ]*-[ ]*[\\d]{4,4}[ ]*$");
+		
 		if ("".equals(telefone))
 		{
 			throw new BarberException(nullPhone);
 		}
-		else if (telefone.matches("(\\([\\d]{2,3}\\))?[ ]*[\\d]{4,4}[ ]*-[ ]*[\\d]{4,4}[ ]*$"))
+		else if (telefone.matches(phoneMatchesParamMethod))
 		{
 			this.phonebook = telefone;
 		}

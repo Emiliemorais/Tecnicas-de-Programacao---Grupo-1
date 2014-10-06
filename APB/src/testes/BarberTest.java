@@ -137,7 +137,8 @@ public class BarberTest
 		try 
 		{
 			new Barber(null, "493.751.185-84", "2258256", "3389-9085", "10");
-		} catch (BarberException e)
+		} 
+		catch (BarberException e)
 		{
 			e.printStackTrace();
 		}
@@ -184,6 +185,7 @@ public class BarberTest
 	@Test(expected = IllegalArgumentException.class)
 	public void builderWithNullFhone() 
 	{
+		
 		try 
 		{
 			new Barber("Alessandro", "493.751.185-84", "2258256", null, "10");
@@ -283,6 +285,7 @@ public class BarberTest
 		assertEquals("Alessandro", barber.getBarberName());
 	}
 	
+	
 	// Method that tests receiving a CPF Barber get the access method
 	@Test
 	public void testGetterCPFBarber ()
@@ -291,7 +294,6 @@ public class BarberTest
 	}
 	
 	// Method that tests an incoming RG Barber get the access method
-
 	@Test
 	public void testGetterRGBarber () 
 	{
@@ -299,7 +301,6 @@ public class BarberTest
 	}
 	
 	// Method that tests an incoming phone Barber get the access method
- 
 	@Test
 	public void testGetterPhoneBarber () 
 	{
@@ -313,7 +314,7 @@ public class BarberTest
 		assertEquals("10", barber.getBarberChair());
 	}
 	
-	// Método que testa o recebimento de um nome temporario do Barbeiro pelo método de acesso get 
+	// Method that tests receiving a temporary name Barber get the access method 
 	@Test
 	public void testForGetterTheTemporaryNameTheBarber ()
 	{
