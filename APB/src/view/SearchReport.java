@@ -110,8 +110,8 @@ public class SearchReport extends JFrame
 		// Used to create a panel of dates
 		JPanel datePanel = new JPanel();
 		datePanel.setBorder(new TitledBorder(UIManager
-				.getBorder("TitledBorder.border"), "Por Data",
-				TitledBorder.LEADING, TitledBorder.TOP, null, null));
+							.getBorder("TitledBorder.border"), "Por Data",
+							TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		datePanel.setBounds(10, 11, 221, 97);
 		contentPane.add(datePanel);
 		datePanel.setLayout(null);
@@ -166,8 +166,8 @@ public class SearchReport extends JFrame
 		JPanel barberPanel = new JPanel();
 		barberPanel.setLayout(null);
 		barberPanel.setBorder(new TitledBorder(UIManager
-				.getBorder("TitledBorder.border"), "Por Barbeiro",
-				TitledBorder.LEADING, TitledBorder.TOP, null, null));
+							  .getBorder("TitledBorder.border"), "Por Barbeiro",
+							  TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		barberPanel.setBounds(10, 119, 221, 62);
 		contentPane.add(barberPanel);
 
@@ -184,7 +184,7 @@ public class SearchReport extends JFrame
 		{
 			
 			// Method that active the search by barber name
-			public void itemStateChanged(ItemEvent e)
+			public void itemStateChanged (ItemEvent e)
 			{
 				if( checkboxBarber.getState() == false )
 				{
@@ -206,8 +206,8 @@ public class SearchReport extends JFrame
 		JPanel servicePanel = new JPanel();
 		servicePanel.setLayout(null);
 		servicePanel.setBorder(new TitledBorder(UIManager
-				.getBorder("TitledBorder.border"), "Por Servi\u00E7o",
-				TitledBorder.LEADING, TitledBorder.TOP, null, null));
+							   .getBorder("TitledBorder.border"), "Por Servi\u00E7o",
+							   TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		servicePanel.setBounds(10, 189, 221, 62);
 		contentPane.add(servicePanel);
 
@@ -248,7 +248,7 @@ public class SearchReport extends JFrame
 			
 			 // Method that receives the data digitized by user to the search of report
 			@Override
-			public void mouseClicked(MouseEvent arg0)
+			public void mouseClicked (MouseEvent arg0)
 			{
 
 				if( textFieldBarber.getText().equals("") )
@@ -376,7 +376,7 @@ public class SearchReport extends JFrame
 					// Nothing to do
 				}
 				
-				if (searchType != 0)
+				if( searchType != 0 )
 				{
 					try 
 					{
@@ -386,19 +386,19 @@ public class SearchReport extends JFrame
 						viewReportFrame.setLocationRelativeTo(null);
 						dispose();
 					}
-					catch (SQLException e)
+					catch( SQLException e )
 					{
 						showErrorMessage( e.getMessage() );
 					}
-					catch (ReportException e) 
+					catch( ReportException e ) 
 					{
 						showErrorMessage( e.getMessage() );
 					}
-					catch (NullPointerException e)
+					catch( NullPointerException e )
 					{
 						showErrorMessage( e.getMessage() );
 					}
-					catch (ParseException e) 
+					catch( ParseException e ) 
 					{
 						showErrorMessage( e.getMessage() );
 					}
@@ -430,19 +430,19 @@ public class SearchReport extends JFrame
 					viewReportFrame.setLocationRelativeTo(null);
 					dispose();
 				} 
-				catch (SQLException e1)
+				catch( SQLException e1 )
 				{
 					showErrorMessage( e1.getMessage() );
 				} 
-				catch (ReportException e1)
+				catch( ReportException e1 )
 				{
 					showErrorMessage( e1.getMessage() );
 				} 
-				catch (NullPointerException e1)
+				catch( NullPointerException e1 )
 				{
 					showErrorMessage( e1.getMessage() );
 				} 
-				catch (ParseException e1) 
+				catch( ParseException e1 ) 
 				{
 					showErrorMessage( e1.getMessage() );
 				}
@@ -459,7 +459,7 @@ public class SearchReport extends JFrame
 		return false;
 	}
 	
-	/*
+	/**
 	 *  Method used to show an error message for exception treatment
 	 *	@param errorMessage - Receives an error message
 	 */

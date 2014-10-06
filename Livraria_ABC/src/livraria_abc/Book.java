@@ -56,7 +56,7 @@ public class Book
             System.out.println( "\tAutor: " + listAuthor.get(i) );
             System.out.println( "\tEditora: " + listPublishingHouse.get(i) );
             System.out.println( "\tEdição/Ano: " + listEdition.get(i) + "/"
-                                + listYearPublication.get(i) );
+                                                 + listYearPublication.get(i) );
             System.out.println( "\tTema: " + listTheme.get(i) );
             System.out.println( "\tPor apenas R$" + listPrice.get(i) + "!\n" );
         }
@@ -92,10 +92,11 @@ public class Book
             {
                 // Nothing to do
             }
-                
-            System.out.println("\nEncontramos o seguinte livro em nosso"
-                               + " sistema por apenas R$"
-                               + listPrice.get(i) + ":\n");
+            
+            String researchedStatus = "\nEncontramos o seguinte livro em nosso"
+                                      + " sistema por apenas R$"
+                                      + listPrice.get(i) + ":\n";
+            System.out.println(researchedStatus);
                 
             System.out.println( "Titulo: " + listTitle.get(i) );
             System.out.println( "Autor: " + listAuthor.get(i) );
@@ -109,15 +110,17 @@ public class Book
             
             if( !currentAccess )
             {
-                System.out.println("\nDeseja comprar esse livro?"
-                                   + " Faça login agora mesmo!\n "
-                                   + "1-Fazer login  0-Voltar para catálogo");
+                String purchaseBookMenuNoCliente = "\nDeseja comprar esse livro?"
+                                        + " Faça login agora mesmo!\n "
+                                        + "1-Fazer login  0-Voltar para catálogo";
+                System.out.println(purchaseBookMenuNoCliente);
             }
             else
             {
-                System.out.println("\n" + currentClientName + ","
-                                   + " deseja comprar esse livro?!\n"
-                                   + " 1-SIM  0-Voltar para catálogo");
+                String purchaseBookMenu = "\n" + currentClientName + ","
+                                        + " deseja comprar esse livro?!\n"
+                                        + " 1-SIM  0-Voltar para catálogo";
+                System.out.println(purchaseBookMenu);
             }
                 
             option = inputString.nextLine();
@@ -139,10 +142,11 @@ public class Book
                 {
                     // Receives the index of the client
                     int indexOfTheClient = Client.cpf.indexOf(currentClient);
-                        
-                    System.out.println("\nOlá " + Client.nameArray.get(indexOfTheClient)
-                                       + ".\nInforme a quantidade de '" 
-                                       + listTitle.get(i) + "' desejada: ");
+                      
+                    String inputQuantityByCliente = "\nOlá " + Client.nameArray.get(indexOfTheClient)
+                                                  + ".\nInforme a quantidade de '" 
+                                                  + listTitle.get(i) + "' desejada: ";
+                    System.out.println(inputQuantityByCliente);
                     bookQuantity = input.nextInt();
                     
                     Cart.addItemsToCart(listISBN.get(i),bookQuantity,loginClient);
@@ -162,12 +166,15 @@ public class Book
             // Receives the option from the user about the recommendation of the book
             String optionRecommendation = "";
             
-            System.out.println("\nSinto muito mas não temos esse livro em estoque,"
-                               + " mas seria um prazer receber sua recomendação "
-                               + "de livros para que possamos aumentar nosso"
-                               + " acervo e melhor serví-lo!");
-            System.out.println("Deseja recomendar esse livro para aquisição?\n"
-                               + "1-SIM  | 0-NÃO");
+            String messageRecommendation = "\nSinto muito mas não temos esse livro em estoque,"
+                                         + " mas seria um prazer receber sua recomendação "
+                                         + "de livros para que possamos aumentar nosso"
+                                         + " acervo e melhor serví-lo!";
+            System.out.println(messageRecommendation);
+            
+            String messageInputRecommendation = "Deseja recomendar esse livro para aquisição?\n"
+                                       + "1-SIM  | 0-NÃO";
+            System.out.println(messageInputRecommendation);
             optionRecommendation = inputString.nextLine();
                 
             if( "1".equals(optionRecommendation) )
@@ -179,7 +186,10 @@ public class Book
                     
                 if( verifyAddRecommendation )
                 {
-                    System.out.println("\nSua recomendação foi recebida com sucesso! Agradecemos sua participação e iremos analisar o seu pedido e, se possível, este livro estará em breve nas nossas prateleiras!");
+                    String messageSucessRecommendation = "\nSua recomendação foi recebida com sucesso! "
+                                                       + "Agradecemos sua participação e iremos analisar o seu pedido e,"
+                                                       + " se possível, este livro estará em breve nas nossas prateleiras!";
+                    System.out.println(messageSucessRecommendation);
                 }
                 else
                 {
