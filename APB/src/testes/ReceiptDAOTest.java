@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -19,10 +20,10 @@ import exception.ReportException;
 public class ReceiptDAOTest
 {
 	Report report = new Report();
-
+	ReceiptDAO receiptDAO = new ReceiptDAO();
 	
 	@Before
-	// Initialize the atributes of 'report'
+	// Initialize the attributes of 'report'
 	public void setUp() throws ReceiptException, ParseException
 	{
 		try
@@ -49,10 +50,65 @@ public class ReceiptDAOTest
 		
 		assertEquals(receiptDAOInstance, receipt);
 	}
-
+	
+	
+	// Test if the connection is established is not null
+	@Test
+	public void createConnectionWithDBTestIfTheConnectionIsNotNull()
+	{
+		try
+		{
+			Connection connectionToTest = receiptDAO.createConnectionWithDB();
+			
+			assertNotNull("This connection should not be null", connectionToTest);
+			
+			connectionToTest.close();
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	// Test if the connection is valid
+	@Test
+	public void createConnectionWithDBTestIfTheConnectionisValid()
+	{
+		try
+		{
+			Connection connectionToTest = receiptDAO.createConnectionWithDB();
+			
+			assertTrue("This connection should be active", connectionToTest.isValid(10));
+			
+			connectionToTest.close();
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	// Test if the connection is closed
+	@Test
+	public void createConnectionWithDBTestIfTheConnectionisClosed()
+	{
+		try
+		{
+			Connection connectionToTest = receiptDAO.createConnectionWithDB();
+			
+			connectionToTest.close();
+			
+			assertTrue("This connection should be closed", connectionToTest.isClosed());
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
 	@Test
 	/* 
-	 * Test the method 'pesquisaSerivcosDoBarbeiro'
+	 * Test the method 'barberServicesSearch'
 	 *  (if returns the right services of a barber)
 	 */
 	public void searchBarberServicesMethodTest()

@@ -19,7 +19,7 @@ public class PhonebookDAO
 	}
 
 	/** 
-	 * Return the current instance if exists, or instantiate a new one if does not
+	 * @return The current instance if exists, or instantiate a new one if does not and return it
 	 */
 	public static PhonebookDAO getInstance() 
 	{
