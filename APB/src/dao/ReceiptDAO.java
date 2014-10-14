@@ -67,8 +67,8 @@ public class ReceiptDAO
 	}
 
 	/**
-	 *  Method used to modify existing records
-	 *  @param message - String about the exception
+	 *  Method used to execute some action on DB
+	 *  @param message - SQL code of action to be executed
 	 *  @throws SQLException
 	 */
 	public void updateQuery(String message) throws SQLException 

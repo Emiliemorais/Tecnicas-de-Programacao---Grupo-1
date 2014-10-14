@@ -2,6 +2,7 @@ package testes;
 
 import static org.junit.Assert.*;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -132,6 +133,60 @@ public class ServiceTypeDAOTest
 			e.printStackTrace();
 		}
 	}
+	
+	// Test if the connection is established is not null
+		@Test
+		public void createConnectionWithDBTestIfTheConnectionIsNotNull()
+		{
+			try
+			{
+				Connection connectionToTest = serviceTypeDAO.createConnectionWithDB();
+				
+				assertNotNull("This connection should not be null", connectionToTest);
+				
+				connectionToTest.close();
+			}
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+		}
+		
+		// Test if the connection is valid
+		@Test
+		public void createConnectionWithDBTestIfTheConnectionisValid()
+		{
+			try
+			{
+				Connection connectionToTest = serviceTypeDAO.createConnectionWithDB();
+				
+				assertTrue("This connection should be active", connectionToTest.isValid(10));
+				
+				connectionToTest.close();
+			}
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+		}
+		
+		// Test if the connection is closed
+		@Test
+		public void createConnectionWithDBTestIfTheConnectionisClosed()
+		{
+			try
+			{
+				Connection connectionToTest = serviceTypeDAO.createConnectionWithDB();
+				
+				connectionToTest.close();
+				
+				assertTrue("This connection should be closed", connectionToTest.isClosed());
+			}
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+		}
 	
 	 /* 
 	  * Test the method 'displayRegisteredTypesOfService' 
