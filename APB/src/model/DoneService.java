@@ -8,7 +8,6 @@ import java.text.SimpleDateFormat;
 
 public class DoneService
 {
-
 	// Receives the service name
 	private String serviceName; 
 	
@@ -20,39 +19,23 @@ public class DoneService
 	
 	// Receives the date of the service
 	private String serviceDate; 
-
 	
-	// Name of the invalid service
+	// Error constants
 	private final String invalidName = "Nome do Serviço Inválido"; 
-	
-	// Name of the blank service
 	private final String blankName = "Nome do Serviço em Branco"; 
-	
-	// Shows that there is no barber�s name registered
 	private final String invalidBarber = "Nome do Barbeiro em Branco"; 
-	
-	// Receives a barber�s name
 	private final String blankBarber = "Insira um Barbeiro responsável pelo serviço"; 
-	
-	// Shows that the price is invalid
 	private final String invalidPrice = "Preço Inválido"; 
-	
-	// Shows that there is no price registered
 	private final String blankPrice = "Preço em Branco"; 
-	
-	// Shows that there is no date registered
 	private final String blankDate = "Data em Branco"; 
-	
-	// Receives a new date
 	private final String invalidDate = "Insira uma data válida"; 
 	
-
 	public DoneService () 
 	{
 
 	}
 
-	// Method receiving and setting the parameters from the given service
+	// Class constructor
 	public DoneService(String serviceName, String servicePrice, String barberName) 
 	{
 		this.serviceName = serviceName;
@@ -63,43 +46,39 @@ public class DoneService
 	// Service name getter
 	public String getServiceName() 
 	{
-		
 		return serviceName;
 	}
 
 	// Barber name getter
 	public String getBarberName() 
 	{
-		
 		return barberName;
 	}
 	
 	// Price getter
 	public String getPrice() 
 	{
-		
 		return servicePrice;
 	}
+	
 	// Date getter
 	public String getDate() 
 	{
-		
 		return serviceDate;
 	}
 
 	// Service name setter
-	public void setServiceName(String serviceName) 
-		throws ServiceException 
+	public void setServiceName(String serviceName) throws ServiceException 
 	{
-		if (serviceName == null)
+		if( serviceName == null )
 		{
 			throw new NullPointerException(blankName);
 		}
-		else if ("".equals(serviceName))
+		else if( "".equals(serviceName) )
 		{
 			throw new ServiceException(blankName);
 		}
-		else if (serviceName.matches("^[[ ]|\\p{L}*]+$"))
+		else if( serviceName.matches("^[[ ]|\\p{L}*]+$") )
 		{
 			this.serviceName = serviceName;
 		}
@@ -110,18 +89,17 @@ public class DoneService
 	}
 
 	// Barber name setter
-	public void setBarberName(String barberName) 
-		throws ServiceException 
+	public void setBarberName(String barberName) throws ServiceException 
 	{
-		if (barberName == null)
+		if( barberName == null )
 		{
 			throw new NullPointerException(blankBarber);
 		}
-		else if ("".equals(barberName))
+		else if( "".equals(barberName) )
 		{
 			throw new ServiceException(blankBarber);
 		}
-		else if (barberName.matches("^[[ ]|\\p{L}*]+$"))
+		else if( barberName.matches("^[[ ]|\\p{L}*]+$") )
 		{
 			this.barberName = barberName;
 		}
@@ -132,18 +110,17 @@ public class DoneService
 	}
 
 	// Price setter
-	public void setPrice(String servicePrice) 
-		throws ServiceException 
+	public void setPrice(String servicePrice) throws ServiceException 
 	{
-		if (servicePrice == null)
+		if( servicePrice == null )
 		{
 			throw new NullPointerException (blankPrice);
 		}
-		else if ("".equals(servicePrice))
+		else if( "".equals(servicePrice) )
 		{
 			throw new ServiceException(blankPrice);
 		}
-		else if (servicePrice.matches("[\\d]{1,3},[\\d]{1,2}"))
+		else if( servicePrice.matches("[\\d]{1,3},[\\d]{1,2}") )
 		{
 			this.servicePrice = servicePrice;
 		}
@@ -154,47 +131,52 @@ public class DoneService
 	}
 
 	// Date setter
-	public void setDate(String serviceDate) 
-		throws ServiceException , ParseException 
+	public void setDate(String serviceDate) throws ServiceException , ParseException 
 	{
-
-		if (serviceDate == null)
+		if( serviceDate == null )
 		{
 			throw new NullPointerException(blankDate);
 		}
-		else if ("".equals(serviceDate))
+		else if( "".equals(serviceDate) )
 		{
 			throw new ServiceException(blankDate);
 		}
-		else if (serviceDate.matches("[\\d]{1,4}-[\\d]{1,2}-[\\d]{1,2}")) 
+		else if(serviceDate.matches("[\\d]{1,4}-[\\d]{1,2}-[\\d]{1,2}") ) 
 		{
 			this.serviceDate = serviceDate;
 		}
-		else if (serviceDate.matches("[\\d]{1,2}/[\\d]{1,2}/[\\d]{1,4}")) 
+		else if( serviceDate.matches("[\\d]{1,2}/[\\d]{1,2}/[\\d]{1,4}") ) 
 		{
-			// simpleDateFormat = Date in the format: yyyy/mm/dd
-			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-			
-			// dateISO - Receives intel from "serviceDate" variable
-			Date dateISO = simpleDateFormat.parse(serviceDate);
-			
-			// secondSimpleDateFormat - Date in the format: dd/mm/yyyy
-			SimpleDateFormat secondSimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			
-			// dateISO - Receives intel from "dateISO" variable
-			String secondDateISO = secondSimpleDateFormat.format(dateISO);
-
-			this.serviceDate = secondDateISO;
+			this.serviceDate = convertServiceDate(serviceDate);
 		}
 		else
 		{
 			throw new ServiceException(invalidDate);
 		}
 	}
+	
+	/**
+	 * Convert the date to yyyy-MM-dd format
+	 * @param serviceDate - Date to be converted
+	 */
+	public String convertServiceDate(String serviceDate) throws ParseException 
+	{
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		
+		Date dateISO = simpleDateFormat.parse(serviceDate);
 
-	// Method to convert service date to ABNT
-	public String convertServiceDateToABNT ( String serviceDate )
-		throws ParseException 
+		SimpleDateFormat secondSimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+		String secondDateISO = secondSimpleDateFormat.format(dateISO);
+		
+		return secondDateISO;
+	}
+
+	/**
+	 * Method to convert service date to ABNT
+	 * @param serviceDate - Date to be converted
+	 */
+	public String convertServiceDateToABNT ( String serviceDate ) throws ParseException 
 	{
 		
 		// simpleDateFormat = Date in the format: yyyy/mm/dd

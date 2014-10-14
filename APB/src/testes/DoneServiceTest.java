@@ -209,7 +209,21 @@ public class DoneServiceTest
 		
 		Assert.fail("Deve lan�ar uma exce��o");
 	}
-
+	
+	@Test
+	// Test if the date conversion to yyyy-MM-dd is made right
+	public void convertServiceDateTest()
+	{
+		try
+		{
+			service.convertServiceDate("10-10-2010");
+		}
+		catch (ParseException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
 	@Test
 	// Test if the date conversion to ABNT format is correct
 	public void dateConversionToAbntTest()
