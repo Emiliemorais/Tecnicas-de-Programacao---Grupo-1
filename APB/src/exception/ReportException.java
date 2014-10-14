@@ -4,10 +4,9 @@ package exception;
 public class ReportException extends Exception 
 {
 	
-	// Method that returns the exception
+	// Class constructor
 	public ReportException() 
 	{
-		
 		super();
 	}
 
@@ -17,7 +16,6 @@ public class ReportException extends Exception
 	 */
 	public ReportException(String errorMessage) 
 	{
-		
 		super(errorMessage);
 	}
 

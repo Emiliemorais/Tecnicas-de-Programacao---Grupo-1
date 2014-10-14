@@ -4,10 +4,9 @@ package exception;
 public class ServiceException extends Exception
 {
 
-	// Method that returns the exception
+	// Class constructor
 	public ServiceException() 
 	{
-		
 		super();
 	}
 
@@ -17,7 +16,6 @@ public class ServiceException extends Exception
 	 */
 	public ServiceException(String errorMessage) 
 	{
-		
 		super(errorMessage);
 	}
 	

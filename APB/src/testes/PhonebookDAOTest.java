@@ -3,12 +3,14 @@ package testes;
 import static org.junit.Assert.*;
 
 import java.sql.ResultSet;
+import java.sql.Connection;
 import java.sql.SQLException;
 
 import model.Phonebook;
 
 import org.junit.Test;
 
+import dao.FactoryConnection;
 import dao.PhonebookDAO;
 
 public class PhonebookDAOTest 
@@ -128,9 +130,63 @@ public class PhonebookDAOTest
 		}
 	}
 	
+	// Test if the connection is established is not null
+	@Test
+	public void createConnectionWithDBTestIfTheConnectionIsNotNull()
+	{
+		try
+		{
+			Connection connectionToTest = phonebookDAO.createConnectionWithDB();
+			
+			assertNotNull("This connection should not be null", connectionToTest);
+			
+			connectionToTest.close();
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	// Test if the connection is valid
+	@Test
+	public void createConnectionWithDBTestIfTheConnectionisValid()
+	{
+		try
+		{
+			Connection connectionToTest = phonebookDAO.createConnectionWithDB();
+			
+			assertTrue("This connection should be active", connectionToTest.isValid(10));
+			
+			connectionToTest.close();
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	// Test if the connection is closed
+	@Test
+	public void createConnectionWithDBTestIfTheConnectionisClosed()
+	{
+		try
+		{
+			Connection connectionToTest = phonebookDAO.createConnectionWithDB();
+			
+			connectionToTest.close();
+			
+			assertTrue("This connection should be closed", connectionToTest.isClosed());
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
 	// Method to test if the contacts are being displayed
 	@Test
-	public void showPhonebookContactsDAO()
+	public void showRegisteredContactsTest()
 	{
 		try 
 		{			
