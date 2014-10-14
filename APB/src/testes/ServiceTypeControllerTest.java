@@ -16,10 +16,8 @@ import exception.ServiceException;
 public class ServiceTypeControllerTest 
 {
 
-	// serviceInstance - Instance of "ServiceType" class
 	ServiceType serviceInstance = new ServiceType(); 
 	
-	// serviceControllerInstance - Instance of  "ServiceTypeController" class
 	ServiceTypeController serviceControllerInstance = ServiceTypeController.getInstance();
 
 	// Method used to set up the parameters for the test
@@ -80,13 +78,14 @@ public class ServiceTypeControllerTest
 		{
 			assertTrue(serviceControllerInstance.modifyServiceType(serviceInstance.getServiceTypeName(),
 					serviceInstance));
-		} catch (SQLException e) 
+		} 
+		catch (SQLException e) 
 		{
 			e.printStackTrace();
 		}
 	}
 
-	// Method that tests if the service type is null when adding
+	// Method that tests if a null service type is added
 	@Test
 	public void addNotNullServiceType()
 	{
@@ -100,7 +99,7 @@ public class ServiceTypeControllerTest
 		}
 	}
 
-	// Method that tests if the service type is null when deleting
+	// Method that tests if a null service type is deleted
 	@Test
 	public void deleteNotNullServiceType() 
 	{
@@ -114,7 +113,7 @@ public class ServiceTypeControllerTest
 		}
 	}
 
-	// Method that tests if the service type is null when editing
+	// Method that tests if a null service type is edited
 	@Test
 	public void editNotNullServiceType() 
 	{
@@ -128,33 +127,32 @@ public class ServiceTypeControllerTest
 		}
 	}
 	
-	// Methot that test if a barber is being displayed
+	// Method that test if a service type is being displayed
 	@Test
-	public void displayBarberFromController()
-		throws SQLException 
+	public void showRegistredServiceTypesMethodTest() throws SQLException 
 	{
-		
-		// resultInstance = ResultSet Instance
 		ResultSet resultInstance = serviceControllerInstance.showRegistredServiceTypes(serviceInstance);
 		
 		while (resultInstance.next())
 		{
-			;
+			assertNotNull("This object should not be null", resultInstance);
+			assertNotNull("This object should not be null", resultInstance.getString("nome"));
+			assertNotNull("This object should not be null", resultInstance.getString("preco"));
+			
 		}
 	}
 
-	// Method that test if a service is being displayed when searched by its name
+	// Method that test if a service type is being displayed when searched by its name
 	@Test
-	public void searchByServiceTypeNameController()
-		throws SQLException 
+	public void searchByServiceTypeNameMethodTest() throws SQLException 
 	{
-		
-		// resultInstance = ResultSet Instance
 		ResultSet resultInstance = serviceControllerInstance.searchServiceTypeByName(serviceInstance);
 	
 		while (resultInstance.next())
 		{
-			;
+			assertNotNull("This object should not be null", resultInstance);
+			assertEquals("This should be equal to the instantiated before", "Corte", resultInstance.getString("nome"));
+			assertEquals("This should be equal to the instantiated before", "15,00", resultInstance.getString("preco"));
 		}
 	}
 

@@ -13,13 +13,12 @@ import exception.ReportException;
 
 public class ReportTest 
 {
-	// reportInstance - Instance of the "Report" class 
+	
 	Report reportInstance; 
 	
 	// Method used to set up the parameters for the test
 	@Before
-	public void setUp() 
-		throws ParseException 
+	public void setUp() throws ParseException 
 	{
 		try 
 		{
@@ -43,8 +42,7 @@ public class ReportTest
 	
 	// Method that tests if the initial date is null
 	@Test (expected = NullPointerException.class)
-	public void initialNotNullDate() 
-		throws NullPointerException , ParseException 
+	public void initialNotNullDate() throws NullPointerException , ParseException 
 	{
 		try 
 		{
@@ -58,8 +56,7 @@ public class ReportTest
 
 	// Method that tests if the initial date is blank
 	@Test (expected = AssertionError.class)
-	public void initialNotBlankDate()
-		throws NullPointerException , ParseException 
+	public void initialNotBlankDate() throws NullPointerException , ParseException 
 	{
 		try 
 		{
@@ -73,8 +70,7 @@ public class ReportTest
 
 	// Method that tests if the final date is null
 	@Test (expected = NullPointerException.class)
-	public void finalNotNullDate() 
-		throws NullPointerException , ParseException 
+	public void finalNotNullDate() throws NullPointerException , ParseException 
 	{
 		try 
 		{
@@ -88,8 +84,7 @@ public class ReportTest
 	
 	// Method that tests if the final date is blank
 	@Test (expected = AssertionError.class)
-	public void finalNotBlankDate() 
-		throws NullPointerException , ParseException 
+	public void finalNotBlankDate() throws NullPointerException , ParseException 
 	{
 		try 
 		{

@@ -15,8 +15,7 @@ import exception.BarberException;
 
 public class BarberControllerTest 
 {
-	
-	// barberInstance - Instance of the "Barber" class
+
 	Barber barberInstance = new Barber(); 
 
 	// Method used to set up the parameters for the test
@@ -42,7 +41,7 @@ public class BarberControllerTest
 	}
 
 	// barberController - Instance of the "BarberController" class
-	BarberController barberController = BarberController.getInstance (); 
+	BarberController barberController = BarberController.getInstance(); 
 	
 	// Method used to check if the current instance is being returned
 	@Test
@@ -67,7 +66,7 @@ public class BarberControllerTest
 
 	// Method used to test if a barber is being deleted
 	@Test
-	public void deleteFromBarberController () 
+	public void deleteFromBarberController() 
 	{
 		try 
 		{
@@ -137,43 +136,48 @@ public class BarberControllerTest
 	
 	// Method that test if a barber is being displayed
 	@Test
-	public void searchByBarberController()
-		throws SQLException 
+	public void searchByBarberController() throws SQLException 
 	{
-		// resultInstance = ResultSet Instance
 		ResultSet resultInstance = barberController.searchBarbers();
 		
 		while (resultInstance.next())
 		{
-			;
+			
 		}
 	}
 	
-	// Method that test if a barber is being displayed
+	// Method that tests if a barber is being displayed
 	@Test
-	public void displayBarberFromController()
-		throws SQLException 
+	public void displayBarberFromController() throws SQLException 
 	{
-		// resultInstance = ResultSet Instance
 		ResultSet resultInstance = barberController.showRegisteredBarbers(barberInstance);
 		
 		while (resultInstance.next())
 		{
-			;
+			assertNotNull("This object should not be null", resultInstance);
+			assertNotNull("This object should not be null", resultInstance.getString("nome"));
+			assertNotNull("This object should not be null", resultInstance.getString("cpf"));
+			assertNotNull("This object should not be null", resultInstance.getString("rg"));
+			assertNotNull("This object should not be null", resultInstance.getString("telefone"));
+			assertNotNull("This object should not be null", resultInstance.getString("cadeira"));
 		}
 	}
 
 	// Method used to test if a barber is being displayed when searched by name
 	@Test
-	public void searchByBarberNameController()
-		throws SQLException 
+	public void searchByBarberNameController() throws SQLException 
 	{
-		// resultInstance = ResultSet Instance
 		ResultSet resultInstance = barberController.searchBarberByName(barberInstance);
 		
 		while (resultInstance.next())
 		{
-			;
+			assertNotNull("This object should not be null", resultInstance);
+			assertEquals("This should be equal to the registered before", "Alessandro", resultInstance.getString("nome"));
+			assertEquals("This should be equal to the registered before", "02919594150", resultInstance.getString("cpf"));
+			assertEquals("This should be equal to the registered before", "418757896", resultInstance.getString("rg"));
+			assertEquals("This should be equal to the registered before", "3389-9085", resultInstance.getString("telefone"));
+			assertEquals("This should be equal to the registered before", "5", resultInstance.getString("cadeira"));
+			
 		}
 	}
 	
