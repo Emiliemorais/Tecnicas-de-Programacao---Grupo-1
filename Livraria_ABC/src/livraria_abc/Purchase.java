@@ -29,22 +29,17 @@ import static livraria_abc.ABCBookStore.currentClient;
         // Type of payment
         String paymentType;
 
-
-        /*
-         * Objeto utilizado para ler números inteiros e de ponto flutuante do usuário
-         * inputNumber - Receives numbers
-         */
+        
+        // Scanner object used to read real numbers from user
         static Scanner inputNumbers = new Scanner(System.in);
 
-        /*
-         * Objeto utilizado para ler strings do usuário
-         * readString - Reads strings from the user
-         */
+        // Scanner object used to read strings from user
         static Scanner readString = new Scanner(System.in);
-
+        
+        // Class general constructor
         public Purchase()
         {
-
+            
         }
 
         /**
@@ -183,6 +178,7 @@ import static livraria_abc.ABCBookStore.currentClient;
         }
 
         // Finaliza uma compra e esvazia a cesta aberta se confirmado
+        // Finalizes a purchase and get the ongoing cart empty
         public static void endPurchase()
         {
             // Gives a option, whether to cancel the purchase or not
