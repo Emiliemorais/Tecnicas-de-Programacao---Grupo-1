@@ -36,40 +36,42 @@ public class MainMenu extends JFrame
 	{
 		EventQueue.invokeLater(new Runnable () 
 		{
-			public void run () 
+			public void run() 
 			{
 				try 
 				{
-					// frame - Instance of "MainMenu" class
-					MainMenu frame = new MainMenu (); 
-					frame.setVisible ( true );
+					MainMenu frame = new MainMenu(); 
+					frame.setVisible(true);
 				} 
-				catch ( Exception e ) 
+				catch (Exception e) 
 				{
-					e.printStackTrace ();
+					e.printStackTrace();
 				}
 			}
 		});
 	}
-
+	
+	// Class constructor
+	public MainMenu()
+	{
+		initializeComponents();
+	}
+	
 	/**
-	 * Create the frame.
+	 * Initialize the components of frame.
 	 */
-	public MainMenu ( ) 
+	public void initializeComponents( ) 
 	{
 		setTitle( "APB" );
 		setDefaultCloseOperation ( JFrame.EXIT_ON_CLOSE );
 		setBounds ( 100, 100, 540, 200);
 		
-		// contentPane - Variable with the contents of the panel
-		contentPane = new JPanel (); 
-		contentPane.setToolTipText ( "Menu Principal" );
+		contentPane = new JPanel(); 
+		contentPane.setToolTipText( "Menu Principal" );
 		contentPane.setBorder( new EmptyBorder ( 5, 5, 5, 5) );
-		setContentPane ( contentPane);
-		contentPane.setLayout ( null );
-
+		setContentPane( contentPane);
+		contentPane.setLayout( null );
 		
-		// panel - Instance of "Jpanel" class
 		JPanel panel = new JPanel (); 
 		panel.setBorder ( new TitledBorder(UIManager
 				.getBorder ( "TitledBorder.border" ), "Menu Principal",
@@ -80,82 +82,82 @@ public class MainMenu extends JFrame
 
 		
 		// adminButton - Button that says "Administrative"
-		JButton adminButton = new JButton ( "Administrativo" ); 
-		adminButton.addActionListener ( new ActionListener () 
+		JButton adminButton = new JButton( "Administrativo" ); 
+		adminButton.addActionListener( new ActionListener () 
 		{
-			public void actionPerformed ( ActionEvent e ) 
+			public void actionPerformed( ActionEvent e ) 
 			{
 				dispose();
 				Administrative frame = new Administrative ();
-				frame.setVisible ( true );
-				frame.setLocationRelativeTo ( null );
+				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
 			}
 		});
-		adminButton.setBounds ( 10, 60, 157, 37 );
-		panel.add ( adminButton );
+		adminButton.setBounds( 10, 60, 157, 37 );
+		panel.add( adminButton );
 
 		
 		// givenServicesButton - Button that says "Given Services"
-		JButton givenServicesButton = new JButton ( "Servi\u00E7os Prestados" ); 
-		givenServicesButton.addActionListener ( new ActionListener () 
+		JButton givenServicesButton = new JButton( "Servi\u00E7os Prestados" ); 
+		givenServicesButton.addActionListener( new ActionListener () 
 		{
-			public void actionPerformed ( ActionEvent e ) 
+			public void actionPerformed( ActionEvent e ) 
 			{
-				dispose ();
-				RegisterDoneService frame = new RegisterDoneService ();
-				frame.setVisible ( true );
-				frame.setLocationRelativeTo ( null );
+				dispose();
+				RegisterDoneService frame = new RegisterDoneService();
+				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
 			}
 		});
-		givenServicesButton.setBounds ( 179, 60, 157, 37 );
-		panel.add( givenServicesButton );
-
+		givenServicesButton.setBounds( 179, 60, 157, 37 );
+		panel.add(givenServicesButton);
+		
 		
 		// reportsButton - Button that says "Reports"
 		JButton reportsButton = new JButton ( "Relat\u00F3rios" ); 
-		reportsButton.addMouseListener ( new MouseAdapter ()
+		reportsButton.addMouseListener( new MouseAdapter()
 		{
 			@Override
-			public void mouseClicked ( MouseEvent e ) 
+			public void mouseClicked( MouseEvent e ) 
 			{
 				try 
 				{
 					SearchReport.searchType = 0;
 					ViewReports frame = new ViewReports ();
-					frame.setVisible( true );
-					frame.setLocationRelativeTo( null );
-					dispose ();
+					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
+					dispose();
 				} 
-				catch ( SQLException e1 ) 
+				catch (SQLException e1) 
 				{
-					showErrorMessage ( e1.getMessage () );
+					showErrorMessage( e1.getMessage() );
 				} 
-				catch ( ReportException e1 ) 
+				catch (ReportException e1) 
 				{
 					e1.printStackTrace();
 				} 
-				catch ( NullPointerException e1)
+				catch (NullPointerException e1)
 				{
-					e1.printStackTrace ();
+					e1.printStackTrace();
 				} 
-				catch ( ParseException e1 ) 
+				catch (ParseException e1) 
 				{
-					e1.printStackTrace ();
+					e1.printStackTrace();
 				}
 			}
 		});
-		reportsButton.setBounds ( 346, 60, 149, 37 );
-		panel.add ( reportsButton );
+		reportsButton.setBounds( 346, 60, 149, 37 );
+		panel.add( reportsButton );
 	}
 	
 	/**
 	 * Method that shows a error message
 	 * @param errorInformation - Shows a error message to the user
 	 */
-	private void showErrorMessage ( String errorInformation ) 
+	private void showErrorMessage( String errorInformation ) 
 	{
 		JOptionPane.showMessageDialog( null, errorInformation, "Atenção",
-				JOptionPane.INFORMATION_MESSAGE );
+									  JOptionPane.INFORMATION_MESSAGE );
 	}
 
 }

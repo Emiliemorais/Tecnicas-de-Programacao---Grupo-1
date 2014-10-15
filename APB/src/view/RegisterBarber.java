@@ -35,7 +35,6 @@ public class RegisterBarber extends JFrame
 			{
 				try 
 				{
-					// frame - Instance of "CadastrarBarbeiro" class
 					RegisterBarber frame = new RegisterBarber(); 
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
@@ -48,7 +47,7 @@ public class RegisterBarber extends JFrame
 		});
 	}
 
-	// Method used to initialize components
+	// Class constructor
 	public RegisterBarber() 
 	{
 		initializeComponents();
@@ -81,16 +80,13 @@ public class RegisterBarber extends JFrame
 
 		try 
 		{
-			// barberController - Instance of "BarberController" class
 			BarberController barberController = BarberController.getInstance(); 
 			
-			// barber - Instance of "Barber" class
 			Barber barber = new Barber(); 
 			
-			// resultInstance - ResultSetInstance
 			ResultSet resultInstance = barberController.showRegisteredBarbers(barber); 
 			
-			while ( resultInstance.next () )
+			while( resultInstance.next() )
 			{
 				// data - Gets name, cpf, rg, phone number and chair
 				String[] data = new String[5];
@@ -103,30 +99,29 @@ public class RegisterBarber extends JFrame
 				defaultTableModel.addRow(data);
 			}
 		} 
-		catch ( SQLException e ) 
+		catch (SQLException e) 
 		{
-			showErrorMessage ( e.getMessage () );
+			showErrorMessage( e.getMessage() );
 		}
 
-		scrollPane.setViewportView ( table );
+		scrollPane.setViewportView (table);
 
 		// newButton - Creates a button that says "new"
-		JButton newButton = new JButton ( "Novo" ); 
-		newButton.addMouseListener ( new MouseAdapter () 
+		JButton newButton = new JButton("Novo"); 
+		newButton.addMouseListener( new MouseAdapter() 
 		{
 			@Override
-			public void mouseClicked ( MouseEvent e ) 
+			public void mouseClicked(MouseEvent e) 
 			{
 				dispose();
 				NewBarber frame;
 				try 
 				{
-					
-					frame = new NewBarber ();
-					frame.setVisible ( true );
-					frame.setLocationRelativeTo ( null );
+					frame = new NewBarber();
+					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
 				} 
-				catch ( ParseException e1 ) 
+				catch( ParseException e1 ) 
 				{
 					e1.printStackTrace ();
 				}
@@ -145,13 +140,13 @@ public class RegisterBarber extends JFrame
 			{
 				try
 				{
-					Barber.setTemporaryName( defaultTableModel.getValueAt ( table.getSelectedRow (), 0).toString () );
-					ModifyBarber frame = new ModifyBarber ();
-					frame.setVisible ( true );
-					frame.setLocationRelativeTo ( null );
+					Barber.setTemporaryName( defaultTableModel.getValueAt(table.getSelectedRow(), 0).toString() );
+					ModifyBarber frame = new ModifyBarber();
+					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
 					dispose();
 				} 
-				catch ( ArrayIndexOutOfBoundsException e1 ) 
+				catch (ArrayIndexOutOfBoundsException e1) 
 				{
 					showErrorMessage ( "Selecione um Barbeiro para Alterar" );
 				}
@@ -161,44 +156,44 @@ public class RegisterBarber extends JFrame
 		contentPane.add(editButton);
 
 		// deleteButton - Creates a button that says "delete"
-		JButton deleteButton = new JButton ( "Remover" ); 
-		deleteButton.addMouseListener ( new MouseAdapter () 
+		JButton deleteButton = new JButton( "Remover" ); 
+		deleteButton.addMouseListener( new MouseAdapter() 
 		{
 			@Override
-			public void mouseClicked ( MouseEvent arg0 ) 
+			public void mouseClicked(MouseEvent arg0) 
 			{
 				try 
 				{
-					String nome = (String) table.getValueAt ( table.getSelectedRow (), 0 );
-					Barber barber = new Barber ();
-					barber.setBarberName ( nome );
+					String nome = (String) table.getValueAt( table.getSelectedRow(), 0 );
+					Barber barber = new Barber();
+					barber.setBarberName (nome);
 					
 					// confirmation - Show confirm dialog
-					int confirmation = JOptionPane.showConfirmDialog ( null,
-							"Remover " + nome + " da lista?" );
+					int confirmation = JOptionPane.showConfirmDialog( null,
+									   "Remover " + nome + " da lista?" );
 					
-					if ( confirmation == JOptionPane.YES_OPTION ) 
+					if( confirmation == JOptionPane.YES_OPTION ) 
 					{
 						BarberController barbeiroController = BarberController.getInstance();
-						barbeiroController.deleteBarber ( barber );
+						barbeiroController.deleteBarber(barber);
 
 						dispose();
-						RegisterBarber frame = new RegisterBarber ();
-						frame.setVisible( true );
-						frame.setLocationRelativeTo ( null );
+						RegisterBarber frame = new RegisterBarber();
+						frame.setVisible(true);
+						frame.setLocationRelativeTo(null);
 					}
 				} 
-				catch ( ArrayIndexOutOfBoundsException e ) 
+				catch (ArrayIndexOutOfBoundsException e) 
 				{
 					showErrorMessage("Selecione um Barbeiro para remover");
 				} 
-				catch ( BarberException e ) 
+				catch (BarberException e) 
 				{
-					showErrorMessage( e.getMessage () );
+					showErrorMessage( e.getMessage() );
 				} 
 				catch ( SQLException e ) 
 				{
-					showErrorMessage ( e.getMessage () );
+					showErrorMessage( e.getMessage() );
 				}
 			}
 		});
@@ -227,10 +222,10 @@ public class RegisterBarber extends JFrame
 	 * Method that shows a error message
 	 * @param errorInformation - Shows a error message to the user
 	 */
-	private void showErrorMessage ( String errorInformation ) 
+	private void showErrorMessage( String errorInformation ) 
 	{
 		JOptionPane.showMessageDialog(null, errorInformation, "Atenção",
-				JOptionPane.INFORMATION_MESSAGE);
+									  JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 }

@@ -23,10 +23,9 @@ import java.text.ParseException;
 @SuppressWarnings ( "serial" )
 public class NewBarber extends JFrame
 {
-	// Instance of "Jpanel"
 	private JPanel contentPane; 
 	
-	// Instance of "JTextField", which provides a text field to input the name
+	// Instance of "JTextField", which provides a text field to input the barber name
 	private JTextField nameTextField; 
 	
 	// Instance of "JTextField", which provides a text field to input the CPF (main brazilian document)
@@ -54,41 +53,39 @@ public class NewBarber extends JFrame
 	private JButton returnButton; 
 
 	
-	public static void main ( String[] args ) 
+	public static void main( String[] args ) 
 	{
-		EventQueue.invokeLater ( new Runnable () 
+		EventQueue.invokeLater( new Runnable() 
 		{
-			public void run () 
+			public void run() 
 			{
 				try 
 				{
-					// frame - instance of "NewBarber" class
 					NewBarber frame = new NewBarber(); 
-					frame.setVisible ( true );
-					frame.setLocationRelativeTo ( null );
+					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
 				} 
-				catch ( Exception e ) 
+				catch (Exception e) 
 				{
-					e.printStackTrace ();
+					e.printStackTrace();
 				}
 			}
 		});
 	}
 
-	// Method used to initialize componentes
+	// Class constructor
 	public NewBarber() throws ParseException 
 	{
-		initializeComponents ();
+		initializeComponents();
 	}
 
 	// Method that sets initial values to the screen components
 	public void initializeComponents() throws ParseException 
 	{
-		setTitle ( "Cadastrar Barbeiro" );
+		setTitle( "Cadastrar Barbeiro" );
 		setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 		setBounds( 100, 100, 474, 253);
 		
-		// contentPane - Instance of "Jpanel"
 		contentPane = new JPanel (); 
 		contentPane.setBorder( new EmptyBorder ( 5, 5, 5, 5));
 		setContentPane ( contentPane );
@@ -97,10 +94,10 @@ public class NewBarber extends JFrame
 		
 		
 		// phoneMaskFormatter - Receives the phone number
-		MaskFormatter phoneMaskFormatter = new MaskFormatter ( "(##)####-####" ); 
+		MaskFormatter phoneMaskFormatter = new MaskFormatter( "(##)####-####" ); 
 		
 		// maskFormatterCPF - Receives the CPF (main brazillian document)
-		MaskFormatter maskFormatterCPF = new MaskFormatter ( "###.###.###-##" ); 
+		MaskFormatter maskFormatterCPF = new MaskFormatter( "###.###.###-##" ); 
 				
 		
 		nameTextField = new JTextField();
@@ -110,86 +107,85 @@ public class NewBarber extends JFrame
 
 		
 		// nameLabel - Instance of Jlabel, which provides a label named "Name"
-		JLabel nameLabel = new JLabel ( "Nome:" ); 
-		nameLabel.setBounds ( 21, 14, 46, 14 );
+		JLabel nameLabel = new JLabel( "Nome:" ); 
+		nameLabel.setBounds( 21, 14, 46, 14 );
 		getContentPane().add ( nameLabel );
 
-		textFieldCpf = new JFormattedTextField ( maskFormatterCPF );
-		textFieldCpf.setBounds ( 92, 42, 354, 20 );
-		getContentPane().add ( textFieldCpf );
+		textFieldCpf = new JFormattedTextField( maskFormatterCPF );
+		textFieldCpf.setBounds( 92, 42, 354, 20 );
+		getContentPane().add( textFieldCpf );
 		textFieldCpf.setColumns(10);
 
 		
 		// labelCPF - Instance of Jlabel, which provides a label named "CPF"
-		JLabel labelCPF = new JLabel ( "CPF:" ); 
-		labelCPF.setBounds ( 21, 45, 46, 14 );
-		getContentPane().add ( labelCPF );
+		JLabel labelCPF = new JLabel( "CPF:" ); 
+		labelCPF.setBounds( 21, 45, 46, 14 );
+		getContentPane().add( labelCPF );
 
 		textFieldRG = new JTextField ();
-		textFieldRG.setBounds ( 92, 73, 354, 20 );
-		getContentPane().add ( textFieldRG );
-		textFieldRG.setColumns ( 10 );
+		textFieldRG.setBounds( 92, 73, 354, 20 );
+		getContentPane().add( textFieldRG );
+		textFieldRG.setColumns( 10 );
 
 		
 		// labelRG - Instance of Jlabel, which provides a label named "RG"
-		JLabel labelRG = new JLabel ( "RG:" ); 
-		labelRG.setBounds ( 21, 76, 46, 14 );
-		getContentPane().add ( labelRG );
+		JLabel labelRG = new JLabel( "RG:" ); 
+		labelRG.setBounds( 21, 76, 46, 14 );
+		getContentPane().add( labelRG );
 
-		phoneTextField = new JFormattedTextField ( phoneMaskFormatter );
-		phoneTextField.setBounds ( 92, 104, 354, 20 );
-		getContentPane().add ( phoneTextField );
-		phoneTextField.setColumns ( 10 );
+		phoneTextField = new JFormattedTextField( phoneMaskFormatter );
+		phoneTextField.setBounds( 92, 104, 354, 20 );
+		getContentPane().add( phoneTextField );
+		phoneTextField.setColumns( 10 );
 
 		
 		// phoneLabel - Instance of Jlabel, which provides a label named "Phone"
-		JLabel phoneLabel = new JLabel ( "Telefone:" ); 
-		phoneLabel.setBounds ( 21, 107, 61, 14 );
-		getContentPane().add ( phoneLabel );
+		JLabel phoneLabel = new JLabel( "Telefone:" ); 
+		phoneLabel.setBounds( 21, 107, 61, 14 );
+		getContentPane().add( phoneLabel );
 
-		chairLabel = new JLabel ( "Cadeira:" );
-		chairLabel.setBounds ( 21, 136, 61, 14 );
-		contentPane.add ( chairLabel );
+		chairLabel = new JLabel( "Cadeira:" );
+		chairLabel.setBounds( 21, 136, 61, 14 );
+		contentPane.add( chairLabel );
 		
 
-
-		saveButton = new JButton ( "Salvar" );
-		saveButton.addMouseListener(new MouseAdapter () 
+		saveButton = new JButton( "Salvar" );
+		saveButton.addMouseListener(new MouseAdapter() 
 		{
 			// Method that allows the use of the mouse for navigation
 			@Override
-			public void mouseClicked ( MouseEvent k ) 
+			public void mouseClicked( MouseEvent k ) 
 			{
 				try 
 				{
 					// barber - Receives name, CPF, RG, phone and chair of the barber
-					Barber barber = new Barber (); 
-					barber.setBarberName ( nameTextField.getText () );
-					barber.setBarberCpf ( textFieldCpf.getText () );
-					barber.setBarberRg ( textFieldRG.getText () );
-					barber.setBarberTelephone ( phoneTextField.getText ( ) );
-					barber.setBarberChair ( chairTextField.getText () );
+					Barber barber = new Barber(); 
+					barber.setBarberName( nameTextField.getText() );
+					barber.setBarberCpf( textFieldCpf.getText() );
+					barber.setBarberRg( textFieldRG.getText() );
+					barber.setBarberTelephone( phoneTextField.getText() );
+					barber.setBarberChair( chairTextField.getText() );
 					
 					// barberController - Adds a barber
-					BarberController barberController = BarberController.getInstance ();
-					barberController.includeBarber ( barber );
+					BarberController barberController = BarberController.getInstance();
+					barberController.includeBarber( barber );
 
-					JOptionPane.showMessageDialog (null, "Barbeiro "
-							+ nameTextField.getText ()
-							+ " foi cadastrado com sucesso" );
+					JOptionPane.showMessageDialog(null, "Barbeiro "
+												  + nameTextField.getText()
+												  + " foi cadastrado com sucesso" );
 
 					dispose();
-					RegisterBarber frame = new RegisterBarber ();
-					frame.setVisible ( true );
-					frame.setLocationRelativeTo ( null );
+					RegisterBarber frame = new RegisterBarber();
+					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
 				} 
-				catch ( BarberException e )
+				catch (BarberException e)
 				{
-					showErrorMessage ( e.getMessage () );
+					showErrorMessage(e.getMessage ());
 				} 
-				catch ( SQLException e ) 
+				catch (SQLException e) 
 				{
-					showErrorMessage ( e.getMessage () );
+					showErrorMessage(e.getMessage ());
 				}
 			}
 
@@ -197,41 +193,41 @@ public class NewBarber extends JFrame
 
 		chairTextField = new JTextField ();
 		chairTextField.setBounds ( 92, 133, 354, 20 );
-		contentPane.add ( chairTextField );
+		contentPane.add( chairTextField );
 		chairTextField.setColumns ( 10 );
 		saveButton.setBounds ( 10, 177, 125, 23 );
-		contentPane.add ( saveButton );
+		contentPane.add( saveButton );
 
-		clearFieldsButton = new JButton ( "Limpar Campos" );
-		clearFieldsButton.addMouseListener ( new MouseAdapter ()
+		clearFieldsButton = new JButton( "Limpar Campos" );
+		clearFieldsButton.addMouseListener( new MouseAdapter()
 		{
 			@Override
-			public void mouseClicked ( MouseEvent e )
+			public void mouseClicked( MouseEvent e )
 			{
-				nameTextField.setText ( "" );
-				textFieldCpf.setText ( "" );
-				textFieldRG.setText ( "" );
-				phoneTextField.setText ( "" );
-				chairTextField.setText ( "" );
+				nameTextField.setText( "" );
+				textFieldCpf.setText( "" );
+				textFieldRG.setText( "" );
+				phoneTextField.setText( "" );
+				chairTextField.setText( "" );
 			}
 		});
 		clearFieldsButton.setBounds(308, 177, 138, 23);
-		contentPane.add ( clearFieldsButton );
+		contentPane.add( clearFieldsButton );
 
-		returnButton = new JButton ( "Voltar" );
-		returnButton.addMouseListener ( new MouseAdapter () 
+		returnButton = new JButton( "Voltar" );
+		returnButton.addMouseListener( new MouseAdapter() 
 		{
 			@Override
-			public void mouseClicked ( MouseEvent e ) 
+			public void mouseClicked( MouseEvent e ) 
 			{
 				dispose();
-				RegisterBarber frame = new RegisterBarber ();
-				frame.setVisible ( true );
-				frame.setLocationRelativeTo ( null );
+				RegisterBarber frame = new RegisterBarber();
+				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
 			}
 		});
-		returnButton.setBounds ( 158, 177, 125, 23 );
-		contentPane.add ( returnButton );
+		returnButton.setBounds( 158, 177, 125, 23 );
+		contentPane.add( returnButton );
 
 	}
 
@@ -242,7 +238,7 @@ public class NewBarber extends JFrame
 	private void showErrorMessage (String errorInformation ) 
 	{
 		JOptionPane.showMessageDialog( null, errorInformation, "Atenção",
-				JOptionPane.INFORMATION_MESSAGE );
+									  JOptionPane.INFORMATION_MESSAGE );
 	}
 
 }

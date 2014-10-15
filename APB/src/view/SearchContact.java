@@ -38,11 +38,9 @@ public class SearchContact extends JFrame
 		EventQueue.invokeLater(new Runnable () 
 		{
 			public void run () 
-			{
-				
+			{	
 				try 
 				{
-					// frame - Instance of "SearchContact"
 					SearchContact frame = new SearchContact(); 
 					frame.setVisible ( true );
 				} 
@@ -54,14 +52,14 @@ public class SearchContact extends JFrame
 		});
 	}
 
-	// Method used to initialize componentes
-	public SearchContact () 
+	// Class constructor
+	public SearchContact() 
 	{
-		initializeComponents ();
+		initializeComponents();
 	}
 	
 	// Method that sets initial values to the screen components
-	public void initializeComponents ()
+	public void initializeComponents()
 	{
 		
 		setTitle( "Pesquisar Contato" );
@@ -316,10 +314,10 @@ public class SearchContact extends JFrame
 	 * Method that shows a error message
 	 * @param errorInformation - Shows a error message to the user
 	 */
-	private void showErrorMessage ( String errorInformation ) 
+	private void showErrorMessage( String errorInformation ) 
 	{
 		JOptionPane.showMessageDialog( null, errorInformation, "Aten��o",
-				JOptionPane.INFORMATION_MESSAGE );
+									  JOptionPane.INFORMATION_MESSAGE );
 	}
 	
 }

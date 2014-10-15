@@ -24,7 +24,6 @@ import java.text.ParseException;
 @SuppressWarnings ( "serial" )
 public class NewContact extends JFrame 
 {
-	// Instance of "Jpanel"
 	private JPanel contentPane; 
 	
 	// Will receive the contact name
@@ -37,28 +36,27 @@ public class NewContact extends JFrame
 	private JTextField descriptionTextField; 
 	
 
-	public static void main ( String[] args ) 
+	public static void main( String[] args ) 
 	{
-		EventQueue.invokeLater ( new Runnable ( ) 
+		EventQueue.invokeLater( new Runnable() 
 		{
-			public void run () 
+			public void run() 
 			{
 				try 
 				{
-					// frame - Instance of "NewContact" class
-					NewContact frame = new NewContact (); 
-					frame.setVisible ( true );
+					NewContact frame = new NewContact(); 
+					frame.setVisible(true);
 				} 
-				catch ( Exception e ) 
+				catch (Exception e) 
 				{
-					e.printStackTrace ();
+					e.printStackTrace();
 				}
 			}
 		});
 	}
 
-	// Method used to initialize componentes
-	public NewContact () throws ParseException 
+	// Class constructor
+	public NewContact() throws ParseException 
 	{
 		initializeComponents();
 	}
@@ -66,79 +64,78 @@ public class NewContact extends JFrame
 	// Method that sets initial values to the screen components
 	public void initializeComponents () throws ParseException 
 	{
-		setTitle ( "Novo Contato" );
-		setDefaultCloseOperation ( JFrame.EXIT_ON_CLOSE );
-		setBounds ( 100, 100, 450, 300 );
-		contentPane = new JPanel ();
+		setTitle( "Novo Contato" );
+		setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+		setBounds( 100, 100, 450, 300 );
+		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder ( 5, 5, 5, 5 ) );
-		setContentPane ( contentPane );
-		contentPane.setLayout ( null );
+		setContentPane( contentPane );
+		contentPane.setLayout(null);
 		
 		// maskFormatterPhone - Receives and formats the phone number
 		MaskFormatter maskFormatterPhone = new MaskFormatter("(##)####-####");
-		
-		
+				
 		// saveButton - Button that gives the saving option to the user
 		JButton saveButton = new JButton( "Salvar" ); 
-		saveButton.addMouseListener(new MouseAdapter () 
+		saveButton.addMouseListener(new MouseAdapter() 
 		{
 			// Method that allows the use of the mouse for navigation
 			@Override
-			public void mouseClicked ( MouseEvent e ) 
+			public void mouseClicked(MouseEvent e) 
 			{
 				try 
 				{
 					// phonebookData - Gets the name, phone and description
-					Phonebook phonebookData = new Phonebook ();
-					phonebookData.setPhonebookName ( nameTextField.getText () );
-					phonebookData.setPhonebook ( phoneTextField.getText () );
-					phonebookData.setPhonebookDs ( descriptionTextField.getText () );
+					Phonebook phonebookData = new Phonebook();
+					phonebookData.setPhonebookName ( nameTextField.getText() );
+					phonebookData.setPhonebook ( phoneTextField.getText() );
+					phonebookData.setPhonebookDs ( descriptionTextField.getText() );
 					
 					// phonebookController - Instance of "PhonebookController" class
-					PhonebookController phonebookController = PhonebookController.getInstance ();
+					PhonebookController phonebookController = PhonebookController.getInstance();
 					phonebookController.incluir ( phonebookData );
 
 					JOptionPane.showMessageDialog(null, "Contato "
-							+ nameTextField.getText ()
-							+ " foi adicionado com sucesso" );
+												  + nameTextField.getText ()
+												  + " foi adicionado com sucesso" );
 					
-					nameTextField.setText ( "" );
-					phoneTextField.setText ( "" );
-					descriptionTextField.setText ( "" );
+					nameTextField.setText( "" );
+					phoneTextField.setText( "" );
+					descriptionTextField.setText( "" );
 					
 					dispose();
-					RegisterPhonebook frame =  new RegisterPhonebook () ;
-					frame.setVisible ( true );
-					frame.setLocationRelativeTo ( null );
+					RegisterPhonebook frame =  new RegisterPhonebook() ;
+					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
 					
 				} 
-				catch ( SQLException e1 ) 
+				catch (SQLException e1) 
 				{
-					showErrorMessage ( e1.getMessage () );
+					showErrorMessage( e1.getMessage() );
 				}
 				catch ( BarberException e1 )
 				{
-					showErrorMessage ( e1.getMessage () );
+					showErrorMessage( e1.getMessage() );
 				}
 			}
 			
 		});
 
-		saveButton.setBounds ( 26, 218, 109, 33 );
+		saveButton.setBounds( 26, 218, 109, 33 );
 		contentPane.add(saveButton);
 
 		
 		// returnButton - Button that offers the return option to the user
-		JButton returnButton = new JButton ( "Voltar" ); 
-		returnButton.addMouseListener ( new MouseAdapter () 
+		JButton returnButton = new JButton( "Voltar" ); 
+		returnButton.addMouseListener( new MouseAdapter() 
 		{
 			@Override
-			public void mouseClicked ( MouseEvent e ) 
+			public void mouseClicked(MouseEvent e) 
 			{
 				dispose();
 				RegisterPhonebook frame = new RegisterPhonebook ();
-				frame.setVisible ( true );
-				frame.setLocationRelativeTo ( null );
+				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
 			}
 		});
 
@@ -147,49 +144,49 @@ public class NewContact extends JFrame
 
 		// clearFieldsButton - Button that offers the option to clear the fields to the user
 		JButton clearFieldsButton = new JButton( "Limpar Campos" ); 
-		clearFieldsButton.addMouseListener( new MouseAdapter () 
+		clearFieldsButton.addMouseListener( new MouseAdapter() 
 		{
 			@Override
-			public void mouseClicked ( MouseEvent e ) 
+			public void mouseClicked(MouseEvent e) 
 			{
-				nameTextField.setText ( "" );
-				phoneTextField.setText ( "" );
-				descriptionTextField.setText ( "" );
+				nameTextField.setText( "" );
+				phoneTextField.setText( "" );
+				descriptionTextField.setText( "" );
 			}
 		});
 		
-		clearFieldsButton.setBounds ( 287, 218, 125, 33 );
-		contentPane.add ( clearFieldsButton );
+		clearFieldsButton.setBounds( 287, 218, 125, 33 );
+		contentPane.add( clearFieldsButton );
 
 		nameTextField = new JTextField();
 		nameTextField.setBounds(85, 23, 327, 20);
 		contentPane.add(nameTextField);
 		nameTextField.setColumns(10);
 
-		phoneTextField = new JFormattedTextField ( maskFormatterPhone );
+		phoneTextField = new JFormattedTextField( maskFormatterPhone );
 		phoneTextField.setBounds(85, 67, 327, 20);
-		contentPane.add ( phoneTextField );
+		contentPane.add( phoneTextField );
 		phoneTextField.setColumns(10);
 
-		descriptionTextField = new JTextField ();
+		descriptionTextField = new JTextField();
 		descriptionTextField.setBounds(85, 117, 327, 44);
-		contentPane.add ( descriptionTextField );
+		contentPane.add( descriptionTextField );
 		descriptionTextField.setColumns(10);
 
 		// Label that says "Name"
-		JLabel nameLabel = new JLabel ( "Nome:" ); 
-		nameLabel.setBounds ( 22, 26, 46, 14 );
-		contentPane.add ( nameLabel );
+		JLabel nameLabel = new JLabel( "Nome:" ); 
+		nameLabel.setBounds( 22, 26, 46, 14 );
+		contentPane.add( nameLabel );
 
 		// Label that says "Phone"
-		JLabel phoneLabel = new JLabel ( "Telefone:" ); 
-		phoneLabel.setBounds ( 22, 70, 64, 14 );
-		contentPane.add ( phoneLabel );
+		JLabel phoneLabel = new JLabel( "Telefone:" ); 
+		phoneLabel.setBounds( 22, 70, 64, 14 );
+		contentPane.add( phoneLabel );
 
 		// Label that says "Description"
-		JLabel descriptionLabel = new JLabel ( "Descri\u00E7\u00E3o:" ); 
-		descriptionLabel.setBounds ( 22, 117, 64, 14 );
-		contentPane.add ( descriptionLabel );
+		JLabel descriptionLabel = new JLabel( "Descri\u00E7\u00E3o:" ); 
+		descriptionLabel.setBounds( 22, 117, 64, 14 );
+		contentPane.add( descriptionLabel );
 		
 	}
 
@@ -200,7 +197,7 @@ public class NewContact extends JFrame
 	private void showErrorMessage( String errorInformation ) 
 	{
 		JOptionPane.showMessageDialog( null, errorInformation, "Atenção",
-				JOptionPane.INFORMATION_MESSAGE );
+									  JOptionPane.INFORMATION_MESSAGE );
 	}
 
 }
