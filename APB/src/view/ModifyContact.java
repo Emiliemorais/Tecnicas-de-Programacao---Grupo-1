@@ -112,7 +112,7 @@ public class ModifyContact extends JFrame
 			contactToBeChanged.setPhonebookName(Phonebook.getNameTemporary() );
 			
 			// Used to receive the result from a search by 'contactToBeChanged.name' on DB
-			ResultSet queryForNameResult = phonebookController.pesquisarPorNome(contactToBeChanged);
+			ResultSet queryForNameResult = phonebookController.searchContactForName(contactToBeChanged);
 
 			while ( queryForNameResult.next() )
             {
@@ -150,7 +150,7 @@ public class ModifyContact extends JFrame
 					// Instantiated to get access to the method 'alterar' 
 					PhonebookController phonebookController = PhonebookController.getInstance();
 					
-					phonebookController.alterar(contactNameToChange, modifiedContact);
+					phonebookController.changeContact(contactNameToChange, modifiedContact);
 
 					JOptionPane.showMessageDialog(null, "Agenda "
 												  + newContactNameTextField.getText()

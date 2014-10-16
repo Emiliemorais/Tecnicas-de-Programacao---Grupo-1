@@ -381,7 +381,7 @@ public class SearchReport extends JFrame
 					try 
 					{
 						// Used to instantiate a frame of view reports
-						ViewReports viewReportFrame = new ViewReports();
+						ViewReport viewReportFrame = new ViewReport();
 						viewReportFrame.setVisible(true);
 						viewReportFrame.setLocationRelativeTo(null);
 						dispose();
@@ -425,7 +425,7 @@ public class SearchReport extends JFrame
 			{
 				try
 				{
-					ViewReports viewReportFrame = new ViewReports();
+					ViewReport viewReportFrame = new ViewReport();
 					viewReportFrame.setVisible(true);
 					viewReportFrame.setLocationRelativeTo(null);
 					dispose();

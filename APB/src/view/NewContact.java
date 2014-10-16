@@ -93,7 +93,7 @@ public class NewContact extends JFrame
 					
 					// phonebookController - Instance of "PhonebookController" class
 					PhonebookController phonebookController = PhonebookController.getInstance();
-					phonebookController.incluir ( phonebookData );
+					phonebookController.includeNewObject ( phonebookData );
 
 					JOptionPane.showMessageDialog(null, "Contato "
 												  + nameTextField.getText ()

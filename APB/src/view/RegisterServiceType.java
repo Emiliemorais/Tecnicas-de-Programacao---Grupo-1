@@ -113,7 +113,7 @@ public class RegisterServiceType extends JFrame
 		btnAlterar.addMouseListener(new MouseAdapter() 
 		{
 			
-			// Método da VIEW que chama a janela de changeTypeService para realizar uma alteração
+			//VIEW method that calls the window changeTypeService to make a change
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{

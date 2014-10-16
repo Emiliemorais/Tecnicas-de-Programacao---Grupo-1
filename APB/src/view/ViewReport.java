@@ -35,7 +35,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import exception.ReportException;
 
 @SuppressWarnings("serial")
-public class ViewReports extends JFrame 
+public class ViewReport extends JFrame 
 {
 
 	private JPanel contentPane;
@@ -60,7 +60,7 @@ public class ViewReports extends JFrame
 			{
 				try 
 				{
-					ViewReports frame = new ViewReports();
+					ViewReport frame = new ViewReport();
 					frame.setVisible(true);
 				} 
 				catch (Exception e)
@@ -72,7 +72,7 @@ public class ViewReports extends JFrame
 	}
 
 	// Builder of components of pane view reposts
-	public ViewReports() throws SQLException, ReportException,
+	public ViewReport() throws SQLException, ReportException,
 			NullPointerException, ParseException 
 	{
 		setTitle("Relat\u00F3rios");
@@ -94,7 +94,7 @@ public class ViewReports extends JFrame
 			boolean[] columnEditables = new boolean[] { false, false, false,
 					false };
 			
-			// Método que verifica se a célula pode ser alterada
+			// Method checking whether the cell can be changed
 			public boolean isCellEditable (int row, int column) 
 			{
 				return columnEditables[column];

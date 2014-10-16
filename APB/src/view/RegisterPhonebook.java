@@ -97,7 +97,7 @@ public class RegisterPhonebook extends JFrame
 			
 			// Used to receive the result from the method 'mostrarContatosCadastrados'
 			// Useless argument on this method. Check methods from AgendaController and AgendaDAO
-			ResultSet queryForContactsResult = phonebookController.mostrarContatosCadastrados(contact);
+			ResultSet queryForContactsResult = phonebookController.registeredshowContacts(contact);
 			
 			while ( queryForContactsResult.next() )
             {

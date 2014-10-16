@@ -123,7 +123,7 @@ public class SearchContact extends JFrame
 					contact.setPhonebookName ( textField.getText () );
 
 					// resultInstance - ResultSetInstance
-					ResultSet resultInstance = agendaController.pesquisarPorNome ( contact );
+					ResultSet resultInstance = agendaController.searchContactForName ( contact );
 
 					while ( resultInstance.next ( ) ) 
 					{
@@ -173,7 +173,7 @@ public class SearchContact extends JFrame
 					
 					// resultInstance - ResultSetInstance
 					ResultSet resultInstance = agendaController
-							.pesquisarPorTelefone ( contact );
+							.searchForPhone ( contact );
 
 					while ( resultInstance.next() ) 
 					{
@@ -264,7 +264,7 @@ public class SearchContact extends JFrame
 						// phonebookController - Instance of "AgendaController"
 						PhonebookController phonebookController = PhonebookController
 								.getInstance ();
-						phonebookController.remove ( phonebook );
+						phonebookController.removeContact ( phonebook );
 
 						dispose ();
 						SearchContact frame = new SearchContact ();

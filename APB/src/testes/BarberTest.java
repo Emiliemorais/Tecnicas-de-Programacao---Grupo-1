@@ -47,7 +47,7 @@ public class BarberTest
 	 * Method used to receive a null name of a Barber for the test launch of the exception
 	*/
 	@Test (expected = NullPointerException.class)
-	public void barbeiroNaoPodePossuirNomeNuloPassandoPeloSetter ()
+	public void barberCantHaveNameNullBySetter ()
 	{
 		try 
 		{
@@ -98,7 +98,7 @@ public class BarberTest
 	 * Method used to receive a null number of a Barber for the test launch of the exception
 	*/
 	@Test (expected = NullPointerException.class)
-	public void barbeiroNaoPodePossuirTelefoneNuloPassandoPeloSetter () 
+	public void barberCantHavePhoneNullBySetter () 
 	{
 		try
 		{

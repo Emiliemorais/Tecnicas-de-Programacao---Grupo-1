@@ -123,7 +123,7 @@ public class MainMenu extends JFrame
 				try 
 				{
 					SearchReport.searchType = 0;
-					ViewReports frame = new ViewReports ();
+					ViewReport frame = new ViewReport ();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 					dispose();

@@ -18,7 +18,7 @@ public class PhonebookController
 	}
 	
     // Method that takes as a parameter the object schedule and includes the database
-	public boolean incluir (Phonebook phonebook) throws SQLException 
+	public boolean includeNewObject (Phonebook phonebook) throws SQLException 
 	{
 		if(phonebook == null)
 		{
@@ -36,7 +36,7 @@ public class PhonebookController
 	}
 	
     // Method that takes as a parameter the name of the contact you want to change and the schedule object and changes in the database
-	public boolean alterar (String phonebookName, Phonebook phonebook) throws SQLException 
+	public boolean changeContact (String phonebookName, Phonebook phonebook) throws SQLException 
 	{
 		if(phonebook == null)
 		{
@@ -46,15 +46,15 @@ public class PhonebookController
 		// If the object is not null the calendar method changes in the database
 		else
 		{
-			Phonebook agenda_alterado = phonebook;
+			Phonebook phonebookChange = phonebook;
 			PhonebookDAO editPhonebookDataInstance = PhonebookDAO.getInstance();
-			editPhonebookDataInstance.editPhonebookData(phonebookName, agenda_alterado, phonebook);
+			editPhonebookDataInstance.editPhonebookData(phonebookName, phonebookChange, phonebook);
 			return true;		
 		}
 	}
         
         // Method that takes as a parameter the object schedule and deletes the database
-	public  boolean remove (Phonebook phonebookContact) throws SQLException 
+	public  boolean removeContact (Phonebook phonebookContact) throws SQLException 
 	{
 		if(phonebookContact == null)
 		{
@@ -88,7 +88,7 @@ public class PhonebookController
 	}
 	
         // Interface that provides access to registered contacts and shows all contacts
-	public ResultSet mostrarContatosCadastrados(Phonebook contact) throws SQLException 
+	public ResultSet registeredshowContacts(Phonebook contact) throws SQLException 
 	{
 		PhonebookDAO showRegisteredContactsInstance = PhonebookDAO.getInstance();
 		ResultSet showRegisteredContactsResult = showRegisteredContactsInstance.showRegisteredContacts(contact);
@@ -97,7 +97,7 @@ public class PhonebookController
 	}
 	
         // Interface that provides access to registered contacts and allows them to be searched by name
-	public ResultSet pesquisarPorNome(Phonebook contact) throws SQLException 
+	public ResultSet searchContactForName(Phonebook contact) throws SQLException 
 	{
 		PhonebookDAO searchByNameInstance =PhonebookDAO.getInstance();
 		ResultSet searchByNameResult = searchByNameInstance.searchByName(contact);
@@ -106,7 +106,7 @@ public class PhonebookController
 	}
 	
         // Interface that provides access to registered contacts and allows them to be surveyed by phone
-	public ResultSet pesquisarPorTelefone(Phonebook contact) throws SQLException 
+	public ResultSet searchForPhone(Phonebook contact) throws SQLException 
 	{
 		PhonebookDAO searchByPhoneInstance = PhonebookDAO.getInstance();
 		ResultSet searchPhoneResult  = searchByPhoneInstance.searchByPhone(contact);

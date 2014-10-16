@@ -52,7 +52,7 @@ public class PhonebookControllerTest
 	{
 		try
 		{
-			assertTrue( contactController.incluir(contact) );
+			assertTrue( contactController.includeNewObject(contact) );
 		}
 		catch (SQLException e)
 		{
@@ -86,7 +86,7 @@ public class PhonebookControllerTest
 	{
 		try
 		{
-			assertTrue( contactController.alterar(contact.getPhonebookName(),contact) );
+			assertTrue( contactController.changeContact(contact.getPhonebookName(),contact) );
 		}
 		catch (SQLException e)
 		{
@@ -100,7 +100,7 @@ public class PhonebookControllerTest
 	{
 		try
 		{
-			assertFalse( contactController.incluir(null) );
+			assertFalse( contactController.includeNewObject(null) );
 		}
 		catch (SQLException e)
 		{
@@ -128,7 +128,7 @@ public class PhonebookControllerTest
 	{
 		try
 		{
-			assertFalse( contactController.alterar(null,null) );
+			assertFalse( contactController.changeContact(null,null) );
 		}
 		catch (SQLException e)
 		{
@@ -141,7 +141,7 @@ public class PhonebookControllerTest
 	public void showRegisteredContactsTest() throws SQLException
 	{
 		// Used to receive the result from the search for contacts on DB
-		ResultSet queryForContactsResult = contactController.mostrarContatosCadastrados(contact);
+		ResultSet queryForContactsResult = contactController.registeredshowContacts(contact);
 		
 		while( queryForContactsResult.next() );
 	}
@@ -151,7 +151,7 @@ public class PhonebookControllerTest
 	public void searchContactsByNameTest() throws SQLException
 	{
 		// Used to receive the result from the search for contacts on DB
-		ResultSet queryForContactsResult = contactController.pesquisarPorNome(contact);
+		ResultSet queryForContactsResult = contactController.searchContactForName(contact);
 		
 		while( queryForContactsResult.next() );
 	}
@@ -161,7 +161,7 @@ public class PhonebookControllerTest
 	public void searchContactsByPhoneTest() throws SQLException
 	{
 		// Used to receive the result from the search for contacts on DB
-		ResultSet queryForContactsResult = contactController.pesquisarPorTelefone(contact);
+		ResultSet queryForContactsResult = contactController.searchForPhone(contact);
 		
 		while( queryForContactsResult.next() );
 	}
