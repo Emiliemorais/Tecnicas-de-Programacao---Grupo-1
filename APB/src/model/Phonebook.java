@@ -5,22 +5,21 @@ import exception.BarberException;
 public class Phonebook 
 {
 
-	/*
-	 * @param Receives the name for phonebook
-	 * @param Receives the description for phonebook
-	 * @param Receives the number of phone for phonebook
-	 * @param Receives the variable for change the method
+	/**
+	 * @param phonebookNameReceives the name for phonebook
+	 * @param phonebookReceives the description for phonebook
+	 * @param phonebookDs Receives the number of phone for phonebook
+	 * @param tempNome Receives the variable for change the method
 	 */
-
 	private String phonebookName;
 	private String phonebook;
 	private String phonebookDs;
 	private static String tempNome;
 
 	
-	private final String invalidName = "Nome Inválido";
+	private final String invalidName = "Nome Invï¿½lido";
 	private final String nullName = "Nome em Branco";
-	private final String invalidPhone = "Telefone Inválido";
+	private final String invalidPhone = "Telefone Invï¿½lido";
 	private final String nullPhone = "Telefone em Branco";
 
 	public Phonebook()
@@ -28,7 +27,7 @@ public class Phonebook
 
 	}
 
-	//  Builder object PHONEBOOK that receives its attributes as a parameter
+	// Constructor object PHONEBOOK that receives its attributes as parameter
 	public Phonebook(String nome, String telefone, String descricao)
 	{
 		this.phonebookName = nome;
@@ -36,25 +35,31 @@ public class Phonebook
 		this.phonebookDs = descricao;
 	}
      
-	// Method name to check access
+	// phonebookName getter
 	public String getPhonebookName () 
 	{
+		
 		return phonebookName;
 	}
 
-	// Method of phone access for checking
+	// phonebook getter
 	public String getPhonebook () 
 	{
+		
 		return phonebook;
 	}
 	
-	// Method for verifying access Description
+	// phonebookDs getter
 	public String getPhonebookDs () 
 	{
+		
 		return phonebookDs;
 	}
 
-	// Access method name that throws an exception if the name is not in the required format
+	/*
+	 *  Method of accessing the name, which throws an exception access 
+	 *  if the name is not in the required format
+	 */	
 	public void setPhonebookName (String nome) throws BarberException 
 	{
 		if ("".equals(nome))
@@ -72,7 +77,7 @@ public class Phonebook
 	}
 
 	/*
-	 *  Method of access the phone, which throws an exception access 
+	 *  Method of accessing the phone, which throws an exception access 
 	 *  if the phone is not in the required format
 	 */
 	public void setPhonebook (String telefone) throws BarberException 
@@ -89,7 +94,7 @@ public class Phonebook
 		}
 		else
 		{
-			//  Throws an exception of class Barber an invalid telephone (except null phone)
+			// Throws an exception of class Barber as invalid telephone (except null phone)
 			throw new BarberException(invalidPhone);
 		}
 	}
@@ -103,11 +108,12 @@ public class Phonebook
 	// Method of temporary access name for verification
 	public static String getNameTemporary () 
 	{
+		
 		return tempNome;
 	}
 
 	// Method of temporary access name for verification
-	public static void setNameTemporary (String tempNome)
+	public static void setNameTemporary(String tempNome)
 	{
 		Phonebook.tempNome = tempNome;
 	}

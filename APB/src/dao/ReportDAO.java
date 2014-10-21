@@ -20,19 +20,20 @@ public class ReportDAO
 	// Method that takes an instance of a report
 	public static ReportDAO getInstance ()
 	{
-		if(instance == null)
+		if (instance == null)
 		{
 			instance = new ReportDAO();
 		}
 		else
 		{
-			//Noting to do
+			// Nothing to do
 		}
+		
 		return instance;
 	}
 
-    // Interface that provides access to registered reports and allows them to be searched by date
-	public ResultSet searchByDate (Report relatorio) throws SQLException
+    // Interface that provides access to registered reports and allows them to be searched by Date
+	public ResultSet searchByDate(Report relatorio) throws SQLException
 	{
 		String prepareStatementToMethod = "SELECT * FROM servicoprestado WHERE data BETWEEN '"
                 						+relatorio.getInitialDate()+"' AND '"
@@ -45,7 +46,7 @@ public class ReportDAO
 		return instanceStatement;
 	}
         
-    // Interface that provides access to registered reports and allows them to be searched by date and by barber
+    // Interface that provides access to registered reports and allows them to be searched by Date and by Barber
 	public ResultSet searchByDateAndBarber(Report relatorio) throws SQLException 
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
@@ -61,12 +62,12 @@ public class ReportDAO
 		return instanceStatement;
 	}
         
-    // Interface that provides access to registered reports and allows them to be searched by date and service
+    // Interface that provides access to registered reports and allows them to be searched by Date and Service
 	public ResultSet searchByDateAndService(Report relatorio) throws SQLException
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		
-		String prepareStatementMethod ="SELECT * FROM servicoprestado WHERE data BETWEEN '"
+		String prepareStatementMethod = "SELECT * FROM servicoprestado WHERE data BETWEEN '"
 										+relatorio.getInitialDate()+"' AND '"
 										+relatorio.getFinalDate()+"' AND nome = '"
 										+relatorio.getServiceType()+"';";
@@ -82,7 +83,7 @@ public class ReportDAO
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		
-		String prepareStatementMethod ="SELECT * FROM servicoprestado WHERE barbeiro = '"
+		String prepareStatementMethod = "SELECT * FROM servicoprestado WHERE barbeiro = '"
 										+relatorio.getBarberName()+"';";
 				
 		PreparedStatement pst = connection.prepareStatement(prepareStatementMethod);
@@ -91,12 +92,12 @@ public class ReportDAO
 		return rs;
 	}
         
-    // Interface that provides access to registered reports and allows them to be searched by Barber and service
+    // Interface that provides access to registered reports and allows them to be searched by Barber and Service
 	public ResultSet searchByBarberAndService(Report relatorio) throws SQLException 
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		
-		String prepareStatementMethod ="SELECT * FROM servicoprestado WHERE barbeiro = '"
+		String prepareStatementMethod = "SELECT * FROM servicoprestado WHERE barbeiro = '"
 										+relatorio.getBarberName()+"' AND nome = '"	
 										+relatorio.getServiceType()+"';";
 				
@@ -106,12 +107,12 @@ public class ReportDAO
 		return rs;
 	}
         
-    // Interface that provides access to registered reports and allows them to be searched by service
+    // Interface that provides access to registered reports and allows them to be searched by Service
 	public ResultSet searchByService(Report relatorio)throws SQLException 
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		
-		String prepareStatementMethod ="SELECT * FROM servicoprestado WHERE nome = '"
+		String prepareStatementMethod = "SELECT * FROM servicoprestado WHERE nome = '"
 										+relatorio.getServiceType()+"';";
 				
 		PreparedStatement pst = connection.prepareStatement(prepareStatementMethod);
@@ -120,7 +121,7 @@ public class ReportDAO
 		return rs;
 	}
         
-    // Interface that provides access to registered reports and allows them to be searched by date, barber and service
+    // Interface that provides access to registered reports and allows them to be searched by Date, Barber and Service
 	public ResultSet searchByDateBarberAndService(Report relatorio)throws SQLException
 	{
 		Connection connection = FactoryConnection.getInstance().getConnection();
