@@ -91,7 +91,10 @@ public class Administrative extends JFrame
 		
 	}
 
-	// This method is used to initialize the buttons
+	/**
+	 *  This method is used to initialize the buttons
+	 * @param administrativePanel - Panel that contains the components
+	 */
 	private void initializeButtons(JPanel administrativePanel) 
 	{
 				
@@ -103,34 +106,41 @@ public class Administrative extends JFrame
 
 	}
 	
-	// This method is used to create the button and the action that back to the main frame
-		private void createButtonToBackTheMainFrame(JPanel administrativePanel) 
-		{
-			
-			/* 
-			 * Button that calls the class 'MainMenu' 
-			 * (Create a frame that links to the main menu)
-			 */
-			JButton btnBack = new JButton("Voltar");
-			btnBack.addActionListener(new ActionListener()
-	        {
-				public void actionPerformed(ActionEvent arg0)
-	            {
-					dispose();
-					
-					// Frame used to "go back" to the main menu
-					MainMenu mainMenuFrame = new MainMenu();
-					mainMenuFrame.setVisible(true);
-					mainMenuFrame.setLocationRelativeTo(null);
-				}
+	/**
+	 * This method is used to create the button and the action that back to the main frame
+	 * @param administrativePanel - Panel that contains the components
+	 */
+	private void createButtonToBackTheMainFrame(JPanel administrativePanel) 
+	{
+		
+		/* 
+		 * Button that calls the class 'MainMenu' 
+		 * (Create a frame that links to the main menu)
+		 */
+		JButton btnBack = new JButton("Voltar");
+		btnBack.addActionListener(new ActionListener()
+        {
+			public void actionPerformed(ActionEvent arg0)
+            {
+				dispose();
+				
+				// Frame used to "go back" to the main menu
+				MainMenu mainMenuFrame = new MainMenu();
+				mainMenuFrame.setVisible(true);
+				mainMenuFrame.setLocationRelativeTo(null);
 			}
-			);
-			btnBack.setBounds(151, 141, 89, 23);
-			administrativePanel.add(btnBack);
 		}
+		);
+		btnBack.setBounds(151, 141, 89, 23);
+		administrativePanel.add(btnBack);
+	}
 		
 	
-	// This method is used to create the button and the action that open the barber frame
+
+	/**
+	 *  This method is used to create the button and the action that open the barber frame
+	 * @param administrativePanel - Panel that contains the components
+	 */
 	private void createButtonToOpenBarberFrame(JPanel administrativePanel) 
 	{
 		// Button that calls the class 'RegisterBarber' (Create a frame to register a barber)
@@ -153,7 +163,10 @@ public class Administrative extends JFrame
 		administrativePanel.add(btnBarber);	
 	}
 	
-	// This method is used to create the button and the action that open the Phonebook frame
+	/**
+	 *  This method is used to create the button and the action that open the Phonebook frame
+	 * @param administrativePanel - Panel that contains the components
+	 */
 	private void createButtonToOpenPhonebookFrame(JPanel administrativePanel) 
 	{
 		/* 
@@ -180,7 +193,10 @@ public class Administrative extends JFrame
 	
 	}
 	
-	// This method is used to create the button and the action that open the receipt frame
+	/**
+	 *  This method is used to create the button and the action that open the receipt frame
+	 * @param administrativePanel - Panel that contains the components
+	 */
 	private void createButtonToOpenReceiptFrame(JPanel administrativePanel) 
 	{
 		/*
@@ -215,30 +231,33 @@ public class Administrative extends JFrame
 		administrativePanel.add(btnReceipt);	
 	}
 
-	// This method is used to create the button and the action that open the Service Type frame
-		private void createButtonToOpenServiceTypeFrame(JPanel administrativePanel) 
-		{
-			
-			/* 
-			 * Button that calls the class 'RegisterServiceType'
-			 *  (Create a frame to register a service type)
-			 */
-			JButton btnServiceType = new JButton("Tipo de Servi\u00E7o");
-			btnServiceType.addActionListener(new ActionListener()
-	        {
-				public void actionPerformed(ActionEvent e)
-	            {
-					dispose();
-					
-					// Frame used to register a serviceType
-					RegisterServiceType registerServiceTypeFrame = new RegisterServiceType();
-					registerServiceTypeFrame.setVisible(true);
-					registerServiceTypeFrame.setLocationRelativeTo(null);
-				}
-			});
-			btnServiceType.setBounds(215, 45, 149, 37);
-			administrativePanel.add(btnServiceType);
-			
-		}
+	/**
+	 *  This method is used to create the button and the action that open the Service Type frame
+	 * @param administrativePanel
+	 */
+	private void createButtonToOpenServiceTypeFrame(JPanel administrativePanel) 
+	{
+		
+		/* 
+		 * Button that calls the class 'RegisterServiceType'
+		 *  (Create a frame to register a service type)
+		 */
+		JButton btnServiceType = new JButton("Tipo de Servi\u00E7o");
+		btnServiceType.addActionListener(new ActionListener()
+        {
+			public void actionPerformed(ActionEvent e)
+            {
+				dispose();
+				
+				// Frame used to register a serviceType
+				RegisterServiceType registerServiceTypeFrame = new RegisterServiceType();
+				registerServiceTypeFrame.setVisible(true);
+				registerServiceTypeFrame.setLocationRelativeTo(null);
+			}
+		});
+		btnServiceType.setBounds(215, 45, 149, 37);
+		administrativePanel.add(btnServiceType);
+		
+	}
 }
 

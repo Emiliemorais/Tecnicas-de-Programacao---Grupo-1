@@ -54,7 +54,7 @@ public class APB extends JFrame
 		// These methods are used to initialize the components  
 		initializeFrame();
 		initializePanel();
-		initializeLabels();
+		createLabels();
 		initializeButtons();
 
 	}
@@ -128,8 +128,8 @@ public class APB extends JFrame
 		
 	}
 
-	// This method is used to initialize the labels of the frame
-	private void initializeLabels() 
+	// This method is used to create the labels of the frame
+	private void createLabels() 
 	{
 		// Label to welcome
 		JLabel lblWelcome = new JLabel("Bem Vindo");
