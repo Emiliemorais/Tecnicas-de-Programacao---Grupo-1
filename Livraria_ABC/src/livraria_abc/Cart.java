@@ -21,7 +21,7 @@ import static livraria_abc.ABCBookStore.currentClient;
         
         // List that contains all items of a cart and their quantity
         static List<Cart> itemsAndQuantity = new ArrayList<>();
-        
+
         // String that contains the item to be included on cart
         String itemsToAddOnCart;
         
@@ -63,10 +63,10 @@ import static livraria_abc.ABCBookStore.currentClient;
         public Cart(){}
         
         // Constructor
-        public Cart(String itens, int quant)
+        public Cart(String items, int quantity)
         {
-            this.itemsToAddOnCart = itens;
-            this.quantityOfItens = quant;
+            this.itemsToAddOnCart = items;
+            this.quantityOfItens = quantity;
         }
         
         /**
@@ -87,31 +87,10 @@ import static livraria_abc.ABCBookStore.currentClient;
              */   
             if( !clientCpfToAddItems.equals(cpfOfCartOwner) )
             {
-                // Used to receive the result from 'ramdomGenerator'
-                int cartCodeInteger = 0;
-                
                 // Used to receive the cartCodeInteger as a String
-                String cartCodeString = "";
-                
-                // Verify if the code generated already exists. If so, okCartCode = false
-                boolean okCartCode = false;
-                
-                cartCodeInteger = randomGenerator.nextInt(10000);
-                cartCodeString = Integer.toString(cartCodeInteger);
-                    
-                while( okCartCode == false )
-                { 
-                    if( cartCode.contains(cartCodeString) )
-                    {
-                        okCartCode = false;
-                        cartCodeInteger = randomGenerator.nextInt(10000);
-                        cartCodeString = Integer.toString(cartCodeInteger);
-                    }
-                    else
-                    {
-                        okCartCode = true;
-                    }
-                }
+                String cartCodeString = " ";
+                               
+                cartCodeString = createCartCode();
                 
                 cartCode = cartCodeString;
                 cpfOfCartOwner = clientCpfToAddItems ;
@@ -175,7 +154,56 @@ import static livraria_abc.ABCBookStore.currentClient;
           }
         }
         
-        // Make the cart empty
+        /**
+         * This method create a code to cart
+         * @return - Return the cart code generated
+         */
+        private static String createCartCode() 
+        {
+            // Used to receive the result from 'ramdomGenerator'
+            int cartCodeInteger = 0;
+            
+            // Used to receive the cartCodeInteger as a String
+            String cartCodeString = " ";
+            
+            cartCodeInteger = randomGenerator.nextInt(10000);
+            cartCodeString = Integer.toString(cartCodeInteger);
+            cartCodeString = validateCartCode(cartCodeString, cartCodeInteger);    
+            
+            return cartCodeString;
+        }
+      
+        /**
+         * This method is used to validate the cart code generate
+         * to ensure that there is not a repeated code
+         * @param cartCodeString - Receives the cart code number in String format
+         * @param cartCodeInteger - Receives the cart code number 
+         * @return - Return the cart code validated 
+         */
+        private static String validateCartCode(String cartCodeString,int cartCodeInteger) 
+        {
+            // Verify if the code generated already exists. If so, okCartCode = false
+            boolean okCartCode = false;
+            
+            while( okCartCode == false )
+            { 
+                if( cartCode.contains(cartCodeString) )
+                {
+                    okCartCode = false;
+                    cartCodeInteger = randomGenerator.nextInt(10000);
+                    cartCodeString = Integer.toString(cartCodeInteger);
+                }
+                else
+                {
+                    okCartCode = true;
+                }
+            }
+            return cartCodeString;
+        }
+        /**
+         * Make the cart empty
+         * @return - Return the status of the cart, if the cart is empty or not
+         */
         public static boolean emptyCart()
         {
             cartCode = "blank";
@@ -199,20 +227,14 @@ import static livraria_abc.ABCBookStore.currentClient;
             }
         }
         
-        // List all items on cart
-        public static void listCartItems ()
+        // Show all items on cart and back to menu
+        public static void showCartItems ()
         {
             if( currentAccess )
             {
-                /* Receive the position of client cpf on the list of clients 
-                 * (Refers to 'Client' class)
-                 */
-                int loggedClientIndex = 0;
-                
-                loggedClientIndex = Client.cpf.indexOf(currentClient);
-                
-                System.out.println("\nOlá " + Client.nameArray.get(loggedClientIndex) + "!\n");
-                
+                // Method to get the client
+                int loggedClientIndex = verifyClientLogged();
+
                 if( itemsAndQuantity.isEmpty() )
                 {
                     System.out.println("\n" + Client.nameArray.get(loggedClientIndex)
@@ -261,9 +283,33 @@ import static livraria_abc.ABCBookStore.currentClient;
             }
         }
         
-        // Listar alternativo - Descobrir porquê..
-        public static void Listar_itens_cesta_ ()
+        /**
+         * This method is used to get the client that is consulting the cart
+         * @return - Return the position of the client in the list
+         * 
+         */
+        private static int verifyClientLogged() 
         {
+            /* Receive the position of client cpf on the list of clients 
+             * (Refers to 'Client' class)
+             */
+            int loggedClientIndex = 0;
+
+            loggedClientIndex = Client.cpf.indexOf(currentClient);
+
+            System.out.println("\nOlá " + Client.nameArray.get(loggedClientIndex) + "!\n");
+            
+            return loggedClientIndex;
+                
+        }
+
+        /*
+         *  This method lists the items of the cart without 
+         *  the option to back the menu
+         */
+        public static void listCartItems ()
+        {
+                
                 int currentClientIndex;
                 
                 currentClientIndex = Client.cpf.indexOf(currentClient);
@@ -328,23 +374,9 @@ import static livraria_abc.ABCBookStore.currentClient;
                 
                 // Receive the book name which is on cart
                 String bookNameOnCart = "";
-                
-                System.out.println("Código da cesta: "+cartCode);
-                                
+                                                
                 int listSize = itemsAndQuantity.size();
-                
-                // 'p' is used to walk through cart items list
-                for(int p = 0; p < listSize; p++)
-                {
-                    Cart item = itemsAndQuantity.get(p);
-                    
-                    bookIndex = Book.listISBN.indexOf(item.getItemsToAddOnCart());
-                    
-                    bookNameOnCart = Book.listTitle.get(bookIndex);
-                        
-                    System.out.println("Item " + (p+1) + ": '" + bookNameOnCart + "'");
-                    System.out.println("Quantidade: "  + item.getQuantityOfItens());
-                }
+                listCartItems();
                 
                 // Receive the parse of 'livro_retirar' to an Integer
                 int itemToRemove = 0;
@@ -359,7 +391,7 @@ import static livraria_abc.ABCBookStore.currentClient;
                 
                     itemToRemove = Integer.parseInt(bookToRemove);
                                                            
-                    if( itemToRemove > 0 && itemToRemove < listSize )
+                    if( itemToRemove > 0 && itemToRemove <= listSize )
                     {
                         okItem = true;
                     }
@@ -391,7 +423,10 @@ import static livraria_abc.ABCBookStore.currentClient;
             }
         }
         
-        // Calculate the total of cart by all items on the cart
+        /**
+         * Calculate the total of cart by all items on the cart
+         * @return - Return the total value of the items
+         */
         public static float calculateCartValue()
         {
             if( itemsAndQuantity.isEmpty() )
@@ -484,7 +519,11 @@ import static livraria_abc.ABCBookStore.currentClient;
             
         }
         
-        //  Close the cart generating a new random number that will be returned as the purchase unique code
+        /**
+         * Close the cart generating a new random number that 
+         * will be returned as the purchase unique code
+         * @return - Return the purchase code
+         */
         public static int closeCart()
         {
             if( !itemsAndQuantity.isEmpty() )
