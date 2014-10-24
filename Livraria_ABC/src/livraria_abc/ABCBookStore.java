@@ -146,7 +146,7 @@ public class ABCBookStore
                 }
                 case "4":
                 {
-                    Cart.listCartItems();
+                    Cart.showCartItems();
                     break;
                 }
                 case "5":
