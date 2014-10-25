@@ -19,11 +19,9 @@ public class ReportControllerTest
 
 	Report report = new Report();
 	
-	/* 
-	 * Method used to get the attributes of a report correctly to the test, throwing exceptions null attributes and conversion issues
-	*/
+	// Method used to get the attributes of a report correctly to the test, throwing exceptions null attributes and conversion issues
 	@Before
-	public void setUp () throws ReportException, ParseException 
+	public void setUp() throws ReportException, ParseException 
 	{
 		try 
 		{
@@ -39,22 +37,17 @@ public class ReportControllerTest
 
 	}
 	
-	/* 
-	 * Method used to test the getInstance class RelatorioDAO
-	*/
-
+	// Method used to test the getInstance class RelatorioDAO
 	@Test
-	public void getInstanceReportDAORetornInstanceCurrent ()
+	public void getInstanceReportDAORetornInstanceCurrent()
 	{
 		ReportController relatorioController = ReportController.getInstance();
 		assertEquals(ReportController.getInstance(), relatorioController);
 	}
 	
-	/* 
-	 * Method used to test the research a report through a service seeing if the sample of the report there
-	*/
+	// Method used to test the research a report through a service seeing if the sample of the report there
 	@Test
-	public void returnOfSearchReportController () throws SQLException
+	public void returnOfSearchReportController() throws SQLException
 	{
 		ReportController relatorioController = new ReportController();
 		ResultSet rs = relatorioController.searchByService(report);
@@ -62,11 +55,9 @@ public class ReportControllerTest
 		while(rs.next());
 	}
 	
-	/* 
-	 * The method used to test the search for a report through the sample viewing date of the report exists
-	*/
+	// The method used to test the search for a report through the sample viewing date of the report exists
 	@Test
-	public void returnOfSearchForDateReportController () throws SQLException
+	public void returnOfSearchForDateReportController() throws SQLException
 	{
 		ReportController relatorioController = new ReportController();
 		ResultSet rs = relatorioController.searchByDate(report);
@@ -74,12 +65,9 @@ public class ReportControllerTest
 		while(rs.next());
 	}
 	
-	/* 
-	 * Method used to test the research of a report by a barber and a service seeing if the sample of the report there
-
-	*/
+	// Method used to test the research of a report by a barber and a service seeing if the sample of the report there
 	@Test
-	public void retornSearchForBarberAndServiceReportController () throws SQLException 
+	public void retornSearchForBarberAndServiceReportController() throws SQLException 
 	{
 		ReportController relatorioController = new ReportController();
 		ResultSet rs = relatorioController.searchByBarberAndService(report);
@@ -87,12 +75,9 @@ public class ReportControllerTest
 		while(rs.next());
 	}
 	
-	/* 
-	 * Method used to test the research of a report by a barber and a date and see if the service sample of the report there
-
-	*/
+	// Method used to test the research of a report by a barber and a date and see if the service sample of the report there
 	@Test
-	public void retornSearchForDateBarberAndServiceReportController () throws SQLException
+	public void retornSearchForDateBarberAndServiceReportController() throws SQLException
 	{
 		ReportController relatorioController = new ReportController();
 		ResultSet rs = relatorioController.searchByDateBarberAndService(report);
@@ -100,11 +85,9 @@ public class ReportControllerTest
 		while(rs.next());
 	}
 	
-	/* 
-	 *Method used to test the research of a report by a barber and a date seeing if there is a sample of the report
-	*/
+	// Method used to test the research of a report by a barber and a date seeing if there is a sample of the report
 	@Test
-	public void retornSearchForBarberAndDateReportController () throws SQLException 
+	public void retornSearchForBarberAndDateReportController() throws SQLException 
 	{
 		ReportController relatorioController = new ReportController();
 		ResultSet rs = relatorioController.searchByDateAndBarber(report);
@@ -112,11 +95,9 @@ public class ReportControllerTest
 		while(rs.next());
 	}
 	
-	/* 
-	 * Method used to test the research of a report by a date and a service seeing if the sample of the report there
-	*/
+	// Method used to test the research of a report by a date and a service seeing if the sample of the report there
 	@Test
-	public void retornSearchForDateAndServiceReportController () throws SQLException
+	public void retornSearchForDateAndServiceReportController() throws SQLException
 	{
 		ReportController relatorioController = new ReportController();
 		ResultSet rs = relatorioController.searchByDateAndService(report);
@@ -124,12 +105,9 @@ public class ReportControllerTest
 		while(rs.next());
 	}
 	
-	/* 
-	 * Method used to test the research of a report by a barber seeing if there is a sample of the report
-
-	*/
+	// Method used to test the research of a report by a barber seeing if there is a sample of the report
 	@Test
-	public void retornSearchForBarberReportController () throws SQLException
+	public void retornSearchForBarberReportController() throws SQLException
 	{
 		ReportController relatorioController = new ReportController();
 		ResultSet rs = relatorioController.searchByBarber(report);

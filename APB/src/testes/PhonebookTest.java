@@ -16,12 +16,9 @@ public class PhonebookTest
 	
 	Phonebook contactOfPhonebook = new Phonebook();
 	
-	/* 
-	 *Method used to get the attributes correctly, an Agenda for the test
-
-	*/
+	// Method used to get the attributes correctly, an Agenda for the test
 	@Before
-	public void setUp ()
+	public void setUp()
 	{
 		try 
 		{
@@ -34,9 +31,8 @@ public class PhonebookTest
 		}
 		contactOfPhonebook.setPhonebookDs("ASDAS");
 	}
-	
-	 
-	//Method used to test the operation of the builder of an Agenda
+		 
+	// Method used to test the operation of the builder of an Agenda
 	@Test
 	public void testeBuilderFunction() 
 	{
@@ -48,31 +44,26 @@ public class PhonebookTest
 	
 	// Method that tests the receipt of a name of a contact by the access method get
 	@Test
-	public void getterNameFunction ()
+	public void getterNameFunction()
 	{
 		assertEquals("Alessandro", contactOfPhonebook.getPhonebookName());
 	}
 	
 	// Method that tests an incoming phone a contact by the access method get
-
 	@Test
-	public void getterPhoneFunction ()
+	public void getterPhoneFunction()
 	{
 		assertEquals("4568-9856", contactOfPhonebook.getPhonebook());
 	}
 	
 	// Method that tests receiving a description of a contact by the access method get
-
 	@Test
-	public void getterDescriptionFunction ()
+	public void getterDescriptionFunction()
 	{
 		assertEquals("ASDAS", contactOfPhonebook.getPhonebookDs());
 	}
 	
-	/* 
-	 * Method used to receive a blank name for the test launch of the exception
-
-	*/ 
+	// Method used to receive a blank name for the test launch of the exception 
 	@Test(expected = BarberException.class)
 	public void nameBarberNotBlank () throws BarberException
 	{
@@ -80,32 +71,23 @@ public class PhonebookTest
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
-	/* 
-	 * Method used to receive a phone blank for the test launch of the exception
-
-	*/ 
+	// Method used to receive a phone blank for the test launch of the exception 
 	@Test(expected = BarberException.class)
-	public void phoneOfBarberNotNull () throws BarberException
+	public void phoneOfBarberNotNull() throws BarberException
 	{
 		contactOfPhonebook.setPhonebook("");
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
-	/* 
-	 * Method used to get a name out of the established format (special characters) for the test launch of the exception
-
-	*/ 
+	// Method used to get a name out of the established format (special characters) for the test launch of the exception 
 	@Test(expected = BarberException.class)
-	public void nameOfBarberNotPassOutFormat () throws BarberException
+	public void nameOfBarberNotPassOutFormat() throws BarberException
 	{
 		contactOfPhonebook.setPhonebookName("ASDAS!!");
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
-	/* 
-	 * Method used to receive a telephone outside the established format (special characters, letters) for the test launch of the exception
-
-	*/
+	// Method used to receive a telephone outside the established format (special characters, letters) for the test launch of the exception
 	@Test(expected = BarberException.class)
 	public void phoneOfBarberNotPassOutFormat () throws BarberException
 	{
@@ -113,17 +95,14 @@ public class PhonebookTest
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
-	// Method that tests receiving the temporary name for the access method get
-
+	// Method that tests receiving the temporary name through the set access method
 	@Test (expected = AssertionError.class)
-	public void getterReturnValueForNameTemporary () throws ServiceException 
+	public void getterReturnValueForNameTemporary() throws ServiceException 
 	{
 		assertEquals("Barba", Phonebook.getNameTemporary());
 	}
-	
-	
-	// Method that tests passing a null temporary name for access method in September
- 
+		
+	// Method that tests passing a null temporary name through the set access method
 	@Test (expected = AssertionFailedError.class)
 	public void setterTemporatyNameNotNull () throws ServiceException 
 	{
@@ -131,8 +110,7 @@ public class PhonebookTest
 		Assert.fail("Deve lançar exceção");
 	}
 	
-	// Method that tests the passage of a temporary blank name for access method in September
-
+	// Method that tests the passage of a temporary blank name through the set access method
 	@Test (expected = AssertionFailedError.class)
 	public void setterTemporaryNameNotNull () 
 	{
@@ -140,7 +118,7 @@ public class PhonebookTest
 		Assert.fail("Deve lançar exceção");
 	}
 	
-	// M�todo que testa a passagem de um nome tempor�rio pelo m�todo de acesso set
+	// Method that tests the passege of a temporary name through the set access method
 	@Test
 	public void invalidNameTemporary () throws BarberException 
 	{
