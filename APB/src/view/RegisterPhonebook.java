@@ -48,14 +48,43 @@ public class RegisterPhonebook extends JFrame
 
 	public RegisterPhonebook()
 	{
+		// These methods are used to initialize the components  
+		initializeFrame();
+		initializePanel();
+
+	}
+	
+	// This method is used to initialize the main frame of the application
+	private void initializeFrame() 
+	{
 		setTitle("Agenda de Contatos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 575, 472);
+		
+	}
+	
+	// This method is used to initialize the panel to insert the components
+	private void initializePanel() 
+	{
+
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5) );
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		createTableInFrame(contentPane);
+		initializeButtons(contentPane);
+		
+	}
+	
+
+	/**
+	 *  This method is used to create a table that contains the contacts
+	 * @param contentPane - Panel that contains the components
+	 */
+	private void createTableInFrame(JPanel contentPane) 
+	{
+
 		// Add a scroll pane to the frame
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 21, 435, 401);
@@ -119,7 +148,55 @@ public class RegisterPhonebook extends JFrame
 
 		scrollPane.setViewportView(table);
 		
-		// Button that calls a window to register a new contact
+	}
+
+	/**
+	 *  This method is used to initialize the buttons
+	 * @param contentPane - Panel that contains the components
+	 */
+	private void initializeButtons(JPanel contentPane) 
+	{
+		
+		createButtonToRegisterContact(contentPane);
+		createButtonToSearchContact(contentPane);				
+		createButtonToOpenAdministrativeFrame(contentPane);
+		
+	}
+	
+	/**
+	 * This method is used to create the button and the action that open the administrative frame
+	 * @param contentPane - Panel that contains the components
+	 */
+	private void createButtonToOpenAdministrativeFrame(JPanel contentPane) 
+	{		
+		JButton btnBack = new JButton("Voltar");
+		btnBack.addMouseListener(new MouseAdapter()
+        {
+			@Override
+			public void mouseClicked(MouseEvent arg0)
+            {
+				dispose();
+				
+				// Frame used to "go back" to the administrative menu
+				Administrative administrativeFrame = new Administrative();
+				administrativeFrame.setVisible(true);
+				administrativeFrame.setLocationRelativeTo(null);
+			}
+		}
+		);
+		btnBack.setBounds(455, 399, 94, 23);
+		contentPane.add(btnBack);
+		
+	}
+	
+	/**
+	 *  This method is used to create the button and the action that
+	 *  open the frame that register a new contact
+	 *  @param contentPane - Panel that contains the components
+	 */
+	private void createButtonToRegisterContact(JPanel contentPane) 
+	{
+
 		JButton btnNewContact = new JButton("Novo");
 		btnNewContact.addMouseListener(new MouseAdapter()
         {
@@ -147,7 +224,16 @@ public class RegisterPhonebook extends JFrame
 		btnNewContact.setBounds(455, 24, 94, 23);
 		contentPane.add(btnNewContact);
 		
-		// Button that calls a window to look for contacts
+	}
+	
+	/**  
+	 * This method is used to create the button and the action that 
+	 *  open the frame that search a contact
+	 * @param contentPane - Panel that contains the components
+	 */
+	private void createButtonToSearchContact(JPanel contentPane) 
+	{
+
 		JButton btnSearchContact = new JButton("Pesquisar");
 		btnSearchContact.addMouseListener(new MouseAdapter()
         {
@@ -164,26 +250,7 @@ public class RegisterPhonebook extends JFrame
 		btnSearchContact.setBounds(455, 58, 94, 23);
 		contentPane.add(btnSearchContact);
 		
-		// Button that calls the class 'Administrative'
-		JButton btnBack = new JButton("Voltar");
-		btnBack.addMouseListener(new MouseAdapter()
-        {
-			@Override
-			public void mouseClicked(MouseEvent arg0)
-            {
-				dispose();
-				
-				// Frame used to "go back" to the administrative menu
-				Administrative administrativeFrame = new Administrative();
-				administrativeFrame.setVisible(true);
-				administrativeFrame.setLocationRelativeTo(null);
-			}
-		}
-		);
-		btnBack.setBounds(455, 399, 94, 23);
-		contentPane.add(btnBack);
 	}
-
 
 	/** 
 	 * Method that shows the error message when a exception is triggered
@@ -191,7 +258,7 @@ public class RegisterPhonebook extends JFrame
 	 */
 	private void showErrorMessage(String exceptionInformation)
 	{
-		JOptionPane.showMessageDialog(null, exceptionInformation, "Atenção",
+		JOptionPane.showMessageDialog(null, exceptionInformation, "Atenï¿½ï¿½o",
 									  JOptionPane.INFORMATION_MESSAGE);
 	}
 

@@ -186,7 +186,7 @@ import static livraria_abc.ABCBookStore.currentClient;
 
             System.out.println("\nSeu pedido é: ");
 
-            Cart.Listar_itens_cesta_();
+            Cart.listCartItems();
 
             System.out.println("\nEndereço de entrega: " + ABCBookStore.deliveryAddress);
             System.out.println("\nTipo de pagamento: " + ABCBookStore.paymentType);

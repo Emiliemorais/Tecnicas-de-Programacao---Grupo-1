@@ -4,7 +4,6 @@ package view;
 import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -62,29 +61,44 @@ public class ModifyContact extends JFrame
 
 	public ModifyContact()
 	{
+		
+		// These methods are used to initialize the components  
+		initializeFrame();
+		initializePanel();
+	
+		getDataFromUser();
 
+	}
+	
+	// This method is used to initialize the main frame of the application
+	private void initializeFrame() 
+	{
 		setTitle("Alterar Contato");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 225);
+
+	}
+		
+	// This method is used to initialize the panel to insert the components
+	private void initializePanel() 
+	{
 		contentPane = new JPanel();
 		contentPane.setBorder( new EmptyBorder(5, 5, 5, 5) );
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
-		newContactNameTextField = new JTextField();
-		newContactNameTextField.setBounds(83, 22, 341, 20);
-		contentPane.add(newContactNameTextField);
-		newContactNameTextField.setColumns(10);
-
-		newContactPhoneTextField = new JTextField();
-		newContactPhoneTextField.setBounds(83, 53, 341, 20);
-		contentPane.add(newContactPhoneTextField);
-		newContactPhoneTextField.setColumns(10);
-
-		newContactDescriptionTextField = new JTextField();
-		newContactDescriptionTextField.setBounds(83, 84, 341, 41);
-		contentPane.add(newContactDescriptionTextField);
-		newContactDescriptionTextField.setColumns(10);
+		
+		initializeTextFields(contentPane);
+		createLabels(contentPane);
+		initializeButtons(contentPane);
+		
+	}
+	
+	/**
+	 * This method is used to create the labels on the frame
+	 * @param contentPane - Panel that contains the components
+	 */
+	private void createLabels(JPanel contentPane) 
+	{
 		
 		// Label that holds the string 'Name:'
 		JLabel lblName = new JLabel("Nome:");
@@ -100,7 +114,36 @@ public class ModifyContact extends JFrame
 		JLabel lblDescription = new JLabel("Descri\u00E7\u00E3o:");
 		lblDescription.setBounds(10, 97, 63, 14);
 		contentPane.add(lblDescription);
+		
+	}
 
+	/**
+	 * This method is used to initialize the text fields on the frame
+	 * @param contentPane
+	 */
+	private void initializeTextFields(JPanel contentPane) 
+	{
+		
+		newContactNameTextField = new JTextField();
+		newContactNameTextField.setBounds(83, 22, 341, 20);
+		contentPane.add(newContactNameTextField);
+		newContactNameTextField.setColumns(10);
+
+		newContactPhoneTextField = new JTextField();
+		newContactPhoneTextField.setBounds(83, 53, 341, 20);
+		contentPane.add(newContactPhoneTextField);
+		newContactPhoneTextField.setColumns(10);
+
+		newContactDescriptionTextField = new JTextField();
+		newContactDescriptionTextField.setBounds(83, 84, 341, 41);
+		contentPane.add(newContactDescriptionTextField);
+		newContactDescriptionTextField.setColumns(10);
+			
+	}
+	
+	// This method is used to get all data informed by user, the contact changes
+	private void getDataFromUser() 
+	{
 		try
 		{
 			// Used to receive the contact name that will be modified, and then search on DB for it
@@ -131,13 +174,64 @@ public class ModifyContact extends JFrame
 			showErrorMessage(e.getMessage());
 		}
 		
+		
+	}
+
+	/**
+	 * This method is used to initialize the buttons on the frame
+	 * @param contentPane - Panel that contains the components
+	 */
+	private void initializeButtons(JPanel contentPane) 
+	{
+			
+		createButtonToSaveTheChanges(contentPane);				
+		createButtonToOpenRegisterPhoneFrame(contentPane);
+
+	}
+
+	/**
+	 * This method is used to create the labels on the frame
+	 * @param contentPane - Panel that contains the components
+	 */
+	private void createButtonToOpenRegisterPhoneFrame(JPanel contentPane) {
+		/* 
+		 * Button that calls the class 'RegisterPhonebook'
+		 * (Create a frame to go back in phonebook options) 
+		 */
+		JButton btnBack = new JButton("Voltar");
+		btnBack.addMouseListener(new MouseAdapter()
+		{
+			@Override
+			public void mouseClicked(MouseEvent e)
+		    {
+				dispose();
+				
+				// Frame used to open the window with options within a Phonebook
+				RegisterPhonebook registerPhonebookFrame = new RegisterPhonebook();
+				registerPhonebookFrame.setVisible(true);
+				registerPhonebookFrame.setLocationRelativeTo(null);
+			}
+		}
+		);
+		btnBack.setBounds(259, 136, 165, 31);
+		contentPane.add(btnBack);
+		
+		
+	}
+
+	/**
+	 * This method is used to create the labels on the frame
+	 * @param contentPane - Panel that contains the components
+	 */
+	private void createButtonToSaveTheChanges(JPanel contentPane) {
+		
 		// Button that save on DB all changes made
 		JButton btnSaveChanges = new JButton("Salvar Altera\u00E7\u00E3o");
 		btnSaveChanges.addMouseListener(new MouseAdapter()
-        {
+		{
 			@Override
 			public void mouseClicked(MouseEvent arg0)
-            {
+		    {
 				try
 				{
 					// Used to store data from the modified contact (new contact)
@@ -146,16 +240,16 @@ public class ModifyContact extends JFrame
 					modifiedContact.setPhonebookName( newContactNameTextField.getText() );
 					modifiedContact.setPhonebook( newContactPhoneTextField.getText() );
 					modifiedContact.setPhonebookDs( newContactDescriptionTextField.getText() );
-
+		
 					// Instantiated to get access to the method 'alterar' 
 					PhonebookController phonebookController = PhonebookController.getInstance();
 					
 					phonebookController.changeContact(contactNameToChange, modifiedContact);
-
+		
 					JOptionPane.showMessageDialog(null, "Agenda "
 												  + newContactNameTextField.getText()
 												  + " foi alterado com sucesso");
-
+		
 					dispose();
 					
 					// Frame used to open the window with options within a Phonebook	
@@ -177,27 +271,6 @@ public class ModifyContact extends JFrame
 		btnSaveChanges.setBounds(83, 136, 153, 31);
 		contentPane.add(btnSaveChanges);
 		
-		/* 
-		 * Button that calls the class 'RegisterPhonebook'
-		 * (Create a frame to go back in phonebook options) 
-		 */
-		JButton btnBack = new JButton("Voltar");
-		btnBack.addMouseListener(new MouseAdapter()
-        {
-			@Override
-			public void mouseClicked(MouseEvent e)
-            {
-				dispose();
-				
-				// Frame used to open the window with options within a Phonebook
-				RegisterPhonebook registerPhonebookFrame = new RegisterPhonebook();
-				registerPhonebookFrame.setVisible(true);
-				registerPhonebookFrame.setLocationRelativeTo(null);
-			}
-		}
-		);
-		btnBack.setBounds(259, 136, 165, 31);
-		contentPane.add(btnBack);
 	}
 
 	/** 
@@ -206,7 +279,7 @@ public class ModifyContact extends JFrame
 	 */
 	private void showErrorMessage(String exceptionInformation)
 	{
-		JOptionPane.showMessageDialog(null, exceptionInformation, "Atenção",
+		JOptionPane.showMessageDialog(null, exceptionInformation, "Atenï¿½ï¿½o",
 									  JOptionPane.INFORMATION_MESSAGE);
 	}
 
