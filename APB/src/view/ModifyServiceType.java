@@ -58,25 +58,47 @@ public class ModifyServiceType extends JFrame
 
 	public ModifyServiceType()
 	{
-		
+		// These methods are used to initialize the components  
+		initializeFrame();
+		initializePanel();
+	
+		getDataFromUser();
+
+	}
+	
+	// This method is used to initialize the main frame of the application
+	private void initializeFrame() 
+	{
 		setTitle("Alterar Tipo Servico");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 436, 163);
+
+	}
+		
+	// This method is used to initialize the panel to insert the components
+	private void initializePanel() 
+	{
 		contentPane = new JPanel();
 		contentPane.setBorder( new EmptyBorder(5, 5, 5, 5) );
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
-		textFieldServiceTypeName = new JTextField();
-		textFieldServiceTypeName.setColumns(10);
-		textFieldServiceTypeName.setBounds(121, 11, 289, 20);
-		contentPane.add(textFieldServiceTypeName);
 		
+		initializeTextFields(contentPane);
+		createLabels(contentPane);
+		initializeButtons(contentPane);
+	}
+	
+	/**
+	 * This method is used to create the labels on the frame
+	 * @param contentPane - Panel that contains the components
+	 */
+	private void createLabels(JPanel contentPane) 
+	{
 		// Label to textFieldServiceTypeName
 		JLabel lblServiceTypeName = new JLabel("Tipo de servi\u00E7o:");
 		lblServiceTypeName.setBounds(21, 14, 90, 14);
 		contentPane.add(lblServiceTypeName);
-
+		
 		textFieldServiceTypePrice = new JTextField();
 		textFieldServiceTypePrice.setColumns(10);
 		textFieldServiceTypePrice.setBounds(121, 42, 289, 20);
@@ -86,7 +108,27 @@ public class ModifyServiceType extends JFrame
 		JLabel lblServiceTypePrice = new JLabel("Pre\u00E7o:");
 		lblServiceTypePrice.setBounds(21, 45, 61, 14);
 		contentPane.add(lblServiceTypePrice);
+		
+	}
 
+	/**
+	 * This method is used to initialize the text fields on the frame
+	 * @param contentPane - Panel that contains the components
+	 */
+	private void initializeTextFields(JPanel contentPane) 
+	{
+		
+		textFieldServiceTypeName = new JTextField();
+		textFieldServiceTypeName.setColumns(10);
+		textFieldServiceTypeName.setBounds(121, 11, 289, 20);
+		contentPane.add(textFieldServiceTypeName);
+		
+			
+	}	
+	
+	// This method is used to get all data informed by user, the contact changes
+	private void getDataFromUser()
+	{
 		try
 		{
 			/* 
@@ -95,7 +137,7 @@ public class ModifyServiceType extends JFrame
 			 */
 			ServiceType serviceType = new ServiceType();
 			
-			// Intantiated to get access to the method 'searchServiceTypeByName'
+			// Instantiated to get access to the method 'searchServiceTypeByName'
 			ServiceTypeController serviceTypeController = ServiceTypeController.getInstance();
 			
 			serviceType.setServiceTypeName( ServiceType.getTemporaryName() );
@@ -121,8 +163,76 @@ public class ModifyServiceType extends JFrame
 		catch (ServiceException e)
 		{
 			showErrorMessage(e.getMessage());
+		}	
+	}
+	
+	/**
+	 * This method is used to initialize the buttons on the frame
+	 * @param contentPane - Panel that contains the components
+	 */
+	private void initializeButtons(JPanel contentPane) 
+	{
+			
+		createButtonToSaveTheChanges(contentPane);		
+		createButtonToClearTheFields(contentPane);	
+		createButtonToOpenRegisterServiceTypeFrame(contentPane);
+
+	}
+	
+	/**
+	 * This method is used to create the button and the action 
+	 * that open the register service type frame
+	 * @param contentPane - Panel that contains the components
+	 */
+	private void createButtonToOpenRegisterServiceTypeFrame(JPanel contentPane) {
+				
+		// Button that go back on service types options
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener()
+        {
+			public void actionPerformed(ActionEvent e)
+            {
+				dispose();
+				
+				// Frame used to go back on service types options
+				RegisterServiceType registerServiceTypeFrame = new RegisterServiceType();
+				registerServiceTypeFrame.setVisible(true);
+				registerServiceTypeFrame.setLocationRelativeTo(null);
+			}
 		}
+		);
+		btnVoltar.setBounds(144, 86, 128, 23);
+		contentPane.add(btnVoltar);
+	}
+
+	/**
+	 * This method is used to create the button and the action 
+	 * that save changes
+	 * @param contentPane - Panel that contains the components
+	 */
+	private void createButtonToSaveTheChanges(JPanel contentPane) {
 		
+		// Button that clear all fields from table
+		JButton btnClearFields = new JButton("Limpar Campos");
+		btnClearFields.addActionListener(new ActionListener()
+        {
+			public void actionPerformed(ActionEvent e)
+            {
+				textFieldServiceTypeName.setText("");
+				textFieldServiceTypePrice.setText("");
+			}
+		}
+		);
+		btnClearFields.setBounds(282, 86, 128, 23);
+		contentPane.add(btnClearFields);
+	}
+	
+	/**
+	 * This method is used to create the button and the action 
+	 * that clear the fields
+	 * @param contentPane - Panel that contains the components
+	 */
+	private void createButtonToClearTheFields(JPanel contentPane) {
 		// Button that save on DB all changes made
 		JButton btnSaveChanges = new JButton("Salvar");
 		btnSaveChanges.addActionListener(new ActionListener()
@@ -170,39 +280,7 @@ public class ModifyServiceType extends JFrame
 		btnSaveChanges.setBounds(10, 86, 124, 23);
 		contentPane.add(btnSaveChanges);
 		
-		// Button that clear all fields from table
-		JButton btnClearFields = new JButton("Limpar Campos");
-		btnClearFields.addActionListener(new ActionListener()
-        {
-			public void actionPerformed(ActionEvent e)
-            {
-				textFieldServiceTypeName.setText("");
-				textFieldServiceTypePrice.setText("");
-			}
-		}
-		);
-		btnClearFields.setBounds(282, 86, 128, 23);
-		contentPane.add(btnClearFields);
-		
-		// Button that go back on service types options
-		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.addActionListener(new ActionListener()
-        {
-			public void actionPerformed(ActionEvent e)
-            {
-				dispose();
-				
-				// Frame used to go back on service types options
-				RegisterServiceType registerServiceTypeFrame = new RegisterServiceType();
-				registerServiceTypeFrame.setVisible(true);
-				registerServiceTypeFrame.setLocationRelativeTo(null);
-			}
-		}
-		);
-		btnVoltar.setBounds(144, 86, 128, 23);
-		contentPane.add(btnVoltar);
 	}
-	
 	/** 
 	 * Method that shows the error message when a exception is triggered
 	 * @param exceptionInformation - String that contains the message from the exception 

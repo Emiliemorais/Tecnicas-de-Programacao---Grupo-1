@@ -6,10 +6,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import java.text.ParseException;
 
 import javax.swing.JFrame;
@@ -20,9 +18,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 import control.DoneServiceController;
+import control.PhonebookController;
 import model.DoneService;
+import model.Phonebook;
 import exception.ServiceException;
 
 @SuppressWarnings("serial")
@@ -52,15 +53,39 @@ public class RegisterDoneService extends JFrame
 
 	public RegisterDoneService()
 	{
+		// These methods are used to initialize the components  
+		initializeFrame();
+		initializePanel();
 		
+	}
+	// This method is used to initialize the main frame of the application
+	private void initializeFrame() 
+	{
 		setTitle("Servi\u00E7os Prestados");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 300);
+	}
+	
+	// This method is used to initialize the panel to insert the components
+	private void initializePanel() 
+	{
+
 		contentPane = new JPanel();
 		contentPane.setBorder( new EmptyBorder(5, 5, 5, 5) );
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		createTableInFrame(contentPane);
+		
+	}
+	
+
+	/**
+	 *  This method is used to create a table that contains the contacts
+	 * @param contentPane - Panel that contains the components
+	 */
+	private void createTableInFrame(JPanel contentPane) 
+	{
 		// Add a scroll pane to the frame
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 11, 360, 240);
@@ -125,7 +150,56 @@ public class RegisterDoneService extends JFrame
 		}
 
 		scrollPane.setViewportView(table);
+		initializeButtons(contentPane, table);
+	}
+
+	/**
+	 *  This method is used to initialize the buttons
+	 * @param contentPane - Panel that contains the components
+	 */
+	private void initializeButtons(JPanel contentPane, JTable table) 
+	{
 		
+		createButtonToRegisterContact(contentPane);
+		createButtonToSearchContact(contentPane);				
+		createButtonToOpenTheMainFrame(contentPane);
+		createButtonToDeleteService(contentPane, table);
+		
+	}
+	
+	/**
+	 * This method is used to create the button and the action that open the main frame
+	 * @param contentPane - Panel that contains the components
+	 */
+	private void createButtonToOpenTheMainFrame(JPanel contentPane) 
+	{		
+		JButton btnBack = new JButton("Voltar");
+		btnBack.addMouseListener(new MouseAdapter()
+        {
+			@Override
+			public void mouseClicked(MouseEvent arg0)
+            {
+				dispose();
+				
+				// Frame used to "go back" to the main menu
+				MainMenu mainMenuFrame = new MainMenu();
+				mainMenuFrame.setVisible(true);
+				mainMenuFrame.setLocationRelativeTo(null);
+			}
+		}
+		);
+		btnBack.setBounds(380, 228, 94, 23);
+		contentPane.add(btnBack);
+		
+	}
+	
+	/**
+	 *  This method is used to create the button and the action that
+	 *  open the frame that register a new done service
+	 *  @param contentPane - Panel that contains the components
+	 */
+	private void createButtonToRegisterContact(JPanel contentPane) 
+	{
 		// Button that open a window to register a new done service
 		JButton btnNewDoneService = new JButton("Novo");
 		btnNewDoneService.addMouseListener(new MouseAdapter()
@@ -144,7 +218,16 @@ public class RegisterDoneService extends JFrame
 		);
 		btnNewDoneService.setBounds(380, 24, 94, 23);
 		contentPane.add(btnNewDoneService);
-		
+
+	}
+	
+	/**  
+	 * This method is used to create the button and the action that 
+	 *  open the frame that search a done service
+	 * @param contentPane - Panel that contains the components
+	 */
+	private void createButtonToSearchContact(JPanel contentPane) 
+	{
 		// Button that open a window to search for a done service
 		JButton btnSearchForDoneServices = new JButton("Pesquisar");
 		btnSearchForDoneServices.addMouseListener(new MouseAdapter()
@@ -163,13 +246,21 @@ public class RegisterDoneService extends JFrame
 		);
 		btnSearchForDoneServices.setBounds(380, 58, 94, 23);
 		contentPane.add(btnSearchForDoneServices);
-		
-		
+
+	}
+	
+	/**  
+	 * This method is used to create the button and the action that 
+	 *  open the frame that delete a done service
+	 * @param contentPane - Panel that contains the components
+	 */
+	private void createButtonToDeleteService(JPanel contentPane, final JTable table) 
+	{
 		JButton btnDeleteDoneService = new JButton("Remover");
 		btnDeleteDoneService.addActionListener(new ActionListener()
-        {
+	    {
 			public void actionPerformed(ActionEvent arg0)
-            {
+	        {
 				try
 				{
 					/* 
@@ -229,15 +320,15 @@ public class RegisterDoneService extends JFrame
 													 			"Remover " 
 													 			+ doneServiceToRemove
 													 			+ " da lista?");
-
+	
 					if( deleteConfirmation == JOptionPane.YES_OPTION )
-                    {
+	                {
 						// Instantiated to get access to the method 'deleteProvidedService' 
 						DoneServiceController serviceController;
 						
 						serviceController = DoneServiceController.getInstance();
 						serviceController.deleteProvidedService(serviceToBeDeleted);
-
+	
 						dispose();
 						
 						// Frame used to "go back" to the done services options
@@ -246,9 +337,9 @@ public class RegisterDoneService extends JFrame
 						registerDoneServiceFrame.setLocationRelativeTo(null);
 					}
 					else
-                    {
-                        // Nothing to do
-                    }
+	                {
+	                    // Nothing to do
+	                }
 				}
 				catch (ArrayIndexOutOfBoundsException e)
 				{
@@ -271,26 +362,7 @@ public class RegisterDoneService extends JFrame
 		);
 		btnDeleteDoneService.setBounds(380, 92, 94, 23);
 		contentPane.add(btnDeleteDoneService);
-
-		JButton btnBack = new JButton("Voltar");
-		btnBack.addMouseListener(new MouseAdapter()
-        {
-			@Override
-			public void mouseClicked(MouseEvent arg0)
-            {
-				dispose();
-				
-				// Frame used to "go back" to the main menu
-				MainMenu mainMenuFrame = new MainMenu();
-				mainMenuFrame.setVisible(true);
-				mainMenuFrame.setLocationRelativeTo(null);
-			}
-		}
-		);
-		btnBack.setBounds(380, 228, 94, 23);
-		contentPane.add(btnBack);
 	}
-
 	/** 
 	 * Method that shows the error message when a exception is triggered
 	 * @param exceptionInformation - String that contains the message from the exception 

@@ -190,7 +190,8 @@ public class ModifyContact extends JFrame
 	}
 
 	/**
-	 * This method is used to create the labels on the frame
+	 * This method is used to create the button and the action 
+	 * that open the register phone frame
 	 * @param contentPane - Panel that contains the components
 	 */
 	private void createButtonToOpenRegisterPhoneFrame(JPanel contentPane) {
@@ -220,7 +221,8 @@ public class ModifyContact extends JFrame
 	}
 
 	/**
-	 * This method is used to create the labels on the frame
+     * This method is used to create the button and the action 
+	 * that save the changes 
 	 * @param contentPane - Panel that contains the components
 	 */
 	private void createButtonToSaveTheChanges(JPanel contentPane) {
