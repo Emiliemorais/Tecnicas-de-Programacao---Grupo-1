@@ -35,7 +35,7 @@ public class RegisterServiceType extends JFrame
 		{
 			
 			// Method that initializes the window registration service type
-			public void run ()
+			public void run()
 			{
 				try
 				{
@@ -113,7 +113,7 @@ public class RegisterServiceType extends JFrame
 		btnAlterar.addMouseListener(new MouseAdapter() 
 		{
 			
-			//VIEW method that calls the window changeTypeService to make a change
+			// VIEW method that calls the window changeTypeService to make a change
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{

@@ -1,4 +1,5 @@
-	package view;
+	
+package view;
 
 import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
@@ -41,8 +42,8 @@ public class SearchDoneService extends JFrame
 		EventQueue.invokeLater(new Runnable() 
 		{
 			
-			// method that initializes the search window service
-			public void run () 
+			// Method that initializes the search window service
+			public void run() 
 			{
 				try 
 				{
@@ -57,13 +58,14 @@ public class SearchDoneService extends JFrame
 		});
 	}
 	
-	// Builder components of the search window service
+	// Constructor components of the search window service
 	public SearchDoneService() 
 	{
+		// Calls the function to start all the view components on the screen
 		startComponents();
 	}
 
-	// Builder components of the search window service
+	// Constructor components of the search window service
 	public void startComponents ()
 	{
 		setTitle("Pesquisar Servi\u00E7o");
@@ -80,7 +82,7 @@ public class SearchDoneService extends JFrame
 
 		final DefaultTableModel model = new DefaultTableModel(null,
 																new String[] { "Serviço", "Realizado por", "Valor", "Data" });
-																// Lembrar de pedir pro italo ajudar com esse metodo////
+
 		final JTable table = new JTable(model);
 		scrollPane.setViewportView(table);
 
@@ -220,7 +222,8 @@ public class SearchDoneService extends JFrame
 						frame.setVisible(true);
 						frame.setLocationRelativeTo(null);
 					}
-					else{
+					else
+					{
 						// Nothing to do
 					}
 				} 
@@ -250,7 +253,7 @@ public class SearchDoneService extends JFrame
 		btnBack.addMouseListener(new MouseAdapter() 
 		{
 			
-			// VIEW method that is used to return the window to Sign Servico
+			// VIEW method that is used to return the window to Sign Service
 			@Override
 			public void mouseClicked (MouseEvent e) 
 			{

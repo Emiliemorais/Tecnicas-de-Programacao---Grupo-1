@@ -71,7 +71,7 @@ public class ViewReport extends JFrame
 		});
 	}
 
-	// Builder of components of pane view reposts
+	// Constructor of components of pane view reposts
 	public ViewReport() throws SQLException, ReportException,
 			NullPointerException, ParseException 
 	{
@@ -113,14 +113,15 @@ public class ViewReport extends JFrame
 
 		Report report = new Report();
 
-		if(SearchReport.searchType == 1) 
+		if (SearchReport.searchType == 1) 
 		{
 
 			report.setBarberName(SearchReport.barber);
 
 			ResultSet instanceStatement = reportController.searchByBarber(report);
 
-			while (instanceStatement.next()) {
+			while (instanceStatement.next()) 
+			{
 
 				if (typeService.contains(instanceStatement.getString("nome")) == false)
 				{
@@ -136,9 +137,10 @@ public class ViewReport extends JFrame
 			for(int i=0; i<counterService; i++)
 			{
 				instanceStatement.beforeFirst();
-				while ( instanceStatement.next() )
+				
+				while (instanceStatement.next())
 				{
-					if( typeService.get(i).equals( instanceStatement.getString("nome") ) ) 
+					if ( typeService.get(i).equals( instanceStatement.getString("nome") ) ) 
 					{
 						numberCliente = instanceStatement.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numberCliente);
@@ -172,10 +174,11 @@ public class ViewReport extends JFrame
 				valueTotalService = 0;
 			}
 		}
-		else{
+		else
+		{
 			//Noting to do
 		}
-		if( SearchReport.searchType == 2 )
+		if ( SearchReport.searchType == 2 )
 		{
 
 			report.setBarberName(SearchReport.barber);
@@ -242,6 +245,7 @@ public class ViewReport extends JFrame
 		{
 			// Nothing to do
 		}
+		
 		if( SearchReport.searchType == 3 ) 
 		{
 
@@ -311,6 +315,7 @@ public class ViewReport extends JFrame
 		{
 			// Nothing to do
 		}
+		
 		if( SearchReport.searchType == 4 ) 
 		{
 
@@ -381,6 +386,7 @@ public class ViewReport extends JFrame
 		{
 			// Nothing to do
 		}
+		
 		if( SearchReport.searchType == 5 )
 		{
 
@@ -390,7 +396,6 @@ public class ViewReport extends JFrame
 
 			while ( instanceStatement.next() )
 			{
-
 				if( typeService.contains( instanceStatement.getString("nome") ) == false )
 				{
 					typeService.add( instanceStatement.getString("nome") );
@@ -466,7 +471,7 @@ public class ViewReport extends JFrame
 				}
 			}
 
-			for(int i = 0; i < counterService; i++)
+			for (int i = 0; i < counterService; i++)
 			{
 				instanceStatement.beforeFirst();
 				while ( instanceStatement.next() )
@@ -509,6 +514,7 @@ public class ViewReport extends JFrame
 		{
 			// Nothing to do
 		}
+		
 		if( SearchReport.searchType == 7 ) 
 		{
 
@@ -531,7 +537,7 @@ public class ViewReport extends JFrame
 				}
 			}
 
-			for(int i = 0; i < counterService; i++)
+			for (int i = 0; i < counterService; i++)
 			{
 				instanceStatement.beforeFirst();
 				while ( instanceStatement.next() )
@@ -579,7 +585,7 @@ public class ViewReport extends JFrame
 		btnPesquisar.addMouseListener(new MouseAdapter() 
 		{
 			
-			//method permit show pane of search report
+			// Method that permit show panel of search report
 			@Override
 			public void mouseClicked (MouseEvent e) 
 			{
@@ -604,8 +610,7 @@ public class ViewReport extends JFrame
 		btnVoltar.addMouseListener(new MouseAdapter() 
 		{
 			
-			
-			// method permit show pane menu  again
+			// Method that permit show menu panel again
 			@Override
 			public void mouseClicked (MouseEvent e)
 			{
@@ -639,12 +644,9 @@ public class ViewReport extends JFrame
 		contentPane.add(painelGrafico);
 		painelGrafico.setVisible(true);
 		
-		
-		
 
 		if( SearchReport.searchType != 0 ) 
 		{
-			
 			try 
 			{
 				CategoryDataset createDataSet;
