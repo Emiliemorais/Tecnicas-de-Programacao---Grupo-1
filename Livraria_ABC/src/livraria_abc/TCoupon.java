@@ -11,7 +11,10 @@ public class TCoupon
     String cupom;
     float valor_desconto;
         
-    public TCoupon(){}
+    public TCoupon()
+    {
+    
+    }
        
     // Verifica se um dado cupom está cadastrado no sistema
     public static boolean ChecksCoupon (String coupon_cpr)
@@ -28,10 +31,17 @@ public class TCoupon
             }
         }
             
-        if(checkCouponSearchedThereDataBase==0)
+        if(checkCouponSearchedThereDataBase == 0)
+        {
+
             return false;
+        }
         else
+        {
+        
             return true;
+        }
+            
     }
         
     // Verifica o valor do desconto oferecido por um dado cupom
@@ -45,7 +55,7 @@ public class TCoupon
         {
             if(cupom_valor.get(i).getCoupon().equals(cprCoupon))
             {
-                valor_desconto = cupom_valor.get(i).getValueDiscount ();
+                valor_desconto = cupom_valor.get(i).getValueDiscount();
                    
                 break;
             }
@@ -55,18 +65,22 @@ public class TCoupon
     }
     
     // Construtor
-    public TCoupon (String codCoupon, float valueOfCoupon)
+    public TCoupon(String codCoupon, float valueOfCoupon)
     {
         this.cupom = codCoupon;
         this.valor_desconto = valueOfCoupon;
     }
     
     // Getters
-    public String getCoupon () {
+    public String getCoupon() 
+    {
+        
         return cupom;
     }
 
-    public float getValueDiscount () {
+    public float getValueDiscount() 
+    {
+        
         return valor_desconto;
     }
                 
