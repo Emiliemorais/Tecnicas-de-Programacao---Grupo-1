@@ -9,7 +9,7 @@ public class ReceiptDAO
 {
 	private static ReceiptDAO instance;
 
-	public ReceiptDAO() 
+	public ReceiptDAO () 
 	{
 		
 	}
@@ -17,7 +17,7 @@ public class ReceiptDAO
 	/**
 	 * @return The current instance if exists, or instantiate a new one if does not and return it
 	 */
-	public static ReceiptDAO getInstance() 
+	public static ReceiptDAO getInstance () 
 	{
 		if( instance == null )
 		{
@@ -25,7 +25,7 @@ public class ReceiptDAO
 		}
 		else
 		{
-			// Nothing to do
+			// Nothing to do - because the condition "if"  is just used to check the initial value of the variable
 		}
 		
 		return instance;
@@ -35,8 +35,9 @@ public class ReceiptDAO
 	 * Create a connection with DB
 	 * @return The connection established
 	 * @throws SQLException
+	 * @return - Return the connection with the database
 	 */
-	public Connection createConnectionWithDB() throws SQLException
+	public Connection createConnectionWithDB () throws SQLException
 	{
 		FactoryConnection factoryConnectionInstance = FactoryConnection.getInstance();
 		Connection connection = factoryConnectionInstance.getConnection();
@@ -50,8 +51,9 @@ public class ReceiptDAO
 	 *  @param initialDate - Receives the initial date
 	 *  @param finalDate - Receives the final date
 	 *  @throws SQLException
+	 *  @return - Return the ResultSet of the selection of the search by a service
 	 */	
-	public ResultSet barberServicesSearch(String barberName, String initialDate, String finalDate) throws SQLException 
+	public ResultSet barberServicesSearch (String barberName, String initialDate, String finalDate) throws SQLException 
 	{
 		Connection connection = createConnectionWithDB();
 		
@@ -71,7 +73,7 @@ public class ReceiptDAO
 	 *  @param message - SQL code of action to be executed
 	 *  @throws SQLException
 	 */
-	public void updateQuery(String message) throws SQLException 
+	public void updateQuery (String message) throws SQLException 
 	{
 		Connection connection = createConnectionWithDB();
 		

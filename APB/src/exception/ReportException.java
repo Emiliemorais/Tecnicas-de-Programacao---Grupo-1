@@ -5,7 +5,7 @@ public class ReportException extends Exception
 {
 	
 	// Class constructor
-	public ReportException() 
+	public ReportException () 
 	{
 		super();
 	}
@@ -14,7 +14,7 @@ public class ReportException extends Exception
 	 *  Method that returns the exception message
 	 *  @param errorMessage - Contains the error message
 	 */
-	public ReportException(String errorMessage) 
+	public ReportException (String errorMessage) 
 	{
 		super(errorMessage);
 	}

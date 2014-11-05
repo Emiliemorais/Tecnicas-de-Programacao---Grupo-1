@@ -13,7 +13,7 @@ public class PhonebookDAO
 
 	private static PhonebookDAO instance;
 
-	private PhonebookDAO() 
+	private PhonebookDAO () 
 	{
 		
 	}
@@ -21,15 +21,15 @@ public class PhonebookDAO
 	/** 
 	 * @return The current instance if exists, or instantiate a new one if does not and return it
 	 */
-	public static PhonebookDAO getInstance() 
+	public static PhonebookDAO getInstance () 
 	{
-		if (instance == null) 
+		if( instance == null ) 
 		{
 			instance = new PhonebookDAO();
 		}
 		else
 		{
-			// Nothing to do
+			// Nothing to do - because the condition "if"  is just used to check the initial value of the variable
 		}
 		
 		return instance;
@@ -39,26 +39,28 @@ public class PhonebookDAO
 	 *  Method used to include data in the phonebook
 	 *  @param phonebook - Is going to receive the data
 	 *  @throws SQLException
+	 *  @return - Return the status of the insertion
 	 */
-	public boolean includeDataToPhonebook(Phonebook phonebook) throws SQLException 
+	public boolean includeDataToPhonebook (Phonebook phonebook) throws SQLException 
 	{
+		boolean dataToPhonebookInserted;
+		
 		if( phonebook == null )
 		{
-			return false;
+			dataToPhonebookInserted = false;
 		}
 		else
 		{
-			// Nothing to do
+			String sqlCodeToInsertContact = "INSERT INTO "
+											+ "agenda (nome, telefone, descricao) VALUES (" + "\""
+											+ phonebook.getPhonebookName() + "\", " + "\"" + phonebook.getPhonebook()
+											+ "\", " + "\"" + phonebook.getPhonebookDs() + "\"); ";
+
+			this.updateQuery(sqlCodeToInsertContact);
+			dataToPhonebookInserted = true;
 		}
 		
-		String sqlCodeToInsertContact = "INSERT INTO "
-										+ "agenda (nome, telefone, descricao) VALUES (" + "\""
-										+ phonebook.getPhonebookName() + "\", " + "\"" + phonebook.getPhonebook()
-										+ "\", " + "\"" + phonebook.getPhonebookDs() + "\"); ";
-		
-		this.updateQuery(sqlCodeToInsertContact);
-		
-		return true;
+		return dataToPhonebookInserted;
 	}
 
 	/**
@@ -67,59 +69,64 @@ public class PhonebookDAO
 	 *  @param phonebookEdited - Receives the editions
 	 *  @param phonebook - Contains the phonebook data
 	 *  @throws SQLException
+	 *  @return - Return the status of the edition
 	 */
-	public boolean editPhonebookData(String name, Phonebook phonebookEdited, Phonebook phonebook) throws SQLException 
+	public boolean editPhonebookData (String name, Phonebook phonebookEdited, Phonebook phonebook) throws SQLException 
 	{	
+		boolean dataToPhonebookEdited;
+		
 		if( phonebook == null || phonebookEdited == null )
 		{
-			return false;
+			dataToPhonebookEdited = false;
 		}
 		else
 		{
-			// Nothing to do
+			String sqlCodeToUpdatePhonebook = "UPDATE agenda SET " +
+											  "nome = \"" + phonebookEdited.getPhonebookName() + "\", " +
+											  "telefone = \"" + phonebookEdited.getPhonebook() + "\", "+
+											  "descricao = \"" + phonebookEdited.getPhonebookDs() + "\""+
+											  " WHERE " + " agenda.nome = \"" + name + "\";";
+
+			this.updateQuery(sqlCodeToUpdatePhonebook);
+
+			dataToPhonebookEdited = true;
 		}
-		
-		String sqlCodeToUpdatePhonebook = "UPDATE agenda SET " +
-										  "nome = \"" + phonebookEdited.getPhonebookName() + "\", " +
-										  "telefone = \"" + phonebookEdited.getPhonebook() + "\", "+
-										  "descricao = \"" + phonebookEdited.getPhonebookDs() + "\""+
-										  " WHERE " + " agenda.nome = \"" + name + "\";";
-		
-		this.updateQuery(sqlCodeToUpdatePhonebook);
-			
-		return true;
+
+		return dataToPhonebookEdited;
 	}
 
 	/**
 	 *  Method used to delete data from the phonebook
 	 *  @param contact - Contact for delete
 	 *  @throws SQLException
+	 *  @return - Return the status of the exclusion
 	 */
-	public boolean deletePhonebookData(Phonebook contact) throws SQLException 
+	public boolean deletePhonebookData (Phonebook contact) throws SQLException 
 	{
+		boolean dataToPhonebookDeleted;
 		if (contact ==  null)
 		{
-			
-			return false;
+			dataToPhonebookDeleted = false;
 		}
 		else
 		{
-			// Nothing to do
+			String sqlCodeToDeleteFromPhonebook = "DELETE FROM agenda WHERE " 
+												  + "agenda.telefone = \""
+												  + contact.getPhonebook () + "\";";
+
+			this.updateQuery(sqlCodeToDeleteFromPhonebook);
+			
+			dataToPhonebookDeleted = true;
 		}
 		
-		String sqlCodeToDeleteFromPhonebook = "DELETE FROM agenda WHERE " 
-											  + "agenda.telefone = \""
-											  + contact.getPhonebook () + "\";";
-				
-		this.updateQuery(sqlCodeToDeleteFromPhonebook);
-		
-		return true;
+		return dataToPhonebookDeleted;
 	}
 	
 	/**
 	 * Create a connection with DB
 	 * @return The connection established
 	 * @throws SQLException
+	 * @return - Return the connection with the database
 	 */
 	public Connection createConnectionWithDB() throws SQLException
 	{
@@ -134,7 +141,7 @@ public class PhonebookDAO
 	 *  @param message - SQL code of action to be executed
 	 *  @throws SQLException
 	 */
-	public void updateQuery(String message) throws SQLException 
+	public void updateQuery (String message) throws SQLException 
 	{
 		Connection connection = createConnectionWithDB(); 
 		
@@ -148,8 +155,9 @@ public class PhonebookDAO
 	 *  Method that gives access to the registered contacts
 	 *  @param contact - Contains the contact to be displayed
 	 *  @throws SQLException
+	 *  @return - Return the ResultSet of the selection of the data from phonebook
 	 */
-	public ResultSet showRegisteredContacts(Phonebook contact) throws SQLException 
+	public ResultSet showRegisteredContacts (Phonebook contact) throws SQLException 
 	{
 		Connection connection = createConnectionWithDB();
 
@@ -162,8 +170,9 @@ public class PhonebookDAO
 	 *  Method that gives access to the search by name
 	 *  @param contact - Contains the contact to be displayed
 	 *  @throws SQLException
+	 *  @return - Return ResultSet of the search by name
 	 */
-	public ResultSet searchByName(Phonebook contact) throws SQLException 
+	public ResultSet searchByName (Phonebook contact) throws SQLException 
 	{
 		Connection connection = createConnectionWithDB();
 	
@@ -181,8 +190,9 @@ public class PhonebookDAO
 	 *  Method that gives access to the search by phone number
 	 *  @param contact - Contains the contact to be displayed
 	 *  @throws SQLException
+	 *  @return - Return ResultSet of the search by phone
 	 */
-	public ResultSet searchByPhone(Phonebook contact) throws SQLException 
+	public ResultSet searchByPhone (Phonebook contact) throws SQLException 
 	{
 		Connection connection = createConnectionWithDB();
 		

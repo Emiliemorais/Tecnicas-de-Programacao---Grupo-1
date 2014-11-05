@@ -9,25 +9,24 @@ import model.DoneService;
 public class DoneServiceController
 {
 
-	private DoneServiceController()
+	private DoneServiceController ()
 	{
 
 	}
 
-	/* 
-	 * Method used to instance the variable 
-	 * Used only in the case of being NULL
+	/**
+	 * @return - Return the current instance if exists, or instantiate a new one if does not and return it
 	 */
-	public static DoneServiceController getInstance()
+	public static DoneServiceController getInstance ()
 	{
-		// "ProvidedServiceController" class instance
-		if (instance == null)
+		// "DoneServiceController" class instance
+		if( instance == null )
         {
             instance = new DoneServiceController();
         }
         else
         {
-            // Nothing to do
+            // Nothing to do - because the condition "if"  is just used to check the initial value of the variable
         }
 
         return instance;
@@ -38,48 +37,55 @@ public class DoneServiceController
     /**
      *  Method used to insert a service
      *  @param providedService - Contains the provided service
+     *  @return - Return the status of the insertion
      */
-	public boolean insertProvidedService(DoneService providedService) throws SQLException
+	public boolean insertProvidedService (DoneService providedService) throws SQLException
 	{
+		boolean providedServiceInserted;
+		
 		if (providedService != null)
         {
 			DoneServiceDAO.getInstance().includeServiceType(providedService);
 			
-			return true;
+			providedServiceInserted = true;
 		}
 		else
         {
-            // Nothing to do
+			providedServiceInserted = false;
         }
 
-		return false;
+		return providedServiceInserted;
 	}
 
 	/**
      *  Method used to delete a service
      *  @param providedService - Contains the provided service
+     *  @return - Return the status of the exclusion
      */
-	public boolean deleteProvidedService(DoneService providedService) throws SQLException
+	public boolean deleteProvidedService (DoneService providedService) throws SQLException
 	{
+		boolean providedServiceDeleted; 
+		
 		if (providedService !=  null)
         {
 			DoneServiceDAO.getInstance().deleteServiceType(providedService);
 			
-			return true;
+			providedServiceDeleted = true;
 		}
 		else
         {
-            // Nothing to do
+			providedServiceDeleted = false;
         }
 		
-		return false;
+		return providedServiceDeleted;
 	}
 
 	/**
      *  Method that gives access to the registered services
      *  @param providedService - Contains the provided service
+     *  @return - Return the ResultSet of the Show Done Service Registered
      */
-	public ResultSet displayRegisteredProvidedServices(DoneService providedService) throws SQLException
+	public ResultSet displayRegisteredProvidedServices (DoneService providedService) throws SQLException
 	{
 		DoneServiceDAO doneServiceDAOInstance = DoneServiceDAO.getInstance();
 		ResultSet showRegistredDoneServicesResult = doneServiceDAOInstance.showRegistredDoneServices(providedService);
