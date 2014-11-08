@@ -11,7 +11,7 @@ public class DoneService
 	// Receives the service name
 	private String serviceName; 
 	
-	// Receives the barber´s name
+	// Receives the barberï¿½s name
 	private String barberName; 
 	
 	// Receives the service price
@@ -35,8 +35,13 @@ public class DoneService
 
 	}
 
-	// Class constructor
-	public DoneService(String serviceName, String servicePrice, String barberName) 
+	/**
+	 *  Class constructor
+	 * @param serviceName - Receives the name of the service
+	 * @param servicePrice - Receives the price of the service
+	 * @param barberName - Receives the name of the barber that provided the service
+	 */
+	public DoneService (String serviceName, String servicePrice, String barberName) 
 	{
 		this.serviceName = serviceName;
 		this.servicePrice = servicePrice;
@@ -44,31 +49,35 @@ public class DoneService
 	}
 
 	// Service name getter
-	public String getServiceName() 
+	public String getServiceName () 
 	{
 		return serviceName;
 	}
 
 	// Barber name getter
-	public String getBarberName() 
+	public String getBarberName () 
 	{
 		return barberName;
 	}
 	
 	// Price getter
-	public String getPrice() 
+	public String getPrice () 
 	{
 		return servicePrice;
 	}
 	
 	// Date getter
-	public String getDate() 
+	public String getDate () 
 	{
 		return serviceDate;
 	}
 
-	// Service name setter
-	public void setServiceName(String serviceName) throws ServiceException 
+	/**
+	 *  Service name setter
+	 * @param serviceName - Receives the name of the service
+	 * @throws ServiceException
+	 */
+	public void setServiceName (String serviceName) throws ServiceException 
 	{
 		if( serviceName == null )
 		{
@@ -88,8 +97,12 @@ public class DoneService
 		}
 	}
 
-	// Barber name setter
-	public void setBarberName(String barberName) throws ServiceException 
+	/**
+	 *  Barber name setter
+	 * @param barberName - Receives the name of the barber that provided the service
+	 * @throws ServiceException
+	 */
+	public void setBarberName (String barberName) throws ServiceException 
 	{
 		if( barberName == null )
 		{
@@ -109,8 +122,12 @@ public class DoneService
 		}
 	}
 
-	// Price setter
-	public void setPrice(String servicePrice) throws ServiceException 
+	/**
+	 *  Price setter
+	 * @param servicePrice - Receives the price of the service
+	 * @throws ServiceException
+	 */
+	public void setPrice (String servicePrice) throws ServiceException 
 	{
 		if( servicePrice == null )
 		{
@@ -130,8 +147,13 @@ public class DoneService
 		}
 	}
 
-	// Date setter
-	public void setDate(String serviceDate) throws ServiceException , ParseException 
+	/**
+	 *  Date setter
+	 * @param serviceDate - Receives the date when the service was provided
+	 * @throws ServiceException
+	 * @throws ParseException
+	 */
+	public void setDate (String serviceDate) throws ServiceException , ParseException 
 	{
 		if( serviceDate == null )
 		{
@@ -159,7 +181,7 @@ public class DoneService
 	 * Convert the date to yyyy-MM-dd format
 	 * @param serviceDate - Date to be converted
 	 */
-	public String convertServiceDate(String serviceDate) throws ParseException 
+	public String convertServiceDate (String serviceDate) throws ParseException 
 	{
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		
@@ -176,7 +198,7 @@ public class DoneService
 	 * Method to convert service date to ABNT
 	 * @param serviceDate - Date to be converted
 	 */
-	public String convertServiceDateToABNT ( String serviceDate ) throws ParseException 
+	public String convertServiceDateToABNT (String serviceDate) throws ParseException 
 	{
 		
 		// simpleDateFormat = Date in the format: yyyy/mm/dd

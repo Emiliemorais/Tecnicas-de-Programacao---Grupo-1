@@ -27,7 +27,7 @@ public class PhonebookDAOTest
 	
 	// Method that tests if is returning a instance
 	@Test
-	public void getInstanceOfPhonebookDAO()
+	public void getInstanceOfPhonebookDAO ()
 	{
 		assertEquals(PhonebookDAO.getInstance(), phonebookDAO);
 	}
@@ -48,7 +48,7 @@ public class PhonebookDAOTest
 	
 	// Method that tests if is sending a phonebook
 	@Test
-	public void deleteFromPhonebookDAO() 
+	public void deleteFromPhonebookDAO () 
 	{
 		try 
 		{
@@ -62,7 +62,7 @@ public class PhonebookDAOTest
 
 	// Method that tests if is sending a contact
 	@Test
-	public void editFromPhonebookDAO() 
+	public void editFromPhonebookDAO () 
 	{
 		try 
 		{
@@ -76,7 +76,7 @@ public class PhonebookDAOTest
 	
 	// Method that adds with a null contact
 	@Test
-	public void addFromPhonebookDAOWhenInvalidContact() 
+	public void addFromPhonebookDAOWhenInvalidContact () 
 	{
 		try 
 		{
@@ -90,7 +90,7 @@ public class PhonebookDAOTest
 	
 	// Method that deletes with a null contact
 	@Test
-	public void deleteFromPhonebookDAOWhenInvalidContact() 
+	public void deleteFromPhonebookDAOWhenInvalidContact () 
 	{
 		try 
 		{
@@ -104,7 +104,7 @@ public class PhonebookDAOTest
 	
 	// Method that edits with a null contact
 	@Test
-	public void editFromPhonebookDAOWhenInvalidContact() 
+	public void editFromPhonebookDAOWhenInvalidContact () 
 	{
 		try 
 		{
@@ -118,7 +118,7 @@ public class PhonebookDAOTest
 	
 	// Method that edits passing a edited phonebook 
 	@Test
-	public void editFromPhonebookDAOWhenEditedNullPhonebook() 
+	public void editFromPhonebookDAOWhenEditedNullPhonebook () 
 	{
 		try 
 		{
@@ -132,7 +132,7 @@ public class PhonebookDAOTest
 	
 	// Test if the connection is established is not null
 	@Test
-	public void createConnectionWithDBTestIfTheConnectionIsNotNull()
+	public void createConnectionWithDBTestIfTheConnectionIsNotNull ()
 	{
 		try
 		{
@@ -150,7 +150,7 @@ public class PhonebookDAOTest
 	
 	// Test if the connection is valid
 	@Test
-	public void createConnectionWithDBTestIfTheConnectionisValid()
+	public void createConnectionWithDBTestIfTheConnectionisValid ()
 	{
 		try
 		{
@@ -168,7 +168,7 @@ public class PhonebookDAOTest
 	
 	// Test if the connection is closed
 	@Test
-	public void createConnectionWithDBTestIfTheConnectionisClosed()
+	public void createConnectionWithDBTestIfTheConnectionisClosed ()
 	{
 		try
 		{
@@ -186,16 +186,16 @@ public class PhonebookDAOTest
 	
 	// Method to test if the contacts are being displayed
 	@Test
-	public void showRegisteredContactsTest()
+	public void showRegisteredContactsTest ()
 	{
 		try 
 		{			
 			// resultInstance - ResultSet Instance
 			ResultSet resultInstance = phonebookDAO.showRegisteredContacts(contact1);
 
-			while (resultInstance.next()) 
+			while( resultInstance.next() ) 
 			{
-				// contactName - Contains the contact´s name
+				// contactName - Contains the contactï¿½s name
 				String contactName = resultInstance.getString("nome");
 				
 				assertNotNull(contactName);
@@ -209,14 +209,14 @@ public class PhonebookDAOTest
 	
 	// Method to test if the contacts are being displayed
 	@Test
-	public void searchByNameFromPhonebookDAO() 
+	public void searchByNameFromPhonebookDAO () 
 	{
 		try 
 		{
 			// resultInstance - ResultSet Instance
 			ResultSet resultInstance = phonebookDAO.searchByName(contact1);
 
-			while (resultInstance.next()) 
+			while( resultInstance.next() ) 
 			{
 				// contactName - Receives the contact name to the search
 				String contactName = resultInstance.getString("nome");
@@ -231,14 +231,14 @@ public class PhonebookDAOTest
 	
 	// Method to test if barbers are being displayed when searched by their phone numbers
 	@Test
-	public void searchByNumberFromBarberDAO() 
+	public void searchByNumberFromBarberDAO () 
 	{
 		try 
 		{			
 			// resultInstance - ResultSet Instance
 			ResultSet resultInstance = phonebookDAO.searchByPhone(contact1);
 
-			while (resultInstance.next()) 
+			while( resultInstance.next() ) 
 			{
 				// contactName - Receives the contact name to the search
 				String contactName = resultInstance.getString("nome");

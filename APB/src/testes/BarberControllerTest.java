@@ -20,7 +20,7 @@ public class BarberControllerTest
 
 	// Method used to set up the parameters for the test
 	@Before
-	public void setUp() 
+	public void setUp () 
 	{
 		try 
 		{
@@ -45,14 +45,14 @@ public class BarberControllerTest
 	
 	// Method used to check if the current instance is being returned
 	@Test
-	public void getInstanceOfBarberController() 
+	public void getInstanceOfBarberController () 
 	{
 		assertEquals(BarberController.getInstance(), barberController);
 	}
 
 	// Method used to test if a barber is being added
 	@Test
-	public void addFromBarberController() 
+	public void addFromBarberController () 
 	{
 		try 
 		{
@@ -66,7 +66,7 @@ public class BarberControllerTest
 
 	// Method used to test if a barber is being deleted
 	@Test
-	public void deleteFromBarberController() 
+	public void deleteFromBarberController () 
 	{
 		try 
 		{
@@ -80,7 +80,7 @@ public class BarberControllerTest
 	
 	// Method used to test if a barber is being edited
 	@Test
-	public void editFromBarberController() 
+	public void editFromBarberController () 
 	{
 		try 
 		{
@@ -94,7 +94,7 @@ public class BarberControllerTest
 
 	// Method used to test if barber is null when adding
 	@Test
-	public void addNotNullBarber()
+	public void addNotNullBarber ()
 	{
 		try 
 		{
@@ -108,7 +108,7 @@ public class BarberControllerTest
 
 	// Method used to test if barber is null when deleting
 	@Test
-	public void deleteNotNullBarber() 
+	public void deleteNotNullBarber () 
 	{
 		try 
 		{
@@ -122,7 +122,7 @@ public class BarberControllerTest
 
 	@Test
 	// Method used to test if barber is null when editing
-	public void editNotNullBarber()
+	public void editNotNullBarber ()
 	{
 		try 
 		{
@@ -136,11 +136,11 @@ public class BarberControllerTest
 	
 	// Method that test if a barber is being displayed
 	@Test
-	public void searchByBarberController() throws SQLException 
+	public void searchByBarberController () throws SQLException 
 	{
 		ResultSet resultInstance = barberController.searchBarbers();
 		
-		while (resultInstance.next())
+		while( resultInstance.next() )
 		{
 			
 		}
@@ -148,11 +148,11 @@ public class BarberControllerTest
 	
 	// Method that tests if a barber is being displayed
 	@Test
-	public void displayBarberFromController() throws SQLException 
+	public void displayBarberFromController () throws SQLException 
 	{
 		ResultSet resultInstance = barberController.showRegisteredBarbers(barberInstance);
 		
-		while (resultInstance.next())
+		while( resultInstance.next() )
 		{
 			assertNotNull("This object should not be null", resultInstance);
 			assertNotNull("This object should not be null", resultInstance.getString("nome"));
@@ -165,11 +165,11 @@ public class BarberControllerTest
 
 	// Method used to test if a barber is being displayed when searched by name
 	@Test
-	public void searchByBarberNameController() throws SQLException 
+	public void searchByBarberNameController () throws SQLException 
 	{
 		ResultSet resultInstance = barberController.searchBarberByName(barberInstance);
 		
-		while (resultInstance.next())
+		while( resultInstance.next() )
 		{
 			assertNotNull("This object should not be null", resultInstance);
 			assertEquals("This should be equal to the registered before", "Alessandro", resultInstance.getString("nome"));

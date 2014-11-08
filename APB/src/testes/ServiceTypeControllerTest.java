@@ -22,7 +22,7 @@ public class ServiceTypeControllerTest
 
 	// Method used to set up the parameters for the test
 	@Before
-	public void setUp() 
+	public void setUp () 
 	{
 		try 
 		{
@@ -37,14 +37,14 @@ public class ServiceTypeControllerTest
 
 	// Method used to check if the current instance is being returned
 	@Test
-	public void getInstanceFromServiceTypeController()
+	public void getInstanceFromServiceTypeController ()
 	{
 		assertEquals(ServiceTypeController.getInstance(), serviceControllerInstance);
 	}
 
 	// Method used to test if a service type is being added
 	@Test
-	public void addServiceTypeController()
+	public void addServiceTypeController ()
 	{
 		try 
 		{
@@ -58,7 +58,7 @@ public class ServiceTypeControllerTest
 	
 	// Method used to test if a service type is being deleted
 	@Test
-	public void deleteServiceTypeController() 
+	public void deleteServiceTypeController () 
 	{
 		try 
 		{
@@ -72,7 +72,7 @@ public class ServiceTypeControllerTest
 
 	// Method used to test if a service type is being edited
 	@Test
-	public void editServiceTypeController()
+	public void editServiceTypeController ()
 	{
 		try 
 		{
@@ -87,7 +87,7 @@ public class ServiceTypeControllerTest
 
 	// Method that tests if a null service type is added
 	@Test
-	public void addNotNullServiceType()
+	public void addNotNullServiceType ()
 	{
 		try 
 		{
@@ -101,7 +101,7 @@ public class ServiceTypeControllerTest
 
 	// Method that tests if a null service type is deleted
 	@Test
-	public void deleteNotNullServiceType() 
+	public void deleteNotNullServiceType () 
 	{
 		try 
 		{
@@ -115,7 +115,7 @@ public class ServiceTypeControllerTest
 
 	// Method that tests if a null service type is edited
 	@Test
-	public void editNotNullServiceType() 
+	public void editNotNullServiceType () 
 	{
 		try 
 		{
@@ -129,11 +129,11 @@ public class ServiceTypeControllerTest
 	
 	// Method that test if a service type is being displayed
 	@Test
-	public void showRegistredServiceTypesMethodTest() throws SQLException 
+	public void showRegistredServiceTypesMethodTest () throws SQLException 
 	{
 		ResultSet resultInstance = serviceControllerInstance.showRegistredServiceTypes(serviceInstance);
 		
-		while (resultInstance.next())
+		while( resultInstance.next() )
 		{
 			assertNotNull("This object should not be null", resultInstance);
 			assertNotNull("This object should not be null", resultInstance.getString("nome"));
@@ -144,11 +144,11 @@ public class ServiceTypeControllerTest
 
 	// Method that test if a service type is being displayed when searched by its name
 	@Test
-	public void searchByServiceTypeNameMethodTest() throws SQLException 
+	public void searchByServiceTypeNameMethodTest () throws SQLException 
 	{
 		ResultSet resultInstance = serviceControllerInstance.searchServiceTypeByName(serviceInstance);
 	
-		while (resultInstance.next())
+		while( resultInstance.next() )
 		{
 			assertNotNull("This object should not be null", resultInstance);
 			assertEquals("This should be equal to the instantiated before", "Corte", resultInstance.getString("nome"));

@@ -52,20 +52,24 @@ public class MainMenu extends JFrame
 	}
 	
 	// Class constructor
-	public MainMenu()
+	public MainMenu ()
 	{
-		initializeComponents();
+		// These methods are used to initialize the components  
+			initializeFrame();
+			initializePanels();			
 	}
 	
-	/**
-	 * Initialize the components of frame.
-	 */
-	public void initializeComponents( ) 
+	// This method is used to initialize the frame of main menu
+	public void initializeFrame () 
 	{
 		setTitle( "APB" );
 		setDefaultCloseOperation ( JFrame.EXIT_ON_CLOSE );
 		setBounds ( 100, 100, 540, 200);
-		
+	}
+	
+	// This method is used to initialize the panels of main menu
+	public void initializePanels( ) 
+	{		
 		contentPane = new JPanel(); 
 		contentPane.setToolTipText( "Menu Principal" );
 		contentPane.setBorder( new EmptyBorder ( 5, 5, 5, 5) );
@@ -79,7 +83,28 @@ public class MainMenu extends JFrame
 		panel.setBounds ( 10, 11, 505, 138 );
 		contentPane.add ( panel );
 		panel.setLayout ( null );
+		
+		initializeButtons(panel);
 
+	}
+
+	/**
+	 *  This method is used to initialize the buttons frame of main menu
+	 * @param panel - Receives the panel to add the buttons
+	 */
+	public void initializeButtons(JPanel panel){
+		
+		createButtonToOpenAdministrative(panel);
+		createButtonToOpenDoneServices(panel);
+		createButtonToOpenReports(panel);
+	}
+	
+	/**
+	 *  This method is used to create the button and the action 
+	 *  to open 'Administrativo' frame
+	 * @param panel - Receives the panel to add the buttons
+	 */
+	public void createButtonToOpenAdministrative(JPanel panel){
 		
 		// adminButton - Button that says "Administrative"
 		JButton adminButton = new JButton( "Administrativo" ); 
@@ -95,7 +120,15 @@ public class MainMenu extends JFrame
 		});
 		adminButton.setBounds( 10, 60, 157, 37 );
 		panel.add( adminButton );
-
+		
+	}
+	
+	/**
+	 *  This method is used to create the button and the action 
+	 *  to open 'ServiÃ§os Prestados' frame
+	 * @param panel - Receives the panel to add the buttons
+	 */
+	public void createButtonToOpenDoneServices(JPanel panel){
 		
 		// givenServicesButton - Button that says "Given Services"
 		JButton givenServicesButton = new JButton( "Servi\u00E7os Prestados" ); 
@@ -112,7 +145,15 @@ public class MainMenu extends JFrame
 		givenServicesButton.setBounds( 179, 60, 157, 37 );
 		panel.add(givenServicesButton);
 		
-		
+	}
+	
+	/**
+	 *  This method is used to create the button and the action 
+	 *  to open 'Relatorios' frame
+	 * @param panel - Receives the panel to add the buttons
+	 */
+	public void createButtonToOpenReports(JPanel panel){
+	
 		// reportsButton - Button that says "Reports"
 		JButton reportsButton = new JButton ( "Relat\u00F3rios" ); 
 		reportsButton.addMouseListener( new MouseAdapter()
@@ -156,7 +197,7 @@ public class MainMenu extends JFrame
 	 */
 	private void showErrorMessage( String errorInformation ) 
 	{
-		JOptionPane.showMessageDialog( null, errorInformation, "Atenção",
+		JOptionPane.showMessageDialog( null, errorInformation, "Atenï¿½ï¿½o",
 									  JOptionPane.INFORMATION_MESSAGE );
 	}
 

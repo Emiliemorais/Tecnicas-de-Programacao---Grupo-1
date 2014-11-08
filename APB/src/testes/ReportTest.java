@@ -18,7 +18,7 @@ public class ReportTest
 	
 	// Method used to set up the parameters for the test
 	@Before
-	public void setUp() throws ParseException 
+	public void setUp () throws ParseException 
 	{
 		try 
 		{
@@ -42,7 +42,7 @@ public class ReportTest
 	
 	// Method that tests if the initial date is null
 	@Test (expected = NullPointerException.class)
-	public void initialNotNullDate() throws NullPointerException , ParseException 
+	public void initialNotNullDate () throws NullPointerException , ParseException 
 	{
 		try 
 		{
@@ -56,7 +56,7 @@ public class ReportTest
 
 	// Method that tests if the initial date is blank
 	@Test (expected = AssertionError.class)
-	public void initialNotBlankDate() throws NullPointerException , ParseException 
+	public void initialNotBlankDate () throws NullPointerException , ParseException 
 	{
 		try 
 		{
@@ -70,7 +70,7 @@ public class ReportTest
 
 	// Method that tests if the final date is null
 	@Test (expected = NullPointerException.class)
-	public void finalNotNullDate() throws NullPointerException , ParseException 
+	public void finalNotNullDate () throws NullPointerException , ParseException 
 	{
 		try 
 		{
@@ -84,7 +84,7 @@ public class ReportTest
 	
 	// Method that tests if the final date is blank
 	@Test (expected = AssertionError.class)
-	public void finalNotBlankDate() throws NullPointerException , ParseException 
+	public void finalNotBlankDate () throws NullPointerException , ParseException 
 	{
 		try 
 		{
@@ -98,7 +98,7 @@ public class ReportTest
 	
 	// Method that tests if the barber is null
 	@Test (expected = NullPointerException.class)
-	public void notNullBarber() 
+	public void notNullBarber () 
 	{
 		try 
 		{
@@ -126,7 +126,7 @@ public class ReportTest
 	
 	// Method that tests if the service type is null
 	@Test (expected = NullPointerException.class)
-	public void notNullServiceType()
+	public void notNullServiceType ()
 	{
 		try 
 		{
@@ -140,7 +140,7 @@ public class ReportTest
 
 	// Method that tests if the service type is blank
 	@Test (expected = AssertionError.class)
-	public void notBlankServiceType() 
+	public void notBlankServiceType () 
 	{
 		try 
 		{
@@ -154,7 +154,7 @@ public class ReportTest
 
 	// Method that tests if the report constructor is null
 	@Test (expected = IllegalArgumentException.class)
-	public void notNullBarberReportConstructor() 
+	public void notNullBarberReportConstructor () 
 	{
 		try 
 		{
@@ -168,7 +168,7 @@ public class ReportTest
 
 	// Method that tests if the report constructor final date is null
 	@Test (expected = IllegalArgumentException.class)
-	public void notNullFinalDateReportConstructor() 
+	public void notNullFinalDateReportConstructor () 
 	{
 		try 
 		{
@@ -196,7 +196,7 @@ public class ReportTest
 	
 	// Method that tests if the report constructor service type is null
 	@Test (expected = IllegalArgumentException.class)
-	public void notNullServiceTypeReportConstructor() 
+	public void notNullServiceTypeReportConstructor () 
 	{
 		try 
 		{
@@ -210,7 +210,7 @@ public class ReportTest
 
 	// Method that tests if all data from constructor are correct
 	@Test
-	public void allCorrectReportConstructor() 
+	public void allCorrectReportConstructor () 
 	{
 		try 
 		{
@@ -225,35 +225,35 @@ public class ReportTest
 
 	// Method that test the barber getter and setter
 	@Test
-	public void barberGetterTester() 
+	public void barberGetterTester () 
 	{
 		assertEquals("Chico", reportInstance.getBarberName());
 	}
 
 	// Method that test the service type getter and setter
 	@Test
-	public void serviceTypeGetterTester() 
+	public void serviceTypeGetterTester () 
 	{
 		assertEquals("barba", reportInstance.getServiceType());
 	}
 
 	// Method that test the initial date getter and setter
 	@Test
-	public void initialDateGetterTester()
+	public void initialDateGetterTester ()
 	{
 		assertEquals("2013-01-01", reportInstance.getInitialDate());
 	}
 
 	// Method that test the final date getter and setter
 	@Test
-	public void finalDateGetterTester() 
+	public void finalDateGetterTester () 
 	{
 		assertEquals("2013-09-09", reportInstance.getFinalDate());
 	}
 
 	// Method that tests the format of the date to be converted
 	@Test
-	public void dateToConvertTest() 
+	public void dateToConvertTest () 
 	{
 		try 
 		{
