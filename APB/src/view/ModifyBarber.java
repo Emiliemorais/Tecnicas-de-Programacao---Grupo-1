@@ -101,7 +101,8 @@ public class ModifyBarber extends JFrame
 		contentPane.add(textFieldBarberCpf);
 		textFieldBarberCpf.setColumns(10);
 		
-		// Add the text field of the cpf to the panel		textFieldBarberRg = new JTextField();
+		// Add the text field of the cpf to the panel		
+		textFieldBarberRg = new JTextField();
 		textFieldBarberRg.setColumns(10);
 		textFieldBarberRg.setBounds(92, 71, 354, 20);
 		contentPane.add(textFieldBarberRg);
@@ -111,7 +112,7 @@ public class ModifyBarber extends JFrame
 		labelRg.setBounds(21, 77, 46, 14);
 		contentPane.add(labelRg);
 		
-		// Add the text field of the telephone to the panel		textFieldBarberRg = new JTextField();
+		// Add the text field of the telephone to the panel		
 		textFieldBarberTelephone = new JTextField();
 		textFieldBarberTelephone.setColumns(10);
 		textFieldBarberTelephone.setBounds(92, 102, 354, 20);
@@ -122,7 +123,7 @@ public class ModifyBarber extends JFrame
 		labelTelephone.setBounds(21, 108, 61, 14);
 		contentPane.add(labelTelephone);
 		
-		// Add the text field of the cpf to the panel		textFieldBarberRg = new JTextField();
+		// Add the text field of the chair to the panel		
 		textFieldBarberChair = new JTextField();
 		textFieldBarberChair.setColumns(10);
 		textFieldBarberChair.setBounds(92, 133, 354, 20);

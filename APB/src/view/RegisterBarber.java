@@ -48,24 +48,37 @@ public class RegisterBarber extends JFrame
 	}
 
 	// Class constructor
-	public RegisterBarber() 
+	public RegisterBarber () 
 	{
-		initializeComponents();
+		// These methods are used to initialize the components  
+		initializeFrame();
+		initializePanel();
+		createTableInFrame();
 	}
 	
-	// Method that sets initial values to the screen components
-	public void initializeComponents() 
+	// Method that initialize the barber frame
+	public void initializeFrame () 
 	{
 		setTitle("Barbeiro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 678, 490);
 		
+	}
+	
+	// Method that initialize the panel in the frame
+	public void initializePanel ()
+	{
 		// contentPane - Receives the components values
 		contentPane = new JPanel(); 
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null); 
-
+		
+	}
+	
+	// This method is used to create a table that contains the contacts
+	public void createTableInFrame ()
+	{	
 		// scrollPane - Creates the scrollbars
 		JScrollPane scrollPane = new JScrollPane(); 
 		scrollPane.setBounds(10, 11, 474, 429);
@@ -75,7 +88,7 @@ public class RegisterBarber extends JFrame
 		final DefaultTableModel defaultTableModel = new DefaultTableModel(null,
 				new String[] { "Nome", "CPF", "RG", "Telefone", "Cadeira" });
 		
-		// table - A instance from Jtable
+		// table - A instance from JTable
 		final JTable table = new JTable ( defaultTableModel ); 
 
 		try 
@@ -105,7 +118,29 @@ public class RegisterBarber extends JFrame
 		}
 
 		scrollPane.setViewportView (table);
+		initializeButtons(table, defaultTableModel);
+		
+	}
 
+	/**
+	 *  This method is used to initialize the buttons
+	 * @param table - Receives the table that contains the list of barbers
+	 * @param defaultTableModel - Receives the header of the table
+	 */
+	public void initializeButtons (final JTable table, final DefaultTableModel defaultTableModel)
+	{
+		createButtonToRegisterBarber();
+		createButtonToEditBarber(table, defaultTableModel);	
+		createButtonToDeleteBarber(table);
+		createButtonToOpenAdministrativeFrame();
+	}
+	
+	/*
+	 *  This method is used to create the button and the action that
+	 *  open the frame that register a new barber
+	 */
+	public void createButtonToRegisterBarber ()
+	{
 		// newButton - Creates a button that says "new"
 		JButton newButton = new JButton("Novo"); 
 		newButton.addMouseListener( new MouseAdapter() 
@@ -130,6 +165,16 @@ public class RegisterBarber extends JFrame
 		});
 		newButton.setBounds ( 494, 11, 158, 28 );
 		contentPane.add ( newButton );
+	}
+	
+	/**
+	 * This method is used to create the button and the action that 
+	 * open the frame that edit a barber
+	 * @param table - Receives the table that contains the list of barbers
+	 * @param defaultTableModel - Receives the header of the table
+	 */
+	public void createButtonToEditBarber (final JTable table, final DefaultTableModel defaultTableModel)
+	{
 
 		// editButton - Creates a button that says "edit"
 		JButton editButton = new JButton ( "Alterar" ); 
@@ -154,7 +199,15 @@ public class RegisterBarber extends JFrame
 		});
 		editButton.setBounds(494, 50, 158, 28);
 		contentPane.add(editButton);
-
+		
+	}
+	
+	/**
+	 * This method is used to create the button and the action that delete a barber
+	 * @param table - Receives the table that contains the list of barbers
+	 */
+	public void createButtonToDeleteBarber (final JTable table)
+	{
 		// deleteButton - Creates a button that says "delete"
 		JButton deleteButton = new JButton( "Remover" ); 
 		deleteButton.addMouseListener( new MouseAdapter() 
@@ -200,6 +253,14 @@ public class RegisterBarber extends JFrame
 		deleteButton.setBounds ( 494, 89, 158, 28);
 		contentPane.add ( deleteButton );
 		
+	}
+	
+	/*
+	 *  This method is used to create the button and the action that 
+	 *  open the administrative frame
+	 */
+	public void createButtonToOpenAdministrativeFrame ()
+	{		
 		// returnButton - Creates a button that says "return"
 		JButton returnButton = new JButton("Voltar"); 
 		returnButton.addMouseListener( new MouseAdapter() 
@@ -215,16 +276,16 @@ public class RegisterBarber extends JFrame
 		});
 		returnButton.setBounds(494, 412, 158, 28);
 		contentPane.add(returnButton);
-		
 	}
+	
 	
 	/**
 	 * Method that shows a error message
 	 * @param errorInformation - Shows a error message to the user
 	 */
-	private void showErrorMessage( String errorInformation ) 
+	private void showErrorMessage (String errorInformation) 
 	{
-		JOptionPane.showMessageDialog(null, errorInformation, "Atenção",
+		JOptionPane.showMessageDialog(null, errorInformation, "Atenï¿½ï¿½o",
 									  JOptionPane.INFORMATION_MESSAGE);
 	}
 	
