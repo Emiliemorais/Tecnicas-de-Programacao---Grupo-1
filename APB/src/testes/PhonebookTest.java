@@ -25,9 +25,9 @@ public class PhonebookTest
 			contactOfPhonebook.setPhonebookName("Alessandro");
 			contactOfPhonebook.setPhonebook("4568-9856");
 		} 
-		catch (BarberException e1) 
+		catch (BarberException secondException) 
 		{
-			e1.printStackTrace();
+			secondException.printStackTrace();
 		}
 		contactOfPhonebook.setPhonebookDs("ASDAS");
 	}

@@ -15,7 +15,7 @@ import exception.BarberException;
 
 public class PhonebookControllerTest
 {
-	Phonebook contact = new Phonebook();
+	Phonebook contactOfPhonebook = new Phonebook();
 
 	@Before
 	// Initialize the attributes of 'contact'
@@ -23,13 +23,13 @@ public class PhonebookControllerTest
 	{
 		try
 		{
-			contact.setPhonebookName("Corte");
-			contact.setPhonebook("3895-5698");
-			contact.setPhonebookDs("AAA");
+			contactOfPhonebook.setPhonebookName("Corte");
+			contactOfPhonebook.setPhonebook("3895-5698");
+			contactOfPhonebook.setPhonebookDs("AAA");
 		}
-		catch (BarberException e)
+		catch (BarberException exception)
 		{
-			e.printStackTrace();
+			exception.printStackTrace();
 		}
 	}
 	
@@ -52,11 +52,11 @@ public class PhonebookControllerTest
 	{
 		try
 		{
-			assertTrue( contactController.includeNewObject(contact) );
+			assertTrue( contactController.includeNewObject(contactOfPhonebook) );
 		}
-		catch (SQLException e)
+		catch (SQLException exception)
 		{
-			e.printStackTrace();
+			exception.printStackTrace();
 		}
 	}
 
@@ -69,11 +69,11 @@ public class PhonebookControllerTest
 	{
 		try
 		{
-			assertTrue( contactController.removeContact(contact) );
+			assertTrue( contactController.removeContact(contactOfPhonebook) );
 		}
-		catch (SQLException e)
+		catch (SQLException exception)
 		{
-			e.printStackTrace();
+			exception.printStackTrace();
 		}
 	}
 
@@ -86,11 +86,11 @@ public class PhonebookControllerTest
 	{
 		try
 		{
-			assertTrue( contactController.changeContact(contact.getPhonebookName(),contact) );
+			assertTrue( contactController.changeContact(contactOfPhonebook.getPhonebookName(),contactOfPhonebook) );
 		}
-		catch (SQLException e)
+		catch (SQLException exception)
 		{
-			e.printStackTrace();
+			exception.printStackTrace();
 		}
 	}
 
@@ -102,9 +102,9 @@ public class PhonebookControllerTest
 		{
 			assertFalse( contactController.includeNewObject(null) );
 		}
-		catch (SQLException e)
+		catch (SQLException exception)
 		{
-			e.printStackTrace();
+			exception.printStackTrace();
 		}
 	}
 
@@ -116,9 +116,9 @@ public class PhonebookControllerTest
 		{
 			assertFalse( contactController.removeContact(null) );
 		}
-		catch (SQLException e)
+		catch (SQLException exception)
 		{
-			e.printStackTrace();
+			exception.printStackTrace();
 		}
 	}
 
@@ -130,9 +130,9 @@ public class PhonebookControllerTest
 		{
 			assertFalse( contactController.changeContact(null,null) );
 		}
-		catch (SQLException e)
+		catch (SQLException exception)
 		{
-			e.printStackTrace();
+			exception.printStackTrace();
 		}
 	}
 
@@ -141,7 +141,7 @@ public class PhonebookControllerTest
 	public void showRegisteredContactsTest() throws SQLException
 	{
 		// Used to receive the result from the search for contacts on DB
-		ResultSet queryForContactsResult = contactController.registeredshowContacts(contact);
+		ResultSet queryForContactsResult = contactController.registeredshowContacts(contactOfPhonebook);
 		
 		while( queryForContactsResult.next() );
 	}
@@ -151,7 +151,7 @@ public class PhonebookControllerTest
 	public void searchContactsByNameTest() throws SQLException
 	{
 		// Used to receive the result from the search for contacts on DB
-		ResultSet queryForContactsResult = contactController.searchContactForName(contact);
+		ResultSet queryForContactsResult = contactController.searchContactForName(contactOfPhonebook);
 		
 		while( queryForContactsResult.next() );
 	}
@@ -161,7 +161,7 @@ public class PhonebookControllerTest
 	public void searchContactsByPhoneTest() throws SQLException
 	{
 		// Used to receive the result from the search for contacts on DB
-		ResultSet queryForContactsResult = contactController.searchForPhone(contact);
+		ResultSet queryForContactsResult = contactController.searchForPhone(contactOfPhonebook);
 		
 		while( queryForContactsResult.next() );
 	}

@@ -17,7 +17,7 @@ import exception.ReportException;
 public class ReportControllerTest 
 {
 
-	Report report = new Report();
+	Report reportService = new Report();
 	
 	// Method used to get the attributes of a report correctly to the test, throwing exceptions null attributes and conversion issues
 	@Before
@@ -25,10 +25,10 @@ public class ReportControllerTest
 	{
 		try 
 		{
-			report.setBarberName("Luciano");
-			report.setFinalDate("09/09/2013");
-			report.setInitialDate("01/01/2013");
-			report.setServiceType("corte");
+			reportService.setBarberName("Luciano");
+			reportService.setFinalDate("09/09/2013");
+			reportService.setInitialDate("01/01/2013");
+			reportService.setServiceType("corte");
 		}
 		catch (NullPointerException e) 
 		{
@@ -50,9 +50,9 @@ public class ReportControllerTest
 	public void returnOfSearchReportController() throws SQLException
 	{
 		ReportController relatorioController = new ReportController();
-		ResultSet rs = relatorioController.searchByService(report);
+		ResultSet instanceStatement = relatorioController.searchByService(reportService);
 		
-		while(rs.next());
+		while(instanceStatement.next());
 	}
 	
 	// The method used to test the search for a report through the sample viewing date of the report exists
@@ -60,9 +60,9 @@ public class ReportControllerTest
 	public void returnOfSearchForDateReportController() throws SQLException
 	{
 		ReportController relatorioController = new ReportController();
-		ResultSet rs = relatorioController.searchByDate(report);
+		ResultSet instanceStatement = relatorioController.searchByDate(reportService);
 		
-		while(rs.next());
+		while(instanceStatement.next());
 	}
 	
 	// Method used to test the research of a report by a barber and a service seeing if the sample of the report there
@@ -70,9 +70,9 @@ public class ReportControllerTest
 	public void retornSearchForBarberAndServiceReportController() throws SQLException 
 	{
 		ReportController relatorioController = new ReportController();
-		ResultSet rs = relatorioController.searchByBarberAndService(report);
+		ResultSet instanceStatement = relatorioController.searchByBarberAndService(reportService);
 		
-		while(rs.next());
+		while(instanceStatement.next());
 	}
 	
 	// Method used to test the research of a report by a barber and a date and see if the service sample of the report there
@@ -80,9 +80,9 @@ public class ReportControllerTest
 	public void retornSearchForDateBarberAndServiceReportController() throws SQLException
 	{
 		ReportController relatorioController = new ReportController();
-		ResultSet rs = relatorioController.searchByDateBarberAndService(report);
+		ResultSet instanceStatement = relatorioController.searchByDateBarberAndService(reportService);
 		
-		while(rs.next());
+		while(instanceStatement.next());
 	}
 	
 	// Method used to test the research of a report by a barber and a date seeing if there is a sample of the report
@@ -90,9 +90,9 @@ public class ReportControllerTest
 	public void retornSearchForBarberAndDateReportController() throws SQLException 
 	{
 		ReportController relatorioController = new ReportController();
-		ResultSet rs = relatorioController.searchByDateAndBarber(report);
+		ResultSet instanceStatement = relatorioController.searchByDateAndBarber(reportService);
 		
-		while(rs.next());
+		while(instanceStatement.next());
 	}
 	
 	// Method used to test the research of a report by a date and a service seeing if the sample of the report there
@@ -100,9 +100,9 @@ public class ReportControllerTest
 	public void retornSearchForDateAndServiceReportController() throws SQLException
 	{
 		ReportController relatorioController = new ReportController();
-		ResultSet rs = relatorioController.searchByDateAndService(report);
+		ResultSet instanceStatement = relatorioController.searchByDateAndService(reportService);
 		
-		while(rs.next());
+		while(instanceStatement.next());
 	}
 	
 	// Method used to test the research of a report by a barber seeing if there is a sample of the report
@@ -110,9 +110,9 @@ public class ReportControllerTest
 	public void retornSearchForBarberReportController() throws SQLException
 	{
 		ReportController relatorioController = new ReportController();
-		ResultSet rs = relatorioController.searchByBarber(report);
+		ResultSet instanceStatement = relatorioController.searchByBarber(reportService);
 		
-		while(rs.next());
+		while(instanceStatement.next());
 	}
 
 }
