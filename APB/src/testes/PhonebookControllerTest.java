@@ -69,7 +69,7 @@ public class PhonebookControllerTest
 	{
 		try
 		{
-			assertTrue( contactController.remove(contact) );
+			assertTrue( contactController.removeContact(contact) );
 		}
 		catch (SQLException e)
 		{
@@ -114,7 +114,7 @@ public class PhonebookControllerTest
 	{
 		try
 		{
-			assertFalse( contactController.remove(null) );
+			assertFalse( contactController.removeContact(null) );
 		}
 		catch (SQLException e)
 		{

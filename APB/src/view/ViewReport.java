@@ -38,7 +38,7 @@ import exception.ReportException;
 public class ViewReport extends JFrame 
 {
 
-	private JPanel contentPane;
+	private JPanel receiptPanel;
 	private double valueTotalBuy = 0;
 	private String numberCliente;
 	List<String> typeService = new ArrayList<String>();
@@ -78,21 +78,24 @@ public class ViewReport extends JFrame
 		setTitle("Relat\u00F3rios");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		receiptPanel = new JPanel();
+		receiptPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(receiptPanel);
+		receiptPanel.setLayout(null);
 
 		final JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 10, 660, 486);
-		contentPane.add(scrollPane);
+		receiptPanel.add(scrollPane);
 
 		final DefaultTableModel model = new DefaultTableModel(null,
-				new String[] { "Nome do Serviço", "Quantidade", "Valor total",
-							   "Valor recebido" }) 
+				new String[] { 
+					"Nome do Serviço", "Quantidade", "Valor total", "Valor recebido" 
+				}) 
 		{
-			boolean[] columnEditables = new boolean[] { false, false, false,
-					false };
+			boolean[] columnEditables = new boolean[] 
+					{ 
+						false, false, false, false 
+					};
 			
 			// Method checking whether the cell can be changed
 			public boolean isCellEditable (int row, int column) 
@@ -113,7 +116,8 @@ public class ViewReport extends JFrame
 
 		Report report = new Report();
 
-		if (SearchReport.searchType == 1) 
+		int typeOfSearch = SearchReport.searchType;
+		if (typeOfSearch == 1) 
 		{
 
 			report.setBarberName(SearchReport.barber);
@@ -140,7 +144,8 @@ public class ViewReport extends JFrame
 				
 				while (instanceStatement.next())
 				{
-					if ( typeService.get(i).equals( instanceStatement.getString("nome") ) ) 
+					boolean ifGetStringEqualsTypeService = typeService.get(i).equals( instanceStatement.getString("nome") );
+					if ( ifGetStringEqualsTypeService ) 
 					{
 						numberCliente = instanceStatement.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numberCliente);
@@ -178,7 +183,7 @@ public class ViewReport extends JFrame
 		{
 			//Noting to do
 		}
-		if ( SearchReport.searchType == 2 )
+		if ( typeOfSearch == 2 )
 		{
 
 			report.setBarberName(SearchReport.barber);
@@ -190,7 +195,8 @@ public class ViewReport extends JFrame
 			while ( instanceStatement.next() )
 			{
 
-				if( typeService.contains( instanceStatement.getString("nome") ) == false )
+				boolean typeServiceGetName = typeService.contains( instanceStatement.getString("nome") );
+				if( typeServiceGetName == false )
 				{
 					typeService.add( instanceStatement.getString("nome") );
 					counterService++;
@@ -206,7 +212,9 @@ public class ViewReport extends JFrame
 				instanceStatement.beforeFirst();
 				while ( instanceStatement.next() )
 				{
-					if( typeService.get(i).equals( instanceStatement.getString("nome") ) ) 
+					boolean ifStringNameEqualsTypeServiceStored = typeService.get(i).equals( instanceStatement.getString("nome"));
+					
+					if( ifStringNameEqualsTypeServiceStored ) 
 					{
 						numberCliente = instanceStatement.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numberCliente);
@@ -246,7 +254,7 @@ public class ViewReport extends JFrame
 			// Nothing to do
 		}
 		
-		if( SearchReport.searchType == 3 ) 
+		if( typeOfSearch == 3 ) 
 		{
 
 			report.setBarberName(SearchReport.barber);
@@ -259,7 +267,8 @@ public class ViewReport extends JFrame
 			while ( instanceStatement.next() )
 			{
 
-				if( typeService.contains( instanceStatement.getString("nome") ) == false ) 
+				boolean paramTypeServiceName = typeService.contains( instanceStatement.getString("nome") );
+				if( paramTypeServiceName == false ) 
 				{
 					typeService.add( instanceStatement.getString("nome") );
 					counterService++;
@@ -275,7 +284,9 @@ public class ViewReport extends JFrame
 				instanceStatement.beforeFirst();
 				while ( instanceStatement.next() ) 
 				{
-					if( typeService.get(i).equals( instanceStatement.getString("nome") ) ) 
+					boolean nameGetStringEqualsTypeservice = typeService.get(i).equals( instanceStatement.getString("nome") );
+					
+					if( nameGetStringEqualsTypeservice ) 
 					{
 						numberCliente = instanceStatement.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numberCliente);
@@ -316,7 +327,7 @@ public class ViewReport extends JFrame
 			// Nothing to do
 		}
 		
-		if( SearchReport.searchType == 4 ) 
+		if( typeOfSearch == 4 ) 
 		{
 
 			report.setBarberName(SearchReport.barber);
@@ -346,7 +357,9 @@ public class ViewReport extends JFrame
 				instanceStatement.beforeFirst();
 				while ( instanceStatement.next() ) 
 				{
-					if( typeService.get(i).equals( instanceStatement.getString("nome") ) ) 
+					boolean nameGetStringEqualsTypeservice = typeService.get(i).equals( instanceStatement.getString("nome") );
+					
+					if( nameGetStringEqualsTypeservice ) 
 					{
 						numberCliente = instanceStatement.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numberCliente);
@@ -387,7 +400,7 @@ public class ViewReport extends JFrame
 			// Nothing to do
 		}
 		
-		if( SearchReport.searchType == 5 )
+		if( typeOfSearch == 5 )
 		{
 
 			report.setServiceType(SearchReport.service);
@@ -422,7 +435,7 @@ public class ViewReport extends JFrame
 					}
 					else
 					{
-						// Nothing to do
+						
 					}
 				}
 
@@ -447,7 +460,11 @@ public class ViewReport extends JFrame
 				valueTotalService = 0;
 			}
 		}
-		if( SearchReport.searchType == 6 )
+		else
+		{
+			// Nothing to do
+		}
+		if( typeOfSearch == 6 )
 		{
 
 			report.setServiceType(SearchReport.service);
@@ -460,7 +477,8 @@ public class ViewReport extends JFrame
 			while ( instanceStatement.next() )
 			{
 
-				if( typeService.contains( instanceStatement.getString("nome") ) == false )
+				boolean paramGetStringNome =  typeService.contains( instanceStatement.getString("nome") );
+				if( paramGetStringNome == false )
 				{
 					typeService.add( instanceStatement.getString("nome") );
 					counterService++;
@@ -476,7 +494,8 @@ public class ViewReport extends JFrame
 				instanceStatement.beforeFirst();
 				while ( instanceStatement.next() )
 				{
-					if( typeService.get(i).equals( instanceStatement.getString("nome") ) ) 
+					boolean ifNameGetEqualsNameStored = typeService.get(i).equals( instanceStatement.getString("nome") );
+					if( ifNameGetEqualsNameStored ) 
 					{
 						numberCliente = instanceStatement.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numberCliente);
@@ -515,7 +534,7 @@ public class ViewReport extends JFrame
 			// Nothing to do
 		}
 		
-		if( SearchReport.searchType == 7 ) 
+		if( typeOfSearch == 7 ) 
 		{
 
 			report.setFinalDate(SearchReport.finalDate);
@@ -604,7 +623,7 @@ public class ViewReport extends JFrame
 			}
 		});
 		btnPesquisar.setBounds(680, 13, 94, 62);
-		contentPane.add(btnPesquisar);
+		receiptPanel.add(btnPesquisar);
 
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addMouseListener(new MouseAdapter() 
@@ -621,11 +640,11 @@ public class ViewReport extends JFrame
 			}
 		});
 		btnVoltar.setBounds(680, 527, 94, 23);
-		contentPane.add(btnVoltar);
+		receiptPanel.add(btnVoltar);
 
 		JPanel panel = new JPanel();
 		panel.setBounds(10, 529, 660, 22);
-		contentPane.add(panel);
+		receiptPanel.add(panel);
 		panel.setLayout(null);
 
 		JLabel lblprofitTotal = new JLabel("Valor total pesquisado:");
@@ -641,7 +660,7 @@ public class ViewReport extends JFrame
 
 		final JPanel painelGrafico = new JPanel();
 		painelGrafico.setBounds(10, 10, 660, 486);
-		contentPane.add(painelGrafico);
+		receiptPanel.add(painelGrafico);
 		painelGrafico.setVisible(true);
 		
 
@@ -709,7 +728,7 @@ public class ViewReport extends JFrame
 			}
 		});
 		btnGraphic.setBounds(680, 159, 94, 62);
-		contentPane.add(btnGraphic);
+		receiptPanel.add(btnGraphic);
 
 		JButton btnTable = new JButton("Tabela");
 		btnTable.addMouseListener(new MouseAdapter() 
@@ -724,11 +743,11 @@ public class ViewReport extends JFrame
 			}
 		});
 		btnTable.setBounds(680, 86, 94, 62);
-		contentPane.add(btnTable);
+		receiptPanel.add(btnTable);
 		
 		JPanel panelTotalPay = new JPanel();
 		panelTotalPay.setBounds(10, 509, 660, 22);
-		contentPane.add(panelTotalPay);
+		receiptPanel.add(panelTotalPay);
 		panelTotalPay.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Valor total a ser pago para o barbeiro:");
@@ -749,50 +768,51 @@ public class ViewReport extends JFrame
 			{
 
 		Report instanceStatement = new Report();
-		ResultSet rs = null;
+		ResultSet secondInstanceStatement = null;
 
-		if( SearchReport.searchType != 0 ) 
+		int typeSearch = SearchReport.searchType;
+		if( typeSearch != 0 ) 
 		{
-			if( SearchReport.searchType == 1 ) 
+			if( typeSearch == 1 ) 
 			{
 				instanceStatement.setBarberName(SearchReport.barber);
 
-				rs = ReportController.getInstance().searchByBarber(instanceStatement);
+				secondInstanceStatement = ReportController.getInstance().searchByBarber(instanceStatement);
 			}
 			else
 			{
 				// Nothing to do
 			}
 			
-			if( SearchReport.searchType == 2 )
+			if( typeSearch == 2 )
 			{
 				instanceStatement.setBarberName(SearchReport.barber);
 				instanceStatement.setServiceType(SearchReport.service);
 
 				ReportController searchByBarberAndServiceInstance = ReportController.getInstance();
 				
-				rs = searchByBarberAndServiceInstance.searchByBarberAndService(instanceStatement);
+				secondInstanceStatement = searchByBarberAndServiceInstance.searchByBarberAndService(instanceStatement);
 			}
 			else
 			{
 				// Nothing to do
 			}
 			
-			if( SearchReport.searchType == 3 )
+			if( typeSearch == 3 )
 			{
 				instanceStatement.setBarberName(SearchReport.barber);
 				instanceStatement.setFinalDate(SearchReport.finalDate);
 				instanceStatement.setInitialDate(SearchReport.initialDate);
 
 				ReportController searchByDateAndBarberInstace = ReportController.getInstance();
-				rs = searchByDateAndBarberInstace.searchByDateAndBarber(instanceStatement);
+				secondInstanceStatement = searchByDateAndBarberInstace.searchByDateAndBarber(instanceStatement);
 			}
 			else
 			{
 				// Nothing to do
 			}
 			
-			if( SearchReport.searchType == 4 ) 
+			if( typeSearch == 4 ) 
 			{
 				instanceStatement.setBarberName(SearchReport.barber);
 				instanceStatement.setServiceType(SearchReport.service);
@@ -800,26 +820,26 @@ public class ViewReport extends JFrame
 				instanceStatement.setInitialDate(SearchReport.initialDate);
 
 				ReportController searchByDateBarberAndServiceInstance = ReportController.getInstance();
-				rs = searchByDateBarberAndServiceInstance.searchByDateBarberAndService(instanceStatement);
+				secondInstanceStatement = searchByDateBarberAndServiceInstance.searchByDateBarberAndService(instanceStatement);
 			}
 			else
 			{
 				// Nothing to do
 			}
 			
-			if( SearchReport.searchType == 5 ) 
+			if( typeSearch == 5 ) 
 			{
 				instanceStatement.setServiceType(SearchReport.service);
 
 				ReportController searchByServiceInstance = ReportController.getInstance();
-				rs = searchByServiceInstance.searchByService(instanceStatement);
+				secondInstanceStatement = searchByServiceInstance.searchByService(instanceStatement);
 			}
 			else
 			{
 				// Nothing to do
 			}
 			
-			if( SearchReport.searchType == 6 ) 
+			if( typeSearch == 6 ) 
 			{
 				instanceStatement.setServiceType(SearchReport.service);
 				instanceStatement.setFinalDate(SearchReport.finalDate);
@@ -827,20 +847,20 @@ public class ViewReport extends JFrame
 
 				ReportController searchByDateAndServiceInstace = ReportController.getInstance();
 						 
-				rs = searchByDateAndServiceInstace.searchByDateAndService(instanceStatement);
+				secondInstanceStatement = searchByDateAndServiceInstace.searchByDateAndService(instanceStatement);
 			}
 			else
 			{
 				// Nothing to do
 			}
 			
-			if( SearchReport.searchType == 7 )
+			if( typeSearch == 7 )
 			{
 				instanceStatement.setFinalDate(SearchReport.finalDate);
 				instanceStatement.setInitialDate(SearchReport.initialDate);
 
 				ReportController searchByDate = ReportController.getInstance();
-				rs = searchByDate.searchByDate(instanceStatement);
+				secondInstanceStatement = searchByDate.searchByDate(instanceStatement);
 			}
 			else
 			{
@@ -855,11 +875,14 @@ public class ViewReport extends JFrame
 
 		List<String> days = new ArrayList<String>();
 
-		while ( rs.next() )
+		while ( secondInstanceStatement.next() )
 		{
-			if( days.contains( rs.getString("data") ) == false )
+			String getStringDataParam = secondInstanceStatement.getString("data");
+			boolean daysGetStringDataParam = days.contains( getStringDataParam );
+			
+			if( daysGetStringDataParam == false )
 			{
-				days.add( rs.getString("data") );
+				days.add( getStringDataParam );
 			}
 			else
 			{
@@ -871,15 +894,21 @@ public class ViewReport extends JFrame
 
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-		for (int i = 0; i < days.size(); i++)
+		int quantidyOfDays = days.size();
+		
+		for (int i = 0; i < quantidyOfDays ; i++)
 		{
-			rs.beforeFirst();
-			while ( rs.next() )
+			secondInstanceStatement.beforeFirst();
+			while ( secondInstanceStatement.next() )
 			{
-				if ( rs.getString("data").equals( days.get(i) ) )
+				boolean ifDategetEqualsDategetString = secondInstanceStatement.getString("data").equals( days.get(i) );
+				
+				if ( ifDategetEqualsDategetString )
 				{
-					totalForDay += Double.parseDouble(rs.getString("preco")
-													  .replace(",", "."));
+					double sumTotalOnDay = Double.parseDouble(secondInstanceStatement.getString("preco")
+							  .replace(",", "."));
+					
+					totalForDay += sumTotalOnDay;
 				}
 				else
 				{
@@ -887,10 +916,9 @@ public class ViewReport extends JFrame
 				}
 			}
 							
+			String paramDaysDataset = days.get(0) + " - "  + days.get( days.size() - 1);
 			
-			dataset.addValue(totalForDay, days.get(i),
-							 days.get(0) + " - " 
-							 + days.get( days.size() - 1) );
+			dataset.addValue(totalForDay, days.get(i), paramDaysDataset);
 			totalForDay = 0;
 		}
 
