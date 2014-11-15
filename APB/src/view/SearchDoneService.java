@@ -32,7 +32,7 @@ import model.DoneService;
 public class SearchDoneService extends JFrame
 {
 
-	private JPanel contentPane;
+	private JPanel receiptPanel;
 	private JTextField textField;
 	private Connection connection;
 	private static String tempNome;
@@ -47,8 +47,8 @@ public class SearchDoneService extends JFrame
 			{
 				try 
 				{
-					SearchDoneService frame = new SearchDoneService();
-					frame.setVisible(true);
+					SearchDoneService apbFrame = new SearchDoneService();
+					apbFrame.setVisible(true);
 				} 
 				catch (Exception e) 
 				{
@@ -71,29 +71,32 @@ public class SearchDoneService extends JFrame
 		setTitle("Pesquisar Servi\u00E7o");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		receiptPanel = new JPanel();
+		receiptPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(receiptPanel);
+		receiptPanel.setLayout(null);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 11, 464, 115);
-		contentPane.add(scrollPane);
+		receiptPanel.add(scrollPane);
 
 		final DefaultTableModel model = new DefaultTableModel(null,
-																new String[] { "Serviço", "Realizado por", "Valor", "Data" });
+																new String[] 
+																{ 
+																	"Serviço", "Realizado por", "Valor", "Data" 
+																});
 
 		final JTable table = new JTable(model);
 		scrollPane.setViewportView(table);
 
 		textField = new JTextField();
 		textField.setBounds(82, 137, 392, 20);
-		contentPane.add(textField);
+		receiptPanel.add(textField);
 		textField.setColumns(10);
 
 		JLabel lblPesquisar = new JLabel("Pesquisar:");
 		lblPesquisar.setBounds(20, 137, 66, 14);
-		contentPane.add(lblPesquisar);
+		receiptPanel.add(lblPesquisar);
 
 		JButton btnSearchService = new JButton("Pesquisar Serviço");
 		btnSearchService.addActionListener(new ActionListener() {
@@ -123,23 +126,23 @@ public class SearchDoneService extends JFrame
 						model.addRow(data);
 					}
 				} 
-				catch (ServiceException e) 
+				catch (ServiceException exception) 
 				{
-					showMessageError(e.getMessage());
+					showMessageError(exception.getMessage());
 				} 
-				catch (SQLException e) 
+				catch (SQLException exception) 
 				{
-					showMessageError(e.getMessage());
+					showMessageError(exception.getMessage());
 				} 
-				catch (ParseException e)
+				catch (ParseException exception)
 				{
-					showMessageError(e.getMessage());
+					showMessageError(exception.getMessage());
 				}
 
 			}
 		});
 		btnSearchService.setBounds(10, 168, 148, 23);
-		contentPane.add(btnSearchService);
+		receiptPanel.add(btnSearchService);
 
 		JButton btnSearchBarber = new JButton("Pesquisar Barbeiro");
 		btnSearchBarber.addMouseListener(new MouseAdapter() {
@@ -171,23 +174,23 @@ public class SearchDoneService extends JFrame
 						model.addRow(data);
 					}
 				}
-				catch (ServiceException e) 
+				catch (ServiceException exception) 
 				{
-					showMessageError(e.getMessage());
+					showMessageError(exception.getMessage());
 				}
-				catch (SQLException e) 
+				catch (SQLException exception) 
 				{
-					showMessageError(e.getMessage());
+					showMessageError(exception.getMessage());
 				} 
-				catch (ParseException e)
+				catch (ParseException exception)
 				{
-					showMessageError(e.getMessage());
+					showMessageError(exception.getMessage());
 				}
 
 			}
 		});
 		btnSearchBarber.setBounds(168, 168, 148, 23);
-		contentPane.add(btnSearchBarber);
+		receiptPanel.add(btnSearchBarber);
 
 		JButton btnRemove = new JButton("Remover");
 		btnRemove.addMouseListener(new MouseAdapter() 
@@ -209,8 +212,9 @@ public class SearchDoneService extends JFrame
 					service.setPrice(value);
 					service.setDate(data);
 
-					int confirmation = JOptionPane.showConfirmDialog(null,
-							"Remover " + name + " da lista?");
+					String removeNamerInTheList = "Remover " + name + " da lista?";
+					
+					int confirmation = JOptionPane.showConfirmDialog(null,removeNamerInTheList);
 
 					if(confirmation == JOptionPane.YES_OPTION)
 					{
@@ -218,36 +222,36 @@ public class SearchDoneService extends JFrame
 						servicoController.deleteProvidedService(service);
 
 						dispose();
-						RegisterDoneService frame = new RegisterDoneService();
-						frame.setVisible(true);
-						frame.setLocationRelativeTo(null);
+						RegisterDoneService apbFrame = new RegisterDoneService();
+						apbFrame.setVisible(true);
+						apbFrame.setLocationRelativeTo(null);
 					}
 					else
 					{
 						// Nothing to do
 					}
 				} 
-				catch (ArrayIndexOutOfBoundsException e) 
+				catch (ArrayIndexOutOfBoundsException exception) 
 				{
 					showMessageError("Selecione um Serviço para remover");
 				} 
-				catch (ServiceException e) 
+				catch (ServiceException exception) 
 				{
-					showMessageError(e.getMessage());
+					showMessageError(exception.getMessage());
 				}
-				catch (SQLException e) 
+				catch (SQLException exception) 
 				{
-					showMessageError(e.getMessage());
+					showMessageError(exception.getMessage());
 				} 
-				catch (ParseException e) 
+				catch (ParseException exception) 
 				{
-					showMessageError(e.getMessage());
+					showMessageError(exception.getMessage());
 				}
 
 			}
 		});
 		btnRemove.setBounds(123, 228, 89, 23);
-		contentPane.add(btnRemove);
+		receiptPanel.add(btnRemove);
 
 		JButton btnBack = new JButton("Voltar");
 		btnBack.addMouseListener(new MouseAdapter() 
@@ -255,16 +259,16 @@ public class SearchDoneService extends JFrame
 			
 			// VIEW method that is used to return the window to Sign Service
 			@Override
-			public void mouseClicked (MouseEvent e) 
+			public void mouseClicked (MouseEvent exception) 
 			{
 				dispose();
-				RegisterDoneService frame = new RegisterDoneService();
-				frame.setVisible(true);
-				frame.setLocationRelativeTo(null);
+				RegisterDoneService apbFrame = new RegisterDoneService();
+				apbFrame.setVisible(true);
+				apbFrame.setLocationRelativeTo(null);
 			}
 		});
 		btnBack.setBounds(279, 228, 89, 23);
-		contentPane.add(btnBack);
+		receiptPanel.add(btnBack);
 
 		JButton btnSearchForDate = new JButton("Pesquisar Data");
 		btnSearchForDate.addMouseListener(new MouseAdapter() 
@@ -297,30 +301,31 @@ public class SearchDoneService extends JFrame
 						model.addRow(data);
 					}
 				}
-				catch (SQLException e) 
+				catch (SQLException exception) 
 				{
-					showMessageError(e.getMessage());
+					showMessageError(exception.getMessage());
 				} 
-				catch (ParseException e)
+				catch (ParseException exception)
 				{
-					showMessageError(e.getMessage());
+					showMessageError(exception.getMessage());
 				} 
-				catch (ServiceException e) 
+				catch (ServiceException exception) 
 				{
-					showMessageError(e.getMessage());
+					showMessageError(exception.getMessage());
 				}
 
 			}
 		});
 		btnSearchForDate.setBounds(326, 168, 148, 23);
-		contentPane.add(btnSearchForDate);
+		receiptPanel.add(btnSearchForDate);
 	}
 
 	// Method that shows an error message, used in the treatment of exceptions class
 	private void showMessageError (String informacao) 
 	{
-		JOptionPane.showMessageDialog(null, informacao, "Atenção",
-				JOptionPane.INFORMATION_MESSAGE);
+		int informationMessagePane = JOptionPane.INFORMATION_MESSAGE;
+		
+		JOptionPane.showMessageDialog(null, informacao, "Atenção", informationMessagePane);
 	}
 	
 	// Method of accessing the value of the temporary variable name

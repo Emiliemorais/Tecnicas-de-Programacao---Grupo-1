@@ -119,7 +119,9 @@ public class RegisterServiceType extends JFrame
 			{
 				try 
 				{
-					ServiceType.setTemporaryName(modelo.getValueAt(table.getSelectedRow(), 0).toString());
+					String modeloStringGetValue = modelo.getValueAt(table.getSelectedRow(), 0).toString();
+					
+					ServiceType.setTemporaryName(modeloStringGetValue);
 					ModifyServiceType frame = new ModifyServiceType();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
