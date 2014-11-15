@@ -155,7 +155,7 @@ public class NewBarber extends JFrame
 	/**
 	 * This method is used to initialize the text fields on the frame
 	 * @param phoneMaskFormatter - Receives the mask to the phone format
-	 * @param maskFormatterCPF - Receives the mask to the phone format
+	 * @param maskFormatterCPF - Receives the mask to the cpf format
 	 * @throws ParseException
 	 */
 	public void createTextFields (MaskFormatter phoneMaskFormatter, MaskFormatter maskFormatterCPF) 
@@ -191,7 +191,7 @@ public class NewBarber extends JFrame
 	// This method is used to initialize the buttons on the frame
 	public void initializeButtons ()
 	{
-		createButtonToSaveTheChanges();	
+		createButtonToSaveTheData();	
 		createButtonToClearTheFields();
 		createButtonToOpenRegisterBarberFrame();
 		
@@ -199,9 +199,10 @@ public class NewBarber extends JFrame
 
 	/*
      * This method is used to create the button and the action 
-	 * that save the changes 
+	 * that save the data 
 	 */
-	public void createButtonToSaveTheChanges() {
+	public void createButtonToSaveTheData () 
+	{
 		
 		saveButton = new JButton( "Salvar" );
 		saveButton.setBounds ( 10, 177, 125, 23 );
@@ -238,7 +239,8 @@ public class NewBarber extends JFrame
      * This method is used to create the button and the action 
 	 * that clear the fields
 	 */
-	public void createButtonToClearTheFields() {
+	public void createButtonToClearTheFields () 
+	{
 		clearFieldsButton = new JButton( "Limpar Campos" );
 		clearFieldsButton.addMouseListener( new MouseAdapter()
 		{
@@ -273,6 +275,11 @@ public class NewBarber extends JFrame
 		contentPane.add( returnButton );
 	}
 	
+	/**
+	 * This method get the data from user, about the new barber
+	 * @throws BarberException
+	 * @throws SQLException
+	 */
 	public void getDataFromUser () throws BarberException, SQLException
 	{
 			// barber - Receives name, CPF, RG, phone and chair of the barber
@@ -286,6 +293,11 @@ public class NewBarber extends JFrame
 			includeBarberInTheDatabase(barber);
 	}
 	
+	/**
+	 * This method include the data about the new barber
+	 * in the database
+	 * @throws SQLException
+	 */
 	public void includeBarberInTheDatabase (Barber barber) throws SQLException
 	{
 	
@@ -298,6 +310,7 @@ public class NewBarber extends JFrame
 								  + " foi cadastrado com sucesso" );
 	}
 
+	// This method is used to clear the fields in the frame
 	public void clearFields () 
 	{
 		nameTextField.setText( "" );
@@ -308,7 +321,9 @@ public class NewBarber extends JFrame
 		
 	}
 	
-	public void returnToRegisterBarberFrame (){
+	// This method calls the register barber frame
+	public void returnToRegisterBarberFrame ()
+	{
 		RegisterBarber frame = new RegisterBarber();
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);

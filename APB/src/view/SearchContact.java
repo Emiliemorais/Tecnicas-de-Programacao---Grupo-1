@@ -10,6 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.MaskFormatter;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
@@ -55,23 +56,34 @@ public class SearchContact extends JFrame
 	// Class constructor
 	public SearchContact() 
 	{
-		initializeComponents();
+		initializeFrame();
+		initializePanel();
+		createTextFields();
+		createLabels();
+		createTable();
 	}
 	
-	// Method that sets initial values to the screen components
-	public void initializeComponents()
-	{
-		
+	// Method that initializes the frame
+	public void initializeFrame ()
+	{	
 		setTitle( "Pesquisar Contato" );
 		setDefaultCloseOperation ( JFrame.EXIT_ON_CLOSE );
 		setBounds ( 100, 100, 450, 300 );
-		
+	}
+	
+	// This method is used to initialize the panel on the frame
+	public void initializePanel ()
+	{
 		// contentPane - Instance of Jpanel
 		contentPane = new JPanel (); 
 		contentPane.setBorder(new EmptyBorder ( 5, 5, 5, 5) );
 		setContentPane ( contentPane );
 		contentPane.setLayout ( null );
-
+	}
+	
+	// This method is used to create a table that contains the contacts
+	public void createTable ()
+	{
 		// scrollPane - Creates the scrollbars
 		JScrollPane scrollPane = new JScrollPane (); 
 		scrollPane.setBounds ( 10, 11, 414, 115);
@@ -87,19 +99,51 @@ public class SearchContact extends JFrame
 		table.getColumnModel().getColumn(1).setResizable ( false );
 		table.getColumnModel().getColumn(2).setResizable ( false );
 		scrollPane.setViewportView ( table );
-
+		
+		initializeButtons(table, defaultTableModel);
+	}
+	
+	// This method is used to create the textFields on the frame
+	public void createTextFields ()
+	{
 		// textField - Instance of JTextField 
 		textField = new JTextField (); 
 		textField.setBounds ( 82, 137, 342, 20);
 		contentPane.add ( textField );
 		textField.setColumns ( 10 );
-
-		
+	}
+	
+	// This method is used to create the labels on the frame
+	public void createLabels()
+	{
 		// searchLabel - Label that says "Search"
 		JLabel searchLabel = new JLabel ( "Pesquisar:" ); 
 		searchLabel.setBounds ( 20, 137, 66, 14);
 		contentPane.add ( searchLabel);
-
+	}
+	
+	/**
+	 *  This method is used to initialize the buttons on the frame
+	 * @param table - Receives the table that show the contacts
+	 * @param defaultTableModel - Receives the header of the table
+	 */
+	public void initializeButtons (final JTable table, final  DefaultTableModel defaultTableModel)
+	{
+		createButtonToSearchByName(table,defaultTableModel);	
+		createButtonToSearchByPhone(table, defaultTableModel);
+		createButtonToModifyContact(table, defaultTableModel);
+		createButtonToRemoveContact(table);
+		createButtonToOpenRegisterPhonebookFrame();
+	}
+	
+	/**
+	 *  This method is used to create the button and the
+	 *  action to search a contact by name
+	 *  @param table - Receives the table that show the contacts
+	 *  @param defaultTableModel - Receives the header of the table
+	 */
+	public void createButtonToSearchByName (final JTable table, final  DefaultTableModel defaultTableModel)
+	{
 		
 		// nameSearchButton - Button that offers the "Search name" option
 		JButton nameSearchButton = new JButton ( "Pesquisar Nome");
@@ -111,29 +155,8 @@ public class SearchContact extends JFrame
 			{
 				try 
 				{
-					for (int i = 0; i < defaultTableModel.getRowCount (); i++) 
-					{
-						defaultTableModel.removeRow ( i );
-					}
-
-					// contact - Instance of "Agenda"
-					Phonebook contact = new Phonebook (); 
-					PhonebookController agendaController = PhonebookController
-							.getInstance();
-					contact.setPhonebookName ( textField.getText () );
-
-					// resultInstance - ResultSetInstance
-					ResultSet resultInstance = agendaController.searchContactForName ( contact );
-
-					while ( resultInstance.next ( ) ) 
-					{
-						// resultSetData - Receives the name, phone and description
-						String[] resultSetData = new String[3];
-						resultSetData[0] = resultInstance.getString ( "nome" );
-						resultSetData[1] = resultInstance.getString ( "telefone" );
-						resultSetData[2] = resultInstance.getString ( "descricao" );
-						defaultTableModel.addRow(resultSetData);
-					}
+					getSearchFromUser(table,defaultTableModel, "Search By Name");
+					
 				} 
 				catch ( SQLException e ) 
 				{
@@ -148,7 +171,16 @@ public class SearchContact extends JFrame
 		});
 		nameSearchButton.setBounds( 82, 168, 160, 23 );
 		contentPane.add ( nameSearchButton );
-
+	}
+	
+	/**
+	 *  This method is used to create the button and the
+	 *  action to search a contact by phone
+	 * @param table - Receives the table that show the contacts
+	 * @param defaultTableModel - Receives the header of the table
+	 */
+	public void createButtonToSearchByPhone (final JTable table,final  DefaultTableModel defaultTableModel)
+	{
 		// phoneSearchButton - Button that says "Phone Search"
 		JButton phoneSearchButton = new JButton ( "Pesquisar Telefone" );
 		phoneSearchButton.addMouseListener ( new MouseAdapter () 
@@ -160,33 +192,7 @@ public class SearchContact extends JFrame
 
 				try 
 				{
-					for ( int i = 0 ; i < defaultTableModel.getRowCount() ; i++)
-					{
-						defaultTableModel.removeRow ( i );
-					}
-
-					// contact - Instance of "AgendaController"
-					Phonebook contact = new Phonebook (); 
-					PhonebookController agendaController = PhonebookController
-							.getInstance();
-					contact.setPhonebook ( textField.getText () );
-					
-					// resultInstance - ResultSetInstance
-					ResultSet resultInstance = agendaController
-							.searchForPhone ( contact );
-
-					while ( resultInstance.next() ) 
-					{
-						// resultSetDate - Receives the name, phone and description
-						String[] resultSetData = new String[3];
-						resultSetData[0] = resultInstance.getString ( "nome" );
-						resultSetData[1] = resultInstance.getString ( "telefone" );
-						resultSetData[2] = resultInstance.getString ( "descricao" );
-
-						defaultTableModel.addRow(resultSetData);
-
-						table.updateUI ();
-					}
+					getSearchFromUser(table,defaultTableModel, "Search By Phone");
 				} 
 				catch ( SQLException e ) 
 				{
@@ -201,7 +207,16 @@ public class SearchContact extends JFrame
 		});
 		phoneSearchButton.setBounds ( 264, 168, 160, 23);
 		contentPane.add ( phoneSearchButton );
-
+	}
+	
+	/**
+	 *  This method is used to create the button and the
+	 *  action to modify a contact
+	 * @param table - Receives the table that show the contacts
+	 * @param defaultTableModel - Receives the header of the table
+	 */
+	public void createButtonToModifyContact(final JTable table,final  DefaultTableModel defaultTableModel)
+	{
 		// editButton - Button that says "Edit"
 		JButton editButton = new JButton ( "Alterar" ); 
 		editButton.addMouseListener ( new MouseAdapter () 
@@ -230,7 +245,15 @@ public class SearchContact extends JFrame
 		});
 		editButton.setBounds ( 98, 228, 89, 23 );
 		contentPane.add ( editButton );
-
+	}
+	
+	/**
+	 *  This method is used to create the button and the
+	 *  action to remove a contact
+	 * @param table - Receives the table that show the contacts
+	 */
+	public void createButtonToRemoveContact (final JTable table)
+	{
 		// removeButton - Button that says "Remove"
 		JButton removeButton = new JButton ( "Remover" ); 
 		removeButton.addMouseListener ( new MouseAdapter ()
@@ -241,36 +264,8 @@ public class SearchContact extends JFrame
 
 				try 
 				{
-					// contactName - Variable that receives the name
-					String contactName = ( String ) table.getValueAt (
-							table.getSelectedRow (), 0 );
-					
-					// contactPhone - Variable that receives the phone
-					String contactPhone = ( String ) table.getValueAt (
-							table.getSelectedRow( ), 1);
-					
-					// phonebook - Instance of Agenda class
-					Phonebook phonebook = new Phonebook ();
-					
-					phonebook.setPhonebookName ( contactName );
-					phonebook.setPhonebook ( contactPhone );
+					getTheSelectedContact(table);
 
-					// confirmation - Shows the confirmation dialog
-					int confirmation = JOptionPane.showConfirmDialog (null,
-							"Remover " + contactName + " da lista?");
-
-					if ( confirmation == JOptionPane.YES_OPTION ) 
-					{
-						// phonebookController - Instance of "AgendaController"
-						PhonebookController phonebookController = PhonebookController
-								.getInstance ();
-						phonebookController.removeContact ( phonebook );
-
-						dispose ();
-						SearchContact frame = new SearchContact ();
-						frame.setVisible ( true );
-						frame.setLocationRelativeTo ( null );
-					}
 				} 
 				
 				catch ( ArrayIndexOutOfBoundsException e1 ) 
@@ -286,11 +281,19 @@ public class SearchContact extends JFrame
 					showErrorMessage ( e1.getMessage () );
 				}
 			}
+
 			
 		});
 		removeButton.setBounds ( 216, 228, 89, 23);
 		contentPane.add ( removeButton );
+	}
 
+	/*
+	 *  This method is used to create the button and the
+	 *  action to open the register phonebook frame
+	 */
+	public void createButtonToOpenRegisterPhonebookFrame()
+	{
 		// returnButton - Button that says "Return"
 		JButton returnButton = new JButton ( "Voltar" );
 		returnButton.addMouseListener ( new MouseAdapter ()
@@ -310,9 +313,119 @@ public class SearchContact extends JFrame
 		contentPane.add ( returnButton );
 	}
 
+	 /**
+	  * This method get the data researched by user
+	  * @param table - Receives the table that shows the contacts
+	  * @param defaultTableModel - Receives the header of the table
+	  * @param searchType - Receives the description of the search type
+	  * @throws BarberException
+	  * @throws SQLException
+	  */
+	public void getSearchFromUser (final JTable table ,final DefaultTableModel defaultTableModel, 
+								   String searchType) throws BarberException, SQLException
+	{
+		for (int i = 0; i < defaultTableModel.getRowCount (); i++) 
+		{
+			defaultTableModel.removeRow ( i );
+		}
+
+		// contact - Instance of "Agenda"
+		Phonebook contact = new Phonebook (); 
+		PhonebookController agendaController = PhonebookController.getInstance();
+			
+		if( searchType.equals("Search By Name") )
+		{
+			contact.setPhonebookName ( textField.getText () );
+
+			// resultInstance - ResultSetInstance
+			ResultSet resultInstance = agendaController.searchContactForName ( contact);
+			while ( resultInstance.next ( ) ) 
+			{
+				// resultSetData - Receives the name, phone and description
+				String[] resultSetData = new String[3];
+				resultSetData[0] = resultInstance.getString ( "nome" );
+				resultSetData[1] = resultInstance.getString ( "telefone" );
+				resultSetData[2] = resultInstance.getString ( "descricao" );
+				defaultTableModel.addRow(resultSetData);
+			}
+		}
+		
+		else
+		{
+			contact.setPhonebook ( textField.getText () );
+			
+			// resultInstance - ResultSetInstance
+			ResultSet resultInstance = agendaController.searchForPhone ( contact );
+			while ( resultInstance.next ( ) ) 
+			{
+				// resultSetData - Receives the name, phone and description
+				String[] resultSetData = new String[3];
+				resultSetData[0] = resultInstance.getString ( "nome" );
+				resultSetData[1] = resultInstance.getString ( "telefone" );
+				resultSetData[2] = resultInstance.getString ( "descricao" );
+				defaultTableModel.addRow(resultSetData);
+			}
+			table.updateUI ();
+		}
+
+	}
+	
 	/**
-	 * Method that shows a error message
-	 * @param errorInformation - Shows a error message to the user
+	 * This method is used to get the data in the rows selected
+	 * @param table
+	 * @throws BarberException
+	 * @throws SQLException
+	 */
+	public void getTheSelectedContact (final JTable table) throws BarberException, SQLException
+	{
+		// contactName - Variable that receives the name
+		String contactName = ( String ) table.getValueAt (
+				table.getSelectedRow (), 0 );
+		
+		// contactPhone - Variable that receives the phone
+		String contactPhone = ( String ) table.getValueAt (
+				table.getSelectedRow( ), 1);
+		
+		deleteTheContact(contactName, contactPhone);
+		
+	}
+	
+	/**
+	 *  This method is used to delete a contact
+	 * @param contactName - Receives the name of the contact to delete
+	 * @param contactPhone - Receives the phone of the contact to delete
+	 * @throws BarberException
+	 * @throws SQLException
+	 */
+	public void deleteTheContact (String contactName, String contactPhone) throws BarberException, SQLException
+	{	
+		// phonebook - Instance of Agenda class
+		Phonebook phonebook = new Phonebook ();
+		
+		phonebook.setPhonebookName ( contactName );
+		phonebook.setPhonebook ( contactPhone );
+
+		// confirmation - Shows the confirmation dialog
+		int confirmation = JOptionPane.showConfirmDialog (null,
+				"Remover " + contactName + " da lista?");
+
+		if ( confirmation == JOptionPane.YES_OPTION ) 
+		{
+			// phonebookController - Instance of "AgendaController"
+			PhonebookController phonebookController = PhonebookController
+					.getInstance ();
+			phonebookController.removeContact ( phonebook );
+
+			dispose ();
+			SearchContact frame = new SearchContact ();
+			frame.setVisible ( true );
+			frame.setLocationRelativeTo ( null );
+		}
+	}
+
+	/**
+	 * Method that shows an error message
+	 * @param errorInformation - Shows an error message to the user
 	 */
 	private void showErrorMessage( String errorInformation ) 
 	{

@@ -12,8 +12,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
+import control.BarberController;
 import control.PhonebookController;
 import exception.BarberException;
+import model.Barber;
 import model.Phonebook;
 
 import java.awt.event.MouseEvent;
@@ -58,23 +60,59 @@ public class NewContact extends JFrame
 	// Class constructor
 	public NewContact() throws ParseException 
 	{
-		initializeComponents();
+		initializeFrame();
+		initializePanel();
+		createMasks();
+		initializeButtons();
+		createLabels();
 	}
 	
-	// Method that sets initial values to the screen components
-	public void initializeComponents () throws ParseException 
+	/**
+	 *  Method that initialize the frame
+	 * @throws ParseException
+	 */
+	public void initializeFrame () throws ParseException 
 	{
 		setTitle( "Novo Contato" );
 		setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 		setBounds( 100, 100, 450, 300 );
+	}
+	
+	// This method is used to initialize the buttons on the frame
+	public void initializePanel () 
+	{
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder ( 5, 5, 5, 5 ) );
 		setContentPane( contentPane );
 		contentPane.setLayout(null);
-		
+	}
+	
+	/**
+	 * This method is used to create the masks format to phone
+	 * @throws ParseException
+	 */
+	public void createMasks () throws ParseException 
+	{
 		// maskFormatterPhone - Receives and formats the phone number
 		MaskFormatter maskFormatterPhone = new MaskFormatter("(##)####-####");
-				
+		
+		createTextFields(maskFormatterPhone);
+	}
+		
+	// This method is used to initialize the buttons on the frame
+	public void initializeButtons () 
+	{
+		createButtonToSaveTheData();	
+		createButtonToClearTheFields();
+		createButtonToOpenRegisterPhonebookFrame();
+	}
+	
+	/*
+     * This method is used to create the button and the action 
+	 * that save the data 
+	 */
+	public void createButtonToSaveTheData ()
+	{
 		// saveButton - Button that gives the saving option to the user
 		JButton saveButton = new JButton( "Salvar" ); 
 		saveButton.addMouseListener(new MouseAdapter() 
@@ -85,29 +123,9 @@ public class NewContact extends JFrame
 			{
 				try 
 				{
-					// phonebookData - Gets the name, phone and description
-					Phonebook phonebookData = new Phonebook();
-					phonebookData.setPhonebookName ( nameTextField.getText() );
-					phonebookData.setPhonebook ( phoneTextField.getText() );
-					phonebookData.setPhonebookDs ( descriptionTextField.getText() );
-					
-					// phonebookController - Instance of "PhonebookController" class
-					PhonebookController phonebookController = PhonebookController.getInstance();
-					phonebookController.includeNewObject ( phonebookData );
-
-					JOptionPane.showMessageDialog(null, "Contato "
-												  + nameTextField.getText ()
-												  + " foi adicionado com sucesso" );
-					
-					nameTextField.setText( "" );
-					phoneTextField.setText( "" );
-					descriptionTextField.setText( "" );
-					
+					getDataFromUser();
 					dispose();
-					RegisterPhonebook frame =  new RegisterPhonebook() ;
-					frame.setVisible(true);
-					frame.setLocationRelativeTo(null);
-					
+					returnToRegisterBarberFrame();
 				} 
 				catch (SQLException e1) 
 				{
@@ -120,11 +138,39 @@ public class NewContact extends JFrame
 			}
 			
 		});
-
+	
 		saveButton.setBounds( 26, 218, 109, 33 );
 		contentPane.add(saveButton);
 
+	}
+	
+	/*
+     * This method is used to create the button and the action 
+	 * that clear the fields
+	 */
+	public void createButtonToClearTheFields () 
+	{
+		// clearFieldsButton - Button that offers the option to clear the fields to the user
+		JButton clearFieldsButton = new JButton( "Limpar Campos" ); 
+		clearFieldsButton.addMouseListener( new MouseAdapter() 
+		{
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				clearFields();
+			}
+		});
 		
+		clearFieldsButton.setBounds( 287, 218, 125, 33 );
+		contentPane.add( clearFieldsButton );
+
+	}
+	
+	/*
+	 * This method is used to create the button and the action 
+	 * that open the register barber frame
+	 */
+	public void createButtonToOpenRegisterPhonebookFrame () {
 		// returnButton - Button that offers the return option to the user
 		JButton returnButton = new JButton( "Voltar" ); 
 		returnButton.addMouseListener( new MouseAdapter() 
@@ -133,31 +179,21 @@ public class NewContact extends JFrame
 			public void mouseClicked(MouseEvent e) 
 			{
 				dispose();
-				RegisterPhonebook frame = new RegisterPhonebook ();
-				frame.setVisible(true);
-				frame.setLocationRelativeTo(null);
+				returnToRegisterBarberFrame();
 			}
 		});
 
 		returnButton.setBounds(166, 218, 100, 33);
 		contentPane.add(returnButton);
-
-		// clearFieldsButton - Button that offers the option to clear the fields to the user
-		JButton clearFieldsButton = new JButton( "Limpar Campos" ); 
-		clearFieldsButton.addMouseListener( new MouseAdapter() 
-		{
-			@Override
-			public void mouseClicked(MouseEvent e) 
-			{
-				nameTextField.setText( "" );
-				phoneTextField.setText( "" );
-				descriptionTextField.setText( "" );
-			}
-		});
+	}
+	
+	/**
+	 * This method is used to initialize the text fields on the frame
+	 * @param maskFormatterPhone - Receives the mask to the phone format
+	 */
+	public void createTextFields (MaskFormatter maskFormatterPhone)
+	{
 		
-		clearFieldsButton.setBounds( 287, 218, 125, 33 );
-		contentPane.add( clearFieldsButton );
-
 		nameTextField = new JTextField();
 		nameTextField.setBounds(85, 23, 327, 20);
 		contentPane.add(nameTextField);
@@ -172,7 +208,10 @@ public class NewContact extends JFrame
 		descriptionTextField.setBounds(85, 117, 327, 44);
 		contentPane.add( descriptionTextField );
 		descriptionTextField.setColumns(10);
-
+	}
+	
+	public void createLabels ()
+	{
 		// Label that says "Name"
 		JLabel nameLabel = new JLabel( "Nome:" ); 
 		nameLabel.setBounds( 22, 26, 46, 14 );
@@ -189,14 +228,63 @@ public class NewContact extends JFrame
 		contentPane.add( descriptionLabel );
 		
 	}
+	/**
+	 * This method get the data from user, about the new contact
+	 * @throws BarberException
+	 * @throws SQLException
+	 */
+	public void getDataFromUser () throws BarberException, SQLException
+	{
+		// phonebookData - Gets the name, phone and description
+		Phonebook phonebookData = new Phonebook();
+		phonebookData.setPhonebookName ( nameTextField.getText() );
+		phonebookData.setPhonebook ( phoneTextField.getText() );
+		phonebookData.setPhonebookDs ( descriptionTextField.getText() );
+		
+		includeBarberInTheDatabase(phonebookData);
+	}
+	
+	/**
+	 * This method include the data about the new contact
+	 * in the database
+	 * @throws SQLException
+	 */
+	public void includeBarberInTheDatabase (Phonebook phonebookData) throws SQLException
+	{
+		// phonebookController - Instance of "PhonebookController" class
+		PhonebookController phonebookController = PhonebookController.getInstance();
+		phonebookController.includeNewObject ( phonebookData );
 
+		JOptionPane.showMessageDialog(null, "Contato "
+									  + nameTextField.getText ()
+									  + " foi adicionado com sucesso" );
+		
+		clearFields();
+
+	}
+
+	// This method is used to clear the fields in the frame
+	public void clearFields () 
+	{
+		nameTextField.setText( "" );
+		phoneTextField.setText( "" );
+		descriptionTextField.setText( "" );
+	}
+	
+	// This method calls the register barber frame
+	public void returnToRegisterBarberFrame ()
+	{
+		RegisterPhonebook frame =  new RegisterPhonebook() ;
+		frame.setVisible(true);
+		frame.setLocationRelativeTo(null);
+	}
 	/**
 	 * Method that shows a error message
 	 * @param errorInformation - Shows a error message to the user
 	 */
 	private void showErrorMessage( String errorInformation ) 
 	{
-		JOptionPane.showMessageDialog( null, errorInformation, "Atenção",
+		JOptionPane.showMessageDialog( null, errorInformation, "Atenï¿½ï¿½o",
 									  JOptionPane.INFORMATION_MESSAGE );
 	}
 
