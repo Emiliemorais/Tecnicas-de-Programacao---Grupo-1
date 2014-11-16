@@ -15,9 +15,9 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
-import control.PhonebookController;
+import control.ContactController;
 import exception.BarberException;
-import model.Phonebook;
+import model.Contact;
 
 @SuppressWarnings("serial")
 
@@ -147,12 +147,12 @@ public class ModifyContact extends JFrame
 		try
 		{
 			// Used to receive the contact name that will be modified, and then search on DB for it
-			Phonebook contactToBeChanged = new Phonebook();
+			Contact contactToBeChanged = new Contact();
 			
 			// Instantiated to get access to the method 'searchByName()'
-			PhonebookController phonebookController = PhonebookController.getInstance();
+			ContactController phonebookController = ContactController.getInstance();
 			
-			contactToBeChanged.setPhonebookName(Phonebook.getNameTemporary() );
+			contactToBeChanged.setContactName(Contact.getNameTemporary() );
 			
 			// Used to receive the result from a search by 'contactToBeChanged.name' on DB
 			ResultSet queryForNameResult = phonebookController.searchContactForName(contactToBeChanged);
@@ -237,14 +237,14 @@ public class ModifyContact extends JFrame
 				try
 				{
 					// Used to store data from the modified contact (new contact)
-					Phonebook modifiedContact = new Phonebook();
+					Contact modifiedContact = new Contact();
 					
-					modifiedContact.setPhonebookName( newContactNameTextField.getText() );
-					modifiedContact.setPhonebook( newContactPhoneTextField.getText() );
-					modifiedContact.setPhonebookDs( newContactDescriptionTextField.getText() );
+					modifiedContact.setContactName( newContactNameTextField.getText() );
+					modifiedContact.setContactPhoneNumber( newContactPhoneTextField.getText() );
+					modifiedContact.setContactDescription( newContactDescriptionTextField.getText() );
 		
 					// Instantiated to get access to the method 'alterar' 
-					PhonebookController phonebookController = PhonebookController.getInstance();
+					ContactController phonebookController = ContactController.getInstance();
 					
 					phonebookController.changeContact(contactNameToChange, modifiedContact);
 		

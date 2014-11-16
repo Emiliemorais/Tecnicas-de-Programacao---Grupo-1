@@ -13,10 +13,10 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 
 import control.BarberController;
-import control.PhonebookController;
+import control.ContactController;
 import exception.BarberException;
 import model.Barber;
-import model.Phonebook;
+import model.Contact;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
@@ -236,10 +236,10 @@ public class NewContact extends JFrame
 	public void getDataFromUser () throws BarberException, SQLException
 	{
 		// phonebookData - Gets the name, phone and description
-		Phonebook phonebookData = new Phonebook();
-		phonebookData.setPhonebookName ( nameTextField.getText() );
-		phonebookData.setPhonebook ( phoneTextField.getText() );
-		phonebookData.setPhonebookDs ( descriptionTextField.getText() );
+		Contact phonebookData = new Contact();
+		phonebookData.setContactName ( nameTextField.getText() );
+		phonebookData.setContactPhoneNumber ( phoneTextField.getText() );
+		phonebookData.setContactDescription ( descriptionTextField.getText() );
 		
 		includeBarberInTheDatabase(phonebookData);
 	}
@@ -249,11 +249,11 @@ public class NewContact extends JFrame
 	 * in the database
 	 * @throws SQLException
 	 */
-	public void includeBarberInTheDatabase (Phonebook phonebookData) throws SQLException
+	public void includeBarberInTheDatabase (Contact phonebookData) throws SQLException
 	{
 		// phonebookController - Instance of "PhonebookController" class
-		PhonebookController phonebookController = PhonebookController.getInstance();
-		phonebookController.includeNewObject ( phonebookData );
+		ContactController phonebookController = ContactController.getInstance();
+		phonebookController.includeContact ( phonebookData );
 
 		JOptionPane.showMessageDialog(null, "Contato "
 									  + nameTextField.getText ()

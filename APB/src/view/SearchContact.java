@@ -14,9 +14,9 @@ import javax.swing.text.MaskFormatter;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-import control.PhonebookController;
+import control.ContactController;
 import exception.BarberException;
-import model.Phonebook;
+import model.Contact;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -228,7 +228,7 @@ public class SearchContact extends JFrame
 				try 
 				{
 					
-					Phonebook.setNameTemporary ( defaultTableModel.getValueAt (
+					Contact.setNameTemporary ( defaultTableModel.getValueAt (
 							table.getSelectedRow (), 0).toString () );
 					dispose ();
 					ModifyContact frame = new ModifyContact();
@@ -330,12 +330,12 @@ public class SearchContact extends JFrame
 		}
 
 		// contact - Instance of "Agenda"
-		Phonebook contact = new Phonebook (); 
-		PhonebookController agendaController = PhonebookController.getInstance();
+		Contact contact = new Contact (); 
+		ContactController agendaController = ContactController.getInstance();
 			
 		if( searchType.equals("Search By Name") )
 		{
-			contact.setPhonebookName ( textField.getText () );
+			contact.setContactName ( textField.getText () );
 
 			// resultInstance - ResultSetInstance
 			ResultSet resultInstance = agendaController.searchContactForName ( contact);
@@ -352,7 +352,7 @@ public class SearchContact extends JFrame
 		
 		else
 		{
-			contact.setPhonebook ( textField.getText () );
+			contact.setContactPhoneNumber ( textField.getText () );
 			
 			// resultInstance - ResultSetInstance
 			ResultSet resultInstance = agendaController.searchForPhone ( contact );
@@ -400,10 +400,10 @@ public class SearchContact extends JFrame
 	public void deleteTheContact (String contactName, String contactPhone) throws BarberException, SQLException
 	{	
 		// phonebook - Instance of Agenda class
-		Phonebook phonebook = new Phonebook ();
+		Contact phonebook = new Contact ();
 		
-		phonebook.setPhonebookName ( contactName );
-		phonebook.setPhonebook ( contactPhone );
+		phonebook.setContactName ( contactName );
+		phonebook.setContactPhoneNumber ( contactPhone );
 
 		// confirmation - Shows the confirmation dialog
 		int confirmation = JOptionPane.showConfirmDialog (null,
@@ -412,7 +412,7 @@ public class SearchContact extends JFrame
 		if ( confirmation == JOptionPane.YES_OPTION ) 
 		{
 			// phonebookController - Instance of "AgendaController"
-			PhonebookController phonebookController = PhonebookController
+			ContactController phonebookController = ContactController
 					.getInstance ();
 			phonebookController.removeContact ( phonebook );
 

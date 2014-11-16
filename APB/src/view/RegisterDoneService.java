@@ -21,9 +21,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
 import control.DoneServiceController;
-import control.PhonebookController;
+import control.ContactController;
 import model.DoneService;
-import model.Phonebook;
+import model.Contact;
 import exception.ServiceException;
 
 @SuppressWarnings("serial")

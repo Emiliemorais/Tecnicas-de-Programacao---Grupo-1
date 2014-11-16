@@ -17,11 +17,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-import control.PhonebookController;
+import control.ContactController;
 import control.ServiceTypeController;
 import exception.BarberException;
 import exception.ServiceException;
-import model.Phonebook;
+import model.Contact;
 import model.ServiceType;
 
 @SuppressWarnings("serial")
