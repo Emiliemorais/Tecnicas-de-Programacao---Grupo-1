@@ -16,7 +16,6 @@ public class Contact
 	private String contactDescription;
 	private static String temporaryName;
 
-	
 	private final String invalidName = "Nome Inv�lido";
 	private final String nullName = "Nome em Branco";
 	private final String invalidPhone = "Telefone Inv�lido";
@@ -35,35 +34,47 @@ public class Contact
 		this.contactPhoneNumber = contactPhoneNumber;
 		this.contactDescription = contactDescription;
 	}
-     
-	public String getContactName () 
+    
+	// contactName getter
+	public String getContactName() 
 	{
 		return contactName;
 	}
-
-	public String getContactPhoneNumber () 
+	
+	// contactPhoneNumber getter
+	public String getContactPhoneNumber() 
 	{
 		return contactPhoneNumber;
 	}
-
-	public String getContactDescription () 
+	
+	// contactDescription getter
+	public String getContactDescription() 
 	{
 		return contactDescription;
 	}
-
-	/*
-	 *  Method of accessing the name, which throws an exception access 
-	 *  if the name is not in the required format
-	 */	
-	public void setContactName (String nome) throws BarberException 
+	
+	// temporaryName getter
+	public static String getNameTemporary () 
 	{
-		if ("".equals(nome))
+		return temporaryName;
+	}
+
+	/**
+	 * contactName setter. Check if the name matches a format
+	 * @param name - Name to set
+	 * @throws BarberException
+	 */
+	public void setContactName (String name) throws BarberException 
+	{
+		String nameFormat = "^[[ ]|\\p{L}*]+$"; 
+		
+		if ("".equals(name))
 		{
 			throw new BarberException(nullName);
 		}
-		else if (nome.matches("^[[ ]|\\p{L}*]+$"))
+		else if (name.matches(nameFormat))
 		{
-			this.contactName = nome;
+			this.contactName = name;
 		}
 		else
 		{
@@ -71,46 +82,46 @@ public class Contact
 		}
 	}
 
-	/*
-	 *  Method of accessing the phone, which throws an exception access 
-	 *  if the phone is not in the required format
+	/**
+	 * phoneNumber setter. Check if it matches a format
+	 * @param phoneNumber - phoneNumber to set
+	 * @throws BarberException
 	 */
-	public void setContactPhoneNumber (String telefone) throws BarberException 
+	public void setContactPhoneNumber (String phoneNumber) throws BarberException 
 	{
-		String phoneMatchesParamMethod = ("(\\([\\d]{2,3}\\))?[ ]*[\\d]{4,4}[ ]*-[ ]*[\\d]{4,4}[ ]*$");
+		String phoneNumberFormat = ("(\\([\\d]{2,3}\\))?[ ]*[\\d]{4,4}[ ]*-[ ]*[\\d]{4,4}[ ]*$");
 		
-		if ("".equals(telefone))
+		if ("".equals(phoneNumber))
 		{
 			throw new BarberException(nullPhone);
 		}
-		else if (telefone.matches(phoneMatchesParamMethod))
+		else if (phoneNumber.matches(phoneNumberFormat))
 		{
-			this.contactPhoneNumber = telefone;
+			this.contactPhoneNumber = phoneNumber;
 		}
 		else
 		{
-			// Throws an exception of class Barber as invalid telephone (except null phone)
 			throw new BarberException(invalidPhone);
 		}
 	}
 
-	// Access method for changing the description
-	public void setContactDescription (String descricao)
+	/**
+	 * contactDescription setter
+	 * @param description - Description do set
+	 */
+	public void setContactDescription (String description)
 	{
-		this.contactDescription = descricao;
+		this.contactDescription = description;
 	}
 
-	// Method of temporary access name for verification
-	public static String getNameTemporary () 
-	{
-		
-		return temporaryName;
-	}
 
-	// Method of temporary access name for verification
-	public static void setNameTemporary(String tempNome)
+	/**
+	 * temporaryName setter
+	 * @param temporaryNome - temporaryName to set
+	 */
+	public static void setNameTemporary(String temporaryNome)
 	{
-		Contact.temporaryName = tempNome;
+		Contact.temporaryName = temporaryNome;
 	}
 
 }

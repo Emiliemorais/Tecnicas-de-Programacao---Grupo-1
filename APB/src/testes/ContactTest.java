@@ -16,7 +16,7 @@ public class ContactTest
 	
 	Contact contactOfPhonebook = new Contact();
 	
-	// Method used to get the attributes correctly, an Agenda for the test
+	// Initialize contactOfPhonebook object with arbitrary data to use on tests
 	@Before
 	public void setUp()
 	{
@@ -32,9 +32,9 @@ public class ContactTest
 		contactOfPhonebook.setContactDescription("ASDAS");
 	}
 		 
-	// Method used to test the operation of the builder of an Agenda
+	// Test the class constructor 
 	@Test
-	public void testeBuilderFunction() 
+	public void classConstructorTest() 
 	{
 		Contact contato = new Contact("Alessandro", "6589-5689", "aaaa");
 		assertEquals("Alessandro", contato.getContactName());
@@ -42,28 +42,28 @@ public class ContactTest
 		assertEquals("aaaa", contato.getContactDescription());
 	}
 	
-	// Method that tests the receipt of a name of a contact by the access method get
+	// Test contactName getter
 	@Test
 	public void getterNameFunction()
 	{
 		assertEquals("Alessandro", contactOfPhonebook.getContactName());
 	}
 	
-	// Method that tests an incoming phone a contact by the access method get
+	// Test contactPhoneNumber getter
 	@Test
 	public void getterPhoneFunction()
 	{
 		assertEquals("4568-9856", contactOfPhonebook.getContactPhoneNumber());
 	}
 	
-	// Method that tests receiving a description of a contact by the access method get
+	// Test contactDescription getter
 	@Test
 	public void getterDescriptionFunction()
 	{
 		assertEquals("ASDAS", contactOfPhonebook.getContactDescription());
 	}
 	
-	// Method used to receive a blank name for the test launch of the exception 
+	// Test if the contactName setter does not accept an empty argument
 	@Test(expected = BarberException.class)
 	public void nameBarberNotBlank () throws BarberException
 	{
@@ -71,7 +71,7 @@ public class ContactTest
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
-	// Method used to receive a phone blank for the test launch of the exception 
+	// Test if the contactPhoneNumber does not accept an empty argument 
 	@Test(expected = BarberException.class)
 	public void phoneOfBarberNotNull() throws BarberException
 	{
@@ -79,7 +79,7 @@ public class ContactTest
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
-	// Method used to get a name out of the established format (special characters) for the test launch of the exception 
+	// Test if the contactName setter does not accept a name out of format
 	@Test(expected = BarberException.class)
 	public void nameOfBarberNotPassOutFormat() throws BarberException
 	{
@@ -87,40 +87,40 @@ public class ContactTest
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
-	// Method used to receive a telephone outside the established format (special characters, letters) for the test launch of the exception
+	// Test if the contactPhoneNumber setter does not accept a number out of format
 	@Test(expected = BarberException.class)
-	public void phoneOfBarberNotPassOutFormat () throws BarberException
+	public void phoneOfBarberNotPassOutFormat() throws BarberException
 	{
 		contactOfPhonebook.setContactPhoneNumber("45645aa-a54654");
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
-	// Method that tests receiving the temporary name through the set access method
+	// Test the temporaryName getter
 	@Test (expected = AssertionError.class)
 	public void getterReturnValueForNameTemporary() throws ServiceException 
 	{
 		assertEquals("Barba", Contact.getNameTemporary());
 	}
 		
-	// Method that tests passing a null temporary name through the set access method
+	// Test if the temporaryName setter does not accept a null argument
 	@Test (expected = AssertionFailedError.class)
-	public void setterTemporatyNameNotNull () throws ServiceException 
+	public void setterTemporaryNameNotNull() throws ServiceException 
 	{
 		Contact.setNameTemporary(null);
 		Assert.fail("Deve lançar exceção");
 	}
 	
-	// Method that tests the passage of a temporary blank name through the set access method
+	// Test if the temporaryName setter does not accept an empty argument
 	@Test (expected = AssertionFailedError.class)
-	public void setterTemporaryNameNotNull () 
+	public void setterTemporaryNameNotBlank() 
 	{
 		Contact.setNameTemporary("");
 		Assert.fail("Deve lançar exceção");
 	}
 	
-	// Method that tests the passege of a temporary name through the set access method
+	// Test the temporaryName setter and getter with a valid argument
 	@Test
-	public void invalidNameTemporary () throws BarberException 
+	public void invalidTemporaryName() throws BarberException 
 	{
 		Contact.setNameTemporary("Paulo");
 		assertEquals("Paulo", Contact.getNameTemporary());
