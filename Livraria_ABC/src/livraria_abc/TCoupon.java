@@ -7,7 +7,7 @@ import java.util.List;
 // Tipo Cupom de desconto
 public class TCoupon
 {
-    static List <TCoupon>  cupom_valor = new ArrayList<> ();
+    static List <TCoupon>  couponValue=  new ArrayList<> ();
     String cupom;
     float valor_desconto;
         
@@ -19,49 +19,71 @@ public class TCoupon
     // Verifica se um dado cupom está cadastrado no sistema
     public static boolean ChecksCoupon (String coupon_cpr)
     {
-        int i, checkCouponSearchedThereDataBase=0;
+        
+        int i=0;
+        int checkCouponSearchedThereDataBase=0;
            
-        for(i=0; i<cupom_valor.size(); i++)
+        int quantityValueCupon =couponValue.size(); 
+        
+        for(i=0; i<quantityValueCupon; i++)
         {
-            if(cupom_valor.get(i).getCoupon().equals(coupon_cpr))
+            boolean currentValueCouponEqualsGetCouponValue = couponValue.get(i).getCoupon().equals(coupon_cpr); 
+                
+            if(currentValueCouponEqualsGetCouponValue)
             {
                 checkCouponSearchedThereDataBase++;
                   
                 break;
             }
+            else
+            {
+                // Nothing to do
+            }
+            
         }
             
+        boolean returnMethod;
         if(checkCouponSearchedThereDataBase == 0)
         {
 
-            return false;
+            returnMethod = false;
         }
         else
         {
         
-            return true;
+            returnMethod = true;
         }
             
+        return returnMethod;
     }
         
     // Verifica o valor do desconto oferecido por um dado cupom
     public static float CheksValueDiscount(String cprCoupon)
     {
-        float valor_desconto = 0;
+        float valueDiscount = 0;
             
-        int i;
+        int i = 0;
             
-        for(i=0; i<cupom_valor.size (); i++)
+        int quantityValueCupon =couponValue.size();
+        
+        for(i=0; i<quantityValueCupon; i++)
         {
-            if(cupom_valor.get(i).getCoupon().equals(cprCoupon))
+            
+            boolean currentValueCouponEqualsGetCouponValue = couponValue.get(i).getCoupon().equals(cprCoupon);
+                    
+            if(currentValueCouponEqualsGetCouponValue)
             {
-                valor_desconto = cupom_valor.get(i).getValueDiscount();
-                   
+                valueDiscount = couponValue.get(i).getValueDiscount();
+                    
                 break;
+            }
+            else
+            {
+                // Nothing to do
             }
         }
           
-        return valor_desconto;
+        return valueDiscount;
     }
     
     // Construtor

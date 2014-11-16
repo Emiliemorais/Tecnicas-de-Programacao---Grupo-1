@@ -85,7 +85,10 @@ public class ABCBookStore
         System.out.println("\nInforme o ISBN ou o título do livro que deseja: ");
         researchedBookByUser = inputString.nextLine();
 
-        if( Book.listISBN.contains(researchedBookByUser) || Book.listTitle.contains(researchedBookByUser) )
+        boolean bookOfTheResearchedBookByUserByISBN = Book.listISBN.contains(researchedBookByUser);
+        boolean bookOfTheResearchedBookByUserByTitle = Book.listTitle.contains(researchedBookByUser);
+        
+        if( bookOfTheResearchedBookByUserByISBN || bookOfTheResearchedBookByUserByTitle )
         {
             // Receives the index of the book researched by user
             int indexOfTheBook = -1;
@@ -93,13 +96,18 @@ public class ABCBookStore
             // Receives the quantity of books 
             int bookQuantity;
 
-            if( Book.listISBN.contains(researchedBookByUser) )
+            
+            if( bookOfTheResearchedBookByUserByISBN )
             {
                 indexOfTheBook = Book.listISBN.indexOf(researchedBookByUser);
             }
-            else if( Book.listTitle.contains(researchedBookByUser) )
+            else if( bookOfTheResearchedBookByUserByTitle )
             {
                 indexOfTheBook = Book.listTitle.indexOf(researchedBookByUser);
+            }
+            else
+            {
+                // Nothing to do
             }
 
             System.out.println("\nInforme a quantidade de '"+Book.listTitle.get(indexOfTheBook)+"' desejada:");
@@ -185,7 +193,13 @@ public class ABCBookStore
                 default:
                 { 
                     if( !"0".equals(option) )
+                    {
                         System.out.println("\nOpção Inválida!\n");
+                    }
+                    else
+                    {
+                        // Nothing to do
+                    }
                    
                 }
             }
@@ -249,6 +263,10 @@ public class ABCBookStore
                 if( !"0".equals(option) ){
                     System.out.println("\nOpção Inválida!\n");
                 }
+                else
+                {
+                    // Nothing to do
+                }
             }
         }
     }
@@ -264,7 +282,7 @@ public class ABCBookStore
         }
         else
         {
-            
+            // Nothing to do
         }
     }
     
@@ -283,46 +301,46 @@ public class ABCBookStore
         
         //The following data were inserted to simulate a database of the ABCBookStore 
         
-            Book.listISBN.add(0, "9780345486572");
-            Book.listTitle.add(0, "Dom Casmurro");
-            Book.listTheme.add(0,"Literatura brasileira");
-            Book.listPrice.add(0, "12.50");
-            Book.listAuthor.add(0, "Machado de Assis");
-            Book.listPublishingHouse.add(0, "Pearson");
-            Book.listYearPublication.add(0,"2010");
-            Book.listEdition.add(0,"3ª");
-            
-            Book.listISBN.add(1, "9780964729230");
-            Book.listTitle.add(1, "A Cabana");
-            Book.listTheme.add(1,"Ficção");
-            Book.listPrice.add(1, "32.49");
-            Book.listAuthor.add(1, "William P. Young");
-            Book.listPublishingHouse.add(1, "Windblown");
-            Book.listYearPublication.add(1,"2007");
-            Book.listEdition.add(1,"2ª");
-            
-            Book.listISBN.add(2, "9788508106707");
-            Book.listTitle.add(2, "Vida de droga");
-            Book.listTheme.add(2,"Infanto-Juvenil");
-            Book.listPrice.add(2, "15.80");
-            Book.listAuthor.add(2, "Walcyr Carrasco");
-            Book.listPublishingHouse.add(2, "Ática");
-            Book.listYearPublication.add(1,"2005");
-            Book.listEdition.add(2,"4ª");
-            
-            // Coupoun class's instance to access the class
-            Coupon coupoun = new Coupon();
-            
-            coupoun.coupon = "0X2R";
-            coupoun.discountedValue = 20;
-            Coupon.cupom_valor.add(coupoun);
-            
-            // PaymentType class's instance to access the class
-            PaymentType paymentType1 = new PaymentType("Boleto","");
-            PaymentType paymentType2 = new PaymentType("Cartão","Aceitamos Visa, MasterCard e Cielo");
-            
-            PaymentType.listTypes.add(paymentType1);
-            PaymentType.listTypes.add(paymentType2);
+        Book.listISBN.add(0, "9780345486572");
+        Book.listTitle.add(0, "Dom Casmurro");
+        Book.listTheme.add(0,"Literatura brasileira");
+        Book.listPrice.add(0, "12.50");
+        Book.listAuthor.add(0, "Machado de Assis");
+        Book.listPublishingHouse.add(0, "Pearson");
+        Book.listYearPublication.add(0,"2010");
+        Book.listEdition.add(0,"3ª");
+
+        Book.listISBN.add(1, "9780964729230");
+        Book.listTitle.add(1, "A Cabana");
+        Book.listTheme.add(1,"Ficção");
+        Book.listPrice.add(1, "32.49");
+        Book.listAuthor.add(1, "William P. Young");
+        Book.listPublishingHouse.add(1, "Windblown");
+        Book.listYearPublication.add(1,"2007");
+        Book.listEdition.add(1,"2ª");
+
+        Book.listISBN.add(2, "9788508106707");
+        Book.listTitle.add(2, "Vida de droga");
+        Book.listTheme.add(2,"Infanto-Juvenil");
+        Book.listPrice.add(2, "15.80");
+        Book.listAuthor.add(2, "Walcyr Carrasco");
+        Book.listPublishingHouse.add(2, "Ática");
+        Book.listYearPublication.add(1,"2005");
+        Book.listEdition.add(2,"4ª");
+
+        // Coupoun class's instance to access the class
+        Coupon coupoun = new Coupon();
+
+        coupoun.coupon = "0X2R";
+        coupoun.discountedValue = 20;
+        Coupon.cupom_valor.add(coupoun);
+
+        // PaymentType class's instance to access the class
+        PaymentType paymentType1 = new PaymentType("Boleto","");
+        PaymentType paymentType2 = new PaymentType("Cartão","Aceitamos Visa, MasterCard e Cielo");
+
+        PaymentType.listTypes.add(paymentType1);
+        PaymentType.listTypes.add(paymentType2);
             
                         
         System.out.println("\n\t\t\t\tBem-vindo(a) a " + bookstore.bookstoreName + "!\n");
