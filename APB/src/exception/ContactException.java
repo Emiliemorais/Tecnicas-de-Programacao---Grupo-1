@@ -1,10 +1,10 @@
 package exception;
 
 @SuppressWarnings("serial")
-public class PhonebookException extends Exception
+public class ContactException extends Exception
 {
 	// Constructor for the exception of agenda that uses the superclass constructor Exception
-	public PhonebookException() 
+	public ContactException() 
 	{
 		super();
 	}
@@ -13,7 +13,7 @@ public class PhonebookException extends Exception
 	 * Constructor for the exception of agenda that uses the superclass constructor 
 	 * Exception passing as parameter a specific message
 	 */
-	public PhonebookException(String message)
+	public ContactException(String message)
 	{
 		super(message);
 	}

@@ -5,7 +5,7 @@ import junit.framework.Assert;
 import junit.framework.AssertionFailedError;
 import exception.BarberException;
 import exception.ServiceException;
-import model.Phonebook;
+import model.Contact;
 import model.Barber;
 
 import org.junit.Before;
@@ -405,6 +405,6 @@ public class BarberTest
 	public void invalidNameTemporary () throws BarberException
 	{
 		Barber.setTemporaryName("João");
-		assertEquals("João", Phonebook.getNameTemporary());
+		assertEquals("João", Contact.getNameTemporary());
 	}
 }

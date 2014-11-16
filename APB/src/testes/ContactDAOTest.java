@@ -6,30 +6,30 @@ import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import model.Phonebook;
+import model.Contact;
 
 import org.junit.Test;
 
 import dao.FactoryConnection;
-import dao.PhonebookDAO;
+import dao.ContactDAO;
 
-public class PhonebookDAOTest 
+public class ContactDAOTest 
 {
 	// contact1 - Instance for a contact from "Phonebook" class
-	Phonebook contact1 = new Phonebook(); 
+	Contact contact1 = new Contact(); 
 	
 	// contact2 - Second instance, for another contact from "Phonebook" class
-	Phonebook contact2 = new Phonebook(); 
+	Contact contact2 = new Contact(); 
 	
 	// phonebookDAO - Gets the instance from "PhonebookDAO" class
-	PhonebookDAO phonebookDAO = PhonebookDAO.getInstance(); 
+	ContactDAO phonebookDAO = ContactDAO.getInstance(); 
 
 	
 	// Method that tests if is returning a instance
 	@Test
 	public void getInstanceOfPhonebookDAO ()
 	{
-		assertEquals(PhonebookDAO.getInstance(), phonebookDAO);
+		assertEquals(ContactDAO.getInstance(), phonebookDAO);
 	}
 
 	// Method that tests if adding a new contact
@@ -66,7 +66,7 @@ public class PhonebookDAOTest
 	{
 		try 
 		{
-			assertTrue(phonebookDAO.editPhonebookData(contact1.getPhonebookName(), contact1, contact2));
+			assertTrue(phonebookDAO.editPhonebookData(contact1.getContactName(), contact1, contact2));
 		} 
 		catch (SQLException e)
 		{
@@ -108,7 +108,7 @@ public class PhonebookDAOTest
 	{
 		try 
 		{
-			assertFalse(phonebookDAO.editPhonebookData(contact1.getPhonebookName(), contact1, null));
+			assertFalse(phonebookDAO.editPhonebookData(contact1.getContactName(), contact1, null));
 		} 
 		catch (SQLException e) 
 		{
@@ -122,7 +122,7 @@ public class PhonebookDAOTest
 	{
 		try 
 		{
-			assertFalse(phonebookDAO.editPhonebookData(contact1.getPhonebookName (), null, contact1));
+			assertFalse(phonebookDAO.editPhonebookData(contact1.getContactName (), null, contact1));
 		} 
 		catch (SQLException e) 
 		{
@@ -191,7 +191,7 @@ public class PhonebookDAOTest
 		try 
 		{			
 			// resultInstance - ResultSet Instance
-			ResultSet resultInstance = phonebookDAO.showRegisteredContacts(contact1);
+			ResultSet resultInstance = phonebookDAO.showRegisteredContacts();
 
 			while( resultInstance.next() ) 
 			{

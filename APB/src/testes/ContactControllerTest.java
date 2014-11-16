@@ -9,13 +9,13 @@ import org.junit.Test;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import model.Phonebook;
-import control.PhonebookController;
+import model.Contact;
+import control.ContactController;
 import exception.BarberException;
 
-public class PhonebookControllerTest
+public class ContactControllerTest
 {
-	Phonebook contactOfPhonebook = new Phonebook();
+	Contact contactOfPhonebook = new Contact();
 
 	@Before
 	// Initialize the attributes of 'contact'
@@ -23,9 +23,9 @@ public class PhonebookControllerTest
 	{
 		try
 		{
-			contactOfPhonebook.setPhonebookName("Corte");
-			contactOfPhonebook.setPhonebook("3895-5698");
-			contactOfPhonebook.setPhonebookDs("AAA");
+			contactOfPhonebook.setContactName("Corte");
+			contactOfPhonebook.setContactPhoneNumber("3895-5698");
+			contactOfPhonebook.setContactDescription("AAA");
 		}
 		catch (BarberException exception)
 		{
@@ -34,13 +34,13 @@ public class PhonebookControllerTest
 	}
 	
 	// Instantiated to get access to the methods of class 'PhonebookController'
-	PhonebookController contactController = PhonebookController.getInstance();
+	ContactController contactController = ContactController.getInstance();
 
 	@Test
 	//  Test if a instance previous declared is the current one
 	public void getInstanceMethodTest()
 	{
-		assertEquals(PhonebookController.getInstance(), contactController);
+		assertEquals(ContactController.getInstance(), contactController);
 	}
 
 	@Test
@@ -52,7 +52,7 @@ public class PhonebookControllerTest
 	{
 		try
 		{
-			assertTrue( contactController.includeNewObject(contactOfPhonebook) );
+			assertTrue( contactController.includeContact(contactOfPhonebook) );
 		}
 		catch (SQLException exception)
 		{
@@ -86,7 +86,7 @@ public class PhonebookControllerTest
 	{
 		try
 		{
-			assertTrue( contactController.changeContact(contactOfPhonebook.getPhonebookName(),contactOfPhonebook) );
+			assertTrue( contactController.changeContact(contactOfPhonebook.getContactName(),contactOfPhonebook) );
 		}
 		catch (SQLException exception)
 		{
@@ -100,7 +100,7 @@ public class PhonebookControllerTest
 	{
 		try
 		{
-			assertFalse( contactController.includeNewObject(null) );
+			assertFalse( contactController.includeContact(null) );
 		}
 		catch (SQLException exception)
 		{
@@ -141,7 +141,7 @@ public class PhonebookControllerTest
 	public void showRegisteredContactsTest() throws SQLException
 	{
 		// Used to receive the result from the search for contacts on DB
-		ResultSet queryForContactsResult = contactController.registeredshowContacts(contactOfPhonebook);
+		ResultSet queryForContactsResult = contactController.showRegisteredContacts();
 		
 		while( queryForContactsResult.next() );
 	}

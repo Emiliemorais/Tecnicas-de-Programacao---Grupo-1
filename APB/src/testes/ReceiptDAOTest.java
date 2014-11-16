@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-import dao.PhonebookDAO;
+import dao.ContactDAO;
 import dao.ReceiptDAO;
 import model.Report;
 import exception.ReceiptException;

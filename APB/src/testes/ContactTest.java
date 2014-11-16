@@ -9,12 +9,12 @@ import org.junit.Test;
 
 import exception.BarberException;
 import exception.ServiceException;
-import model.Phonebook;
+import model.Contact;
 
-public class PhonebookTest 
+public class ContactTest 
 {
 	
-	Phonebook contactOfPhonebook = new Phonebook();
+	Contact contactOfPhonebook = new Contact();
 	
 	// Method used to get the attributes correctly, an Agenda for the test
 	@Before
@@ -22,52 +22,52 @@ public class PhonebookTest
 	{
 		try 
 		{
-			contactOfPhonebook.setPhonebookName("Alessandro");
-			contactOfPhonebook.setPhonebook("4568-9856");
+			contactOfPhonebook.setContactName("Alessandro");
+			contactOfPhonebook.setContactPhoneNumber("4568-9856");
 		} 
 		catch (BarberException secondException) 
 		{
 			secondException.printStackTrace();
 		}
-		contactOfPhonebook.setPhonebookDs("ASDAS");
+		contactOfPhonebook.setContactDescription("ASDAS");
 	}
 		 
 	// Method used to test the operation of the builder of an Agenda
 	@Test
 	public void testeBuilderFunction() 
 	{
-		Phonebook contato = new Phonebook("Alessandro", "6589-5689", "aaaa");
-		assertEquals("Alessandro", contato.getPhonebookName());
-		assertEquals("6589-5689", contato.getPhonebook());
-		assertEquals("aaaa", contato.getPhonebookDs());
+		Contact contato = new Contact("Alessandro", "6589-5689", "aaaa");
+		assertEquals("Alessandro", contato.getContactName());
+		assertEquals("6589-5689", contato.getContactPhoneNumber());
+		assertEquals("aaaa", contato.getContactDescription());
 	}
 	
 	// Method that tests the receipt of a name of a contact by the access method get
 	@Test
 	public void getterNameFunction()
 	{
-		assertEquals("Alessandro", contactOfPhonebook.getPhonebookName());
+		assertEquals("Alessandro", contactOfPhonebook.getContactName());
 	}
 	
 	// Method that tests an incoming phone a contact by the access method get
 	@Test
 	public void getterPhoneFunction()
 	{
-		assertEquals("4568-9856", contactOfPhonebook.getPhonebook());
+		assertEquals("4568-9856", contactOfPhonebook.getContactPhoneNumber());
 	}
 	
 	// Method that tests receiving a description of a contact by the access method get
 	@Test
 	public void getterDescriptionFunction()
 	{
-		assertEquals("ASDAS", contactOfPhonebook.getPhonebookDs());
+		assertEquals("ASDAS", contactOfPhonebook.getContactDescription());
 	}
 	
 	// Method used to receive a blank name for the test launch of the exception 
 	@Test(expected = BarberException.class)
 	public void nameBarberNotBlank () throws BarberException
 	{
-		contactOfPhonebook.setPhonebookName("");
+		contactOfPhonebook.setContactName("");
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
@@ -75,7 +75,7 @@ public class PhonebookTest
 	@Test(expected = BarberException.class)
 	public void phoneOfBarberNotNull() throws BarberException
 	{
-		contactOfPhonebook.setPhonebook("");
+		contactOfPhonebook.setContactPhoneNumber("");
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
@@ -83,7 +83,7 @@ public class PhonebookTest
 	@Test(expected = BarberException.class)
 	public void nameOfBarberNotPassOutFormat() throws BarberException
 	{
-		contactOfPhonebook.setPhonebookName("ASDAS!!");
+		contactOfPhonebook.setContactName("ASDAS!!");
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
@@ -91,7 +91,7 @@ public class PhonebookTest
 	@Test(expected = BarberException.class)
 	public void phoneOfBarberNotPassOutFormat () throws BarberException
 	{
-		contactOfPhonebook.setPhonebook("45645aa-a54654");
+		contactOfPhonebook.setContactPhoneNumber("45645aa-a54654");
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
@@ -99,14 +99,14 @@ public class PhonebookTest
 	@Test (expected = AssertionError.class)
 	public void getterReturnValueForNameTemporary() throws ServiceException 
 	{
-		assertEquals("Barba", Phonebook.getNameTemporary());
+		assertEquals("Barba", Contact.getNameTemporary());
 	}
 		
 	// Method that tests passing a null temporary name through the set access method
 	@Test (expected = AssertionFailedError.class)
 	public void setterTemporatyNameNotNull () throws ServiceException 
 	{
-		Phonebook.setNameTemporary(null);
+		Contact.setNameTemporary(null);
 		Assert.fail("Deve lançar exceção");
 	}
 	
@@ -114,7 +114,7 @@ public class PhonebookTest
 	@Test (expected = AssertionFailedError.class)
 	public void setterTemporaryNameNotNull () 
 	{
-		Phonebook.setNameTemporary("");
+		Contact.setNameTemporary("");
 		Assert.fail("Deve lançar exceção");
 	}
 	
@@ -122,8 +122,8 @@ public class PhonebookTest
 	@Test
 	public void invalidNameTemporary () throws BarberException 
 	{
-		Phonebook.setNameTemporary("Paulo");
-		assertEquals("Paulo", Phonebook.getNameTemporary());
+		Contact.setNameTemporary("Paulo");
+		assertEquals("Paulo", Contact.getNameTemporary());
 	}
 
 }

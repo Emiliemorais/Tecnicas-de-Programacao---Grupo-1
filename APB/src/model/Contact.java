@@ -2,65 +2,60 @@ package model;
 
 import exception.BarberException;
 
-public class Phonebook 
+public class Contact 
 {
 
 	/**
-	 * @param phonebookNameReceives the name for phonebook
-	 * @param phonebookReceives the description for phonebook
-	 * @param phonebookDs Receives the number of phone for phonebook
-	 * @param tempNome Receives the variable for change the method
+	 * @param contactName Receives the name for the contact
+	 * @param contactPhoneNumber Receives the phone number for the contact
+	 * @param contactDescription Receives the description for the contact
+	 * @param temporaryName Receives the temporaryName for the contact
 	 */
-	private String phonebookName;
-	private String phonebook;
-	private String phonebookDs;
-	private static String tempNome;
+	private String contactName;
+	private String contactPhoneNumber;
+	private String contactDescription;
+	private static String temporaryName;
 
 	
 	private final String invalidName = "Nome Inv�lido";
 	private final String nullName = "Nome em Branco";
 	private final String invalidPhone = "Telefone Inv�lido";
 	private final String nullPhone = "Telefone em Branco";
-
-	public Phonebook()
+	
+	// Class general constructor
+	public Contact()
 	{
 
 	}
 
-	// Constructor object PHONEBOOK that receives its attributes as parameter
-	public Phonebook(String nome, String telefone, String descricao)
+	// Class constructor
+	public Contact(String contactName, String contactPhoneNumber, String contactDescription)
 	{
-		this.phonebookName = nome;
-		this.phonebook = telefone;
-		this.phonebookDs = descricao;
+		this.contactName = contactName;
+		this.contactPhoneNumber = contactPhoneNumber;
+		this.contactDescription = contactDescription;
 	}
      
-	// phonebookName getter
-	public String getPhonebookName () 
+	public String getContactName () 
 	{
-		
-		return phonebookName;
+		return contactName;
 	}
 
-	// phonebook getter
-	public String getPhonebook () 
+	public String getContactPhoneNumber () 
 	{
-		
-		return phonebook;
+		return contactPhoneNumber;
 	}
-	
-	// phonebookDs getter
-	public String getPhonebookDs () 
+
+	public String getContactDescription () 
 	{
-		
-		return phonebookDs;
+		return contactDescription;
 	}
 
 	/*
 	 *  Method of accessing the name, which throws an exception access 
 	 *  if the name is not in the required format
 	 */	
-	public void setPhonebookName (String nome) throws BarberException 
+	public void setContactName (String nome) throws BarberException 
 	{
 		if ("".equals(nome))
 		{
@@ -68,7 +63,7 @@ public class Phonebook
 		}
 		else if (nome.matches("^[[ ]|\\p{L}*]+$"))
 		{
-			this.phonebookName = nome;
+			this.contactName = nome;
 		}
 		else
 		{
@@ -80,7 +75,7 @@ public class Phonebook
 	 *  Method of accessing the phone, which throws an exception access 
 	 *  if the phone is not in the required format
 	 */
-	public void setPhonebook (String telefone) throws BarberException 
+	public void setContactPhoneNumber (String telefone) throws BarberException 
 	{
 		String phoneMatchesParamMethod = ("(\\([\\d]{2,3}\\))?[ ]*[\\d]{4,4}[ ]*-[ ]*[\\d]{4,4}[ ]*$");
 		
@@ -90,7 +85,7 @@ public class Phonebook
 		}
 		else if (telefone.matches(phoneMatchesParamMethod))
 		{
-			this.phonebook = telefone;
+			this.contactPhoneNumber = telefone;
 		}
 		else
 		{
@@ -100,22 +95,22 @@ public class Phonebook
 	}
 
 	// Access method for changing the description
-	public void setPhonebookDs (String descricao)
+	public void setContactDescription (String descricao)
 	{
-		this.phonebookDs = descricao;
+		this.contactDescription = descricao;
 	}
 
 	// Method of temporary access name for verification
 	public static String getNameTemporary () 
 	{
 		
-		return tempNome;
+		return temporaryName;
 	}
 
 	// Method of temporary access name for verification
 	public static void setNameTemporary(String tempNome)
 	{
-		Phonebook.tempNome = tempNome;
+		Contact.temporaryName = tempNome;
 	}
 
 }
