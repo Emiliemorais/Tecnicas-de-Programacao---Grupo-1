@@ -7,32 +7,43 @@ import java.util.List;
 // Tipo Cupom de desconto
 public class TCoupon
 {
-    static List <TCoupon>  couponValue=  new ArrayList<> ();
+    static List<TCoupon> coupons = new ArrayList<>();
     String cupom;
     float valor_desconto;
-        
+    
+    // Class general constructor
     public TCoupon()
     {
     
     }
-       
-    // Verifica se um dado cupom está cadastrado no sistema
-    public static boolean ChecksCoupon (String coupon_cpr)
+    
+    // Class constructor
+    public TCoupon(String codCoupon, float valueOfCoupon)
     {
-        
-        int i=0;
-        int checkCouponSearchedThereDataBase=0;
+        this.cupom = codCoupon;
+        this.valor_desconto = valueOfCoupon;
+    }
+       
+    /**
+     * Check if the given coupon exists on 
+     * @param couponToCheck - Coupon to check 
+     * @return true if the coupon exists or false if does not
+     */
+    public static boolean ChecksCoupon(String couponToCheck)
+    {
+        int couponIsRegistered = 0;
            
-        int quantityValueCupon =couponValue.size(); 
+        int quantityOfCoupons = coupons.size(); 
         
-        for(i=0; i<quantityValueCupon; i++)
+        int i = 0;
+        for(i = 0; i < quantityOfCoupons; i++)
         {
-            boolean currentValueCouponEqualsGetCouponValue = couponValue.get(i).getCoupon().equals(coupon_cpr); 
-                
-            if(currentValueCouponEqualsGetCouponValue)
+            String currentCoupon = coupons.get(i).getCoupon();
+            boolean currentCouponIsTheOne = currentCoupon.equals(couponToCheck);
+            
+            if(currentCouponIsTheOne)
             {
-                checkCouponSearchedThereDataBase++;
-                  
+                couponIsRegistered++;
                 break;
             }
             else
@@ -42,39 +53,41 @@ public class TCoupon
             
         }
             
-        boolean returnMethod;
-        if(checkCouponSearchedThereDataBase == 0)
+        boolean couponExists = false;
+        if(couponIsRegistered == 0)
         {
-
-            returnMethod = false;
+            couponExists = false;
         }
         else
         {
-        
-            returnMethod = true;
+            couponExists = true;
         }
             
-        return returnMethod;
+        return couponExists;
     }
         
-    // Verifica o valor do desconto oferecido por um dado cupom
-    public static float CheksValueDiscount(String cprCoupon)
+    /**
+     * Check the discount value of the given coupon
+     * @param coupon - Coupon to check
+     * @return the discount value of the given coupon or 0 if the coupon was not found
+     */
+    public static float CheckDiscountValue(String coupon)
     {
-        float valueDiscount = 0;
+        float discountValue = 0;
             
         int i = 0;
             
-        int quantityValueCupon =couponValue.size();
+        int quantityOfCoupons =coupons.size();
         
-        for(i=0; i<quantityValueCupon; i++)
+        for(i = 0; i < quantityOfCoupons; i++)
         {
+            String currentCoupon = coupons.get(i).getCoupon();
             
-            boolean currentValueCouponEqualsGetCouponValue = couponValue.get(i).getCoupon().equals(cprCoupon);
+            boolean currentCouponIsTheOne = currentCoupon.equals(coupon);
                     
-            if(currentValueCouponEqualsGetCouponValue)
+            if(currentCouponIsTheOne)
             {
-                valueDiscount = couponValue.get(i).getValueDiscount();
-                    
+                discountValue = coupons.get(i).getValueDiscount();
                 break;
             }
             else
@@ -83,26 +96,17 @@ public class TCoupon
             }
         }
           
-        return valueDiscount;
-    }
-    
-    // Construtor
-    public TCoupon(String codCoupon, float valueOfCoupon)
-    {
-        this.cupom = codCoupon;
-        this.valor_desconto = valueOfCoupon;
+        return discountValue;
     }
     
     // Getters
     public String getCoupon() 
     {
-        
         return cupom;
     }
 
     public float getValueDiscount() 
     {
-        
         return valor_desconto;
     }
                 
