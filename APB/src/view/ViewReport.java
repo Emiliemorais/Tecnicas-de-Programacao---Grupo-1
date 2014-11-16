@@ -37,7 +37,6 @@ import exception.ReportException;
 @SuppressWarnings("serial")
 public class ViewReport extends JFrame 
 {
-
 	private JPanel receiptPanel;
 	private double valueTotalBuy = 0;
 	private String numberCliente;
@@ -55,13 +54,12 @@ public class ViewReport extends JFrame
 		EventQueue.invokeLater(new Runnable()
 		{
 			
-			// Method shows the pane of view reports
 			public void run () 
 			{
 				try 
 				{
-					ViewReport frame = new ViewReport();
-					frame.setVisible(true);
+					ViewReport viewReportFrame = new ViewReport();
+					viewReportFrame.setVisible(true);
 				} 
 				catch (Exception e)
 				{
@@ -70,11 +68,11 @@ public class ViewReport extends JFrame
 			}
 		});
 	}
-
-	// Constructor of components of pane view reposts
-	public ViewReport() throws SQLException, ReportException,
-			NullPointerException, ParseException 
+	
+	private void initializeComponents() throws SQLException, ReportException,
+	   									NullPointerException, ParseException
 	{
+		
 		setTitle("Relat\u00F3rios");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
@@ -760,6 +758,14 @@ public class ViewReport extends JFrame
 		lblvalueTotalOfBarber.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblvalueTotalOfBarber.setBounds(476, 4, 174, 14);
 		panelTotalPay.add(lblvalueTotalOfBarber);
+		
+	}
+	
+	// Constructor of components of pane view reposts
+	public ViewReport() throws SQLException, ReportException,
+						NullPointerException, ParseException
+	{
+		initializeComponents();
 	}
 
 	// Interface used to implement the data to be displayed in the graphic
@@ -925,7 +931,10 @@ public class ViewReport extends JFrame
 		return dataset;
 	}
 
-	// Method that displays an error message when there is an exception in class
+	/**
+	 * Display the error that occurred by the message
+	 * @param exceptionInformation - Message with the information of the exception raised
+	 */
 	private static void showErrorMessage (String exceptionInformation) 
 	{
 		JOptionPane.showMessageDialog(null, exceptionInformation, "Atenção",

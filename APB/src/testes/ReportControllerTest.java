@@ -19,7 +19,7 @@ public class ReportControllerTest
 
 	Report reportService = new Report();
 	
-	// Method used to get the attributes of a report correctly to the test, throwing exceptions null attributes and conversion issues
+	// Initialize the reportService object with arbitrary data to use on tests
 	@Before
 	public void setUp() throws ReportException, ParseException 
 	{
@@ -37,12 +37,12 @@ public class ReportControllerTest
 
 	}
 	
-	// Method used to test the getInstance class RelatorioDAO
+	// Test the getInstance method
 	@Test
-	public void getInstanceReportDAORetornInstanceCurrent()
+	public void getInstanceReportDAOReturnInstanceCurrent()
 	{
-		ReportController relatorioController = ReportController.getInstance();
-		assertEquals(ReportController.getInstance(), relatorioController);
+		ReportController reportController = ReportController.getInstance();
+		assertEquals(ReportController.getInstance(), reportController);
 	}
 	
 	// Method used to test the research a report through a service seeing if the sample of the report there

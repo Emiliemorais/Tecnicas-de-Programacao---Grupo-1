@@ -95,7 +95,7 @@ public class ContactController
 		}
 		else
 		{
-			// Nothing to do because if 'instance' is not null, there is something inside it 
+			// Nothing to do because if 'instance' is not null, there is an active instance 
 		}
 		
 		return instance;
