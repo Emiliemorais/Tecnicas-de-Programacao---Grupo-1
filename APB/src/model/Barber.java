@@ -10,7 +10,7 @@ public class Barber
 	// Constant that receives a blank name of a barber
 	private final String BLANK_NAME = "Nome em Branco";
 	
-	// Constant that receives a invalid Cpf (cadastro de pessoa física, in portuguese) of a barber
+	// Constant that receives a invalid Cpf (cadastro de pessoa fï¿½sica, in portuguese) of a barber
 	private final String INVALID_CPF = "CPF InvÃ¡lido";
 	
 	// Constant that receives a blank Cpf of a barber
@@ -117,31 +117,37 @@ public class Barber
 	
 	public String getBarberName()
 	{
+		
 		return barberName;
 	}
 
 	public String getBarberCpf()
 	{
+		
 		return barberCpf;
 	}
 
 	public String getBarberRg()
 	{
+		
 		return barberRg;
 	}
 
 	public String getBarberTelephone()
 	{
+		
 		return barberTelephone;
 	}
 
 	public String getBarberChair()
 	{
+		
 		return barberChair;
 	}
 	
 	public static String getTemporaryName()
 	{
+		
 		return temporaryName;
 	}
 
@@ -158,11 +164,11 @@ public class Barber
 		{
 			throw new NullPointerException(BLANK_NAME);
 		}
-		else if ( "".equals(barberName) )
+		else if ("".equals(barberName))
 		{
 			throw new BarberException(BLANK_NAME);
 		}
-		else if ( barberName.matches("^[[ ]|\\p{L}*]+$") )
+		else if (barberName.matches("^[[ ]|\\p{L}*]+$"))
 		{
 			this.barberName= barberName;
 		}
@@ -179,23 +185,24 @@ public class Barber
 	 */
 	public void setBarberCpf (String barberCpf) throws BarberException
 	{
-		// valid CPF example: 493.751.185-84
+		// Valid CPF example: 493.751.185-84
 		try 
 		{
-			if( barberCpf == null )
+			if (barberCpf == null)
 			{
 				throw new NullPointerException(BLANK_CPF);
 			}
-			else if( "".equals(barberCpf) )
+			else if ("".equals(barberCpf))
 			{
 				throw new AssertionError(BLANK_CPF);
 			}
-			else if( barberCpf.matches("[\\d]{3,3}.[\\d]{3,3}.[\\d]{3,3}-[\\d]{2,2}$") )
+			else if (barberCpf.matches("[\\d]{3,3}.[\\d]{3,3}.[\\d]{3,3}-[\\d]{2,2}$"))
 			{
 				barberCpf = barberCpf.split("[\\. | -]")[0] + barberCpf.split("[\\. | -]")[1]
 					       +barberCpf.split("[\\. | -]")[2] + barberCpf.split("[\\. | -]")[3];
 			}
-			if( this.validateCpf(barberCpf) )
+			
+			if (this.validateCpf(barberCpf))
 			{
 				this.barberCpf = barberCpf;
 			}
@@ -217,19 +224,19 @@ public class Barber
 
 	public void setBarberRg (String barberRg) throws BarberException
 	{
-		if( barberRg == null )
+		if (barberRg == null)
 		{
 			throw new NullPointerException(BLANK_RG);
 		}
-		else if( "".equals(barberRg) )
+		else if ("".equals(barberRg))
 		{
 			throw new BarberException(BLANK_RG);
 		}
-		else if( barberRg.matches("^[[ ]|\\p{L}*]+$") )
+		else if (barberRg.matches("^[[ ]|\\p{L}*]+$"))
 		{
 			throw new AssertionError(INVALID_RG);
 		}
-		else if( barberRg.matches("^[0-9]*$") )
+		else if (barberRg.matches("^[0-9]*$"))
 		{
 			this.barberRg = barberRg;
 		}
@@ -246,15 +253,15 @@ public class Barber
 	 */
 	public void setBarberTelephone (String barberTelephone) throws BarberException
 	{
-		if( barberTelephone == null )
+		if (barberTelephone == null)
 		{
 			throw new NullPointerException(BLANK_TELEPHONE);
 		}
-		else if( "".equals(barberTelephone) )
+		else if ("".equals(barberTelephone))
 		{
 			throw new BarberException(BLANK_TELEPHONE);
 		}
-		else if( barberTelephone.matches("(\\([\\d]{2,3}\\))?[ ]*[\\d]{4,4}[ ]*-[ ]*[\\d]{4,4}[ ]*$") )
+		else if (barberTelephone.matches("(\\([\\d]{2,3}\\))?[ ]*[\\d]{4,4}[ ]*-[ ]*[\\d]{4,4}[ ]*$"))
 		{
 			this.barberTelephone = barberTelephone;
 		}
@@ -271,7 +278,7 @@ public class Barber
 	 */
 	public void setBarberChair (String barberChair) throws BarberException
 	{
-		if( barberChair == null )
+		if (barberChair == null)
 		{
 			throw new NullPointerException(BLANK_CHAIR);
 		}
@@ -279,11 +286,11 @@ public class Barber
 		{
 			throw new BarberException(BLANK_CHAIR);
 		}
-		else if ( "0".equals(barberChair) || barberChair.matches("^[[ ]|\\p{L}*]+$") )
+		else if ("0".equals(barberChair) || barberChair.matches("^[[ ]|\\p{L}*]+$"))
 		{
 			throw new AssertionError(INVALID_CHAIR);
 		}
-		else if ( barberChair.matches("^[0-9]{0,2}$") )
+		else if (barberChair.matches("^[0-9]{0,2}$"))
 		{
 			this.barberChair = barberChair;
 		}
@@ -301,15 +308,11 @@ public class Barber
 	{
 		Barber.temporaryName = barberTemporaryName;
 	}
-	
-
-	
-		
+			
 	/**
 	 * This method is used to validate the barber's cpf
 	 * @param barberCpf - receives the cpf of a barber
 	 */
-	
 	private boolean validateCpf (String barberCpf) 
 	{
 		// Auxiliary variables to check Cpf
@@ -320,7 +323,7 @@ public class Barber
 		int penultimateDigit = 0;
 		int lastDigit = 0;
 		
-		// Auxiliary variable to check Cpf (cadastro de pessoa física, in portuguese)
+		// Auxiliary variable to check Cpf (cadastro de pessoa fï¿½sica, in portuguese)
 		int rest = 0;
 		
 		// Receives the current digit of the Cpf
@@ -329,11 +332,11 @@ public class Barber
 		// Receives the last two digits of a Cpf
 		String result;
 
-
 		// (currentDigit) Variable used to walk through the digits of cpf 
 		int i = 1;
 		
 		// auxiliary1 = auxiliary2 = penultimateDigit = lastDigit = rest = 0;
+		
 		
 		for (i = 1; i < barberCpf.length() - 1; i++)
 		{
@@ -371,7 +374,7 @@ public class Barber
 		}
 		
 		// Receives the last two digits of a Cpf
-		String verific = barberCpf.substring( barberCpf.length() - 2, barberCpf.length() );
+		String verific = barberCpf.substring(barberCpf.length() - 2, barberCpf.length());
 		result = String.valueOf(penultimateDigit) + String.valueOf(lastDigit);
 
 		return verific.equals(result);

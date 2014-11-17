@@ -30,7 +30,7 @@ public class BarberDAOTest
 	 * This method initializes two barbers with different names and same data 
 	 * if the data is null the method throws a exception
 	 */
-	public void setUp ()
+	public void setUp()
 	{
 		try
 		{
@@ -49,15 +49,15 @@ public class BarberDAOTest
 			BarberDAO barberDao = BarberDAO.getInstance();
 			barberDao.includeBarber(barber);
 		}
-		catch( NullPointerException e )
+		catch (NullPointerException e)
 		{
 			e.printStackTrace();
 		}
-		catch( BarberException e ) 
+		catch (BarberException e) 
 		{
 			e.printStackTrace();
 		}
-		catch( SQLException e )
+		catch (SQLException e)
 		{
 			e.printStackTrace();
 		}	
@@ -66,12 +66,10 @@ public class BarberDAOTest
 	BarberDAO barberDAO = BarberDAO.getInstance();
 	
 	@Test
-	/* 
-	 * This method is used to test the method getInstance 
-	 */
-	public void getInstanceMethodTest ()
+	// This method is used to test the method getInstance 
+	public void getInstanceMethodTest()
 	{	
-		assertEquals( BarberDAO.getInstance(), barberDAO );
+		assertEquals(BarberDAO.getInstance(), barberDAO);
 	}
 
 	@Test
@@ -80,17 +78,18 @@ public class BarberDAOTest
 	 * the other assert checks if the name that was registered in the database is equal
 	 * to the name that was required to register.
 	 */
-	public void includeBarberMethodTest ()
+	public void includeBarberMethodTest()
 	{
 		try
 		{
-			assertTrue( barberDAO.includeBarber(barber) );
+			assertTrue(barberDAO.includeBarber(barber));
 			
 			// Connection interface's instance to connect with the database
 			Connection connection = FactoryConnection.getInstance().getConnection();
 			
 			String sqlCodeToQueryBarber = "SELECT nome FROM barbeiro WHERE "
 			   							  + " nome = \"" + barber.getBarberName() + "\";" ;
+			
 			// ResultSet interface instance to query a barber's name
 			ResultSet queryForBarberName = connection.createStatement().executeQuery(sqlCodeToQueryBarber);
 			queryForBarberName.next();
@@ -98,23 +97,20 @@ public class BarberDAOTest
 			assertEquals( "Alessandro", queryForBarberName.getString("nome") );
 			queryForBarberName.close();
 		} 
-		catch(SQLException e)
+		catch (SQLException e)
 		{
 			e.printStackTrace();
 		}
-		
 	}
 	
 	// Define an error type that is expected
 	@Test (expected = AssertionError.class)
-	/*
-	 * This method is used to test the method deleteBarber
-	 */
+	// This method is used to test the method deleteBarber
 	public void deleteBarberMethodTeste ()
 	{
 		try 
 		{
-			assertTrue( barberDAO.deleteBarber(barber) );
+			assertTrue(barberDAO.deleteBarber(barber));
 			
 			FactoryConnection factoryConnectionInstance = FactoryConnection.getInstance();
 			
@@ -128,23 +124,21 @@ public class BarberDAOTest
 			fail();
 			queryForBarberName.close();
 		}
-		catch(SQLException e)
+		catch (SQLException e)
 		{
 			e.printStackTrace();
 		}
 	}
 	
 	@Test
-	/*
-	 * This method is used to test the method changeBarber
-	 */
-	public void changeBarberMethodTest ()
+	// This method is used to test the method changeBarber
+	public void changeBarberMethodTest()
 	{
 		try
 		{
-			assertTrue( barberDAO.changeBarber( barber.getBarberName(), barber, secondBarber ) );
+			assertTrue(barberDAO.changeBarber(barber.getBarberName(), barber, secondBarber));
 			
-			barberDAO.changeBarber( barber.getBarberCpf(),secondBarber, barber );
+			barberDAO.changeBarber(barber.getBarberCpf(),secondBarber, barber);
 			
 			FactoryConnection factoryConnectionInstance = FactoryConnection.getInstance();
 			Connection connection = factoryConnectionInstance.getConnection();
@@ -159,44 +153,40 @@ public class BarberDAOTest
 			
 			ResultSet queryForBarberName = preparedStatement.executeQuery();
 						
-			while( queryForBarberName.next() )
+			while (queryForBarberName.next())
 			{
-				assertEquals( "Alessandro", queryForBarberName.getString("nome") );
+				assertEquals("Alessandro", queryForBarberName.getString("nome"));
 			}
 			
 			queryForBarberName.close();
 		} 
-		catch(SQLException e)
+		catch (SQLException e)
 		{
 			e.printStackTrace();
 		}
 	}
 	
 	@Test
-	/*
-	 * This method tests the method includeBarber with a null barber
-	 */
-	public void includeBarberNullMethodTest () 
+	// This method tests the method includeBarber with a null barber
+	public void includeBarberNullMethodTest() 
 	{
 		try
 		{
-			assertFalse( barberDAO.includeBarber(null) );
+			assertFalse(barberDAO.includeBarber(null));
 		} 
-		catch(SQLException e)
+		catch (SQLException e)
 		{
 			e.printStackTrace();
 		}
 	}
 	
 	@Test
-	/*
-	 * This method tests the method deleteBarber with a null barber 
-	 */
+	// This method tests the method deleteBarber with a null barber
 	public void deleteBarberNullMethodTest()
 	{
 		try
 		{
-			assertFalse( barberDAO.deleteBarber(null) );
+			assertFalse(barberDAO.deleteBarber(null));
 		}
 		catch (SQLException e)
 		{
@@ -205,30 +195,12 @@ public class BarberDAOTest
 	}
 	
 	@Test
-	/*
-	 * This method tests the method changeBarber with a null barber 
-	 */
+	// This method tests the method changeBarber with a null barber 
 	public void changeBarberNullMethodTest()
 	{
 		try
 		{
-			assertFalse( barberDAO.changeBarber( barber.getBarberName(), null, null ) );
-		} 
-		catch(SQLException e)
-		{
-			e.printStackTrace();
-		}
-	}
-	
-	@Test
-	/*
-	 * This method tests the method changeBarber with a null changedBarber 
-	 */
-	public void changeChangedBarberNullMethodTest() 
-	{
-		try
-		{
-			assertFalse( barberDAO.changeBarber( barber.getBarberName(), null, barber ) );
+			assertFalse(barberDAO.changeBarber(barber.getBarberName(), null, null ));
 		} 
 		catch (SQLException e)
 		{
@@ -237,16 +209,28 @@ public class BarberDAOTest
 	}
 	
 	@Test
-	/*
-	 * This method tests the method searchBarberTest, an assert is ignited if the name is not null
-	 */
+	// This method tests the method changeBarber with a null changedBarber
+	public void changeChangedBarberNullMethodTest() 
+	{
+		try
+		{
+			assertFalse(barberDAO.changeBarber(barber.getBarberName(), null, barber));
+		} 
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	// This method tests the method searchBarberTest, an assert is ignited if the name is not null
 	public void searchBarberTest() 
 	{
 		try 
 		{
 			ResultSet queryForBarber = barberDAO.searchBarber();
 			
-			while ( queryForBarber.next() )
+			while (queryForBarber.next())
 			{
 				// Receives a name of a barber
 				String barberName = queryForBarber.getString("nome");
@@ -260,16 +244,14 @@ public class BarberDAOTest
 	}
 	
 	@Test
-	/*
-	 * This method tests the method showRegisteredBarber, an assert is ignited if some name is null
-	 */
+	// This method tests the method showRegisteredBarber, an assert is ignited if some name is null
 	public void showRegisteredBarberMethodTest() 
 	{
 		try
 		{
 			ResultSet queryForBarber = barberDAO.showRegisteredBarber(barber);
 			
-			while ( queryForBarber.next() )
+			while (queryForBarber.next())
 			{			
 				// Receives a name of a barber
 				String barberName = queryForBarber.getString("nome");
@@ -283,16 +265,14 @@ public class BarberDAOTest
 	}
 	
 	@Test
-	/*
-	 *  This method tests the method  searchByName, an assert is ignited if the name is not null
-	 */
+	//  This method tests the method  searchByName, an assert is ignited if the name is not null
 	public void searchByNameMethodTest() 
 	{
 		try
 		{
 			ResultSet queryForBarber = barberDAO.searchByName(barber);
 			
-			while ( queryForBarber.next() )
+			while (queryForBarber.next())
 			{
 				// Receives a name of a barber
 				String barberName = queryForBarber.getString("nome");
@@ -304,5 +284,5 @@ public class BarberDAOTest
 			e.printStackTrace();
 		}
 	}
-	
+
 }
