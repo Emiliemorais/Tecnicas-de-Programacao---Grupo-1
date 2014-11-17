@@ -42,7 +42,7 @@ public class ReportDAOTest
  
 	// This method is used to test the method getInstance
 	@Test
-	public void getInstanceTest ()
+	public void getInstanceTest()
 	{
 		// DAO Report class's instance to access the class
 		ReportDAO reportDAO = ReportDAO.getInstance();
@@ -51,7 +51,7 @@ public class ReportDAOTest
 
 	// This method is used to test the method that search a registered report by date
 	@Test
-	public void searchByDateTest ()
+	public void searchByDateTest()
 	{
 		try 
 		{
@@ -60,7 +60,7 @@ public class ReportDAOTest
 			// ResultSet interface instance to query a report
 			ResultSet queryForReport = reportDAO.searchByDate(report);
 			
-			while( queryForReport.next() )
+			while (queryForReport.next())
 			{
 				// Receives the service type 
 				String serviceType = queryForReport.getString("nome");
@@ -71,19 +71,18 @@ public class ReportDAOTest
 		{
 			e.printStackTrace();
 		}
-
 	}
 
 	// This method is used to test the method that search a registered report by date and service
 	@Test
-	public void searchByDateAndServiceTest ()
+	public void searchByDateAndServiceTest()
 	{
 		try 
 		{
 			ReportDAO reportDAO = ReportDAO.getInstance();
 			ResultSet queryForReport = reportDAO.searchByDateAndService(report);
 			
-			while ( queryForReport.next() )
+			while (queryForReport.next())
 			{
 				// Receives the service type 
 				String serviceType = queryForReport.getString("nome");
@@ -94,19 +93,18 @@ public class ReportDAOTest
 		{
 			e.printStackTrace();
 		}
-
 	}
 
 	// This method is used to test the method that search a registered report by barber	
 	@Test
-	public void searchBarberTest ()
+	public void searchBarberTest()
 	{
 		try
 		{
 			ReportDAO reportDAO = ReportDAO.getInstance();
 			ResultSet queryForReport = reportDAO.searchByBarber(report);
 			
-			while( queryForReport.next() ) 
+			while (queryForReport.next()) 
 			{
 				// Receives the service type 
 				String serviceType = queryForReport.getString("nome");
@@ -117,10 +115,9 @@ public class ReportDAOTest
 		{
 			e.printStackTrace();
 		}
-
 	}
 
-	//This method is used to test the method that search a registered report by barber and date
+	// This method is used to test the method that search a registered report by barber and date
 	@Test
 	public void searchByBarberAndServiceTest()
 	{
@@ -129,7 +126,7 @@ public class ReportDAOTest
 			ReportDAO reportDAO = ReportDAO.getInstance();
 			ResultSet queryForReport = reportDAO.searchByBarberAndService(report);
 			
-			while( queryForReport.next() ) 
+			while (queryForReport.next()) 
 			{
 				// Receives the service type 
 				String serviceType = queryForReport.getString("nome");
@@ -152,7 +149,7 @@ public class ReportDAOTest
 			ReportDAO reportDAO = ReportDAO.getInstance();
 			ResultSet queryForReport = reportDAO.searchByService(report);
 			
-			while ( queryForReport.next() )
+			while (queryForReport.next())
 			{
 				// Receives the service type 
 				String serviceType = queryForReport.getString("nome");
@@ -163,7 +160,6 @@ public class ReportDAOTest
 		{
 			e.printStackTrace();
 		}
-
 	}
 
 	// This method is used to test the method that search a registered report by date and barber
@@ -175,7 +171,7 @@ public class ReportDAOTest
 			ReportDAO reportDAO = ReportDAO.getInstance();
 			ResultSet queryForReport = reportDAO.searchByDateAndBarber(report);
 			
-			while ( queryForReport.next() ) 
+			while (queryForReport.next()) 
 			{
 				// Receives the service type 
 				String serviceType = queryForReport.getString("nome");
@@ -198,7 +194,7 @@ public class ReportDAOTest
 			ReportDAO reportDAO = ReportDAO.getInstance();
 			ResultSet queryForReport = reportDAO.searchByDateBarberAndService(report);
 			
-			while ( queryForReport.next() ) 
+			while (queryForReport.next()) 
 			{
 				// Receives the service type 
 				String serviceType = queryForReport.getString("nome");
@@ -209,7 +205,6 @@ public class ReportDAOTest
 		{
 			e.printStackTrace();
 		}
-		
 	}
 
 }

@@ -23,9 +23,9 @@ public class DoneServiceDAOTest
 	/* 
 	 * This method is used to receives the attributes of a Done Service in the correct form
 	 * to realize the test, throws exceptions of null attributes e conversions problems
-	*/
+	 */
 	@Before
-	public void setUp () 
+	public void setUp() 
 	{
 		try
 		{
@@ -38,34 +38,32 @@ public class DoneServiceDAOTest
 			doneService2.setDate("01/01/2010");
 			doneService2.setPrice("9,90");
 		} 
-		catch(NullPointerException e)
+		catch (NullPointerException e)
 		{
 			e.printStackTrace();
 		} 
-		catch(ServiceException e)
+		catch (ServiceException e)
 		{
 			e.printStackTrace();
 		}
-		catch(ParseException e) 
+		catch (ParseException e) 
 		{
 			e.printStackTrace();
 		}
 	}
 
 	DoneServiceDAO doneServiceDAO = DoneServiceDAO.getInstance();
-	
-	
+		
 	// This method is used to test the method getInstance 
 	@Test
-	public void getInstanceTest ()
+	public void getInstanceTest()
 	{
 		assertEquals(DoneServiceDAO.getInstance(), doneServiceDAO);
 	}
-
 	 
 	// This method tests the register of a Done Service
 	@Test
-	public void includeDoneServiceTest ()
+	public void includeDoneServiceTest()
 	{
 		try 
 		{
@@ -75,13 +73,11 @@ public class DoneServiceDAOTest
 		{
 			e.printStackTrace();
 		}
-
 	}
-	
 	
 	// This method tests the delete of a Done Service	
 	@Test
-	public void deleteDoneServiceTest () 
+	public void deleteDoneServiceTest() 
 	{
 		try 
 		{
@@ -92,11 +88,10 @@ public class DoneServiceDAOTest
 			e.printStackTrace();
 		}
 	}
-	
 	 
 	// This method tests the register of a Done Service	with a null done service
 	@Test
-	public void includeDoneServiceNullTest () 
+	public void includeDoneServiceNullTest() 
 	{
 		try 
 		{
@@ -107,11 +102,10 @@ public class DoneServiceDAOTest
 			e.printStackTrace();
 		}
 	}
-	
 	 
-	// This method tests the delete of a Done Service	with a null done service
+	// This method tests the delete of a Done Service with a null done service
 	@Test
-	public void deleteDoneServiceNullTest () 
+	public void deleteDoneServiceNullTest() 
 	{
 		try
 		{

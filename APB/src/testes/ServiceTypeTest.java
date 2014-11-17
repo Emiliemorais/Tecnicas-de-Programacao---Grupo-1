@@ -16,7 +16,6 @@ public class ServiceTypeTest
 	ServiceType  serviceType =  new ServiceType();
 	
 	@Before
-	
 	// Initialize a service type
 	public void setUp()
 	{
@@ -36,9 +35,9 @@ public class ServiceTypeTest
 	 * Define an assertive that compares the value of the service type ('Corte') included
 	 *   with the service type registered 
 	 */
-	public void getterServiceTypeTest ()
+	public void getterServiceTypeTest()
 	{
-		assertEquals( "Corte", serviceType.getServiceTypeName() );
+		assertEquals("Corte", serviceType.getServiceTypeName());
 	}
 	
 	@Test
@@ -46,41 +45,30 @@ public class ServiceTypeTest
 	 * Define an assertive that compares the value of the price ('14,50') included
 	 *   with the service type registered 
 	 */
-	public void getterPriceServiceTypeTest ()
+	public void getterPriceServiceTypeTest()
 	{
-		assertEquals( "14,50", serviceType.getServiceTypePrice() );
+		assertEquals("14,50", serviceType.getServiceTypePrice());
 	}
 	
-
-	@Test (expected = NullPointerException.class)
-	
-	/* 
-	 * Define an assertive that throws a exception if the price of the service type is null
-	 */
-	public void setterPriceNullTest () throws ServiceException
+	@Test (expected = NullPointerException.class)	
+	// Define an assertive that throws a exception if the price of the service type is null
+	public void setterPriceNullTest() throws ServiceException
 	{
 		serviceType.setServiceTypePrice(null);
 		Assert.fail("Deve lançar exceção");
 	}
 	
-
 	@Test (expected = NullPointerException.class)
 	
-	/* 
-	 *	Define an assertive that throws a exception if the service type name is null
-	 */
-	public void setterServiceTypeNameTestv() throws ServiceException 
+	// Define an assertive that throws a exception if the service type name is null
+	public void setterServiceTypeNameTest() throws ServiceException 
 	{
 		serviceType.setServiceTypeName(null);
 		Assert.fail("Deve lançar exceção");
 	}
 	
-
 	@Test (expected = IllegalArgumentException.class)
-	
-	/*
-	 * Define an assertive that throws a exception if the service type price is invalid
-	 */
+	// Define an assertive that throws a exception if the service type price is invalid
 	public void setterPriceInvalidTest() throws ServiceException 
 	{
 		serviceType.setServiceTypePrice("14.50%");
@@ -88,58 +76,41 @@ public class ServiceTypeTest
 	}
 	
 	@Test (expected =  ServiceException.class)
-	
-	/*
-	 *	Define an assertive that throws a exception if the  service type price is blank
-	 */
+	// Define an assertive that throws a exception if the  service type price is blank
 	public void setterPriceBlankTest() throws ServiceException
 	{
 		serviceType.setServiceTypePrice("");
 		Assert.fail("Deve lançar exceção");
 	}
-	
 
 	@Test (expected =  ServiceException.class)
-	
-	/*
-	 * Define an assertive that throws a exception if the service type name is blank
-	 */
+	// Define an assertive that throws a exception if the service type name is blank
 	public void setterServiceTypeNameBlankTest() throws ServiceException
 	{
 		serviceType.setServiceTypeName("");
 		Assert.fail("Deve lançar exceção");
 	}
 	
-
 	@Test (expected = AssertionError.class)
-	
 	/* 
 	 * Define an assertive that compares the value of the service type temporary name ('Corte') included
 	 *   with the service type temporary name registered   
 	 */
 	public void getterTemporaryNameTest() throws ServiceException
 	{
-		assertEquals( "Corte", ServiceType.getTemporaryName() );
+		assertEquals("Corte", ServiceType.getTemporaryName());
 	}
 	
-
 	@Test (expected = NullPointerException.class)
-	
-	/* 
-	 * Define an assertive that throws a exception if the service type temporary name is null
-	 */
+	// Define an assertive that throws a exception if the service type temporary name is null
 	public void setterTemporaryNameNullTest() throws ServiceException 
 	{
 		ServiceType.setTemporaryName(null);
 		Assert.fail("Deve lançar exceção");
 	}
 	
-
 	@Test (expected = ServiceException.class)
-	
-	/* 
-	 * Define an assertive that throws a exception if the service type temporary name is blank
-	 */
+	// Define an assertive that throws a exception if the service type temporary name is blank
 	public void setterTemporaryNameBlankTest() throws ServiceException
 	{
 		ServiceType.setTemporaryName("");
@@ -147,10 +118,9 @@ public class ServiceTypeTest
 	}
 	
 	@Test
-	
-	/* 
-	  * Define an assertive that throws a exception if the service type temporary name
-	  *  is different of the registered
+	/*
+	 * Define an assertive that throws a exception if the service type temporary name
+	 *  is different of the registered
 	 */
 	public void validateTemporaryName() 
 	{
