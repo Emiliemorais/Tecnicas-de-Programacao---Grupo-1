@@ -46,8 +46,9 @@ public class Book
     // Show the catalog of books registered on the system
     public static int infoAboutBook(){
         System.out.println("\tConfira nossos produtos:\n");
+        
         int i=0;
-        for(i=0; i<listISBN.size(); i++)
+        for (i=0; i<listISBN.size(); i++)
         {
             System.out.println( "\tTitulo: " + listTitle.get(i) );
             System.out.println( "\tAutor: " + listAuthor.get(i) );
@@ -57,9 +58,10 @@ public class Book
             System.out.println( "\tTema: " + listTheme.get(i) );
             System.out.println( "\tPor apenas R$" + listPrice.get(i) + "!\n" );
         }
+        
         return i;
     }
-    public static void showCatalog ()
+    public static void showCatalog()
     {
         // i - Receives the index of the book
         int i;        
@@ -73,11 +75,11 @@ public class Book
     public int ReceivesIndexBook(String researchedBookByUser){
         int i = -1;
             
-        if( listISBN.contains(researchedBookByUser) )
+        if (listISBN.contains(researchedBookByUser))
         {
             i = listISBN.indexOf(researchedBookByUser);
         }
-        else if( listTitle.contains(researchedBookByUser) )
+        else if (listTitle.contains(researchedBookByUser))
         {
             i = listTitle.indexOf(researchedBookByUser);
         }
@@ -105,7 +107,7 @@ public class Book
     
     public String optionForBuyBook(){
         String option = "";
-        if( !currentAccess )
+        if (!currentAccess)
         {
             String purchaseBookMenuNoCliente = "\nDeseja comprar esse livro?"
                                     + " Faça login agora mesmo!\n "
@@ -121,8 +123,10 @@ public class Book
         }
 
         option = inputString.nextLine();
+        
         return option;
     }
+    
     public void showAmountBook(int i, int bookQuantity , String loginClient){
         int indexOfTheClient = Client.cpf.indexOf(currentClient);
 
@@ -148,7 +152,7 @@ public class Book
 
         loginClient = client.getLogin();
 
-        if( currentAccess )
+        if (currentAccess)
         {
             // Receives the index of the client
             showAmountBook(i, bookQuantity, loginClient);
@@ -172,13 +176,11 @@ public class Book
 
         optionForBuyBook();
         
-        
         option = optionForBuyBook();
 
-        if( "1".equals(option) )
+        if ("1".equals(option))
         {
             buyingBook(i);
-            
         }
         else
         {
@@ -207,7 +209,7 @@ public class Book
 
         verifyAddRecommendation = listBookRecommendation.add(researchedBookByUser);
 
-        if( verifyAddRecommendation )
+        if (verifyAddRecommendation)
         {
             String messageSucessRecommendation = "\nSua recomendação foi recebida com sucesso! "
                                                + "Agradecemos sua participação e iremos analisar o seu pedido e,"
@@ -222,16 +224,13 @@ public class Book
             
     public void showOptionBookNotExists(String researchedBookByUser){
         
-        
         String optionRecommendation = "";
         optionRecommendation = recommendationByUser();
-       
 
-        if( "1".equals(optionRecommendation) )
+        if ("1".equals(optionRecommendation))
         {
             // Receives the status (sucess or failure) of addition of the book in the recommendation list 
             acceptrecommendation(researchedBookByUser);
-            
         }
         else
         {
@@ -240,6 +239,7 @@ public class Book
 
         showMenu();
     }
+    
     public void queryBook ()
     {
         // Receives the ISBN or the title of the book researched by user
@@ -248,7 +248,7 @@ public class Book
         System.out.println("\nInforme o ISBN ou o título do livro que deseja:");
         researchedBookByUser = inputString.nextLine();
           
-        if( listISBN.contains(researchedBookByUser) || listTitle.contains(researchedBookByUser) )
+        if (listISBN.contains(researchedBookByUser) || listTitle.contains(researchedBookByUser))
         {
             //show Options to Book if Exists 
             showOptionBookExists(researchedBookByUser);
@@ -257,7 +257,7 @@ public class Book
         {
             // Receives the option from the user about the recommendation of the book
             showOptionBookNotExists(researchedBookByUser);
-        }
-            
+        }    
     }
+    
 }

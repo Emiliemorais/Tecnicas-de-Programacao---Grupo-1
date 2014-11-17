@@ -3,7 +3,7 @@ package livraria_abc;
 
 public class Bookstore 
 {
-    // Receives the identification number (CNPJ - Cadastro Nacional de Pessoa Juridica - in portuguese) of the bookstore
+    // Receives the identification number (CNPJ - Juridic Person National Register - in portuguese) of the bookstore
     int cnpjBookstore;
     
     // Receives the name of the bookstore
@@ -16,7 +16,7 @@ public class Bookstore
     int bookstoreTelephone;
          
     // Constructor 
-    public Bookstore ()
+    public Bookstore()
     {
         this.cnpjBookstore = 54505052;
         this.bookstoreName = "Livraria ABC";

@@ -5,15 +5,15 @@ import java.util.*;
 public class ABCBookStore
 {
     /*
-    *   Receives the current condition of the system about an access
-    *   If some login was open currentAccess = true;
-    */
+     *   Receives the current condition of the system about an access
+     *   If some login was open currentAccess = true;
+     */
     static boolean currentAccess = false; 
     
     /*
-    *   Receives the current client logged into the system
-    *   If some login was open currentClient = cpf do cliente logado;
-    */
+     *   Receives the current client logged into the system
+     *   If some login was open currentClient = cpf do cliente logado;
+     */
     static String currentClient = "blank";
     
     // Receives the current client's name logged into the system
@@ -32,15 +32,16 @@ public class ABCBookStore
     static String paymentType = "blank";
     
     // Print an exit message to the user
-    public static void showExitMessage ()
+    public static void showExitMessage()
     {
         System.out.println("\nObrigado por utilizar nossos serviços! A Livraria ABC agrade e volte sempre!");
     }
     
-    public static String showOptionMenu(){
+    public static String showOptionMenu()
+    {
         String option = "";
         
-        if(!option.equals("0"))
+        if (!option.equals("0"))
         {
             System.out.println("\nOlá "+currentClientName+"! O que deseja na Livraria Virtual ABC?");
             System.out.println("1 - Olhar catálogo");
@@ -55,19 +56,23 @@ public class ABCBookStore
             System.out.println("0 - Efetuar logout, fechar página e sair do sistema");
             
             option = inputString.nextLine();
-        }else{
+        }
+        else
+        {
             //Noting to do
         }
+        
         return option;
     }
     
-    public static void finishCart(){
+    public static void finishCart()
+    {
         // Receives the code of the buying
         int buyingCode;
 
         buyingCode = Cart.closeCart();
 
-        if( buyingCode == -1 )
+        if (buyingCode == -1)
         {
             showMenu();
         }
@@ -77,9 +82,10 @@ public class ABCBookStore
             Purchase.checkAddress();
         }
         //// Passar esse codigo para classe compra. Se cod_compra = -1 ta errado. VALIDAR!!!
-
+        
     }
-    public static void addBookCart(){
+    public static void addBookCart()
+    {
         String researchedBookByUser;
                     
         System.out.println("\nInforme o ISBN ou o título do livro que deseja: ");
@@ -88,7 +94,7 @@ public class ABCBookStore
         boolean bookOfTheResearchedBookByUserByISBN = Book.listISBN.contains(researchedBookByUser);
         boolean bookOfTheResearchedBookByUserByTitle = Book.listTitle.contains(researchedBookByUser);
         
-        if( bookOfTheResearchedBookByUserByISBN || bookOfTheResearchedBookByUserByTitle )
+        if (bookOfTheResearchedBookByUserByISBN || bookOfTheResearchedBookByUserByTitle)
         {
             // Receives the index of the book researched by user
             int indexOfTheBook = -1;
@@ -96,12 +102,11 @@ public class ABCBookStore
             // Receives the quantity of books 
             int bookQuantity;
 
-            
-            if( bookOfTheResearchedBookByUserByISBN )
+            if (bookOfTheResearchedBookByUserByISBN)
             {
                 indexOfTheBook = Book.listISBN.indexOf(researchedBookByUser);
             }
-            else if( bookOfTheResearchedBookByUserByTitle )
+            else if (bookOfTheResearchedBookByUserByTitle)
             {
                 indexOfTheBook = Book.listTitle.indexOf(researchedBookByUser);
             }
@@ -124,7 +129,8 @@ public class ABCBookStore
         }
     }
     
-    public static void showMenuForLogger(String option){
+    public static void showMenuForLogger(String option)
+    {
         option = showOptionMenu();
             
             // Book class's instance to access the class
@@ -138,11 +144,13 @@ public class ABCBookStore
                 case "1":
                 {
                     book.showCatalog();
+                    
                     break;
                 }
                 case "2":
                 {
                     book.queryBook();
+                    
                     break;
                 }
                 case "3":
@@ -155,31 +163,37 @@ public class ABCBookStore
                 case "4":
                 {
                     Cart.showCartItems();
+                    
                     break;
                 }
                 case "5":
                 {
                     client.getLogout();
+                    
                     break;
                 }
                 case "6":
                 {
                     Cart.removeCartItem();
+                    
                     break;
                 }
                 case "7":
                 {
                     Cart.includeDiscount();
+                    
                     break;
                 }
                 case "8":
                 {
                     finishCart();
+                    
                     break;
                 }
                 case "9":
                 {
                     client.menuClient();
+                    
                     break;
                 }
                 case "0":
@@ -192,20 +206,21 @@ public class ABCBookStore
                 }
                 default:
                 { 
-                    if( !"0".equals(option) )
+                    if (!"0".equals(option))
                     {
                         System.out.println("\nOpção Inválida!\n");
                     }
                     else
                     {
                         // Nothing to do
-                    }
-                   
+                    }         
                 }
             }
     }
-    public static void showMenuForNotLogger( String option){
-        if( !option.equals("0") )
+    
+    public static void showMenuForNotLogger(String option)
+    {
+        if (!option.equals("0"))
         {            
             System.out.println("\nOlá visitante! O que deseja na Livraria Virtual ABC?");
             System.out.println("1 - Olhar catálogo");
@@ -215,10 +230,11 @@ public class ABCBookStore
             System.out.println("0 - Fechar página e sair do sistema");
 
             option = inputString.nextLine();
-        }else{
+        }
+        else
+        {
             //nothing to do
         }
-
 
         // Book class's instance to access the class
         Book book = new Book();
@@ -231,11 +247,13 @@ public class ABCBookStore
             case "1":
             {
                 book.showCatalog();
+                
                 break;
             }
             case "2":
             {
                 book.queryBook();
+                
                 break;
             }
             case "3":
@@ -245,11 +263,13 @@ public class ABCBookStore
                 client.getLogin();
 
                 showMenu();
+                
                 break;
             }
             case "4":
             {
                 client.getLogin();
+                
                 break;
             }
             case "0":
@@ -260,7 +280,8 @@ public class ABCBookStore
             }
             default:
             {
-                if( !"0".equals(option) ){
+                if (!"0".equals(option))
+                {
                     System.out.println("\nOpção Inválida!\n");
                 }
                 else
@@ -270,13 +291,14 @@ public class ABCBookStore
             }
         }
     }
-    public static void showMenu ()
+    
+    public static void showMenu()
     {
         // Receives the option from the user about what to do in the system
         String option = "";
         
         // Checks if someone has logged.
-        if( currentAccess )
+        if (currentAccess)
         {
             showMenuForLogger(option);
         }
@@ -297,8 +319,7 @@ public class ABCBookStore
     {
         // Bookstore class's instance to access the class
         Bookstore bookstore = new Bookstore();
-        
-        
+                
         //The following data were inserted to simulate a database of the ABCBookStore 
         
         Book.listISBN.add(0, "9780345486572");
@@ -348,4 +369,5 @@ public class ABCBookStore
                 
         showMenu();           
     }
+    
 }

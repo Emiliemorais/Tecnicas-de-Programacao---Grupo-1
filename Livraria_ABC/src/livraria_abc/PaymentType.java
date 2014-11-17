@@ -10,7 +10,7 @@ public class PaymentType
     static List<PaymentType> listTypes = new ArrayList<>();
  
     // Receives a payment type
-        String paymentType;
+    String paymentType;
         
     // Receives a description of a payment type
     String paymentDescription;
