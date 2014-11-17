@@ -51,7 +51,7 @@ public class NewDoneService extends JFrame
 						NewDoneService doneServiceFrame = new NewDoneService();
 						doneServiceFrame.setVisible(true);
 					} 
-					catch( Exception e )
+					catch (Exception e)
 					{
 						e.printStackTrace();
 					}
@@ -112,7 +112,7 @@ public class NewDoneService extends JFrame
 			{
 				// Connection class's instance to connect with the database
 				Connection connection;
-				if( comboBoxService.getSelectedIndex() != 0 )
+				if (comboBoxService.getSelectedIndex() != 0)
 				{
 					try
 					{
@@ -134,7 +134,7 @@ public class NewDoneService extends JFrame
 
 						textGlobal.setText( queryForPrice.getString("preco") );
 					} 
-					catch( SQLException e )
+					catch (SQLException e)
 					{
 						showErrorMessage( e.getMessage() );
 					}
@@ -169,7 +169,7 @@ public class NewDoneService extends JFrame
 			ResultSet queryForServiceType = preparedStatement2.executeQuery();
 			
 			// Lists the names of the barbers by chair
-			while( queryForChair.next() ) 
+			while (queryForChair.next()) 
 			{
 				// Receives the barber's name
 				String barberName = queryForChair.getString("nome");
@@ -180,7 +180,7 @@ public class NewDoneService extends JFrame
 			}
 			
 			// Lists the services type
-			while( queryForServiceType.next() )
+			while (queryForServiceType.next())
 			{
 				serviceTypeQuantity++;
 				
@@ -190,9 +190,9 @@ public class NewDoneService extends JFrame
 			}
 
 		} 
-		catch(SQLException e)
+		catch (SQLException e)
 		{
-			showErrorMessage( e.getMessage() );
+			showErrorMessage(e.getMessage());
 		}
 		
 		// Creates a button that saves the given service
@@ -202,15 +202,13 @@ public class NewDoneService extends JFrame
 			@Override
 			public void mouseClicked(MouseEvent arg0) 
 			{
-				
 				try
 				{
-					
-					if( comboBoxService.getSelectedIndex() == 0 )
+					if (comboBoxService.getSelectedIndex() == 0)
 					{
 						JOptionPane.showMessageDialog(null, "Você deve selecionar um tipo de serviço.");
 					}
-					else if( comboBoxBarbers.getSelectedIndex() == 0 )
+					else if (comboBoxBarbers.getSelectedIndex() == 0)
 					{
 						JOptionPane.showMessageDialog(null, "Você deve selecionar um barbeiro.");
 					}
@@ -262,7 +260,7 @@ public class NewDoneService extends JFrame
 				}
 				catch (ParseException e)
 				{
-					showErrorMessage( e.getMessage() );
+					showErrorMessage(e.getMessage());
 				}
 
 			}
@@ -277,7 +275,6 @@ public class NewDoneService extends JFrame
 			@Override
 			public void mouseClicked(MouseEvent arg0)
 			{
-				
 				textGlobal.setText("");
 				comboBoxBarbers.setSelectedIndex(0);
 				comboBoxService.setSelectedIndex(0);
@@ -305,7 +302,6 @@ public class NewDoneService extends JFrame
 		returnButton.setBounds(329, 129, 89, 23);
 		contentPane.add(returnButton);
 	}
-
 	
 	/**
 	 *  Method used to show an error message for exception treatment

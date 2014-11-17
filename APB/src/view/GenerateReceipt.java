@@ -162,7 +162,7 @@ public class GenerateReceipt extends JFrame
 			// ResultSet interface instance to query a barber
 			ResultSet queryForBarber = barberControllerInstance.searchBarbers();
 			
-			while ( queryForBarber.next() ) 
+			while (queryForBarber.next()) 
 			{
 				comboBoxBarbers.addItem(queryForBarber.getString("cadeira") + " - "
 										+ queryForBarber.getString("nome"));
@@ -209,7 +209,7 @@ public class GenerateReceipt extends JFrame
 				
 				try
 				{
-					if( comboBoxBarbers.getSelectedIndex() != 0 ) 
+					if (comboBoxBarbers.getSelectedIndex() != 0) 
 					{
 						// CreateDocx class's instance to create the receipt in the format "docx"
 						CreateDocx docx = new CreateDocx("docx");
@@ -248,22 +248,22 @@ public class GenerateReceipt extends JFrame
 						paramsBarberSignature.put("b", "single");
 
 						String initialDateToConverte = textFieldInitialDate.getText();
+						
 						// Constant that writes on the receipt the Initial Date
 						final String isoInitialDate = convertDateForISO(initialDateToConverte);
 						
 						String finalDateToConverte = textFieldFinalDate.getText();
+						
 						// Constant that writes on the receipt the end Date
 						final String isoFinalDate = convertDateForISO(finalDateToConverte);
 
 						// Gets its barber's name from the combo box 
 						String[] barberName = comboBoxBarbers.getSelectedItem().toString().split(" - ");
-
-						
 						
 						// ResultSet interface instance to query a barber service
 						ResultSet queryForBarberService = reciboController.barberServicesSearch(barberName[1],isoInitialDate, isoFinalDate);
 						
-						while( queryForBarberService.next() )
+						while (queryForBarberService.next())
 						{
 							String priceBrazilFormat =  queryForBarberService.getString("preco");
 							price = priceBrazilFormat.replace(",", ".");
@@ -273,7 +273,7 @@ public class GenerateReceipt extends JFrame
 							totalAmount = totalAmount + (value / 2);
 						}
 
-						//DecimalFormat class's instance to change the format of the price
+						// DecimalFormat class's instance to change the format of the price
 						DecimalFormat decimalFormat = new DecimalFormat("##0.00");
 
 						// Receives the initial date from the jTextField
@@ -283,7 +283,7 @@ public class GenerateReceipt extends JFrame
 						String finalDate = textFieldFinalDate.getText();
 
 						// Receives the total price
-						String value = ( "VALOR R$ " + decimalFormat.format(totalAmount) );
+						String value = ("VALOR R$ " + decimalFormat.format(totalAmount));
 
 						// Receives the text of the receipt
 						String textReceipt = "                    Recebi do Sr. "

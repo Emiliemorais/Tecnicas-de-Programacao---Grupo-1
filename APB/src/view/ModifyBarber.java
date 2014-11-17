@@ -146,7 +146,7 @@ public class ModifyBarber extends JFrame
 			// ResultSet interface`s instance used to consult the barbers in the database
 			ResultSet queryForBarber = barberController.searchBarberByName(barber);
 			
-			while( queryForBarber.next() ) 
+			while (queryForBarber.next()) 
 			{
 				textFieldBarberName.setText( queryForBarber.getString("nome") );
 				textFieldBarberCpf.setText( queryForBarber.getString("cpf") );
@@ -156,13 +156,13 @@ public class ModifyBarber extends JFrame
 			}
 			textGlobalBarber = textFieldBarberCpf.getText();
 		} 
-		catch( SQLException e )
+		catch (SQLException e)
 		{
-			showErrorMessage( e.getMessage() );
+			showErrorMessage(e.getMessage());
 		} 
-		catch( BarberException e )
+		catch (BarberException e)
 		{
-			showErrorMessage( e.getMessage() );
+			showErrorMessage(e.getMessage());
 		}
 		
 		// Creates a button to save the changes
@@ -199,16 +199,17 @@ public class ModifyBarber extends JFrame
 					registerBarberframe.setLocationRelativeTo(null);
 
 				}
-				catch( BarberException e1 )
+				catch (BarberException e1)
 				{
-					showErrorMessage( e1.getMessage() );
+					showErrorMessage(e1.getMessage());
 				} 
-				catch( SQLException k ) 
+				catch (SQLException k) 
 				{
-					showErrorMessage( k.getMessage() );
+					showErrorMessage(k.getMessage());
 				}
 			}
 		});
+		
 		saveButton.setBounds(10, 196, 125, 23);
 		contentPane.add(saveButton);
 		
