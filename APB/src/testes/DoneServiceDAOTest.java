@@ -38,17 +38,17 @@ public class DoneServiceDAOTest
 			doneService2.setDate("01/01/2010");
 			doneService2.setPrice("9,90");
 		} 
-		catch (NullPointerException e)
+		catch (NullPointerException exception)
 		{
-			e.printStackTrace();
+			exception.printStackTrace();
 		} 
-		catch (ServiceException e)
+		catch (ServiceException exception)
 		{
-			e.printStackTrace();
+			exception.printStackTrace();
 		}
-		catch (ParseException e) 
+		catch (ParseException exception) 
 		{
-			e.printStackTrace();
+			exception.printStackTrace();
 		}
 	}
 
@@ -69,9 +69,9 @@ public class DoneServiceDAOTest
 		{
 			assertTrue(doneServiceDAO.includeServiceType(doneService));
 		} 
-		catch (SQLException e) 
+		catch (SQLException exception) 
 		{
-			e.printStackTrace();
+			exception.printStackTrace();
 		}
 	}
 	
@@ -83,9 +83,9 @@ public class DoneServiceDAOTest
 		{
 			assertTrue(doneServiceDAO.deleteServiceType(doneService));
 		} 
-		catch (SQLException e)
+		catch (SQLException exception)
 		{
-			e.printStackTrace();
+			exception.printStackTrace();
 		}
 	}
 	 
@@ -97,9 +97,9 @@ public class DoneServiceDAOTest
 		{
 			assertFalse(doneServiceDAO.includeServiceType(null));
 		} 
-		catch (SQLException e) 
+		catch (SQLException exception) 
 		{
-			e.printStackTrace();
+			exception.printStackTrace();
 		}
 	}
 	 
@@ -111,9 +111,9 @@ public class DoneServiceDAOTest
 		{
 			assertFalse(doneServiceDAO.deleteServiceType(null));
 		} 
-		catch (SQLException e)
+		catch (SQLException exception)
 		{
-			e.printStackTrace();
+			exception.printStackTrace();
 		}
 	}
 

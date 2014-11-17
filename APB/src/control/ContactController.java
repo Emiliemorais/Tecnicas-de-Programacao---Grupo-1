@@ -26,17 +26,19 @@ public class ContactController
      */
 	public boolean includeContact (Contact contact) throws SQLException 
 	{
+		boolean returnMethodincludeContact;
 		if(contact == null)
 		{
-			return false;
+			returnMethodincludeContact = false;
 		}
 		else
 		{
 			ContactDAO phonebookDAOInstance = ContactDAO.getInstance(); 
 			phonebookDAOInstance.includeDataToPhonebook(contact);
 			
-			return true;
+			returnMethodincludeContact = true;
 		}
+		return returnMethodincludeContact;
 	}
 	
 	/**
@@ -48,9 +50,10 @@ public class ContactController
 	 */
 	public boolean changeContact(String contactToChangeName, Contact newContact) throws SQLException 
 	{
+		boolean returnMethodchangeContact;
 		if (newContact == null)
 		{
-			return false;
+			returnMethodchangeContact = false;
 		}
 		else
 		{
@@ -58,8 +61,9 @@ public class ContactController
 			ContactDAO editPhonebookDataInstance = ContactDAO.getInstance();
 			editPhonebookDataInstance.editPhonebookData(contactToChangeName, phonebookChange, newContact);
 			
-			return true;		
+			returnMethodchangeContact = true;		
 		}
+		return returnMethodchangeContact;
 	}
         
     /**
@@ -70,18 +74,20 @@ public class ContactController
      */
 	public boolean removeContact(Contact contactToBeRemoved) throws SQLException 
 	{
+		boolean returnMethodremoveContact;
 		if (contactToBeRemoved == null)
 		{
-			return false;
+			returnMethodremoveContact = false;
 		}
 		else
 		{
 			ContactDAO deletePhonebookDataInstance = ContactDAO.getInstance();
 			deletePhonebookDataInstance.deletePhonebookData(contactToBeRemoved);
 			
-			return true;
+			returnMethodremoveContact = true;
 		}
 
+		return returnMethodremoveContact;
 	}
 	
 	/**

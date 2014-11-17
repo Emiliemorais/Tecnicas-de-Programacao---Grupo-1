@@ -22,19 +22,20 @@ public class ServiceTypeController
 	 */
 	public boolean includeServiceType (ServiceType serviceTypeToInclude) throws SQLException
 	{
+		boolean returnMethodincludeServiceType;
 		if( serviceTypeToInclude == null )
         {
-			return false;
+			returnMethodincludeServiceType = false;
 		}
 		else
         {
 			ServiceTypeDAO serviceTypeDAOInstance =  ServiceTypeDAO.getInstance();
 
 			serviceTypeDAOInstance.includeServiceType(serviceTypeToInclude);
-			return true;
+			returnMethodincludeServiceType = true;
 		}
+		return returnMethodincludeServiceType;
 	}
-
 
 	/**
 	 * Method that modify a service type on the system
@@ -44,13 +45,14 @@ public class ServiceTypeController
 	public boolean modifyServiceType ( String serviceTypeToChangeName,
 									   ServiceType newServiceType ) throws SQLException
 	{
+		boolean returnMethodmodifyServiceType;
 		if( newServiceType == null )
         {
-			return false;
+			returnMethodmodifyServiceType = false;
 		}
 		else
         {
-			// Auxiliar variable used to change the service type
+			// Auxiliary variable used to change the service type
 			ServiceType changedServiceType = newServiceType;
 			
 			ServiceTypeDAO serviceTypeDAOInstance = ServiceTypeDAO.getInstance();
@@ -58,8 +60,9 @@ public class ServiceTypeController
 			serviceTypeDAOInstance.editServiceType(serviceTypeToChangeName,
 												   changedServiceType,
 												   newServiceType);
-			return true;
+			returnMethodmodifyServiceType = true;
 		}
+		return returnMethodmodifyServiceType;
 	}
 	
 
@@ -69,17 +72,19 @@ public class ServiceTypeController
 	 */
 	public boolean deleteServiceType (ServiceType serviceTypeToDelete) throws SQLException
 	{
+		boolean returnMethoddeleteServiceType;
 		if( serviceTypeToDelete == null )
         {
-			return false;
+			returnMethoddeleteServiceType = false;
 		}
 		else
         {
 			ServiceTypeDAO serviceTypeDAOInstance =  ServiceTypeDAO.getInstance();
 			
 			serviceTypeDAOInstance.deleteServiceType(serviceTypeToDelete);
-			return true;
+			returnMethoddeleteServiceType = true;
 		}
+		return returnMethoddeleteServiceType;
 	}
 
 	// Return the current instance or instantiate a new one if 'instance' is null
@@ -126,5 +131,4 @@ public class ServiceTypeController
 		
 		return searchByNameResult;
 	}
-
 }

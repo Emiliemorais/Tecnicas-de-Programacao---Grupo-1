@@ -37,20 +37,21 @@ public class BarberController
 	 */
 	public boolean includeBarber(Barber barberToInclude) throws SQLException
 	{
+		boolean returnMethodIncludeBarber;
 		if(barberToInclude == null)
         {
-            return false;
+			returnMethodIncludeBarber = false;
         }
         else
         {
-            // Nothing to do
+        	returnMethodIncludeBarber = true;
         }
 		
 		BarberDAO barberDAOInstance = BarberDAO.getInstance();
 		
 		barberDAOInstance.includeBarber(barberToInclude);
 		
-		return true;
+		return returnMethodIncludeBarber;
 	}
 
 
@@ -61,13 +62,14 @@ public class BarberController
 	 */
 	public boolean modifyBarber(String barberToChangeName, Barber newBarber) throws SQLException
 	{
+		boolean returnMethodModifyBarber;
 		if(newBarber == null)
         {
-            return false;
+			returnMethodModifyBarber = false;
         }
         else
         {
-            // Nothing to do
+        	returnMethodModifyBarber = true;
         }
 		
 		// Check use - Probably can be deleted
@@ -77,7 +79,7 @@ public class BarberController
 		
 		barberDAOInstance.changeBarber(barberToChangeName, changedBarber, newBarber);
 		
-		return true;
+		return returnMethodModifyBarber;
 	}
 
 
@@ -87,20 +89,21 @@ public class BarberController
 	 */
 	public boolean deleteBarber(Barber barberToDelete) throws SQLException
 	{
+		boolean returnMethodDeleteBarber;
 		if(barberToDelete == null)
         {
-            return false;
+			returnMethodDeleteBarber = false;
         }
         else
         {
-            // Nothing to do
+        	returnMethodDeleteBarber = true;
         }
 		
 		BarberDAO barberDAOInstance = BarberDAO.getInstance();
 		
 		barberDAOInstance.deleteBarber(barberToDelete);
 		
-		return true;
+		return returnMethodDeleteBarber;
 	}
 
 

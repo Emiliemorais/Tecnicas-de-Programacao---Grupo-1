@@ -62,9 +62,9 @@ public class DoneServiceTest
 		{
 			service.setServiceName("Corte");
 		}
-		catch (ServiceException e)
+		catch (ServiceException exception)
 		{
-			e.printStackTrace();
+			exception.printStackTrace();
 			Assert.fail("N�o deve lan�ar exce��o");
 		}
 		
@@ -103,7 +103,7 @@ public class DoneServiceTest
 		{
 			service.setPrice("123,45");
 		}
-		catch (ServiceException e)
+		catch (ServiceException exception)
 		{
 			Assert.fail("N�o deve lan�ar exce��o");
 		}
@@ -143,7 +143,7 @@ public class DoneServiceTest
 		{
 			service.setBarberName("Jo�o");
 		}
-		catch (ServiceException e)
+		catch (ServiceException exception)
 		{
 			Assert.fail("Não deve lançar uma exceção");
 		}
@@ -159,13 +159,13 @@ public class DoneServiceTest
 		{
 			service.setDate(null);
 		}
-		catch (ParseException e)
+		catch (ParseException exception)
 		{
-			e.printStackTrace();
+			exception.printStackTrace();
 		}
-		catch (AssertionFailedError e)
+		catch (AssertionFailedError exception)
 		{
-			e.printStackTrace();
+			exception.printStackTrace();
 		}
 		
 		Assert.fail("Deve lan�ar uma exce��o");
@@ -179,13 +179,13 @@ public class DoneServiceTest
 		{
 			service.setDate("");
 		}
-		catch (ParseException e)
+		catch (ParseException exception)
 		{
-			e.printStackTrace();
+			exception.printStackTrace();
 		}
-		catch (AssertionFailedError e)
+		catch (AssertionFailedError exception)
 		{
-			e.printStackTrace();
+			exception.printStackTrace();
 		}
 		Assert.fail("Deve lan�ar uma exce��o");
 	}
@@ -198,13 +198,13 @@ public class DoneServiceTest
 		{
 			service.setDate("abc");
 		}
-		catch (ParseException e)
+		catch (ParseException exception)
 		{
-			e.printStackTrace();
+			exception.printStackTrace();
 		}
-		catch (AssertionFailedError e)
+		catch (AssertionFailedError exception)
 		{
-			e.printStackTrace();
+			exception.printStackTrace();
 		}
 		
 		Assert.fail("Deve lan�ar uma exce��o");
@@ -218,9 +218,9 @@ public class DoneServiceTest
 		{
 			service.convertServiceDate("10-10-2010");
 		}
-		catch (ParseException e)
+		catch (ParseException exception)
 		{
-			e.printStackTrace();
+			exception.printStackTrace();
 		}
 	}
 	
@@ -232,9 +232,9 @@ public class DoneServiceTest
 		{
 			service.convertServiceDateToABNT("2010-10-10");
 		}
-		catch (ParseException e)
+		catch (ParseException exception)
 		{
-			e.printStackTrace();
+			exception.printStackTrace();
 		}
 	}
 
@@ -246,13 +246,13 @@ public class DoneServiceTest
 		{
 			service.setDate("10/10/2012");
 		}
-		catch (ServiceException e)
+		catch (ServiceException exception)
 		{
-			e.printStackTrace();
+			exception.printStackTrace();
 		}
-		catch (ParseException e)
+		catch (ParseException exception)
 		{
-			e.printStackTrace();
+			exception.printStackTrace();
 		}
 	}
 
