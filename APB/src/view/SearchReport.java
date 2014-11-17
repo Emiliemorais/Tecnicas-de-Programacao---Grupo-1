@@ -137,12 +137,11 @@ public class SearchReport extends JFrame
 		final Checkbox checkboxDate = new Checkbox("Ativar");
 		checkboxDate.addItemListener(new ItemListener() 
 		{
-			
-			
+						
 			// Method that active the search by date
 			public void itemStateChanged(ItemEvent e)
 			{
-				if( checkboxDate.getState() == false )
+				if (checkboxDate.getState() == false)
 				{
 					textFieldInitialDate.setEnabled(false);
 					textFieldFinalDate.setEnabled(false);
@@ -186,7 +185,7 @@ public class SearchReport extends JFrame
 			// Method that active the search by barber name
 			public void itemStateChanged (ItemEvent e)
 			{
-				if( checkboxBarber.getState() == false )
+				if (checkboxBarber.getState() == false)
 				{
 					textFieldBarber.setEnabled(false);
 					textFieldBarber.setText("Nome do barbeiro");
@@ -226,7 +225,7 @@ public class SearchReport extends JFrame
 			// Method that active the search by service type
 			public void itemStateChanged(ItemEvent e)
 			{
-				if( checkboxService.getState() == false ) 
+				if (checkboxService.getState() == false) 
 				{
 					textFieldService.setEnabled(false);
 					textFieldService.setText("Tipo de Servi\u00E7o");
@@ -246,31 +245,30 @@ public class SearchReport extends JFrame
 		completeButton.addMouseListener(new MouseAdapter()
 		{
 			
-			 // Method that receives the data digitized by user to the search of report
+			// Method that receives the data digitized by user to the search of report
 			@Override
 			public void mouseClicked (MouseEvent arg0)
 			{
 
-				if( textFieldBarber.getText().equals("") )
+				if (textFieldBarber.getText().equals(""))
 				{
 					JOptionPane.showMessageDialog(null, "Digite o nome do barbeiro.");
 				} 
-				else if( textFieldService.getText().equals("") )
+				else if (textFieldService.getText().equals(""))
 				{
-					JOptionPane.showMessageDialog(null, "Digite um tipo de serviço.");
+					JOptionPane.showMessageDialog(null, "Digite um tipo de serviï¿½o.");
 				} 
-				else if( textFieldFinalDate.getText().equals("") )
+				else if (textFieldFinalDate.getText().equals(""))
 				{
 					JOptionPane.showMessageDialog(null, "Digite uma data final");
 				} 
-				else if( textFieldInitialDate.getText().equals("") )
+				else if (textFieldInitialDate.getText().equals(""))
 				{
 					JOptionPane.showMessageDialog(null, "Digite uma data inicial");
 				} 
 				else 
 				{
-
-					if(checkboxBarber.getState() == true
+					if (checkboxBarber.getState() == true
 						&& checkboxDate.getState() == false
 						&& checkboxService.getState() == false)
 					{
@@ -282,7 +280,7 @@ public class SearchReport extends JFrame
 						// Nothing to do
 					}
 
-					if( checkboxBarber.getState() == true 
+					if (checkboxBarber.getState() == true 
 						&& checkboxDate.getState() == false
 						&& checkboxService.getState() == true) 
 					{
@@ -295,7 +293,7 @@ public class SearchReport extends JFrame
 						// Nothing to do
 					}
 					
-					if( checkboxBarber.getState() == true
+					if (checkboxBarber.getState() == true
 						&& checkboxDate.getState() == true
 						&& checkboxService.getState() == false) 
 					{
@@ -309,7 +307,7 @@ public class SearchReport extends JFrame
 						// Nothing to do
 					}
 					
-					if( checkboxBarber.getState() == true
+					if (checkboxBarber.getState() == true
 							&& checkboxDate.getState() == true
 							&& checkboxService.getState() == true) 
 					{
@@ -324,7 +322,7 @@ public class SearchReport extends JFrame
 						//Nothing to do
 					}
 					
-					if( checkboxBarber.getState() == false
+					if (checkboxBarber.getState() == false
 						&& checkboxDate.getState() == false
 						&& checkboxService.getState() == true)
 					{
@@ -336,7 +334,7 @@ public class SearchReport extends JFrame
 						// Nothing to do
 					}
 					
-					if( checkboxBarber.getState() == false
+					if (checkboxBarber.getState() == false
 						&& checkboxDate.getState() == true
 						&& checkboxService.getState() == true)
 					{
@@ -350,7 +348,7 @@ public class SearchReport extends JFrame
 						// Nothing to do
 					}
 					
-					if( checkboxBarber.getState() == false
+					if (checkboxBarber.getState() == false
 						&& checkboxDate.getState() == true
 						&& checkboxService.getState() == false)
 					{
@@ -365,18 +363,18 @@ public class SearchReport extends JFrame
 					
 				}
 
-				if( checkboxBarber.getState() == false
+				if (checkboxBarber.getState() == false
 					&& checkboxDate.getState() == false
 					&& checkboxService.getState() == false)
 				{
-					JOptionPane.showMessageDialog(null, "Selecione uma opção de busca");
+					JOptionPane.showMessageDialog(null, "Selecione uma opï¿½ï¿½o de busca");
 				} 
 				else
 				{
 					// Nothing to do
 				}
 				
-				if( searchType != 0 )
+				if (searchType != 0)
 				{
 					try 
 					{
@@ -386,23 +384,22 @@ public class SearchReport extends JFrame
 						viewReportFrame.setLocationRelativeTo(null);
 						dispose();
 					}
-					catch( SQLException e )
+					catch (SQLException e)
 					{
-						showErrorMessage( e.getMessage() );
+						showErrorMessage(e.getMessage());
 					}
-					catch( ReportException e ) 
+					catch (ReportException e) 
 					{
-						showErrorMessage( e.getMessage() );
+						showErrorMessage(e.getMessage());
 					}
-					catch( NullPointerException e )
+					catch (NullPointerException e)
 					{
-						showErrorMessage( e.getMessage() );
+						showErrorMessage(e.getMessage());
 					}
-					catch( ParseException e ) 
+					catch (ParseException e) 
 					{
-						showErrorMessage( e.getMessage() );
+						showErrorMessage(e.getMessage());
 					}
-
 				}
 				else
 				{
@@ -430,21 +427,21 @@ public class SearchReport extends JFrame
 					viewReportFrame.setLocationRelativeTo(null);
 					dispose();
 				} 
-				catch( SQLException e1 )
+				catch (SQLException e1)
 				{
-					showErrorMessage( e1.getMessage() );
+					showErrorMessage(e1.getMessage());
 				} 
-				catch( ReportException e1 )
+				catch (ReportException e1)
 				{
-					showErrorMessage( e1.getMessage() );
+					showErrorMessage(e1.getMessage());
 				} 
-				catch( NullPointerException e1 )
+				catch (NullPointerException e1)
 				{
-					showErrorMessage( e1.getMessage() );
+					showErrorMessage(e1.getMessage());
 				} 
-				catch( ParseException e1 ) 
+				catch (ParseException e1) 
 				{
-					showErrorMessage( e1.getMessage() );
+					showErrorMessage(e1.getMessage());
 				}
 			}
 		});
@@ -452,10 +449,9 @@ public class SearchReport extends JFrame
 		contentPane.add(returnButton);
 	}
 	
-
-	
 	public boolean action(Event evento, Object arg)
 	{
+		
 		return false;
 	}
 	
@@ -465,7 +461,7 @@ public class SearchReport extends JFrame
 	 */
 	private static void showErrorMessage(String errorMessage)
 	{
-		JOptionPane.showMessageDialog(null, errorMessage, "Atenção",
+		JOptionPane.showMessageDialog(null, errorMessage, "Atenï¿½ï¿½o",
 									  JOptionPane.INFORMATION_MESSAGE);
 	}
 

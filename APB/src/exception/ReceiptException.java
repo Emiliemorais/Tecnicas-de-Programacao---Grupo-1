@@ -10,7 +10,7 @@ public class ReceiptException extends Exception
 		super();
 	}
 	
-	/*
+	/**
 	 *  Constructor that references the constructor of the superclass - Add a message of exception
 	 *  @param errorMessage -  Receives an error message
 	 */
