@@ -17,7 +17,8 @@ import exception.ReportException;
 public class ReportControllerTest 
 {
 
-	Report reportService = new Report();
+	Report reportService;
+	ReportController reportController;
 	
 	// Initialize the reportService object with arbitrary data to use on tests
 	@Before
@@ -25,6 +26,8 @@ public class ReportControllerTest
 	{
 		try 
 		{
+			reportController = new ReportController();
+			reportService = new Report();
 			reportService.setBarberName("Luciano");
 			reportService.setFinalDate("09/09/2013");
 			reportService.setInitialDate("01/01/2013");
@@ -41,7 +44,6 @@ public class ReportControllerTest
 	@Test
 	public void getInstanceReportDAOReturnInstanceCurrent()
 	{
-		ReportController reportController = ReportController.getInstance();
 		assertEquals(ReportController.getInstance(), reportController);
 	}
 	
@@ -49,8 +51,7 @@ public class ReportControllerTest
 	@Test
 	public void returnOfSearchReportController() throws SQLException
 	{
-		ReportController relatorioController = new ReportController();
-		ResultSet instanceStatement = relatorioController.searchByService(reportService);
+		ResultSet instanceStatement = reportController.searchByService(reportService);
 		
 		while(instanceStatement.next());
 	}
@@ -59,8 +60,7 @@ public class ReportControllerTest
 	@Test
 	public void returnOfSearchForDateReportController() throws SQLException
 	{
-		ReportController relatorioController = new ReportController();
-		ResultSet instanceStatement = relatorioController.searchByDate(reportService);
+		ResultSet instanceStatement = reportController.searchByDate(reportService);
 		
 		while(instanceStatement.next());
 	}
@@ -69,8 +69,7 @@ public class ReportControllerTest
 	@Test
 	public void retornSearchForBarberAndServiceReportController() throws SQLException 
 	{
-		ReportController relatorioController = new ReportController();
-		ResultSet instanceStatement = relatorioController.searchByBarberAndService(reportService);
+		ResultSet instanceStatement = reportController.searchByBarberAndService(reportService);
 		
 		while(instanceStatement.next());
 	}
@@ -79,8 +78,7 @@ public class ReportControllerTest
 	@Test
 	public void retornSearchForDateBarberAndServiceReportController() throws SQLException
 	{
-		ReportController relatorioController = new ReportController();
-		ResultSet instanceStatement = relatorioController.searchByDateBarberAndService(reportService);
+		ResultSet instanceStatement = reportController.searchByDateBarberAndService(reportService);
 		
 		while(instanceStatement.next());
 	}
@@ -89,8 +87,7 @@ public class ReportControllerTest
 	@Test
 	public void retornSearchForBarberAndDateReportController() throws SQLException 
 	{
-		ReportController relatorioController = new ReportController();
-		ResultSet instanceStatement = relatorioController.searchByDateAndBarber(reportService);
+		ResultSet instanceStatement = reportController.searchByDateAndBarber(reportService);
 		
 		while(instanceStatement.next());
 	}
@@ -99,8 +96,7 @@ public class ReportControllerTest
 	@Test
 	public void retornSearchForDateAndServiceReportController() throws SQLException
 	{
-		ReportController relatorioController = new ReportController();
-		ResultSet instanceStatement = relatorioController.searchByDateAndService(reportService);
+		ResultSet instanceStatement = reportController.searchByDateAndService(reportService);
 		
 		while(instanceStatement.next());
 	}
@@ -109,8 +105,7 @@ public class ReportControllerTest
 	@Test
 	public void retornSearchForBarberReportController() throws SQLException
 	{
-		ReportController relatorioController = new ReportController();
-		ResultSet instanceStatement = relatorioController.searchByBarber(reportService);
+		ResultSet instanceStatement = reportController.searchByBarber(reportService);
 		
 		while(instanceStatement.next());
 	}

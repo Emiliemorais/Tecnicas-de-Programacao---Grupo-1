@@ -16,7 +16,6 @@ public class BarberTest
 
 	Barber barber;
 		 
-	// Method used to get the attributes of a Barber correctly to the test
 	@Before
 	public void setUp()
 	{
@@ -39,7 +38,7 @@ public class BarberTest
 		}
 	}
 	
-	// Method used to receive a null name of a Barber for the test launch of the exception
+	// Test if the name setter does not accept null argument
 	@Test (expected = NullPointerException.class)
 	public void barberCantHaveNameNullBySetter()
 	{
@@ -53,7 +52,7 @@ public class BarberTest
 		}
 	}
 	
-	// Method used to receive a null CPF a Barber for the test launch of the exception
+	// Test if the cpf setter does not accept null argument
 	@Test (expected = NullPointerException.class)
 	public void testCPFNull() 
 	{
@@ -67,8 +66,7 @@ public class BarberTest
 		}
 	}
 	
-	// Method used to receive a null RG a Barber for the test launch of the exception
-	@Test (expected = NullPointerException.class)
+	// Test if the rg setter does not accept null argument	@Test (expected = NullPointerException.class)
 	public void testRGNull ()
 	{
 		try
@@ -81,8 +79,7 @@ public class BarberTest
 		}
 	}
 	
-	// Method used to receive a null number of a Barber for the test launch of the exception
-	@Test (expected = NullPointerException.class)
+	// Test if the phone setter does not accept null argument	@Test (expected = NullPointerException.class)
 	public void barberCantHavePhoneNullBySetter() 
 	{
 		try
@@ -95,7 +92,7 @@ public class BarberTest
 		}
 	}
 	
-	// Method used to receive a null chair of a Barber for the test launch of the exception	
+	// Test if the chair setter does not accept null argument
 	@Test (expected = NullPointerException.class)
 	public void testChairNull()
 	{
