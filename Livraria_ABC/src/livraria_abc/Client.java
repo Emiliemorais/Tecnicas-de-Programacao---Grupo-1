@@ -10,29 +10,14 @@ public class Client
 {
     static ArrayList<String> cpf = new ArrayList<>();
     static ArrayList<String> rg = new ArrayList<>();
-   
-    //Variable of name for ArrayList
     static ArrayList<String> nameArray = new ArrayList<>();
-    
-    //Variable of gender for ArrayList
     static ArrayList<String> genderArray = new ArrayList<>();
-    
-    //Variable of address for ArrayLiST
     static ArrayList<String> addressArray = new ArrayList<>();
-    
-    //Variable of cep for ArrayList
     static ArrayList<String> cepArray = new ArrayList<>();
-    
-    //Variable of data of birth for ArrayLis
     static ArrayList<String> dtBirthArray = new ArrayList<>();
-    
-    //Variable of phones for ArrayList
     static ArrayList<String> phoneArray = new ArrayList<>();
     
-    //Variable of login  for ArrayList
     private static ArrayList<String> loginArray = new ArrayList<>();
-    
-    //Variable of password for ArrayList
     private static ArrayList<String> passwordArrray = new ArrayList<>();
     
         
@@ -41,7 +26,10 @@ public class Client
     
     ABCBookStore livraria = new ABCBookStore ();
         
-        // showMenu específico para o cliente
+        /**
+         * Client especific menu
+         * @return the client menu
+         */
         public void menuClient ()
         {
             int optionCRUDClient = 0;
@@ -93,7 +81,10 @@ public class Client
                 
         }
         
-        // Método que altera os dados dos clientes
+        /**
+         * Allows the client to edit his data
+         * @return the client menu
+         */
         public  void alterarCliente()
         {
             int i = 0;
@@ -166,7 +157,10 @@ public class Client
             
         }
         
-        // Método que imprime os dados cadastrados do cliente que está logado
+        /**
+         * Display the data of the current client
+         * @return menuClient 
+         */
         public void viewClient()
         {
             int i = 0;
@@ -188,7 +182,10 @@ public class Client
                 
         }
         
-        // Método que exclui uma conta cadastrada
+        /**
+         * Delete the current client account 
+         * @return the books catalogue if the exclusion was made, or the client menu if does not
+         */
         public  void removeClient()
         {
             String opcao = "";
@@ -231,7 +228,10 @@ public class Client
             }
         }
         
-        // Método que cadastra um novo cliente
+        /**
+         * Register a new client
+         * @return void
+         */
         public  void includeClient() 
         {
                 String inputForHeadMenu = "\nOlá Vistante! Bem vindo à livraria ABC!\nPercebemos que você ainda não possui cadastro "
@@ -240,34 +240,34 @@ public class Client
                 System.out.println(inputForHeadMenu);
 		
                 System.out.println("\nSeu nome: ");
-		String name = lerString.nextLine();
-		
-		System.out.println("\nSeu sexo: ");
-		String gener = lerString.nextLine();
-		
-		System.out.println("\nSeu CPF: ");
-		String cpf = lerString.nextLine();
-		
-		System.out.println("\nSeu RG: ");
-		String rg = lerString.nextLine();
-		
-		System.out.println("\nSeu endereço: ");
-		String adreess = lerString.nextLine();
-		
-		System.out.println("\nSeu telefone: ");
-		String phone =lerString.nextLine();
-		
-		System.out.println("\nSeu CEP: ");
-		String cep = lerString.nextLine();
-		
-		System.out.println("\nSua data de nascimento: ");
-		String dateBirthiday = lerString.nextLine();
-		
-		System.out.println("\nInforme agora uma conta que será usada para fazer login: ");
-		String login = lerString.nextLine();
-		
-		System.out.println("\nInforme uma senha para sua conta: ");
-		String password = lerString.nextLine();
+				String name = lerString.nextLine();
+				
+				System.out.println("\nSeu sexo: ");
+				String gener = lerString.nextLine();
+				
+				System.out.println("\nSeu CPF: ");
+				String cpf = lerString.nextLine();
+				
+				System.out.println("\nSeu RG: ");
+				String rg = lerString.nextLine();
+				
+				System.out.println("\nSeu endereço: ");
+				String adreess = lerString.nextLine();
+				
+				System.out.println("\nSeu telefone: ");
+				String phone =lerString.nextLine();
+				
+				System.out.println("\nSeu CEP: ");
+				String cep = lerString.nextLine();
+				
+				System.out.println("\nSua data de nascimento: ");
+				String dateBirthiday = lerString.nextLine();
+				
+				System.out.println("\nInforme agora uma conta que será usada para fazer login: ");
+				String login = lerString.nextLine();
+				
+				System.out.println("\nInforme uma senha para sua conta: ");
+				String password = lerString.nextLine();
                 
                 Client.cpf.add(cpf);
                 Client.rg.add(rg);
@@ -288,7 +288,10 @@ public class Client
                 menuClient();
         }
         
-        //Retorna o cpf o cliente logado se o login for bem sucedido ou "blank" caso contrário.
+        /** 
+         * Do the login of an user.
+         * @return the logged user CPF if the login succeeded or "blank" if does not  
+         */
         public String getLogin()
         {
             String verifyCadastro = "1";
@@ -306,7 +309,7 @@ public class Client
             
             if( "1".equals(verifyCadastro) )
             {
-                if(!currentAccess)
+                if( !currentAccess )
                 {
                     if( !Client.loginArray.isEmpty() )
                     {
@@ -356,8 +359,8 @@ public class Client
                             }
                 
                         }while( (verify_psw == false && tries <= 3) 
-                                    || ( Client.loginArray.contains(account) 
-                                            == false && tries <= 3 ) );
+                                || ( Client.loginArray.contains(account) == false 
+                                	&& tries <= 3 ) );
             
                         if(tries > 3)
                         {
@@ -394,7 +397,10 @@ public class Client
            
         }
         
-        // Verifica se possui itens na cesta do cliente logado e então efetua o logout
+        /**
+         * Do the logout of an user if there are no items in his cart
+         * @return the books catalogue 
+         */
         public void getLogout()
         {
             if(currentAccess)
@@ -458,7 +464,9 @@ public class Client
             }
         }
         
-        // Logout alternativo
+        /**
+         * Do the logout without calls the books catalogue
+         */
         public  void efetuarLogout_()
         {
             if(currentAccess)
