@@ -31,24 +31,22 @@ import model.DoneService;
 @SuppressWarnings("serial")
 public class SearchDoneService extends JFrame
 {
-
+	
 	private JPanel receiptPanel;
 	private JTextField textField;
 	private Connection connection;
-	private static String tempNome;
+	private static String temporaryName;
 
 	public static void main(String[] args) 
 	{
 		EventQueue.invokeLater(new Runnable() 
 		{
-			
-			// Method that initializes the search window service
 			public void run() 
 			{
 				try 
 				{
-					SearchDoneService apbFrame = new SearchDoneService();
-					apbFrame.setVisible(true);
+					SearchDoneService searchDoneServiceFrame = new SearchDoneService();
+					searchDoneServiceFrame.setVisible(true);
 				} 
 				catch (Exception e) 
 				{
@@ -61,13 +59,10 @@ public class SearchDoneService extends JFrame
 	// Constructor components of the search window service
 	public SearchDoneService() 
 	{
-		// Calls the function to start all the view components on the screen
-		startComponents();
+		startViewComponents();
 	}
-
-	// Constructor components of the search window service
-	public void startComponents ()
-	{
+	
+	private void startPanel(){
 		setTitle("Pesquisar Servi\u00E7o");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 300);
@@ -75,20 +70,26 @@ public class SearchDoneService extends JFrame
 		receiptPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(receiptPanel);
 		receiptPanel.setLayout(null);
-
+	}
+	
+	/**
+	 * Start all needed view components
+	 */
+	private void startViewComponents()
+	{
+		startPanel();
+	
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 11, 464, 115);
 		receiptPanel.add(scrollPane);
 
-		final DefaultTableModel model = new DefaultTableModel(null,
-																new String[] 
-																{ 
-																	"Serviço", "Realizado por", "Valor", "Data" 
-																});
+		final DefaultTableModel model;
+		
+		model = new DefaultTableModel(null, new String[]{"Serviï¿½o", "Realizado por", "Valor", "Data"});
 
 		final JTable table = new JTable(model);
 		scrollPane.setViewportView(table);
-
+		
 		textField = new JTextField();
 		textField.setBounds(82, 137, 392, 20);
 		receiptPanel.add(textField);
@@ -98,7 +99,7 @@ public class SearchDoneService extends JFrame
 		lblPesquisar.setBounds(20, 137, 66, 14);
 		receiptPanel.add(lblPesquisar);
 
-		JButton btnSearchService = new JButton("Pesquisar Serviço");
+		JButton btnSearchService = new JButton("Pesquisar Serviï¿½o");
 		btnSearchService.addActionListener(new ActionListener() {
 			
 			// VIEW method that is used to search a Service Provided
@@ -233,7 +234,7 @@ public class SearchDoneService extends JFrame
 				} 
 				catch (ArrayIndexOutOfBoundsException exception) 
 				{
-					showMessageError("Selecione um Serviço para remover");
+					showMessageError("Selecione um Serviï¿½o para remover");
 				} 
 				catch (ServiceException exception) 
 				{
@@ -320,17 +321,19 @@ public class SearchDoneService extends JFrame
 		receiptPanel.add(btnSearchForDate);
 	}
 
-	// Method that shows an error message, used in the treatment of exceptions class
-	private void showMessageError (String informacao) 
+	/** 
+	 * Method that shows an error message, used in the treatment of exceptions class
+	 * @param information - Information about the raised exception
+	 */
+	private void showMessageError (String information) 
 	{
 		int informationMessagePane = JOptionPane.INFORMATION_MESSAGE;
-		
-		JOptionPane.showMessageDialog(null, informacao, "Atenção", informationMessagePane);
+		JOptionPane.showMessageDialog(null, information, "Atenï¿½ï¿½o", informationMessagePane);
 	}
 	
-	// Method of accessing the value of the temporary variable name
-	public static String getNameTemporary () 
+	// temporaryName getter
+	public static String getTemporaryName()
 	{
-		return tempNome;
+		return temporaryName;
 	}
 }

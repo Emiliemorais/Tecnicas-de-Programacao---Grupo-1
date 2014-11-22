@@ -24,7 +24,7 @@ public class RegisterServiceType extends JFrame
 {
 
 	private JPanel contentPane;
-	private static String nomeTemp;
+	private static String temporaryName;
 
 	/**
 	 * Launch the application.
@@ -33,7 +33,6 @@ public class RegisterServiceType extends JFrame
 	{
 		EventQueue.invokeLater(new Runnable() 
 		{
-			
 			// Method that initializes the window registration service type
 			public void run()
 			{
@@ -57,6 +56,10 @@ public class RegisterServiceType extends JFrame
 	// Class constructor
 	public RegisterServiceType() 
 	{
+		startViewComponents();
+	}
+	
+	private void startPane(){
 		setTitle("Tipo de Servi\u00E7o");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 300);
@@ -64,13 +67,21 @@ public class RegisterServiceType extends JFrame
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+	}
+	
+	/**
+	 * Start all needed view components
+	 */
+	private void startViewComponents(){
+		
+		startPane();
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 11, 360, 240);
 		contentPane.add(scrollPane);
 
 		final DefaultTableModel modelo = new DefaultTableModel(null,
-				new String[] { "Serviço", "Valor" });
+											new String[] { "Serviço", "Valor" });
 		final JTable table = new JTable(modelo);
 		try 
 		{
@@ -204,18 +215,22 @@ public class RegisterServiceType extends JFrame
 			}
 		});
 		contentPane.add(btnBack);
+		
 	}
 	
-	// Access method for receiving a temporary name
-	public static String getNameTemporary() 
+	// temporaryName getter
+	public static String getTemporaryName() 
 	{
-		return nomeTemp;
+		return temporaryName;
 	}
 	
-	// Method that shows an error message, used in the treatment of exceptions class
+	/**
+	 * Display the error message that occurred
+	 * @param information - Information about the raised exception
+	 */
 	private void showErrorMessage(String information) 
 	{
 		JOptionPane.showMessageDialog(null, information, "Atenção",
-				JOptionPane.INFORMATION_MESSAGE);
+									  JOptionPane.INFORMATION_MESSAGE);
 	}
 }
