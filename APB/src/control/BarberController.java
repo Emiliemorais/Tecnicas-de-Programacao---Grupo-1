@@ -86,6 +86,7 @@ public class BarberController
 	/**
 	 * Method that delete a barber registered on DB
 	 * @param barberToDelete - Barber to be deleted
+	 * @return true if the barber to delete exists
 	 */
 	public boolean deleteBarber(Barber barberToDelete) throws SQLException
 	{
@@ -107,7 +108,10 @@ public class BarberController
 	}
 
 
-	// Method that return all barber table (on BarberDAO) - Check the need of this method
+	/** 
+	 * Method that return all barber table (on BarberDAO) - Check the need of this method
+	 * @param ResultSet - Return the barber searched
+	 */
 	public ResultSet searchBarbers() throws SQLException
 	{
 		BarberDAO barberDAOInstance = BarberDAO.getInstance();

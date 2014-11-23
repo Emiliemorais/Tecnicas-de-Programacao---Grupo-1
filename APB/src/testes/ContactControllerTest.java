@@ -63,7 +63,7 @@ public class ContactControllerTest
 	@Test
 	/* 
 	 * Test if a exclusion of a contact was made right
-	 * Check the return of method 'excluir'
+	 * Check the return of method 'remove'
 	 */
 	public void deleteContactMethodTest()
 	{
@@ -80,7 +80,7 @@ public class ContactControllerTest
 	@Test
 	/* 
 	 * Test if a modification of a contact was made right
-	 * Check the return of method 'alterar'
+	 * Check the return of method 'change'
 	 */
 	public void modifyContactMethodTest()
 	{

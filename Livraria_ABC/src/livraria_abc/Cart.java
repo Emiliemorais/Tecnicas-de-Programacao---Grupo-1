@@ -228,7 +228,7 @@ import static livraria_abc.ABCBookStore.currentClient;
         }
         
         // Show all items on cart and back to menu
-        public static void showCartItems ()
+        public static void showCartItens ()
         {
             if( currentAccess )
             {
@@ -354,7 +354,7 @@ import static livraria_abc.ABCBookStore.currentClient;
         }
         
         //  Remove an item from cart
-        public static void removeCartItem()
+        public static void removeCartIten()
         {
             if( itemsAndQuantity.isEmpty() )
             {

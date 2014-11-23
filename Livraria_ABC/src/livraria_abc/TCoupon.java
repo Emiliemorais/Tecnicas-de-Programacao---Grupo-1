@@ -36,6 +36,8 @@ public class TCoupon
         int quantityOfCoupons = coupons.size(); 
         
         int i = 0;
+        
+        //Verify the quatidity of the Coupons
         for(i = 0; i < quantityOfCoupons; i++)
         {
             String currentCoupon = coupons.get(i).getCoupon();
@@ -54,7 +56,7 @@ public class TCoupon
         }
             
         boolean couponExists = false;
-        if(couponIsRegistered == 0)
+        if( couponIsRegistered == 0 )
         {
             couponExists = false;
         }
@@ -77,7 +79,7 @@ public class TCoupon
             
         int i = 0;
             
-        int quantityOfCoupons =coupons.size();
+        int quantityOfCoupons = coupons.size();
         
         for(i = 0; i < quantityOfCoupons; i++)
         {

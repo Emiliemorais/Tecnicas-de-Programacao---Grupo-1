@@ -5,30 +5,30 @@ import java.util.*;
 public class ABCBookStore
 {
     /*
-     *   Receives the current condition of the system about an access
+     *   @param currentAccess - Receives the current condition of the system about an access
      *   If some login was open currentAccess = true;
      */
     static boolean currentAccess = false; 
     
     /*
-     *   Receives the current client logged into the system
+     *   @param currentClient - Receives the current client logged into the system
      *   If some login was open currentClient = cpf do cliente logado;
      */
     static String currentClient = "blank";
     
-    // Receives the current client's name logged into the system
+    // @param currentClientName - Receives the current client's name logged into the system
     static String currentClientName = "blank";
     
-    // Receives the value of the discount
+    // @param discount - Receives the value of the discount
     static float discount = 0;
     
-    // Receives the code of the buying - used like a global variable
+    // @param buyingCode - Receives the code of the buying - used like a global variable
     static int buyingCode = -1;
     
-    // Receives the delivery address of the book
+    // @param deliveryAddress - Receives the delivery address of the book
     static String deliveryAddress = "blank";
     
-    // Receives the type of the payment
+    // @param paymentType - Receives the type of the payment
     static String paymentType = "blank";
     
     // Print an exit message to the user
@@ -36,6 +36,9 @@ public class ABCBookStore
     {
         System.out.println("\nObrigado por utilizar nossos serviços! A Livraria ABC agrade e volte sempre!");
     }
+    
+    
+    //@return - option of the menu
     
     public static String showOptionMenu()
     {
@@ -65,6 +68,7 @@ public class ABCBookStore
         return option;
     }
     
+    // Closes the shopping cart
     public static void finishCart()
     {
         // Receives the code of the buying
@@ -81,9 +85,10 @@ public class ABCBookStore
             buyingCode = buyingCode;
             Purchase.checkAddress();
         }
-        //// Passar esse codigo para classe compra. Se cod_compra = -1 ta errado. VALIDAR!!!
         
     }
+    
+    //Adds a book in cart
     public static void addBookCart()
     {
         String researchedBookByUser;
@@ -162,36 +167,42 @@ public class ABCBookStore
                 }
                 case "4":
                 {
-                    Cart.showCartItems();
+                    // Show the itns of the cart
+                    Cart.showCartItens();
                     
                     break;
                 }
                 case "5":
                 {
+                    // Makes the client logout
                     client.getLogout();
                     
                     break;
                 }
                 case "6":
                 {
-                    Cart.removeCartItem();
+                    // Remove a iten of the cart
+                    Cart.removeCartIten();
                     
                     break;
                 }
                 case "7":
                 {
+                    // Include the discont in the buy
                     Cart.includeDiscount();
                     
                     break;
                 }
                 case "8":
                 {
+                    // Finish the cart
                     finishCart();
                     
                     break;
                 }
                 case "9":
                 {
+                    // The client displays the menu
                     client.menuClient();
                     
                     break;
@@ -206,7 +217,9 @@ public class ABCBookStore
                 }
                 default:
                 { 
-                    if (!"0".equals(option))
+                    boolean opitionEqualsZero = "0".equals(option);
+                    
+                    if (!opitionEqualsZero)
                     {
                         System.out.println("\nOpção Inválida!\n");
                     }
@@ -218,18 +231,29 @@ public class ABCBookStore
             }
     }
     
+    private static String optionsOfMenu()
+    {
+        System.out.println("\nOlá visitante! O que deseja na Livraria Virtual ABC?");
+        System.out.println("1 - Olhar catálogo");
+        System.out.println("2 - Procurar por Livro específico");
+        System.out.println("3 - Adicionar livro à cesta");
+        System.out.println("4 - Efetuar_login");
+        System.out.println("0 - Fechar página e sair do sistema");
+        
+        String option;
+        option = inputString.nextLine();
+        
+        return option;
+    }
+    
+    //shows the menu for a logged-in user
     public static void showMenuForNotLogger(String option)
     {
-        if (!option.equals("0"))
+        boolean OpitionEqualsZero = "0".equals(option);
+        
+        if (!OpitionEqualsZero)
         {            
-            System.out.println("\nOlá visitante! O que deseja na Livraria Virtual ABC?");
-            System.out.println("1 - Olhar catálogo");
-            System.out.println("2 - Procurar por Livro específico");
-            System.out.println("3 - Adicionar livro à cesta");
-            System.out.println("4 - Efetuar_login");
-            System.out.println("0 - Fechar página e sair do sistema");
-
-            option = inputString.nextLine();
+            option = optionsOfMenu();            
         }
         else
         {
@@ -292,6 +316,7 @@ public class ABCBookStore
         }
     }
     
+    //Show the menu
     public static void showMenu()
     {
         // Receives the option from the user about what to do in the system
@@ -300,6 +325,7 @@ public class ABCBookStore
         // Checks if someone has logged.
         if (currentAccess)
         {
+            // Show the menu for a logger
             showMenuForLogger(option);
         }
         else
@@ -309,19 +335,15 @@ public class ABCBookStore
     }
     
     
-    // Receives a instance of Scanner class to receive the numbers from the user
+    //@param input -  Receives a instance of Scanner class to receive the numbers from the user
     static Scanner input = new Scanner(System.in);
     
-    // Receives a instance of Scanner class to receive the data in text from the user
+    // @param inputString -Receives a instance of Scanner class to receive the data in text from the user
     static Scanner inputString = new Scanner(System.in);
 
-    public static void main(String[] args)
+    // Insert data of the books
+    private static void showTheBooks()
     {
-        // Bookstore class's instance to access the class
-        Bookstore bookstore = new Bookstore();
-                
-        //The following data were inserted to simulate a database of the ABCBookStore 
-        
         Book.listISBN.add(0, "9780345486572");
         Book.listTitle.add(0, "Dom Casmurro");
         Book.listTheme.add(0,"Literatura brasileira");
@@ -348,21 +370,42 @@ public class ABCBookStore
         Book.listPublishingHouse.add(2, "Ática");
         Book.listYearPublication.add(1,"2005");
         Book.listEdition.add(2,"4ª");
-
+        
+    }
+    
+    // Initialize the coupon
+    private static void initialazeCounpon()
+    {
         // Coupoun class's instance to access the class
         Coupon coupoun = new Coupon();
-
         coupoun.coupon = "0X2R";
         coupoun.discountedValue = 20;
         Coupon.cupom_valor.add(coupoun);
-
-        // PaymentType class's instance to access the class
+    }
+    
+    // Inicializate the PaymentType
+    private static void initialazePaymentType()
+    {
+         // PaymentType class's instance to access the class
         PaymentType paymentType1 = new PaymentType("Boleto","");
         PaymentType paymentType2 = new PaymentType("Cartão","Aceitamos Visa, MasterCard e Cielo");
 
         PaymentType.listTypes.add(paymentType1);
         PaymentType.listTypes.add(paymentType2);
-            
+     }
+    public static void main(String[] args)
+    {
+        // Bookstore class's instance to access the class
+        Bookstore bookstore = new Bookstore();
+                
+        //The following data were inserted to simulate a database of the ABCBookStore 
+        showTheBooks();
+        
+        // Initialize the coupon
+        initialazeCounpon();
+
+        // Inicializate the PaymentType
+        initialazePaymentType();
                         
         System.out.println("\n\t\t\t\tBem-vindo(a) a " + bookstore.bookstoreName + "!\n");
         Book.showCatalog();
