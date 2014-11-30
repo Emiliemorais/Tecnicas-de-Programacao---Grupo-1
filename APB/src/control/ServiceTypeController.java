@@ -19,36 +19,38 @@ public class ServiceTypeController
 	/** 
 	 * Method that includes a new service type
 	 * @param serviceTypeToInclude - Service type to be included
+	 * @return if exists Service Type To Include
 	 */
 	public boolean includeServiceType (ServiceType serviceTypeToInclude) throws SQLException
 	{
-		boolean returnMethodincludeServiceType;
+		boolean existsServiceTypeToInclude;
 		if( serviceTypeToInclude == null )
         {
-			returnMethodincludeServiceType = false;
+			existsServiceTypeToInclude = false;
 		}
 		else
         {
 			ServiceTypeDAO serviceTypeDAOInstance =  ServiceTypeDAO.getInstance();
 
 			serviceTypeDAOInstance.includeServiceType(serviceTypeToInclude);
-			returnMethodincludeServiceType = true;
+			existsServiceTypeToInclude = true;
 		}
-		return returnMethodincludeServiceType;
+		return existsServiceTypeToInclude;
 	}
 
 	/**
 	 * Method that modify a service type on the system
 	 * @param serviceTypeToNoChangeName - Contains the name of the service type to change
 	 * @param newServiceType - New service type that will replace the old one on DB
+	 * @return modifyServiceType - if exists modify Service Type
 	 */
 	public boolean modifyServiceType ( String serviceTypeToChangeName,
 									   ServiceType newServiceType ) throws SQLException
 	{
-		boolean returnMethodmodifyServiceType;
+		boolean existsNewServiceType;
 		if( newServiceType == null )
         {
-			returnMethodmodifyServiceType = false;
+			existsNewServiceType = false;
 		}
 		else
         {
@@ -60,31 +62,32 @@ public class ServiceTypeController
 			serviceTypeDAOInstance.editServiceType(serviceTypeToChangeName,
 												   changedServiceType,
 												   newServiceType);
-			returnMethodmodifyServiceType = true;
+			existsNewServiceType = true;
 		}
-		return returnMethodmodifyServiceType;
+		return existsNewServiceType;
 	}
 	
 
 	/**
 	 * Method that delete a service type on the system
 	 * @param serviceTypeToDelete - Contains the service type to be deleted
+	 * @return deleteServiceType - if exists service type to delete  
 	 */
 	public boolean deleteServiceType (ServiceType serviceTypeToDelete) throws SQLException
 	{
-		boolean returnMethoddeleteServiceType;
+		boolean existsServiceTypeToDelete;
 		if( serviceTypeToDelete == null )
         {
-			returnMethoddeleteServiceType = false;
+			existsServiceTypeToDelete = false;
 		}
 		else
         {
 			ServiceTypeDAO serviceTypeDAOInstance =  ServiceTypeDAO.getInstance();
 			
 			serviceTypeDAOInstance.deleteServiceType(serviceTypeToDelete);
-			returnMethoddeleteServiceType = true;
+			existsServiceTypeToDelete = true;
 		}
-		return returnMethoddeleteServiceType;
+		return existsServiceTypeToDelete;
 	}
 
 	// Return the current instance or instantiate a new one if 'instance' is null
@@ -105,7 +108,8 @@ public class ServiceTypeController
 
 	/**
 	 * Return a ResultSet interface object with the service types registered on the system
-	 * @param service - Never usede ahead, Check need.
+	 * @param service - Never used ahead, Check need.
+	 * @return showRegistredServiceTypes - display Registered Types Of Service Result
 	 */
 	public ResultSet showRegistredServiceTypes (ServiceType service) throws SQLException
 	{
