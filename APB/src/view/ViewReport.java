@@ -39,8 +39,8 @@ public class ViewReport extends JFrame
 {
 	private JPanel receiptPanel;
 	private double valueTotalBuy = 0;
-	private String numberCliente;
-	List<String> typeService = new ArrayList<String>();
+	private String clientNumber;
+	List<String> serviceType = new ArrayList<String>();
 	private int counterService = 0;
 	private int numberTotalService = 0;
 	private double valueTotalService = 0;
@@ -53,7 +53,6 @@ public class ViewReport extends JFrame
 	{
 		EventQueue.invokeLater(new Runnable()
 		{
-			
 			public void run () 
 			{
 				try 
@@ -69,10 +68,14 @@ public class ViewReport extends JFrame
 		});
 	}
 	
-	private void initializeComponents() throws SQLException, ReportException,
-	   									NullPointerException, ParseException
+	// Constructor of components of pane view reposts
+	public ViewReport() throws SQLException, ReportException,
+						NullPointerException, ParseException
 	{
-		
+		initializeComponents();
+	}
+	
+	private void initializePanel(){
 		setTitle("Relat\u00F3rios");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
@@ -80,20 +83,15 @@ public class ViewReport extends JFrame
 		receiptPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(receiptPanel);
 		receiptPanel.setLayout(null);
-
-		final JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 10, 660, 486);
-		receiptPanel.add(scrollPane);
-
-		final DefaultTableModel model = new DefaultTableModel(null,
-				new String[] { 
-					"Nome do Serviço", "Quantidade", "Valor total", "Valor recebido" 
-				}) 
+	}
+	
+	private DefaultTableModel defineTableModel(String[] tableHeader){
+		final DefaultTableModel model;
+		model = new DefaultTableModel(null, tableHeader)
 		{
-			boolean[] columnEditables = new boolean[] 
-					{ 
-						false, false, false, false 
-					};
+			boolean[] columnEditables = new boolean[]{
+											false, false, false, false 
+										};
 			
 			// Method checking whether the cell can be changed
 			public boolean isCellEditable (int row, int column) 
@@ -101,16 +99,46 @@ public class ViewReport extends JFrame
 				return columnEditables[column];
 			}
 		};
-
+		
+		return model;
+	}
+	
+	private JScrollPane initializeScrollPane(){
+		final JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 10, 660, 486);
+		receiptPanel.add(scrollPane);
+		
+		return scrollPane;
+	}
+	
+	private JTable initializeTable (DefaultTableModel model){
+		
 		final JTable table = new JTable(model);
 		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(1).setResizable(false);
 		table.getColumnModel().getColumn(2).setResizable(false);
 		table.getColumnModel().getColumn(3).setResizable(false);
-		scrollPane.setViewportView(table);
+		
+		return table;
+	}
+	
+	private void initializeComponents() throws SQLException, ReportException,
+	   									NullPointerException, ParseException
+	{
+		initializePanel();
 
-		ReportController reportController = ReportController
-				.getInstance();
+		final JScrollPane scrollPane = initializeScrollPane();
+		
+		String[] tableHeader = new String[]{
+				"Nome do Serviço", "Quantidade",
+				"Valor total", "Valor recebido" 
+			  };
+		
+		final DefaultTableModel tableModel = defineTableModel(tableHeader);
+		
+		final JTable table = initializeTable(tableModel);
+
+		ReportController reportController = ReportController.getInstance();
 
 		Report report = new Report();
 
@@ -120,14 +148,15 @@ public class ViewReport extends JFrame
 
 			report.setBarberName(SearchReport.barber);
 
-			ResultSet instanceStatement = reportController.searchByBarber(report);
+			ResultSet searchByBarberResult = reportController.searchByBarber(report);
 
-			while (instanceStatement.next()) 
+			while (searchByBarberResult.next()) 
 			{
+				String nameFound = searchByBarberResult.getString("nome");
 
-				if (typeService.contains(instanceStatement.getString("nome")) == false)
+				if (serviceType.contains(nameFound) == false)
 				{
-					typeService.add(instanceStatement.getString("nome"));
+					serviceType.add(nameFound);
 					counterService++;
 				}
 				else
@@ -136,17 +165,17 @@ public class ViewReport extends JFrame
 				}
 			}
 
-			for(int i=0; i<counterService; i++)
+			for(int i = 0; i < counterService; i++)
 			{
-				instanceStatement.beforeFirst();
+				searchByBarberResult.beforeFirst();
 				
-				while (instanceStatement.next())
+				while (searchByBarberResult.next())
 				{
-					boolean ifGetStringEqualsTypeService = typeService.get(i).equals( instanceStatement.getString("nome") );
+					boolean ifGetStringEqualsTypeService = serviceType.get(i).equals( searchByBarberResult.getString("nome") );
 					if ( ifGetStringEqualsTypeService ) 
 					{
-						numberCliente = instanceStatement.getString("preco").replace(",", ".");
-						double valor = Double.parseDouble(numberCliente);
+						clientNumber = searchByBarberResult.getString("preco").replace(",", ".");
+						double valor = Double.parseDouble(clientNumber);
 						valueTotalService = valueTotalService + valor;
 
 						numberTotalService++;
@@ -158,19 +187,19 @@ public class ViewReport extends JFrame
 				}
 
 				String[] data = new String[4];
-				data[0] = typeService.get(i);
+				data[0] = serviceType.get(i);
 				data[1] = Integer.toString(numberTotalService);
 				data[2] = Double.toString(valueTotalService)
-						.replace(".", ",")
-						.valueOf(decimal.format(valueTotalService));
+						  .replace(".", ",")
+						  .valueOf(decimal.format(valueTotalService));
 				valueTotalPay = valueTotalService / 2;
 				data[3] = Double.toString(valueTotalPay)
-						.replace(".", ",")
-						.valueOf(decimal.format(valueTotalPay));
+						  .replace(".", ",")
+						  .valueOf(decimal.format(valueTotalPay));
 				
 				valueTotalBuy = valueTotalBuy + valueTotalService;
 				valueTotalBuyPay = valueTotalBuyPay + valueTotalPay;
-				model.addRow(data);
+				tableModel.addRow(data);
 
 				numberTotalService = 0;
 				valueTotalPay = 0;
@@ -179,7 +208,7 @@ public class ViewReport extends JFrame
 		}
 		else
 		{
-			//Noting to do
+			// Nothing to do
 		}
 		if ( typeOfSearch == 2 )
 		{
@@ -193,10 +222,10 @@ public class ViewReport extends JFrame
 			while ( instanceStatement.next() )
 			{
 
-				boolean typeServiceGetName = typeService.contains( instanceStatement.getString("nome") );
+				boolean typeServiceGetName = serviceType.contains( instanceStatement.getString("nome") );
 				if( typeServiceGetName == false )
 				{
-					typeService.add( instanceStatement.getString("nome") );
+					serviceType.add( instanceStatement.getString("nome") );
 					counterService++;
 				}
 				else
@@ -210,12 +239,12 @@ public class ViewReport extends JFrame
 				instanceStatement.beforeFirst();
 				while ( instanceStatement.next() )
 				{
-					boolean ifStringNameEqualsTypeServiceStored = typeService.get(i).equals( instanceStatement.getString("nome"));
+					boolean ifStringNameEqualsTypeServiceStored = serviceType.get(i).equals( instanceStatement.getString("nome"));
 					
 					if( ifStringNameEqualsTypeServiceStored ) 
 					{
-						numberCliente = instanceStatement.getString("preco").replace(",", ".");
-						double valor = Double.parseDouble(numberCliente);
+						clientNumber = instanceStatement.getString("preco").replace(",", ".");
+						double valor = Double.parseDouble(clientNumber);
 						valueTotalService = valueTotalService + valor;
 
 						numberTotalService++;
@@ -227,7 +256,7 @@ public class ViewReport extends JFrame
 				}
 
 				String[] data = new String[4];
-				data[0] = typeService.get(i);
+				data[0] = serviceType.get(i);
 				data[1] = Integer.toString(numberTotalService);
 				data[2] = Double.toString(valueTotalService)
 						   .replace(".", ",")
@@ -237,7 +266,7 @@ public class ViewReport extends JFrame
 						   .replace(".", ",")
 						   .valueOf(decimal.format(valueTotalPay));
 
-				model.addRow(data);
+				tableModel.addRow(data);
 				
 				valueTotalBuy = valueTotalBuy + valueTotalService;
 				valueTotalBuyPay = valueTotalBuyPay + valueTotalPay;
@@ -254,7 +283,6 @@ public class ViewReport extends JFrame
 		
 		if( typeOfSearch == 3 ) 
 		{
-
 			report.setBarberName(SearchReport.barber);
 			report.setFinalDate(SearchReport.finalDate);
 			report.setInitialDate(SearchReport.initialDate);
@@ -265,10 +293,10 @@ public class ViewReport extends JFrame
 			while ( instanceStatement.next() )
 			{
 
-				boolean paramTypeServiceName = typeService.contains( instanceStatement.getString("nome") );
+				boolean paramTypeServiceName = serviceType.contains( instanceStatement.getString("nome") );
 				if( paramTypeServiceName == false ) 
 				{
-					typeService.add( instanceStatement.getString("nome") );
+					serviceType.add( instanceStatement.getString("nome") );
 					counterService++;
 				}
 				else
@@ -282,12 +310,12 @@ public class ViewReport extends JFrame
 				instanceStatement.beforeFirst();
 				while ( instanceStatement.next() ) 
 				{
-					boolean nameGetStringEqualsTypeservice = typeService.get(i).equals( instanceStatement.getString("nome") );
+					boolean nameGetStringEqualsTypeservice = serviceType.get(i).equals( instanceStatement.getString("nome") );
 					
 					if( nameGetStringEqualsTypeservice ) 
 					{
-						numberCliente = instanceStatement.getString("preco").replace(",", ".");
-						double valor = Double.parseDouble(numberCliente);
+						clientNumber = instanceStatement.getString("preco").replace(",", ".");
+						double valor = Double.parseDouble(clientNumber);
 						valueTotalService = valueTotalService + valor;
 
 						numberTotalService++;
@@ -299,7 +327,7 @@ public class ViewReport extends JFrame
 				}
 
 				String[] data = new String[4];
-				data[0] = typeService.get(i);
+				data[0] = serviceType.get(i);
 				data[1] = Integer.toString(numberTotalService);
 				
 				data[2] = Double.toString(valueTotalService).replace(".", ",")
@@ -310,7 +338,7 @@ public class ViewReport extends JFrame
 				data[3] = Double.toString(valueTotalPay).replace(".", ",")
 						   .valueOf(decimal.format(valueTotalPay));
 
-				model.addRow(data);
+				tableModel.addRow(data);
 				
 				valueTotalBuy = valueTotalBuy + valueTotalService;
 				valueTotalBuyPay = valueTotalBuyPay + valueTotalPay;
@@ -339,9 +367,9 @@ public class ViewReport extends JFrame
 			while ( instanceStatement.next() ) 
 			{
 
-				if( typeService.contains( instanceStatement.getString("nome") ) == false ) 
+				if( serviceType.contains( instanceStatement.getString("nome") ) == false ) 
 				{
-					typeService.add( instanceStatement.getString("nome") );
+					serviceType.add( instanceStatement.getString("nome") );
 					counterService++;
 				}
 				else
@@ -355,12 +383,12 @@ public class ViewReport extends JFrame
 				instanceStatement.beforeFirst();
 				while ( instanceStatement.next() ) 
 				{
-					boolean nameGetStringEqualsTypeservice = typeService.get(i).equals( instanceStatement.getString("nome") );
+					boolean nameGetStringEqualsTypeservice = serviceType.get(i).equals( instanceStatement.getString("nome") );
 					
 					if( nameGetStringEqualsTypeservice ) 
 					{
-						numberCliente = instanceStatement.getString("preco").replace(",", ".");
-						double valor = Double.parseDouble(numberCliente);
+						clientNumber = instanceStatement.getString("preco").replace(",", ".");
+						double valor = Double.parseDouble(clientNumber);
 						valueTotalService = valueTotalService + valor;
 						
 						numberTotalService++;
@@ -372,7 +400,7 @@ public class ViewReport extends JFrame
 				}
 
 				String[] data = new String[4];
-				data[0] = typeService.get(i);
+				data[0] = serviceType.get(i);
 				data[1] = Integer.toString(numberTotalService);
 				data[2] = Double.toString(valueTotalService).replace(".", ",")
 						   .valueOf(decimal.format(valueTotalService));
@@ -382,7 +410,7 @@ public class ViewReport extends JFrame
 				data[3] = Double.toString(valueTotalPay).replace(".", ",")
 						  .valueOf(decimal.format(valueTotalPay));
 
-				model.addRow(data);
+				tableModel.addRow(data);
 
 				valueTotalBuy = valueTotalBuy + valueTotalService;
 				valueTotalBuyPay = valueTotalBuyPay + valueTotalPay;
@@ -394,7 +422,12 @@ public class ViewReport extends JFrame
 			}
 		}
 		else
-		{
+		{	// Constructor of components of pane view reposts
+			public ViewReport() throws SQLException, ReportException,
+			NullPointerException, ParseException
+{
+initializeComponents();
+}
 			// Nothing to do
 		}
 		
@@ -407,9 +440,9 @@ public class ViewReport extends JFrame
 
 			while ( instanceStatement.next() )
 			{
-				if( typeService.contains( instanceStatement.getString("nome") ) == false )
+				if( serviceType.contains( instanceStatement.getString("nome") ) == false )
 				{
-					typeService.add( instanceStatement.getString("nome") );
+					serviceType.add( instanceStatement.getString("nome") );
 					counterService++;
 				}
 				else
@@ -423,10 +456,10 @@ public class ViewReport extends JFrame
 				instanceStatement.beforeFirst();
 				while ( instanceStatement.next() ) 
 				{
-					if( typeService.get(i).equals( instanceStatement.getString("nome") ) )
+					if( serviceType.get(i).equals( instanceStatement.getString("nome") ) )
 					{
-						numberCliente = instanceStatement.getString("preco").replace(",", ".");
-						double valor = Double.parseDouble(numberCliente);
+						clientNumber = instanceStatement.getString("preco").replace(",", ".");
+						double valor = Double.parseDouble(clientNumber);
 						valueTotalService = valueTotalService + valor;
 
 						numberTotalService++;
@@ -438,7 +471,7 @@ public class ViewReport extends JFrame
 				}
 
 				String[] data = new String[4];
-				data[0] = typeService.get(i);
+				data[0] = serviceType.get(i);
 				data[1] = Integer.toString(numberTotalService);
 				data[2] = Double.toString(valueTotalService).replace(".", ",")
 						   .valueOf(decimal.format(valueTotalService));
@@ -448,7 +481,7 @@ public class ViewReport extends JFrame
 						   .valueOf(decimal.format(valueTotalPay));
 				
 
-				model.addRow(data);
+				tableModel.addRow(data);
 
 				valueTotalBuy = valueTotalBuy + valueTotalService;
 				valueTotalBuyPay = valueTotalBuyPay + valueTotalPay;
@@ -475,10 +508,10 @@ public class ViewReport extends JFrame
 			while ( instanceStatement.next() )
 			{
 
-				boolean paramGetStringNome =  typeService.contains( instanceStatement.getString("nome") );
+				boolean paramGetStringNome =  serviceType.contains( instanceStatement.getString("nome") );
 				if( paramGetStringNome == false )
 				{
-					typeService.add( instanceStatement.getString("nome") );
+					serviceType.add( instanceStatement.getString("nome") );
 					counterService++;
 				}
 				else
@@ -492,11 +525,11 @@ public class ViewReport extends JFrame
 				instanceStatement.beforeFirst();
 				while ( instanceStatement.next() )
 				{
-					boolean ifNameGetEqualsNameStored = typeService.get(i).equals( instanceStatement.getString("nome") );
+					boolean ifNameGetEqualsNameStored = serviceType.get(i).equals( instanceStatement.getString("nome") );
 					if( ifNameGetEqualsNameStored ) 
 					{
-						numberCliente = instanceStatement.getString("preco").replace(",", ".");
-						double valor = Double.parseDouble(numberCliente);
+						clientNumber = instanceStatement.getString("preco").replace(",", ".");
+						double valor = Double.parseDouble(clientNumber);
 						valueTotalService = valueTotalService + valor;
 
 						numberTotalService++;
@@ -508,7 +541,7 @@ public class ViewReport extends JFrame
 				}
 
 				String[] data = new String[4];
-				data[0] = typeService.get(i);
+				data[0] = serviceType.get(i);
 				data[1] = Integer.toString(numberTotalService);
 				data[2] = Double.toString(valueTotalService).replace(".", ",")
 						   .valueOf(decimal.format(valueTotalService));
@@ -517,7 +550,7 @@ public class ViewReport extends JFrame
 				data[3] = Double.toString(valueTotalPay).replace(".", ",")
 						   .valueOf(decimal.format(valueTotalPay));
 
-				model.addRow(data);
+				tableModel.addRow(data);
 
 				valueTotalBuy = valueTotalBuy + valueTotalService;
 				valueTotalBuyPay = valueTotalBuyPay + valueTotalPay;
@@ -543,9 +576,9 @@ public class ViewReport extends JFrame
 			while ( instanceStatement.next() )
 			{
 
-				if( typeService.contains( instanceStatement.getString("nome") ) == false )
+				if( serviceType.contains( instanceStatement.getString("nome") ) == false )
 				{
-					typeService.add( instanceStatement.getString("nome") );
+					serviceType.add( instanceStatement.getString("nome") );
 					counterService++;
 				}
 				else
@@ -559,10 +592,10 @@ public class ViewReport extends JFrame
 				instanceStatement.beforeFirst();
 				while ( instanceStatement.next() )
 				{
-					if( typeService.get(i).equals( instanceStatement.getString("nome") ) )
+					if( serviceType.get(i).equals( instanceStatement.getString("nome") ) )
 					{
-						numberCliente = instanceStatement.getString("preco").replace(",", ".");
-						double value = Double.parseDouble(numberCliente);
+						clientNumber = instanceStatement.getString("preco").replace(",", ".");
+						double value = Double.parseDouble(clientNumber);
 						valueTotalService = valueTotalService + value;
 
 						numberTotalService++;
@@ -574,7 +607,7 @@ public class ViewReport extends JFrame
 				}
 
 				String[] data = new String[4];
-				data[0] = typeService.get(i);
+				data[0] = serviceType.get(i);
 				data[1] = Integer.toString(numberTotalService);
 				data[2] = Double.toString(valueTotalService).replace(".", ",")
 						   .valueOf(decimal.format(valueTotalService));
@@ -583,7 +616,7 @@ public class ViewReport extends JFrame
 				data[3] = Double.toString(valueTotalPay).replace(".", ",")
 						  .valueOf(decimal.format(valueTotalPay));
 
-				model.addRow(data);
+				tableModel.addRow(data);
 
 				valueTotalBuy = valueTotalBuy + valueTotalService;
 				valueTotalBuyPay = valueTotalBuyPay + valueTotalPay;
@@ -761,17 +794,10 @@ public class ViewReport extends JFrame
 		
 	}
 	
-	// Constructor of components of pane view reposts
-	public ViewReport() throws SQLException, ReportException,
-						NullPointerException, ParseException
-	{
-		initializeComponents();
-	}
-
 	// Interface used to implement the data to be displayed in the graphic
 	private CategoryDataset createDatasetRelatorio () throws SQLException,
 			ReportException, NullPointerException, ParseException
-			{
+	{
 
 		Report instanceStatement = new Report();
 		ResultSet secondInstanceStatement = null;
